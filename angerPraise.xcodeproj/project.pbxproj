@@ -14,6 +14,8 @@
 		19BD477A1AAD5BA600D44A9D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19BD47791AAD5BA600D44A9D /* Images.xcassets */; };
 		19BD477D1AAD5BA600D44A9D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19BD477B1AAD5BA600D44A9D /* LaunchScreen.xib */; };
 		19BD47891AAD5BA600D44A9D /* angerPraiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47881AAD5BA600D44A9D /* angerPraiseTests.m */; };
+		19BD47991AAD7BBC00D44A9D /* HomeViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47981AAD7BBC00D44A9D /* HomeViewControllers.m */; };
+		19BD479C1AAD7BC600D44A9D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD479B1AAD7BC600D44A9D /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		19BD47821AAD5BA600D44A9D /* angerPraiseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = angerPraiseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19BD47871AAD5BA600D44A9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19BD47881AAD5BA600D44A9D /* angerPraiseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = angerPraiseTests.m; sourceTree = "<group>"; };
+		19BD47971AAD7BBC00D44A9D /* HomeViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewControllers.h; sourceTree = "<group>"; };
+		19BD47981AAD7BBC00D44A9D /* HomeViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewControllers.m; sourceTree = "<group>"; };
+		19BD479A1AAD7BC600D44A9D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		19BD479B1AAD7BC600D44A9D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +140,8 @@
 		19BD47931AAD685600D44A9D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				19BD479A1AAD7BC600D44A9D /* User.h */,
+				19BD479B1AAD7BC600D44A9D /* User.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,6 +156,8 @@
 		19BD47951AAD685600D44A9D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				19BD47971AAD7BBC00D44A9D /* HomeViewControllers.h */,
+				19BD47981AAD7BBC00D44A9D /* HomeViewControllers.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -259,9 +269,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19BD479C1AAD7BC600D44A9D /* User.m in Sources */,
 				19BD47751AAD5BA600D44A9D /* ViewController.m in Sources */,
 				19BD47721AAD5BA600D44A9D /* AppDelegate.m in Sources */,
 				19BD476F1AAD5BA600D44A9D /* main.m in Sources */,
+				19BD47991AAD7BBC00D44A9D /* HomeViewControllers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
