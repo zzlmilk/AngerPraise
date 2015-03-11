@@ -8,6 +8,7 @@
 
 #import "ImportResumeViewController.h"
 #import "VirtualImportViewController.h"
+#import "GuideFillViewController.h"
 
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
@@ -61,6 +62,9 @@
 
 #pragma mark -- 引导填写
 -(void)guideImport{
+
+    GuideFillViewController *guideVC = [[GuideFillViewController alloc]init];
+    [self.navigationController pushViewController:guideVC animated:YES];
 
 }
 

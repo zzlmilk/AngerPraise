@@ -12,4 +12,8 @@
 @interface VirtualImportViewController : UIViewController<MYIntroductionDelegate,UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *virtuaImportlWebView;
+
+@property int secondsCountDown;
+
+@property NSTimer *countDownTimer;
 @end

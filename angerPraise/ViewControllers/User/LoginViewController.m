@@ -9,6 +9,9 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "ImportResumeViewController.h"
+#import "NeedDataViewController.h"
+#import "MarkViewController.h"
+
 
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
@@ -37,7 +40,7 @@
     [inputBgImageView setImage:[UIImage imageNamed:@"inputbox"]];
     [self.view addSubview:inputBgImageView];
     
-    _emailOrPhoneTextField = [[UITextField alloc]initWithFrame:CGRectMake(inputBgImageView.frame.origin.x, inputBgImageView.frame.origin.y, inputBgImageView.frame.size.width, inputBgImageView.frame.size.height/2)];
+    _emailOrPhoneTextField = [[UITextField alloc]initWithFrame:CGRectMake(inputBgImageView.frame.origin.x+10, inputBgImageView.frame.origin.y, inputBgImageView.frame.size.width-10, inputBgImageView.frame.size.height/2)];
     _emailOrPhoneTextField.placeholder = @"  邮箱 / 手机号";
     //[_emailOrPhoneTextField setBorderStyle:UITextBorderStyleLine];
     [self.view addSubview:_emailOrPhoneTextField];
@@ -110,8 +113,14 @@
 
 #pragma mark -- 用户登录
 -(void)userLogin{
-    ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
-    [self.navigationController pushViewController:importResumeVC animated:YES];
+    
+//    ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
+    
+    MarkViewController *markVC = [[MarkViewController alloc]init];
+    
+    [self.navigationController pushViewController:markVC animated:YES];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

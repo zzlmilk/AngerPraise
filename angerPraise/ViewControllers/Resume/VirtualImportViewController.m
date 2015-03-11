@@ -10,6 +10,9 @@
 #import "MYBlurIntroductionView.h"
 #import "MYIntroductionPanel.h"
 
+#import "NeedDataViewController.h"
+#import "ApIClient.h"
+
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
 @interface VirtualImportViewController ()
@@ -58,6 +61,24 @@
     //Add the introduction to your view
     [self.view addSubview:introductionView];
     
+
+    _secondsCountDown = 8;//8秒倒计时
+    _countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeFireMethod) userInfo:nil repeats:YES];
+    
+}
+
+#pragma mark -- 计时器执行方法
+-(void)timeFireMethod{
+    _secondsCountDown--;
+    if(_secondsCountDown==0){
+        [_countDownTimer invalidate];
+        
+        [APIClient showMessage:@"您已投递成功"];
+        
+        NeedDataViewController *needDataVC = [[NeedDataViewController alloc]init];
+        [self.navigationController pushViewController:needDataVC animated:YES];
+        
+    }
 }
 
 

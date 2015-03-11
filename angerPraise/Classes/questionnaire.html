@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta content="initial-scale=1.0; maximum-scale=4.0; user-scalable=no;" name="viewport">
+        <meta name="viewport" content="width=device-width,user-scalable=yes" />
+
+
+        <!-- 最新 Bootstrap 核心 CSS 文件 -->
+        <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+        <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+        <!-- <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css"> -->
+
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+        <title>问卷调查</title>
+    </head>
+    <script>
+
+    </script>
+
+
+    <style>
+        body{
+            Font-size=62.5%;
+        }
+        .form-control{
+            width: 80%;
+        }
+        .form-group{
+        matgin-top:20px;
+    }
+
+    </style>
+
+    <boby>
+        <div class="registerWarp">
+
+            <form id='questionForm' class="form-horizontal"  method='post' role="form"  action="?g=company&a=game&v=uploadQuestion" name='questionForm'>
+
+                <fieldset style="">
+                    <div>
+                        <legend style=" height: 60px;line-height: 60px;text-align: center; font-size:1.4em;">
+                            进一步完善资料,获取更高分值
+                        </legend>
+                    </div>
+
+                    <div style=" padding-left: 3em;">
+
+
+    <div class="form-group">
+        <div>1.可接受工作时段</div>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 加班
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 夜班
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 翻班
+        </label>
+    </div>
+
+    <div class="form-group">
+        <div>2.是否接受出差</div>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 是
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 否
+        </label>
+    </div>
+
+    <div class="form-group">
+        <div>3.当前社保接纳方式？</div>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 不缴纳
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 公司待缴
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 其他
+        </label>
+    </div>
+
+    <div class="form-group">
+        <div>4.当前其他货币型福利</div>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="inlineCheckbox1" value="option1"> 津贴
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="inlineCheckbox2" value="option2"> 期权
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="inlineCheckbox3" value="option3"> 保险
+            </label>
+    </div>
+
+    <div class="form-group">
+        <div>5.目标收入(薪资＋社保＋福利)</div>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 5K-10K
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 10K-20K
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 20K以上
+            </label>
+    </div>
+
+
+                    <div style=" text-align: center; margin-left:-25px; ">
+                        <button type="button" style=" margin-top: 2em; width:280px; font-weight: bold; background-color: rgb(236,95,82);" class="btn btn-danger" id='buttonSubmit'>提&nbsp;&nbsp;&nbsp;交</button>
+                    </div>
+
+                </fieldset>
+        </div>
+    </form>
+</div>
+
+<div style=" height: 2em;"></div>
+
+</boby>
+
+
+
+</html>
+<script>
+    
+    
+   
+
+    var title = $('#title').val();
+
+    var titleArray = title.split(',');
+
+    var number = 0;
+
+    $('#buttonSubmit').click(function() {
+
+        $("#questionForm").ajaxSubmit({
+            success: function(data) {
+                
+              
+               eval(data);
+
+               
+            },
+            error: function(xhr) {
+
+                alert(xhr.responseText);
+            }
+        });
+
+    })
+
+</script>
+</body>
+</html>
