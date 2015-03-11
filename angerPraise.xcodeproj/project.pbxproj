@@ -16,6 +16,8 @@
 		19BD47891AAD5BA600D44A9D /* angerPraiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47881AAD5BA600D44A9D /* angerPraiseTests.m */; };
 		19BD47991AAD7BBC00D44A9D /* HomeViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47981AAD7BBC00D44A9D /* HomeViewControllers.m */; };
 		19BD479C1AAD7BC600D44A9D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD479B1AAD7BC600D44A9D /* User.m */; };
+		19BD47B41AB060D800D44A9D /* RKCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47B31AB060D800D44A9D /* RKCardView.m */; };
+		19BD47B71AB060FE00D44A9D /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47B61AB060FE00D44A9D /* UserViewController.m */; };
 		DF015BF41AAE920D00159C7B /* ImportResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF015BF31AAE920D00159C7B /* ImportResumeViewController.m */; };
 		DF015BF71AAE95FB00159C7B /* VirtualImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF015BF61AAE95FB00159C7B /* VirtualImportViewController.m */; };
 		DF360C631AAD7EB20090FF51 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF360C621AAD7EB20090FF51 /* LoginViewController.m */; };
@@ -88,6 +90,10 @@
 		19BD47981AAD7BBC00D44A9D /* HomeViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewControllers.m; sourceTree = "<group>"; };
 		19BD479A1AAD7BC600D44A9D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		19BD479B1AAD7BC600D44A9D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		19BD47B21AB060D800D44A9D /* RKCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCardView.h; sourceTree = "<group>"; };
+		19BD47B31AB060D800D44A9D /* RKCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCardView.m; sourceTree = "<group>"; };
+		19BD47B51AB060FE00D44A9D /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		19BD47B61AB060FE00D44A9D /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		DF015BF21AAE920D00159C7B /* ImportResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportResumeViewController.h; sourceTree = "<group>"; };
 		DF015BF31AAE920D00159C7B /* ImportResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportResumeViewController.m; sourceTree = "<group>"; };
 		DF015BF51AAE95FB00159C7B /* VirtualImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualImportViewController.h; sourceTree = "<group>"; };
@@ -200,11 +206,11 @@
 		19BD476B1AAD5BA600D44A9D /* angerPraise */ = {
 			isa = PBXGroup;
 			children = (
+				19BD47B11AB060CA00D44A9D /* Views */,
 				DFE2C2ED1AB02B8D00C66DF9 /* ThirdParty */,
 				DF826C951AAECCE100EAC61F /* Classes */,
 				19BD47931AAD685600D44A9D /* Models */,
 				19BD47951AAD685600D44A9D /* ViewControllers */,
-				19BD47961AAD685600D44A9D /* Views */,
 				19BD47701AAD5BA600D44A9D /* AppDelegate.h */,
 				19BD47711AAD5BA600D44A9D /* AppDelegate.m */,
 				19BD47731AAD5BA600D44A9D /* ViewController.h */,
@@ -264,9 +270,11 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		19BD47961AAD685600D44A9D /* Views */ = {
+		19BD47B11AB060CA00D44A9D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				19BD47B21AB060D800D44A9D /* RKCardView.h */,
+				19BD47B31AB060D800D44A9D /* RKCardView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,6 +299,8 @@
 				DF360C621AAD7EB20090FF51 /* LoginViewController.m */,
 				DF360C641AAD7ED00090FF51 /* RegisterViewController.h */,
 				DF360C651AAD7ED10090FF51 /* RegisterViewController.m */,
+				19BD47B51AB060FE00D44A9D /* UserViewController.h */,
+				19BD47B61AB060FE00D44A9D /* UserViewController.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -571,10 +581,12 @@
 				DF015BF71AAE95FB00159C7B /* VirtualImportViewController.m in Sources */,
 				DFE2C3211AB02B9600C66DF9 /* UIImageView+AFNetworking.m in Sources */,
 				DFE2C2E31AAFDAC400C66DF9 /* GuideFillViewController.m in Sources */,
+				19BD47B71AB060FE00D44A9D /* UserViewController.m in Sources */,
 				DF826CAD1AAECCF200EAC61F /* MYBlurIntroductionView.m in Sources */,
 				DFE2C3141AB02B9600C66DF9 /* AFHTTPRequestOperation.m in Sources */,
 				DFE2C3271AB02D8500C66DF9 /* MarkViewController.m in Sources */,
 				19BD476F1AAD5BA600D44A9D /* main.m in Sources */,
+				19BD47B41AB060D800D44A9D /* RKCardView.m in Sources */,
 				DFE2C31D1AB02B9600C66DF9 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				DFE2C3161AB02B9600C66DF9 /* AFHTTPSessionManager.m in Sources */,
 				DFE2C3241AB02B9600C66DF9 /* UIWebView+AFNetworking.m in Sources */,
