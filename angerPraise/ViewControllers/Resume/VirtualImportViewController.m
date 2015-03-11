@@ -63,7 +63,7 @@
     [self.view addSubview:introductionView];
     
 
-    _secondsCountDown = 6;//8秒倒计时
+    _secondsCountDown = 8;//8秒倒计时
     _countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeFireMethod) userInfo:nil repeats:YES];
     
 }
