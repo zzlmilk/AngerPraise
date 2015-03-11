@@ -24,9 +24,9 @@
     self.view.backgroundColor = RGBACOLOR(246, 248, 238, 1.0f);
     self.title = @"系统评分";
     
-    UILabel *integrityScoreTitleLabel= [[UILabel alloc]initWithFrame:CGRectMake(30, 90, 100, 40)];
+    UILabel *integrityScoreTitleLabel= [[UILabel alloc]initWithFrame:CGRectMake(30, 90, 145, 40)];
     integrityScoreTitleLabel.backgroundColor = [UIColor clearColor];
-    integrityScoreTitleLabel.text=@"完整度分数:";
+    integrityScoreTitleLabel.text=@"简历的完整度分数:";
     integrityScoreTitleLabel.textColor = RGBACOLOR(76, 63, 55, 1.0f);
     [self.view addSubview:integrityScoreTitleLabel];
     
@@ -38,9 +38,9 @@
     [self.view addSubview:integrityScoreLabel];
     
     
-    UILabel *qualityScoreTitleLabel= [[UILabel alloc]initWithFrame:CGRectMake(30, integrityScoreTitleLabel.frame.size.height+integrityScoreTitleLabel.frame.origin.y, 100, 40)];
+    UILabel *qualityScoreTitleLabel= [[UILabel alloc]initWithFrame:CGRectMake(30, integrityScoreTitleLabel.frame.size.height+integrityScoreTitleLabel.frame.origin.y, 145, 40)];
     qualityScoreTitleLabel.backgroundColor = [UIColor clearColor];
-    qualityScoreTitleLabel.text=@"质量度分数:";
+    qualityScoreTitleLabel.text=@"简历的质量度分数:";
     qualityScoreTitleLabel.textColor = RGBACOLOR(76, 63, 55, 1.0f);
     [self.view addSubview:qualityScoreTitleLabel];
     
@@ -80,7 +80,7 @@
     [inviteButton.layer setMasksToBounds:YES];
     [inviteButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
     [inviteButton.layer setBorderWidth:1.0]; //边框宽度
-    [inviteButton addTarget:self action:@selector(perfectData) forControlEvents:UIControlEventTouchUpInside];
+    [inviteButton addTarget:self action:@selector(inviteFriend) forControlEvents:UIControlEventTouchUpInside];
     CGColorSpaceRef colorSpace2 = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref2 = CGColorCreate(colorSpace2,(CGFloat[]){ 211, 58, 59, 1 });
     [inviteButton.layer setBorderColor:colorref2];//边框颜色
@@ -92,12 +92,17 @@
     
 }
 
-#pragma mark -- 用户登录
+#pragma mark -- 完善资料
 -(void)perfectData{
 
     NeedDataViewController *needData = [[NeedDataViewController alloc]init];
     [self.navigationController pushViewController:needData animated:YES];
     
+}
+
+#pragma mark -- 邀请好友
+-(void)inviteFriend{
+
 }
 
 - (void)didReceiveMemoryWarning {
