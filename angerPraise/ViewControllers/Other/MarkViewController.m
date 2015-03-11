@@ -9,6 +9,9 @@
 #import "MarkViewController.h"
 #import "NeedDataViewController.h"
 
+#import <ShareSDK/ShareSDK.h>
+#import <AGCommon/UIDevice+Common.h>
+
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
 @interface MarkViewController ()
@@ -55,7 +58,7 @@
     UILabel *guidePerfectLabel= [[UILabel alloc]initWithFrame:CGRectMake(qualityScoreTitleLabel.frame.origin.x, qualityScoreTitleLabel.frame.origin.y+qualityScoreTitleLabel.frame.size.height+20, self.view.frame.size.width - 2*qualityScoreTitleLabel.frame.origin.x, 120)];
     [guidePerfectLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
     guidePerfectLabel.backgroundColor = [UIColor clearColor];
-    guidePerfectLabel.text=@"由于您简历的完整度分数和质量度分数偏低, 不能更佳有效地帮助你进行简历推广, 请进一步完善资料并邀请好友进行评价来获取更高的分数";
+    guidePerfectLabel.text=@"由于您简历的完整度分数和质量度分数偏低, 不能更佳有效地帮助你进行简历推广, 请进一步完善资料并邀请好友进行评价来获取更高的分数.";
     guidePerfectLabel.numberOfLines = 0;
     guidePerfectLabel.textColor = RGBACOLOR(77, 77, 77, 1.0f);
     [self.view addSubview:guidePerfectLabel];
@@ -69,14 +72,14 @@
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 211, 58, 59, 1 });
     [perfectButton.layer setBorderColor:colorref];//边框颜色
-    [perfectButton setTitle:@"完善资料" forState:UIControlStateNormal];
+    [perfectButton setTitle:@"去完善资料" forState:UIControlStateNormal];
     perfectButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     perfectButton.backgroundColor = RGBACOLOR(235, 75, 66, 1.0f);
     [self.view addSubview:perfectButton];
     
     
     
-    UIButton *inviteButton = [[UIButton alloc]initWithFrame:CGRectMake(perfectButton.frame.origin.x, perfectButton.frame.origin.y + perfectButton.frame.size.height+30,self.view.frame.size.width-2*perfectButton.frame.origin.x, 40)];
+    UIButton *inviteButton = [[UIButton alloc]initWithFrame:CGRectMake(perfectButton.frame.origin.x, perfectButton.frame.origin.y + perfectButton.frame.size.height+40,self.view.frame.size.width-2*perfectButton.frame.origin.x, 40)];
     [inviteButton.layer setMasksToBounds:YES];
     [inviteButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
     [inviteButton.layer setBorderWidth:1.0]; //边框宽度
@@ -84,7 +87,7 @@
     CGColorSpaceRef colorSpace2 = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref2 = CGColorCreate(colorSpace2,(CGFloat[]){ 211, 58, 59, 1 });
     [inviteButton.layer setBorderColor:colorref2];//边框颜色
-    [inviteButton setTitle:@"邀请好友" forState:UIControlStateNormal];
+    [inviteButton setTitle:@"去邀请好友" forState:UIControlStateNormal];
     inviteButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     inviteButton.backgroundColor = RGBACOLOR(235, 75, 66, 1.0f);
     [self.view addSubview:inviteButton];
@@ -102,6 +105,36 @@
 
 #pragma mark -- 邀请好友
 -(void)inviteFriend{
+    
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
+    
+    //构造分享内容
+    id<ISSContent> publishContent = [ShareSDK content:@"分享内容"
+                                       defaultContent:@"默认分享内容，没内容时显示"
+                                                image:[ShareSDK imageWithPath:imagePath]
+                                                title:@"测试信息"
+                                                  url:@"http://www.baidu.com"
+                                          description:@"这是一条测试信息"
+                                            mediaType:SSPublishContentMediaTypeNews];
+    
+    [ShareSDK showShareActionSheet:nil
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:nil
+                      shareOptions: nil
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    NSLog(@"分享成功");
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"发布失败!error code == %d, error code == %@"), [error errorCode], [error errorDescription]);
+                                }
+                            }];
+
+    
 
 }
 
