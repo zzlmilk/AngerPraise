@@ -13,4 +13,8 @@
 
 @property(nonatomic,strong)UIWebView *guideImportlWebView;
 
+@property int secondsCountDown;
+
+@property NSTimer *countDownTimer;
+
 @end

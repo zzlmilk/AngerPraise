@@ -25,31 +25,39 @@
     self.title = @"系统评分";
     
     UILabel *integrityScoreTitleLabel= [[UILabel alloc]initWithFrame:CGRectMake(30, 90, 100, 40)];
-    integrityScoreTitleLabel.backgroundColor = [UIColor yellowColor];
+    integrityScoreTitleLabel.backgroundColor = [UIColor clearColor];
     integrityScoreTitleLabel.text=@"完整度分数:";
+    integrityScoreTitleLabel.textColor = RGBACOLOR(76, 63, 55, 1.0f);
     [self.view addSubview:integrityScoreTitleLabel];
     
     UILabel *integrityScoreLabel= [[UILabel alloc]initWithFrame:CGRectMake(integrityScoreTitleLabel.frame.size.width+integrityScoreTitleLabel.frame.origin.x, integrityScoreTitleLabel.frame.origin.y, 100, 40)];
-    integrityScoreLabel.backgroundColor = [UIColor redColor];
+    integrityScoreLabel.backgroundColor = [UIColor clearColor];
     integrityScoreLabel.text=@"65";
+    integrityScoreLabel.textColor = RGBACOLOR(52, 46, 48, 1.0f);
+    [integrityScoreLabel setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:18]];
     [self.view addSubview:integrityScoreLabel];
     
     
     UILabel *qualityScoreTitleLabel= [[UILabel alloc]initWithFrame:CGRectMake(30, integrityScoreTitleLabel.frame.size.height+integrityScoreTitleLabel.frame.origin.y, 100, 40)];
-    qualityScoreTitleLabel.backgroundColor = [UIColor yellowColor];
+    qualityScoreTitleLabel.backgroundColor = [UIColor clearColor];
     qualityScoreTitleLabel.text=@"质量度分数:";
+    qualityScoreTitleLabel.textColor = RGBACOLOR(76, 63, 55, 1.0f);
     [self.view addSubview:qualityScoreTitleLabel];
     
     UILabel *qualityScoreLabel= [[UILabel alloc]initWithFrame:CGRectMake(integrityScoreTitleLabel.frame.size.width+integrityScoreTitleLabel.frame.origin.x, qualityScoreTitleLabel.frame.origin.y, 100, 40)];
-    qualityScoreLabel.backgroundColor = [UIColor redColor];
+    qualityScoreLabel.backgroundColor = [UIColor clearColor];
     qualityScoreLabel.text=@"52";
+    qualityScoreLabel.textColor = RGBACOLOR(52, 46, 48, 1.0f);
+    [qualityScoreLabel setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:18]];
     [self.view addSubview:qualityScoreLabel];
     
     
     UILabel *guidePerfectLabel= [[UILabel alloc]initWithFrame:CGRectMake(qualityScoreTitleLabel.frame.origin.x, qualityScoreTitleLabel.frame.origin.y+qualityScoreTitleLabel.frame.size.height+20, self.view.frame.size.width - 2*qualityScoreTitleLabel.frame.origin.x, 120)];
-    guidePerfectLabel.backgroundColor = [UIColor yellowColor];
+    [guidePerfectLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+    guidePerfectLabel.backgroundColor = [UIColor clearColor];
     guidePerfectLabel.text=@"由于您简历的完整度分数和质量度分数偏低, 不能更佳有效地帮助你进行简历推广, 请进一步完善资料并邀请好友进行评价来获取更高的分数";
     guidePerfectLabel.numberOfLines = 0;
+    guidePerfectLabel.textColor = RGBACOLOR(77, 77, 77, 1.0f);
     [self.view addSubview:guidePerfectLabel];
     
     

@@ -12,6 +12,7 @@
 
 #import "NeedDataViewController.h"
 #import "ApIClient.h"
+#import "MarkViewController.h"
 
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
@@ -62,7 +63,7 @@
     [self.view addSubview:introductionView];
     
 
-    _secondsCountDown = 8;//8秒倒计时
+    _secondsCountDown = 6;//8秒倒计时
     _countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeFireMethod) userInfo:nil repeats:YES];
     
 }
@@ -75,8 +76,8 @@
         
         [APIClient showMessage:@"您已投递成功"];
         
-        NeedDataViewController *needDataVC = [[NeedDataViewController alloc]init];
-        [self.navigationController pushViewController:needDataVC animated:YES];
+        MarkViewController *markVC = [[MarkViewController alloc]init];
+        [self.navigationController pushViewController:markVC animated:YES];
         
     }
 }

@@ -114,11 +114,11 @@
 #pragma mark -- 用户登录
 -(void)userLogin{
     
-//    ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
+    ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
     
-    MarkViewController *markVC = [[MarkViewController alloc]init];
+//    MarkViewController *markVC = [[MarkViewController alloc]init];
     
-    [self.navigationController pushViewController:markVC animated:YES];
+    [self.navigationController pushViewController:importResumeVC animated:YES];
     
     
 }
