@@ -16,6 +16,26 @@
 		19BD47891AAD5BA600D44A9D /* angerPraiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47881AAD5BA600D44A9D /* angerPraiseTests.m */; };
 		19BD47991AAD7BBC00D44A9D /* HomeViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47981AAD7BBC00D44A9D /* HomeViewControllers.m */; };
 		19BD479C1AAD7BC600D44A9D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD479B1AAD7BC600D44A9D /* User.m */; };
+		DF015BF41AAE920D00159C7B /* ImportResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF015BF31AAE920D00159C7B /* ImportResumeViewController.m */; };
+		DF015BF71AAE95FB00159C7B /* VirtualImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF015BF61AAE95FB00159C7B /* VirtualImportViewController.m */; };
+		DF360C631AAD7EB20090FF51 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF360C621AAD7EB20090FF51 /* LoginViewController.m */; };
+		DF360C661AAD7ED10090FF51 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF360C651AAD7ED10090FF51 /* RegisterViewController.m */; };
+		DF826CAD1AAECCF200EAC61F /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */; };
+		DF826CAE1AAECCF200EAC61F /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF826C9A1AAECCF200EAC61F /* MYIntroductionPanel.m */; };
+		DF826CAF1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826C9E1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png */; };
+		DF826CB01AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826C9F1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png */; };
+		DF826CB11AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CA01AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png */; };
+		DF826CB21AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CA11AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png */; };
+		DF826CB31AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.52 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CA21AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.52 PM.png */; };
+		DF826CB41AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.56 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CA31AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.56 PM.png */; };
+		DF826CB51AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.10.00 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CA41AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.10.00 PM.png */; };
+		DF826CB61AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.36 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CA51AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.36 PM.png */; };
+		DF826CB71AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.38 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CA61AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.38 PM.png */; };
+		DF826CB81AAECCF200EAC61F /* MYBlurIntroductionView.gif in Resources */ = {isa = PBXBuildFile; fileRef = DF826CA71AAECCF200EAC61F /* MYBlurIntroductionView.gif */; };
+		DF826CB91AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CA91AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png */; };
+		DF826CBA1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CAA1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png */; };
+		DF826CBB1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CAB1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png */; };
+		DF826CBC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CAC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +66,32 @@
 		19BD47981AAD7BBC00D44A9D /* HomeViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewControllers.m; sourceTree = "<group>"; };
 		19BD479A1AAD7BC600D44A9D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		19BD479B1AAD7BC600D44A9D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		DF015BF21AAE920D00159C7B /* ImportResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportResumeViewController.h; sourceTree = "<group>"; };
+		DF015BF31AAE920D00159C7B /* ImportResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportResumeViewController.m; sourceTree = "<group>"; };
+		DF015BF51AAE95FB00159C7B /* VirtualImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualImportViewController.h; sourceTree = "<group>"; };
+		DF015BF61AAE95FB00159C7B /* VirtualImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualImportViewController.m; sourceTree = "<group>"; };
+		DF360C611AAD7EB20090FF51 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		DF360C621AAD7EB20090FF51 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		DF360C641AAD7ED00090FF51 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		DF360C651AAD7ED10090FF51 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		DF826C971AAECCF200EAC61F /* MYBlurIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYBlurIntroductionView.h; sourceTree = "<group>"; };
+		DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYBlurIntroductionView.m; sourceTree = "<group>"; };
+		DF826C991AAECCF200EAC61F /* MYIntroductionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
+		DF826C9A1AAECCF200EAC61F /* MYIntroductionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYIntroductionPanel.m; sourceTree = "<group>"; };
+		DF826C9E1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png"; sourceTree = "<group>"; };
+		DF826C9F1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png"; sourceTree = "<group>"; };
+		DF826CA01AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png"; sourceTree = "<group>"; };
+		DF826CA11AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png"; sourceTree = "<group>"; };
+		DF826CA21AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.52 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 3.09.52 PM.png"; sourceTree = "<group>"; };
+		DF826CA31AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.56 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 3.09.56 PM.png"; sourceTree = "<group>"; };
+		DF826CA41AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.10.00 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 3.10.00 PM.png"; sourceTree = "<group>"; };
+		DF826CA51AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.36 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.42.36 PM.png"; sourceTree = "<group>"; };
+		DF826CA61AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.38 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.42.38 PM.png"; sourceTree = "<group>"; };
+		DF826CA71AAECCF200EAC61F /* MYBlurIntroductionView.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = MYBlurIntroductionView.gif; sourceTree = "<group>"; };
+		DF826CA91AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png"; sourceTree = "<group>"; };
+		DF826CAA1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png"; sourceTree = "<group>"; };
+		DF826CAB1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png"; sourceTree = "<group>"; };
+		DF826CAC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +133,8 @@
 		19BD476B1AAD5BA600D44A9D /* angerPraise */ = {
 			isa = PBXGroup;
 			children = (
-				19BD47921AAD685600D44A9D /* Classes */,
+				DF826C951AAECCE100EAC61F /* Classes */,
 				19BD47931AAD685600D44A9D /* Models */,
-				19BD47941AAD685600D44A9D /* ThirdParty */,
 				19BD47951AAD685600D44A9D /* ViewControllers */,
 				19BD47961AAD685600D44A9D /* Views */,
 				19BD47701AAD5BA600D44A9D /* AppDelegate.h */,
@@ -130,13 +175,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		19BD47921AAD685600D44A9D /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		19BD47931AAD685600D44A9D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,16 +184,11 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		19BD47941AAD685600D44A9D /* ThirdParty */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ThirdParty;
-			sourceTree = "<group>";
-		};
 		19BD47951AAD685600D44A9D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF015BF11AAE91CE00159C7B /* Resume */,
+				DF360C601AAD7E3D0090FF51 /* User */,
 				19BD47971AAD7BBC00D44A9D /* HomeViewControllers.h */,
 				19BD47981AAD7BBC00D44A9D /* HomeViewControllers.m */,
 			);
@@ -167,6 +200,93 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DF015BF11AAE91CE00159C7B /* Resume */ = {
+			isa = PBXGroup;
+			children = (
+				DF015BF21AAE920D00159C7B /* ImportResumeViewController.h */,
+				DF015BF31AAE920D00159C7B /* ImportResumeViewController.m */,
+				DF015BF51AAE95FB00159C7B /* VirtualImportViewController.h */,
+				DF015BF61AAE95FB00159C7B /* VirtualImportViewController.m */,
+			);
+			path = Resume;
+			sourceTree = "<group>";
+		};
+		DF360C601AAD7E3D0090FF51 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				DF360C611AAD7EB20090FF51 /* LoginViewController.h */,
+				DF360C621AAD7EB20090FF51 /* LoginViewController.m */,
+				DF360C641AAD7ED00090FF51 /* RegisterViewController.h */,
+				DF360C651AAD7ED10090FF51 /* RegisterViewController.m */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		DF826C951AAECCE100EAC61F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DF826C961AAECCF200EAC61F /* MYBlurIntroductionView */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DF826C961AAECCF200EAC61F /* MYBlurIntroductionView */ = {
+			isa = PBXGroup;
+			children = (
+				DF826C971AAECCF200EAC61F /* MYBlurIntroductionView.h */,
+				DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */,
+				DF826C991AAECCF200EAC61F /* MYIntroductionPanel.h */,
+				DF826C9A1AAECCF200EAC61F /* MYIntroductionPanel.m */,
+				DF826C9B1AAECCF200EAC61F /* Resources */,
+			);
+			path = MYBlurIntroductionView;
+			sourceTree = "<group>";
+		};
+		DF826C9B1AAECCF200EAC61F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DF826C9C1AAECCF200EAC61F /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DF826C9C1AAECCF200EAC61F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DF826C9D1AAECCF200EAC61F /* FullSize */,
+				DF826CA21AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.52 PM.png */,
+				DF826CA31AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.56 PM.png */,
+				DF826CA41AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.10.00 PM.png */,
+				DF826CA51AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.36 PM.png */,
+				DF826CA61AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.38 PM.png */,
+				DF826CA71AAECCF200EAC61F /* MYBlurIntroductionView.gif */,
+				DF826CA81AAECCF200EAC61F /* Top */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		DF826C9D1AAECCF200EAC61F /* FullSize */ = {
+			isa = PBXGroup;
+			children = (
+				DF826C9E1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png */,
+				DF826C9F1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png */,
+				DF826CA01AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png */,
+				DF826CA11AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png */,
+			);
+			path = FullSize;
+			sourceTree = "<group>";
+		};
+		DF826CA81AAECCF200EAC61F /* Top */ = {
+			isa = PBXGroup;
+			children = (
+				DF826CA91AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png */,
+				DF826CAA1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png */,
+				DF826CAB1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png */,
+				DF826CAC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png */,
+			);
+			path = Top;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,9 +369,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF826CB21AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png in Resources */,
+				DF826CBA1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png in Resources */,
 				19BD47781AAD5BA600D44A9D /* Main.storyboard in Resources */,
+				DF826CB51AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.10.00 PM.png in Resources */,
+				DF826CB61AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.36 PM.png in Resources */,
+				DF826CB11AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png in Resources */,
+				DF826CB01AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png in Resources */,
+				DF826CB81AAECCF200EAC61F /* MYBlurIntroductionView.gif in Resources */,
+				DF826CB41AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.56 PM.png in Resources */,
+				DF826CBB1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png in Resources */,
+				DF826CBC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png in Resources */,
+				DF826CAF1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png in Resources */,
+				DF826CB31AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.52 PM.png in Resources */,
 				19BD477D1AAD5BA600D44A9D /* LaunchScreen.xib in Resources */,
+				DF826CB91AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png in Resources */,
 				19BD477A1AAD5BA600D44A9D /* Images.xcassets in Resources */,
+				DF826CB71AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.38 PM.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +405,13 @@
 			files = (
 				19BD479C1AAD7BC600D44A9D /* User.m in Sources */,
 				19BD47751AAD5BA600D44A9D /* ViewController.m in Sources */,
+				DF826CAE1AAECCF200EAC61F /* MYIntroductionPanel.m in Sources */,
+				DF015BF41AAE920D00159C7B /* ImportResumeViewController.m in Sources */,
+				DF360C631AAD7EB20090FF51 /* LoginViewController.m in Sources */,
 				19BD47721AAD5BA600D44A9D /* AppDelegate.m in Sources */,
+				DF360C661AAD7ED10090FF51 /* RegisterViewController.m in Sources */,
+				DF015BF71AAE95FB00159C7B /* VirtualImportViewController.m in Sources */,
+				DF826CAD1AAECCF200EAC61F /* MYBlurIntroductionView.m in Sources */,
 				19BD476F1AAD5BA600D44A9D /* main.m in Sources */,
 				19BD47991AAD7BBC00D44A9D /* HomeViewControllers.m in Sources */,
 			);
@@ -396,7 +536,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = angerPraise/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -407,7 +547,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = angerPraise/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -466,6 +606,7 @@
 				19BD478E1AAD5BA600D44A9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19BD478F1AAD5BA600D44A9D /* Build configuration list for PBXNativeTarget "angerPraiseTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +615,7 @@
 				19BD47911AAD5BA600D44A9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
