@@ -8,6 +8,7 @@
 
 #import "MarkViewController.h"
 #import "NeedDataViewController.h"
+#import "UserViewController.h"
 
 #import <ShareSDK/ShareSDK.h>
 #import <AGCommon/UIDevice+Common.h>
@@ -26,6 +27,11 @@
     
     self.view.backgroundColor = RGBACOLOR(246, 248, 238, 1.0f);
     self.title = @"系统评分";
+    
+    
+    UIBarButtonItem *personItem = [[UIBarButtonItem alloc]initWithTitle:@"个人中心" style:UIBarButtonItemStylePlain target:self action:@selector(personAction)];
+    self.navigationItem.rightBarButtonItem = personItem;
+    
     
     UILabel *integrityScoreTitleLabel= [[UILabel alloc]initWithFrame:CGRectMake(30, 90, 145, 40)];
     integrityScoreTitleLabel.backgroundColor = [UIColor clearColor];
@@ -74,7 +80,7 @@
     [perfectButton.layer setBorderColor:colorref];//边框颜色
     [perfectButton setTitle:@"去完善资料" forState:UIControlStateNormal];
     perfectButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    perfectButton.backgroundColor = RGBACOLOR(235, 75, 66, 1.0f);
+    perfectButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);
     [self.view addSubview:perfectButton];
     
     
@@ -89,10 +95,18 @@
     [inviteButton.layer setBorderColor:colorref2];//边框颜色
     [inviteButton setTitle:@"去邀请好友" forState:UIControlStateNormal];
     inviteButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    inviteButton.backgroundColor = RGBACOLOR(235, 75, 66, 1.0f);
+    inviteButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);
     [self.view addSubview:inviteButton];
     
     
+}
+
+#pragma mark -- 个人中心 入口
+-(void)personAction{
+    
+    UserViewController *userVC = [[UserViewController alloc]init];
+    [self.navigationController pushViewController:userVC animated:YES];
+
 }
 
 #pragma mark -- 完善资料

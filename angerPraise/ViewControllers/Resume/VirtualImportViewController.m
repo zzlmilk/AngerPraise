@@ -28,7 +28,7 @@
     
     self.title = @"虚拟投放";
     self.view.backgroundColor = RGBACOLOR(246, 248, 238, 1.0f);
-    
+
     _virtuaImportlWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     _virtuaImportlWebView.delegate = self;
     NSURL *url=[NSURL URLWithString:@"http://m.51job.com/my/login.php"];

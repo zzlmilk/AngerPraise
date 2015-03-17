@@ -38,7 +38,7 @@
     [getCaptchaButton.layer setBorderColor:colorref2];//边框颜色
     [getCaptchaButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     getCaptchaButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
-    getCaptchaButton.backgroundColor = RGBACOLOR(235, 75, 66, 1.0f);
+    getCaptchaButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);;
     [self.view addSubview:getCaptchaButton];
     
     
@@ -81,7 +81,7 @@
     [registerButton.layer setBorderColor:colorref];//边框颜色
     [registerButton setTitle:@"注册" forState:UIControlStateNormal];
     registerButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:22];
-    registerButton.backgroundColor = RGBACOLOR(235, 75, 66, 1.0f);
+    registerButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);
     [self.view addSubview:registerButton];
     
     

@@ -33,7 +33,7 @@
     //describeLabel.backgroundColor = [UIColor yellowColor];
     describeLabel.text = @"登录HireLib, 享受个性化推荐!";
     describeLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:19];
-    describeLabel.textColor = RGBACOLOR(211, 96, 84, 1.0f);
+    describeLabel.textColor = RGBACOLOR(94, 123, 167, 1.0f);
     [self.view addSubview:describeLabel];
     
     UIImageView *inputBgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, describeLabel.frame.size.height+describeLabel.frame.origin.y+20, self.view.frame.size.width-2*30, 100)];
@@ -60,7 +60,7 @@
     [loginButton.layer setBorderColor:colorref];//边框颜色
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
     loginButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:22];
-    loginButton.backgroundColor = RGBACOLOR(235, 75, 66, 1.0f);
+    loginButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);
     [self.view addSubview:loginButton];
     
     UILabel *lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(loginButton.frame.origin.x-15, loginButton.frame.origin.y+loginButton.frame.size.height+40, self.view.frame.size.width - 2*loginButton.frame.origin.x+30, 1)];
@@ -99,7 +99,7 @@
     [registerButton addTarget:self action:@selector(skipRegister) forControlEvents:UIControlEventTouchUpInside];
     [registerButton setTitle:@"注册HireLib账号" forState:UIControlStateNormal];
     registerButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    [registerButton setTitleColor:RGBACOLOR(211, 96, 84, 1.0f)forState:UIControlStateNormal];
+    [registerButton setTitleColor:RGBACOLOR(94, 123, 167, 1.0f)forState:UIControlStateNormal];
     [self.view addSubview:registerButton];
 }
 

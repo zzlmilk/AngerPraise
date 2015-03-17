@@ -20,6 +20,9 @@
 		19BD47B71AB060FE00D44A9D /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47B61AB060FE00D44A9D /* UserViewController.m */; };
 		DF015BF41AAE920D00159C7B /* ImportResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF015BF31AAE920D00159C7B /* ImportResumeViewController.m */; };
 		DF015BF71AAE95FB00159C7B /* VirtualImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF015BF61AAE95FB00159C7B /* VirtualImportViewController.m */; };
+		DF0B92481AB1463900A1698E /* CheckQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */; };
+		DF0B924B1AB14C9000A1698E /* EvaluateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */; };
+		DF0B924D1AB14D4400A1698E /* evaluateList.html in Resources */ = {isa = PBXBuildFile; fileRef = DF0B924C1AB14D4400A1698E /* evaluateList.html */; };
 		DF360C631AAD7EB20090FF51 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF360C621AAD7EB20090FF51 /* LoginViewController.m */; };
 		DF360C661AAD7ED10090FF51 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF360C651AAD7ED10090FF51 /* RegisterViewController.m */; };
 		DF826CAD1AAECCF200EAC61F /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */; };
@@ -110,6 +113,8 @@
 		DFBEB19B1AB05F2A002692EF /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB19A1AB05F2A002692EF /* libz.1.2.5.dylib */; };
 		DFBEB19D1AB05F39002692EF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB19C1AB05F39002692EF /* Security.framework */; };
 		DFBEB19F1AB05F95002692EF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB19E1AB05F95002692EF /* MessageUI.framework */; };
+		DFBEB1A11AB1367E002692EF /* radar.html in Resources */ = {isa = PBXBuildFile; fileRef = DFBEB1A01AB1367E002692EF /* radar.html */; };
+		DFBEB1A51AB1372C002692EF /* Chart.js in Resources */ = {isa = PBXBuildFile; fileRef = DFBEB1A41AB1372C002692EF /* Chart.js */; };
 		DFE2C2E31AAFDAC400C66DF9 /* GuideFillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE2C2E21AAFDAC400C66DF9 /* GuideFillViewController.m */; };
 		DFE2C2E51AB012CC00C66DF9 /* questionnaire.html in Resources */ = {isa = PBXBuildFile; fileRef = DFE2C2E41AB012CC00C66DF9 /* questionnaire.html */; };
 		DFE2C2E91AB0132C00C66DF9 /* NeedDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE2C2E81AB0132C00C66DF9 /* NeedDataViewController.m */; };
@@ -170,6 +175,11 @@
 		DF015BF31AAE920D00159C7B /* ImportResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportResumeViewController.m; sourceTree = "<group>"; };
 		DF015BF51AAE95FB00159C7B /* VirtualImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualImportViewController.h; sourceTree = "<group>"; };
 		DF015BF61AAE95FB00159C7B /* VirtualImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualImportViewController.m; sourceTree = "<group>"; };
+		DF0B92461AB1463900A1698E /* CheckQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckQuestionViewController.h; sourceTree = "<group>"; };
+		DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckQuestionViewController.m; sourceTree = "<group>"; };
+		DF0B92491AB14C9000A1698E /* EvaluateListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateListViewController.h; sourceTree = "<group>"; };
+		DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateListViewController.m; sourceTree = "<group>"; };
+		DF0B924C1AB14D4400A1698E /* evaluateList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = evaluateList.html; sourceTree = "<group>"; };
 		DF360C611AAD7EB20090FF51 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		DF360C621AAD7EB20090FF51 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		DF360C641AAD7ED00090FF51 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -271,6 +281,8 @@
 		DFBEB19A1AB05F2A002692EF /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		DFBEB19C1AB05F39002692EF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DFBEB19E1AB05F95002692EF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DFBEB1A01AB1367E002692EF /* radar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = radar.html; path = "../../../../Downloads/下载文件/Chart.js-master/samples/radar.html"; sourceTree = "<group>"; };
+		DFBEB1A41AB1372C002692EF /* Chart.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Chart.js; sourceTree = "<group>"; };
 		DFE2C2E11AAFDAC400C66DF9 /* GuideFillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideFillViewController.h; sourceTree = "<group>"; };
 		DFE2C2E21AAFDAC400C66DF9 /* GuideFillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideFillViewController.m; sourceTree = "<group>"; };
 		DFE2C2E41AB012CC00C66DF9 /* questionnaire.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = questionnaire.html; sourceTree = "<group>"; };
@@ -525,6 +537,9 @@
 		DF826C951AAECCE100EAC61F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DF0B924C1AB14D4400A1698E /* evaluateList.html */,
+				DFBEB1A41AB1372C002692EF /* Chart.js */,
+				DFBEB1A01AB1367E002692EF /* radar.html */,
 				DFE2C2EA1AB02AD700C66DF9 /* ApIClient.h */,
 				DFE2C2EB1AB02AD700C66DF9 /* ApIClient.m */,
 				DFE2C2E41AB012CC00C66DF9 /* questionnaire.html */,
@@ -779,6 +794,10 @@
 				DFE2C2E81AB0132C00C66DF9 /* NeedDataViewController.m */,
 				DFE2C3251AB02D8500C66DF9 /* MarkViewController.h */,
 				DFE2C3261AB02D8500C66DF9 /* MarkViewController.m */,
+				DF0B92461AB1463900A1698E /* CheckQuestionViewController.h */,
+				DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */,
+				DF0B92491AB14C9000A1698E /* EvaluateListViewController.h */,
+				DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -933,9 +952,11 @@
 				19BD47781AAD5BA600D44A9D /* Main.storyboard in Resources */,
 				DF826CB51AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.10.00 PM.png in Resources */,
 				DFBEB1501AB0464D002692EF /* InstapaperResource.bundle in Resources */,
+				DFBEB1A51AB1372C002692EF /* Chart.js in Resources */,
 				DF826CB61AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.42.36 PM.png in Resources */,
 				DF826CB11AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png in Resources */,
 				DFBEB1771AB0464D002692EF /* WeiboSDK.bundle in Resources */,
+				DF0B924D1AB14D4400A1698E /* evaluateList.html in Resources */,
 				DF826CB01AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png in Resources */,
 				DF826CB81AAECCF200EAC61F /* MYBlurIntroductionView.gif in Resources */,
 				DFBEB16E1AB0464D002692EF /* GooglePlus.bundle in Resources */,
@@ -947,6 +968,7 @@
 				DF826CBC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png in Resources */,
 				DF826CAF1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png in Resources */,
 				DF826CB31AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.52 PM.png in Resources */,
+				DFBEB1A11AB1367E002692EF /* radar.html in Resources */,
 				19BD477D1AAD5BA600D44A9D /* LaunchScreen.xib in Resources */,
 				DFBEB1711AB0464D002692EF /* PinterestSDKResources.bundle in Resources */,
 				DFBEB1741AB0464D002692EF /* RennSDK.bundle in Resources */,
@@ -988,10 +1010,12 @@
 				DFE2C3151AB02B9600C66DF9 /* AFHTTPRequestOperationManager.m in Sources */,
 				DFE2C2E91AB0132C00C66DF9 /* NeedDataViewController.m in Sources */,
 				DFE2C3181AB02B9600C66DF9 /* AFSecurityPolicy.m in Sources */,
+				DF0B92481AB1463900A1698E /* CheckQuestionViewController.m in Sources */,
 				19BD47721AAD5BA600D44A9D /* AppDelegate.m in Sources */,
 				DF360C661AAD7ED10090FF51 /* RegisterViewController.m in Sources */,
 				DFE2C31A1AB02B9600C66DF9 /* AFURLRequestSerialization.m in Sources */,
 				DFE2C3171AB02B9600C66DF9 /* AFNetworkReachabilityManager.m in Sources */,
+				DF0B924B1AB14C9000A1698E /* EvaluateListViewController.m in Sources */,
 				DF015BF71AAE95FB00159C7B /* VirtualImportViewController.m in Sources */,
 				DFE2C3211AB02B9600C66DF9 /* UIImageView+AFNetworking.m in Sources */,
 				DFE2C2E31AAFDAC400C66DF9 /* GuideFillViewController.m in Sources */,

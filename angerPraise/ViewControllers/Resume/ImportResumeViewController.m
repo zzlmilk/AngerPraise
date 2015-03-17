@@ -35,7 +35,7 @@
     [virtualButton.layer setBorderColor:colorref];//边框颜色
     [virtualButton setTitle:@"虚拟投放" forState:UIControlStateNormal];
     virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    virtualButton.backgroundColor = RGBACOLOR(70, 155, 70, 1.0f);
+    virtualButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);
     [self.view addSubview:virtualButton];
 
     
