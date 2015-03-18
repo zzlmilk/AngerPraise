@@ -27,22 +27,22 @@
     
     RKCardView* cardView= [[RKCardView alloc]initWithFrame:CGRectMake(BUFFERX, BUFFERY, self.view.frame.size.width-2*BUFFERX, self.view.frame.size.height-2*BUFFERY)];
     
-//    cardView.backgroundColor = [UIColor yellowColor];
+    cardView.backgroundColor = [UIColor yellowColor];
     
     cardView.coverImageView.image = [UIImage imageNamed:@"exampleCover"];
     cardView.profileImageView.image = [UIImage imageNamed:@"exampleProfile"];
-    cardView.titleLabel.text = @"周大作";
+    cardView.titleLabel.text = @"王小二";
     //    [cardView addBlur];
     //    [cardView addShadow];
     [self.view addSubview:cardView];
-    
-    _radarWebView=[[UIWebView alloc] initWithFrame:CGRectMake(cardView.frame.origin.x-10, cardView.frame.origin.y+200, self.view.frame.size.width-60, 240)];
-    _radarWebView.delegate=self;
-    [cardView addSubview:_radarWebView];
-    
-    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"radar" ofType:@"html"];
-    NSString *htmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    [_radarWebView loadHTMLString:htmlString baseURL:[NSURL URLWithString:filePath]];
+//    
+//    _radarWebView=[[UIWebView alloc] initWithFrame:CGRectMake(cardView.frame.origin.x-10, cardView.frame.origin.y+200, self.view.frame.size.width-60, 240)];
+//    _radarWebView.delegate=self;
+//    [cardView addSubview:_radarWebView];
+//    
+//    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"radar" ofType:@"html"];
+//    NSString *htmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+//    [_radarWebView loadHTMLString:htmlString baseURL:[NSURL URLWithString:filePath]];
     
     
 }

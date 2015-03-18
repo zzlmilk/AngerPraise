@@ -41,6 +41,7 @@
 		DF826CBA1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CAA1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png */; };
 		DF826CBB1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CAB1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png */; };
 		DF826CBC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826CAC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png */; };
+		DF8DE45F1AB921B6000E94F1 /* HirelibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8DE45E1AB921B6000E94F1 /* HirelibViewController.m */; };
 		DFBEB1471AB0464D002692EF /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB0F21AB0464C002692EF /* CopyConnection.framework */; };
 		DFBEB1481AB0464D002692EF /* DouBanConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB0F31AB0464C002692EF /* DouBanConnection.framework */; };
 		DFBEB1491AB0464D002692EF /* DropboxConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB0F41AB0464C002692EF /* DropboxConnection.framework */; };
@@ -202,6 +203,8 @@
 		DF826CAA1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.39 PM.png"; sourceTree = "<group>"; };
 		DF826CAB1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.41 PM.png"; sourceTree = "<group>"; };
 		DF826CAC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png"; sourceTree = "<group>"; };
+		DF8DE45D1AB921B6000E94F1 /* HirelibViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HirelibViewController.h; sourceTree = "<group>"; };
+		DF8DE45E1AB921B6000E94F1 /* HirelibViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HirelibViewController.m; sourceTree = "<group>"; };
 		DFBEB0F21AB0464C002692EF /* CopyConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CopyConnection.framework; sourceTree = "<group>"; };
 		DFBEB0F31AB0464C002692EF /* DouBanConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DouBanConnection.framework; sourceTree = "<group>"; };
 		DFBEB0F41AB0464C002692EF /* DropboxConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxConnection.framework; sourceTree = "<group>"; };
@@ -490,6 +493,7 @@
 		19BD47951AAD685600D44A9D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF8DE45C1AB921A2000E94F1 /* HireLib */,
 				DFE2C2E61AB0130800C66DF9 /* Other */,
 				DF015BF11AAE91CE00159C7B /* Resume */,
 				DF360C601AAD7E3D0090FF51 /* User */,
@@ -603,6 +607,15 @@
 				DF826CAC1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.43 PM.png */,
 			);
 			path = Top;
+			sourceTree = "<group>";
+		};
+		DF8DE45C1AB921A2000E94F1 /* HireLib */ = {
+			isa = PBXGroup;
+			children = (
+				DF8DE45D1AB921B6000E94F1 /* HirelibViewController.h */,
+				DF8DE45E1AB921B6000E94F1 /* HirelibViewController.m */,
+			);
+			path = HireLib;
 			sourceTree = "<group>";
 		};
 		DFBEB0F01AB0464C002692EF /* ShareSDK */ = {
@@ -1020,6 +1033,7 @@
 				DFE2C3211AB02B9600C66DF9 /* UIImageView+AFNetworking.m in Sources */,
 				DFE2C2E31AAFDAC400C66DF9 /* GuideFillViewController.m in Sources */,
 				19BD47B71AB060FE00D44A9D /* UserViewController.m in Sources */,
+				DF8DE45F1AB921B6000E94F1 /* HirelibViewController.m in Sources */,
 				DF826CAD1AAECCF200EAC61F /* MYBlurIntroductionView.m in Sources */,
 				DFE2C3141AB02B9600C66DF9 /* AFHTTPRequestOperation.m in Sources */,
 				DFE2C3271AB02D8500C66DF9 /* MarkViewController.m in Sources */,

@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserViewController : UIViewController<UIWebViewDelegate>
+@interface UserViewController : UIViewController
 
-@property(nonatomic,strong)UIWebView *radarWebView;
 
 @end
