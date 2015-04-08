@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ImportResumeViewController : UIViewController
+@interface ImportResumeViewController : BaseViewController
 
 @end

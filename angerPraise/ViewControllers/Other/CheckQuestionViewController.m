@@ -9,8 +9,6 @@
 #import "CheckQuestionViewController.h"
 #import "EvaluateListViewController.h"
 
-#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
-
 @interface CheckQuestionViewController ()
 
 @end
@@ -21,7 +19,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = RGBACOLOR(246, 248, 238, 1.0f);
     self.title = @"评价审核";
     
     UILabel *describeLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 100, self.view.frame.size.width-2*30, 40)];

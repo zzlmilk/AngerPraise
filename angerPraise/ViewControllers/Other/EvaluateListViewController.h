@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface EvaluateListViewController : UIViewController<UIWebViewDelegate>
+@interface EvaluateListViewController : BaseViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *evaluateListWebView;
 

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface NeedDataViewController : UIViewController<UIWebViewDelegate>
+@interface NeedDataViewController : BaseViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong) UIWebView *needDataWebView;
 

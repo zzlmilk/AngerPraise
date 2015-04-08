@@ -9,7 +9,7 @@
 #import "HomeViewControllers.h"
 #import "ImportResumeViewController.h"
 #import "UserViewController.h"
-#import "HirelibViewController.h"
+#import "PositionViewController.h"
 
 @implementation HomeViewControllers
 
@@ -24,21 +24,19 @@
     resumeNav.tabBarItem.image = [UIImage imageNamed:@"avatar_placeholder"];
     
     
-    
-    HirelibViewController *hirelibVC = [[HirelibViewController alloc]init];
-    UINavigationController *hirelibNav = [[UINavigationController alloc]initWithRootViewController:hirelibVC];
-    hirelibNav.title = @"HireLib";
-    hirelibNav.tabBarItem.image = [UIImage imageNamed:@"avatar_placeholder"];
-    
+    PositionViewController *posotionVC = [[PositionViewController alloc]init];
+    UINavigationController *posotionNav = [[UINavigationController alloc]initWithRootViewController:posotionVC];
+    posotionNav.title = @"职位";
+    posotionNav.tabBarItem.image = [UIImage imageNamed:@"avatar_placeholder"];
     
     
     UserViewController *userVC = [[UserViewController alloc]init];
     UINavigationController *userNav = [[UINavigationController alloc]initWithRootViewController:userVC];
-    userNav.title = @"个人中心";
+    userNav.title = @"我的";
     userNav.tabBarItem.image = [UIImage imageNamed:@"avatar_placeholder"];
     
     
-    NSArray *viewControllers = [NSArray arrayWithObjects:resumeNav,hirelibNav,userNav, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:resumeNav,posotionNav,userNav, nil];
     
     self.viewControllers =viewControllers;
     

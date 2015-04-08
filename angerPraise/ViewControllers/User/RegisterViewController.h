@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : BaseViewController
 
 @property(nonatomic,strong) UITextField *phoneNumberTextField;
 @property(nonatomic,strong) UITextField *captchaTextField;

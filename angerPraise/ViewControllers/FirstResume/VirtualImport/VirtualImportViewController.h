@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MYBlurIntroductionView.h"
+#import "BaseViewController.h"
 
-@interface VirtualImportViewController : UIViewController<MYIntroductionDelegate,UIWebViewDelegate>
+@interface VirtualImportViewController : BaseViewController<MYIntroductionDelegate,UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *virtuaImportlWebView;
 

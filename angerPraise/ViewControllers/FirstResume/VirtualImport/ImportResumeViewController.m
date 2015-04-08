@@ -8,9 +8,7 @@
 
 #import "ImportResumeViewController.h"
 #import "VirtualImportViewController.h"
-#import "GuideFillViewController.h"
-
-#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+#import "CreatStep1ViewController.h"
 
 @interface ImportResumeViewController ()
 
@@ -22,8 +20,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self setExtendedLayoutIncludesOpaqueBars:YES];
+    self.tabBarController.tabBar.hidden = YES;
+    
     self.title = @"导入简历";
-    self.view.backgroundColor = RGBACOLOR(246, 248, 238, 1.0f);
     
     UIButton *virtualButton = [[UIButton alloc]initWithFrame:CGRectMake(30, 200, self.view.frame.size.width-2*30, 45)];
     [virtualButton.layer setMasksToBounds:YES];
@@ -47,7 +47,7 @@
     CGColorSpaceRef colorSpace2 = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref2 = CGColorCreate(colorSpace2,(CGFloat[]){ 40, 164, 201, 1 });
     [guideButton.layer setBorderColor:colorref2];//边框颜色
-    [guideButton setTitle:@"引导填写" forState:UIControlStateNormal];
+    [guideButton setTitle:@"应用内创建" forState:UIControlStateNormal];
     guideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     guideButton.backgroundColor = RGBACOLOR(72, 184, 218, 1.0f);
     [self.view addSubview:guideButton];
@@ -60,11 +60,11 @@
     [self.navigationController pushViewController:virtualVC animated:YES];
 }
 
-#pragma mark -- 引导填写
+#pragma mark -- 应用内创建
 -(void)guideImport{
 
-    GuideFillViewController *guideVC = [[GuideFillViewController alloc]init];
-    [self.navigationController pushViewController:guideVC animated:YES];
+    CreatStep1ViewController *creatStep1VC = [[CreatStep1ViewController alloc]init];
+    [self.navigationController pushViewController:creatStep1VC animated:YES];
 
 }
 

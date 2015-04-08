@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface CheckQuestionViewController : UIViewController<UITextFieldDelegate>
+@interface CheckQuestionViewController : BaseViewController<UITextFieldDelegate>
 
 @property(nonatomic ,strong)UITextField *companyNameTextField;
 @property(nonatomic ,strong)UITextField *schoolNameTextField;

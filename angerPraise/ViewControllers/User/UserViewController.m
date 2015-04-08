@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
     
     UIBarButtonItem *personItem = [[UIBarButtonItem alloc]initWithTitle:@"好友评价" style:UIBarButtonItemStylePlain target:self action:@selector(friendEvaluate)];
     self.navigationItem.rightBarButtonItem = personItem;

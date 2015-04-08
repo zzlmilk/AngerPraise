@@ -14,8 +14,6 @@
 #import "ApIClient.h"
 #import "MarkViewController.h"
 
-#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
-
 @interface VirtualImportViewController ()
 
 @end
@@ -27,7 +25,6 @@
     // Do any additional setup after loading the view.
     
     self.title = @"虚拟投放";
-    self.view.backgroundColor = RGBACOLOR(246, 248, 238, 1.0f);
 
     _virtuaImportlWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     _virtuaImportlWebView.delegate = self;
@@ -36,6 +33,13 @@
     [_virtuaImportlWebView loadRequest:request];
     [_virtuaImportlWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_virtuaImportlWebView];
+    
+    
+    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(importResume)];
+
+    self.navigationItem.rightBarButtonItem = saveItem;
+    
+    
     
     //Create stock panel with header
     
@@ -68,16 +72,25 @@
     
 }
 
+#pragma mark -- 导入简历
+-(void)importResume{
+    NSString *lJs = @"document.documentElement.innerHTML";
+    NSString *lHtml1 = [_virtuaImportlWebView stringByEvaluatingJavaScriptFromString:lJs];
+    
+    NSLog(@"%@",lHtml1);
+    
+}
+
 #pragma mark -- 计时器执行方法
 -(void)timeFireMethod{
     _secondsCountDown--;
     if(_secondsCountDown==0){
         [_countDownTimer invalidate];
         
-        [APIClient showMessage:@"您已投递成功"];
-        
-        MarkViewController *markVC = [[MarkViewController alloc]init];
-        [self.navigationController pushViewController:markVC animated:YES];
+//        [APIClient showMessage:@"您已投递成功"];
+//        
+//        MarkViewController *markVC = [[MarkViewController alloc]init];
+//        [self.navigationController pushViewController:markVC animated:YES];
         
     }
 }

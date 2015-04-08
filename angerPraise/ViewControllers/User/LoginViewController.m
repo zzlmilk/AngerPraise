@@ -11,10 +11,6 @@
 #import "ImportResumeViewController.h"
 #import "NeedDataViewController.h"
 #import "MarkViewController.h"
-
-
-#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
-
 @interface LoginViewController ()
 
 @end
@@ -24,7 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = RGBACOLOR(246, 248, 238, 1.0f);
     
 //    [self.navigationController setNavigationBarHidden:YES];
     self.title = @"登录";

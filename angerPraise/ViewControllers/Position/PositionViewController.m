@@ -1,29 +1,25 @@
 //
-//  HirelibViewController.m
+//  PositionViewController.m
 //  angerPraise
 //
-//  Created by 单好坤 on 15/3/18.
+//  Created by 单好坤 on 15/4/8.
 //  Copyright (c) 2015年 Rex. All rights reserved.
 //
 
-#import "HirelibViewController.h"
+#import "PositionViewController.h"
 
-#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
-@interface HirelibViewController ()
+@interface PositionViewController ()
 
 @end
 
-@implementation HirelibViewController
+@implementation PositionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor yellowColor];
     
-    self.view.backgroundColor = RGBACOLOR(246, 248, 238, 1.0f);
-    self.title = @"HireLib";
-
+    self.title = @"职位";
 }
 
 - (void)didReceiveMemoryWarning {
