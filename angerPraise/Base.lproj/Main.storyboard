@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Home View Controllers-->
+        <!--Import Resume View Controller-->
         <scene sceneID="e9P-nL-5h6">
             <objects>
-                <viewController id="TBC-2K-ptX" customClass="HomeViewControllers" sceneMemberID="viewController">
+                <viewController id="TBC-2K-ptX" customClass="ImportResumeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hT6-lE-K0L"/>
                         <viewControllerLayoutGuide type="bottom" id="Vhe-YB-Y6d"/>
@@ -17,10 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="kor-wS-meE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SX-Ou-pfu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3159" y="-492"/>
+            <point key="canvasLocation" x="3143" y="-440"/>
         </scene>
     </scenes>
 </document>

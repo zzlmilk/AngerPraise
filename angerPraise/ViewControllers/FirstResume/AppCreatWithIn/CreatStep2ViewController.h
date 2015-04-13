@@ -14,4 +14,6 @@
 @property(nonatomic,strong) UITextField *educationTextField;//学历
 @property(nonatomic,strong) UITextField *positionTextField;//职位
 
+
+@property(nonatomic,strong) NSString *userNameString;
 @end

@@ -31,6 +31,7 @@
     _positionTextField.borderStyle = UITextBorderStyleRoundedRect;
     _positionTextField.placeholder = @"职位";
     _positionTextField.delegate = self;
+    _positionTextField.text = _userNameString;
     [self.view addSubview:_positionTextField];
     
     UIButton *nextStepButton = [[UIButton alloc]initWithFrame:CGRectMake(30, _positionTextField.frame.size.height+_positionTextField.frame.origin.y+100, self.view.frame.size.width-2*30, 45)];

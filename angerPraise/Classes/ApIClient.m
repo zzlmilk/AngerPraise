@@ -8,7 +8,7 @@
 
 #import "APIClient.h"
 
-static NSString * const AFAppDotNetAPIBaseURLString = @"http://api.suibd.com/";
+static NSString * const AFAppDotNetAPIBaseURLString = @"http://115.231.94.156:3000/AngerPraises/v1/";
 
 @implementation APIClient
 

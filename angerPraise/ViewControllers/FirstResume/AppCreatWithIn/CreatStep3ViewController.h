@@ -14,4 +14,5 @@
 @property(nonatomic,strong) UITextField *recentCompanyTextField;//最近工作的公司名称
 @property(nonatomic,strong) UITextField *payRangeTextField;//薪资范围
 
+
 @end

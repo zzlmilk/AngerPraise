@@ -7,6 +7,7 @@
 //
 
 #import "ResumeViewController.h"
+#import "ResumeScore.h"
 
 @interface ResumeViewController ()
 
@@ -19,6 +20,18 @@
     // Do any additional setup after loading the view.
     
     self.title = @"简历";
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:@"1" forKey:@"user_id"];
+    
+    [ResumeScore getResumeScoer:dic WithBlock:^(ResumeScore *resumeScoer, Error *e) {
+       
+        
+    }];
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

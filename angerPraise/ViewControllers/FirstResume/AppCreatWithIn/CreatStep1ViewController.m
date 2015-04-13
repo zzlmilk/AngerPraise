@@ -30,11 +30,11 @@
     tapGestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
-    _nameTextField = [[UITextField alloc]initWithFrame:CGRectMake(30, 120, self.view.frame.size.width-2*30, 40)];
-    _nameTextField.borderStyle = UITextBorderStyleRoundedRect;
-    _nameTextField.placeholder = @"姓名";
-    _nameTextField.delegate = self;
-    [self.view addSubview:_nameTextField];
+    _userNameTextField = [[UITextField alloc]initWithFrame:CGRectMake(30, 120, self.view.frame.size.width-2*30, 40)];
+    _userNameTextField.borderStyle = UITextBorderStyleRoundedRect;
+    _userNameTextField.placeholder = @"姓名";
+    _userNameTextField.delegate = self;
+    [self.view addSubview:_userNameTextField];
     
     
     
@@ -55,8 +55,10 @@
 
 #pragma mark -- 下一步
 -(void)nextStep{
-    
+
     CreatStep2ViewController *creatStep2VC = [[CreatStep2ViewController alloc]init];
+    
+    creatStep2VC.userNameString = _userNameTextField.text;
     [self.navigationController pushViewController:creatStep2VC animated:YES];
     
 }
@@ -64,14 +66,14 @@
 #pragma mark -- 点击return 隐藏键盘
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [_nameTextField resignFirstResponder];
+    [_userNameTextField resignFirstResponder];
     
     return YES;
 }
 #pragma mark -- 点击空白 隐藏键盘
 -(void)keyboardHide:(UITapGestureRecognizer*)tap{
     
-    [_nameTextField resignFirstResponder];
+    [_userNameTextField resignFirstResponder];
 }
 
 

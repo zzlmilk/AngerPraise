@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewControllers.h"
-#import "ImportResumeViewController.h"
+#import "ResumeViewController.h"
 #import "UserViewController.h"
 #import "PositionViewController.h"
 
@@ -18,7 +18,7 @@
     
     //self.view.backgroundColor = [UIColor yellowColor];
     
-    ImportResumeViewController *resumeVC = [[ImportResumeViewController alloc]init];
+    ResumeViewController *resumeVC = [[ResumeViewController alloc]init];
     UINavigationController *resumeNav = [[UINavigationController alloc]initWithRootViewController:resumeVC];
     resumeNav.title =@"简历";
     resumeNav.tabBarItem.image = [UIImage imageNamed:@"avatar_placeholder"];

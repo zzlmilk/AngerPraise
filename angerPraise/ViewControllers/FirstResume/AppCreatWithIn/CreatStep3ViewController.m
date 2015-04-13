@@ -6,7 +6,11 @@
 //  Copyright (c) 2015年 Rex. All rights reserved.
 //
 
+#import "CreatStep1ViewController.h"
 #import "CreatStep3ViewController.h"
+#import "Resume.h"
+#import "HomeViewControllers.h"
+#import "ApIClient.h"
 
 @interface CreatStep3ViewController ()
 
@@ -43,12 +47,43 @@
     nextStepButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     nextStepButton.backgroundColor = RGBACOLOR(72, 184, 218, 1.0f);
     [self.view addSubview:nextStepButton];
+    
+    
+    
 }
 
 #pragma mark -- 完成简历的创建
 -(void)completeCreatResume{
     
     NSLog(@"%@",@"取值发送给server");
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:@"1" forKey:@"user_id"];
+    [dic setObject:@"王小二" forKey:@"user_name"];
+    [dic setObject:@"男" forKey:@"user_sex"];
+    [dic setObject:@"21" forKey:@"user_age"];
+    [dic setObject:@"互联网产品经理" forKey:@"position"];
+    [dic setObject:@"亚杰信息技术服务有限公司" forKey:@"company_name"];
+    [dic setObject:@"2" forKey:@"education_id"];
+    [dic setObject:@"2" forKey:@"user_compensation"];//薪资 id
+    
+    [Resume appCreatedResume:dic WithBlock:^(Resume *resume, Error *e) {
+       
+        if ([resume.res isEqualToString:@"1"]) {
+            
+            [APIClient showMessage:@"创建成功"];
+            
+            HomeViewControllers *homeVC = [[HomeViewControllers alloc]init];
+            [self presentViewController:homeVC animated:YES completion:nil];
+            
+        }else{
+            
+            [APIClient showMessage:e.info title:@"创建失败"];
+            
+        }
+
+    }];
+    
     
 }
 

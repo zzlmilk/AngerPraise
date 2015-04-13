@@ -26,6 +26,12 @@
 		DF360C631AAD7EB20090FF51 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF360C621AAD7EB20090FF51 /* LoginViewController.m */; };
 		DF360C661AAD7ED10090FF51 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF360C651AAD7ED10090FF51 /* RegisterViewController.m */; };
 		DF4D97991AD5395000F65140 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97981AD5395000F65140 /* BaseViewController.m */; };
+		DF4D979C1AD656D400F65140 /* Resume.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D979B1AD656D400F65140 /* Resume.m */; };
+		DF4D979F1AD657F000F65140 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D979E1AD657F000F65140 /* Error.m */; };
+		DF4D97A21AD7790D00F65140 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97A11AD7790D00F65140 /* GuideViewController.m */; };
+		DF4D97AF1AD789ED00F65140 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97AC1AD789ED00F65140 /* UIImage+ImageEffects.m */; };
+		DF4D97B01AD789ED00F65140 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97AE1AD789ED00F65140 /* UIImageView+LBBlurredImage.m */; };
+		DF4D97B31AD7C44900F65140 /* ResumeScore.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97B21AD7C44900F65140 /* ResumeScore.m */; };
 		DF826CAD1AAECCF200EAC61F /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */; };
 		DF826CAE1AAECCF200EAC61F /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF826C9A1AAECCF200EAC61F /* MYIntroductionPanel.m */; };
 		DF826CAF1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826C9E1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png */; };
@@ -192,6 +198,18 @@
 		DF360C651AAD7ED10090FF51 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		DF4D97971AD5395000F65140 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		DF4D97981AD5395000F65140 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		DF4D979A1AD656D400F65140 /* Resume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resume.h; sourceTree = "<group>"; };
+		DF4D979B1AD656D400F65140 /* Resume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resume.m; sourceTree = "<group>"; };
+		DF4D979D1AD657F000F65140 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		DF4D979E1AD657F000F65140 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
+		DF4D97A01AD7790D00F65140 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		DF4D97A11AD7790D00F65140 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
+		DF4D97AB1AD789ED00F65140 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		DF4D97AC1AD789ED00F65140 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		DF4D97AD1AD789ED00F65140 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
+		DF4D97AE1AD789ED00F65140 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
+		DF4D97B11AD7C44900F65140 /* ResumeScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeScore.h; sourceTree = "<group>"; };
+		DF4D97B21AD7C44900F65140 /* ResumeScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeScore.m; sourceTree = "<group>"; };
 		DF826C971AAECCF200EAC61F /* MYBlurIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYBlurIntroductionView.h; sourceTree = "<group>"; };
 		DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYBlurIntroductionView.m; sourceTree = "<group>"; };
 		DF826C991AAECCF200EAC61F /* MYIntroductionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
@@ -498,8 +516,14 @@
 		19BD47931AAD685600D44A9D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DF4D979D1AD657F000F65140 /* Error.h */,
+				DF4D979E1AD657F000F65140 /* Error.m */,
 				19BD479A1AAD7BC600D44A9D /* User.h */,
 				19BD479B1AAD7BC600D44A9D /* User.m */,
+				DF4D979A1AD656D400F65140 /* Resume.h */,
+				DF4D979B1AD656D400F65140 /* Resume.m */,
+				DF4D97B11AD7C44900F65140 /* ResumeScore.h */,
+				DF4D97B21AD7C44900F65140 /* ResumeScore.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -567,6 +591,17 @@
 				19BD47B61AB060FE00D44A9D /* UserViewController.m */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		DF4D97AA1AD7899B00F65140 /* CircleButton */ = {
+			isa = PBXGroup;
+			children = (
+				DF4D97AB1AD789ED00F65140 /* UIImage+ImageEffects.h */,
+				DF4D97AC1AD789ED00F65140 /* UIImage+ImageEffects.m */,
+				DF4D97AD1AD789ED00F65140 /* UIImageView+LBBlurredImage.h */,
+				DF4D97AE1AD789ED00F65140 /* UIImageView+LBBlurredImage.m */,
+			);
+			path = CircleButton;
 			sourceTree = "<group>";
 		};
 		DF826C951AAECCE100EAC61F /* Classes */ = {
@@ -660,6 +695,8 @@
 				DFA061AF1AD53527004EEB4C /* ImportResumeViewController.m */,
 				DFA061B01AD53527004EEB4C /* VirtualImportViewController.h */,
 				DFA061B11AD53527004EEB4C /* VirtualImportViewController.m */,
+				DF4D97A01AD7790D00F65140 /* GuideViewController.h */,
+				DF4D97A11AD7790D00F65140 /* GuideViewController.m */,
 			);
 			path = VirtualImport;
 			sourceTree = "<group>";
@@ -864,6 +901,7 @@
 		DFE2C2ED1AB02B8D00C66DF9 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				DF4D97AA1AD7899B00F65140 /* CircleButton */,
 				DFBEB0F01AB0464C002692EF /* ShareSDK */,
 				DFE2C2EE1AB02B9600C66DF9 /* AFNetworking */,
 			);
@@ -1053,6 +1091,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF4D979F1AD657F000F65140 /* Error.m in Sources */,
 				19BD479C1AAD7BC600D44A9D /* User.m in Sources */,
 				DFE2C31E1AB02B9600C66DF9 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				DFA061B91AD536DD004EEB4C /* CreatStep3ViewController.m in Sources */,
@@ -1065,11 +1104,13 @@
 				19BD47751AAD5BA600D44A9D /* ViewController.m in Sources */,
 				DF826CAE1AAECCF200EAC61F /* MYIntroductionPanel.m in Sources */,
 				DFE2C2EC1AB02AD700C66DF9 /* ApIClient.m in Sources */,
+				DF4D97A21AD7790D00F65140 /* GuideViewController.m in Sources */,
 				DFE2C31B1AB02B9600C66DF9 /* AFURLResponseSerialization.m in Sources */,
 				DFA061AC1AD534CC004EEB4C /* CreatStep1ViewController.m in Sources */,
 				DFE2C3191AB02B9600C66DF9 /* AFURLConnectionOperation.m in Sources */,
 				DF360C631AAD7EB20090FF51 /* LoginViewController.m in Sources */,
 				DFE2C3221AB02B9600C66DF9 /* UIProgressView+AFNetworking.m in Sources */,
+				DF4D97B01AD789ED00F65140 /* UIImageView+LBBlurredImage.m in Sources */,
 				DFA061B61AD536C2004EEB4C /* CreatStep2ViewController.m in Sources */,
 				DFE2C3151AB02B9600C66DF9 /* AFHTTPRequestOperationManager.m in Sources */,
 				DFE2C2E91AB0132C00C66DF9 /* NeedDataViewController.m in Sources */,
@@ -1078,6 +1119,7 @@
 				19BD47721AAD5BA600D44A9D /* AppDelegate.m in Sources */,
 				DF360C661AAD7ED10090FF51 /* RegisterViewController.m in Sources */,
 				DFE2C31A1AB02B9600C66DF9 /* AFURLRequestSerialization.m in Sources */,
+				DF4D97B31AD7C44900F65140 /* ResumeScore.m in Sources */,
 				DFE2C3171AB02B9600C66DF9 /* AFNetworkReachabilityManager.m in Sources */,
 				DF0B924B1AB14C9000A1698E /* EvaluateListViewController.m in Sources */,
 				DFE2C3211AB02B9600C66DF9 /* UIImageView+AFNetworking.m in Sources */,
@@ -1087,10 +1129,12 @@
 				DFE2C3141AB02B9600C66DF9 /* AFHTTPRequestOperation.m in Sources */,
 				DFE2C3271AB02D8500C66DF9 /* MarkViewController.m in Sources */,
 				19BD476F1AAD5BA600D44A9D /* main.m in Sources */,
+				DF4D979C1AD656D400F65140 /* Resume.m in Sources */,
 				19BD47B41AB060D800D44A9D /* RKCardView.m in Sources */,
 				DFE2C31D1AB02B9600C66DF9 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				DFE2C3161AB02B9600C66DF9 /* AFHTTPSessionManager.m in Sources */,
 				DFE2C3241AB02B9600C66DF9 /* UIWebView+AFNetworking.m in Sources */,
+				DF4D97AF1AD789ED00F65140 /* UIImage+ImageEffects.m in Sources */,
 				19BD47991AAD7BBC00D44A9D /* HomeViewControllers.m in Sources */,
 				DFE2C31C1AB02B9600C66DF9 /* AFURLSessionManager.m in Sources */,
 				DF4D97991AD5395000F65140 /* BaseViewController.m in Sources */,

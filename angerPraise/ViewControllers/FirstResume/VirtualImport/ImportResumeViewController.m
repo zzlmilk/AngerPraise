@@ -7,8 +7,8 @@
 //
 
 #import "ImportResumeViewController.h"
-#import "VirtualImportViewController.h"
 #import "CreatStep1ViewController.h"
+#import "GuideViewController.h"
 
 @interface ImportResumeViewController ()
 
@@ -20,16 +20,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setExtendedLayoutIncludesOpaqueBars:YES];
-    self.tabBarController.tabBar.hidden = YES;
-    
     self.title = @"导入简历";
     
     UIButton *virtualButton = [[UIButton alloc]initWithFrame:CGRectMake(30, 200, self.view.frame.size.width-2*30, 45)];
     [virtualButton.layer setMasksToBounds:YES];
     [virtualButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
     [virtualButton.layer setBorderWidth:1.0]; //边框宽度
-    [virtualButton addTarget:self action:@selector(virtualImport) forControlEvents:UIControlEventTouchUpInside];
+    [virtualButton addTarget:self action:@selector(guideStatus) forControlEvents:UIControlEventTouchUpInside];
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 62, 143, 62, 1 });
     [virtualButton.layer setBorderColor:colorref];//边框颜色
@@ -55,9 +52,10 @@
 }
 
 #pragma mark -- 虚拟投放
--(void)virtualImport{
-    VirtualImportViewController *virtualVC = [[VirtualImportViewController alloc]init];
-    [self.navigationController pushViewController:virtualVC animated:YES];
+-(void)guideStatus{
+    
+    GuideViewController *guidelVC = [[GuideViewController alloc]init];
+    [self.navigationController pushViewController:guidelVC animated:YES];
 }
 
 #pragma mark -- 应用内创建

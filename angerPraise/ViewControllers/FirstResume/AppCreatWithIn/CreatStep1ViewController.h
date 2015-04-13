@@ -12,7 +12,6 @@
 
 @interface CreatStep1ViewController : BaseViewController <UITextFieldDelegate>
 
-@property(nonatomic,strong) UITextField *nameTextField;
-
+@property(nonatomic,strong) UITextField *userNameTextField;
 
 @end

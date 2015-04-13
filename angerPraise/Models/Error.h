@@ -10,7 +10,7 @@
 
 @interface Error : NSObject
 
-@property(nonatomic,strong)NSString *error;
-@property(nonatomic,strong)NSString *error_status;
+@property(nonatomic,strong)NSString *code;
+@property(nonatomic,strong)NSString *info;
 
 @end
