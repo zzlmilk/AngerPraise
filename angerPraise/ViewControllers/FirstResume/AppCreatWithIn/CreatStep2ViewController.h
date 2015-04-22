@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface CreatStep2ViewController : BaseViewController<UITextFieldDelegate>
+@interface CreatStep2ViewController : BaseViewController<UITextFieldDelegate,UIGestureRecognizerDelegate>
 
 @property(nonatomic,strong) UITextField *educationTextField;//学历
 @property(nonatomic,strong) UITextField *positionTextField;//职位
 
 
 @property(nonatomic,strong) NSString *userNameString;
+
+@property(nonatomic,strong)NSArray *educationArray;
 @end

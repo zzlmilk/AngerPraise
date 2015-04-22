@@ -7,7 +7,7 @@
 //
 
 #import "ImportResumeViewController.h"
-#import "CreatStep1ViewController.h"
+#import "CreatStep2ViewController.h"
 #import "GuideViewController.h"
 
 @interface ImportResumeViewController ()
@@ -20,8 +20,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"导入简历";
-    
     UIButton *virtualButton = [[UIButton alloc]initWithFrame:CGRectMake(30, 200, self.view.frame.size.width-2*30, 45)];
     [virtualButton.layer setMasksToBounds:YES];
     [virtualButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
@@ -31,8 +29,8 @@
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 62, 143, 62, 1 });
     [virtualButton.layer setBorderColor:colorref];//边框颜色
     [virtualButton setTitle:@"虚拟投放" forState:UIControlStateNormal];
-    virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    virtualButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);
+    virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    virtualButton.backgroundColor = RGBACOLOR(68, 229, 220, 1.0f);
     [self.view addSubview:virtualButton];
 
     
@@ -45,8 +43,8 @@
     CGColorRef colorref2 = CGColorCreate(colorSpace2,(CGFloat[]){ 40, 164, 201, 1 });
     [guideButton.layer setBorderColor:colorref2];//边框颜色
     [guideButton setTitle:@"应用内创建" forState:UIControlStateNormal];
-    guideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    guideButton.backgroundColor = RGBACOLOR(72, 184, 218, 1.0f);
+    guideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    guideButton.backgroundColor = RGBACOLOR(56, 198, 190, 1.0f);
     [self.view addSubview:guideButton];
 
 }
@@ -61,8 +59,8 @@
 #pragma mark -- 应用内创建
 -(void)guideImport{
 
-    CreatStep1ViewController *creatStep1VC = [[CreatStep1ViewController alloc]init];
-    [self.navigationController pushViewController:creatStep1VC animated:YES];
+    CreatStep2ViewController *creatStep2VC = [[CreatStep2ViewController alloc]init];
+    [self.navigationController pushViewController:creatStep2VC animated:YES];
 
 }
 

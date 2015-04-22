@@ -10,7 +10,7 @@
 #import "RegisterViewController.h"
 #import "ImportResumeViewController.h"
 #import "NeedDataViewController.h"
-#import "MarkViewController.h"
+#import "ShareViewController.h"
 @interface LoginViewController ()
 
 @end

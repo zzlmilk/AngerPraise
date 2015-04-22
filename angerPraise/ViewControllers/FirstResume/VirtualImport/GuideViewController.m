@@ -20,8 +20,6 @@
     // Do any additional setup after loading the view.
     
     
-    self.title = @"操作指引";
-    
     UIButton *virtualButton = [[UIButton alloc]initWithFrame:CGRectMake(30, 200, self.view.frame.size.width-2*30, 45)];
     [virtualButton.layer setMasksToBounds:YES];
     [virtualButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
@@ -31,8 +29,8 @@
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 62, 143, 62, 1 });
     [virtualButton.layer setBorderColor:colorref];//边框颜色
     [virtualButton setTitle:@"下一步" forState:UIControlStateNormal];
-    virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    virtualButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);
+    virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    virtualButton.backgroundColor =  RGBACOLOR(68, 229, 220, 1.0f);
     [self.view addSubview:virtualButton];
     
 }

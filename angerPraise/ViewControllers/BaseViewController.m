@@ -58,7 +58,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = RGBACOLOR(246, 248, 238, 1.0f);
+    self.view.backgroundColor = RGBACOLOR(240, 240, 240, 1.0f);
     
 //    [self setExtendedLayoutIncludesOpaqueBars:YES];
 //    self.tabBarController.tabBar.hidden = YES;

@@ -9,7 +9,7 @@
 #import "CreatStep1ViewController.h"
 #import "MYBlurIntroductionView.h"
 #import "MYIntroductionPanel.h"
-#import "MarkViewController.h"
+#import "ShareViewController.h"
 #import "ApIClient.h"
 #import "CreatStep2ViewController.h"
 
@@ -23,8 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.title = @"应用内创建(1/3)";
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     tapGestureRecognizer.cancelsTouchesInView = NO;
@@ -57,8 +55,7 @@
 -(void)nextStep{
 
     CreatStep2ViewController *creatStep2VC = [[CreatStep2ViewController alloc]init];
-    
-    creatStep2VC.userNameString = _userNameTextField.text;
+
     [self.navigationController pushViewController:creatStep2VC animated:YES];
     
 }

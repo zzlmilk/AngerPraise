@@ -11,9 +11,9 @@
 #import "MYIntroductionPanel.h"
 #import "NeedDataViewController.h"
 #import "ApIClient.h"
-#import "MarkViewController.h"
+#import "ShareViewController.h"
 #import "Resume.h"
-#import "HomeViewControllers.h"
+#import "MainViewController.h"
 
 @interface VirtualImportViewController ()
 
@@ -25,9 +25,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"虚拟投放";
+     self.edgesForExtendedLayout = UIRectEdgeAll;
 
-    _virtuaImportlWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    _virtuaImportlWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,0, WIDTH, HEIGHT)];
     _virtuaImportlWebView.delegate = self;
     NSURL *url=[NSURL URLWithString:@"http://m.51job.com/my/login.php"];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
@@ -36,12 +36,19 @@
     [self.view addSubview:_virtuaImportlWebView];
     
     
-    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(importResume)];
-
-    self.navigationItem.rightBarButtonItem = saveItem;
+//    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(importResume)];
+//
+//    self.navigationItem.rightBarButtonItem = saveItem;
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(30, 360, 70, 35);
+    btn.backgroundColor = RGBACOLOR(68, 229, 220, 1.0f);
+    [btn setTitle:@"导入简历" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(importResume) forControlEvents:UIControlEventTouchUpInside];
+    btn.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    UIBarButtonItem *importResumeButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
-    
+    self.navigationItem.rightBarButtonItem = importResumeButtonItem;
     //Create stock panel with header
     
 //    MYIntroductionPanel *panel1 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) title:@" " description:@"操作步骤如图所示:第一步 输入51job账号登录." image:[UIImage imageNamed:@"pic1"]];
@@ -98,8 +105,8 @@
                 
                 [APIClient showMessage:@"导入成功"];
                 
-                HomeViewControllers *homeVC = [[HomeViewControllers alloc]init];
-                [self presentViewController:homeVC animated:YES completion:nil];
+                MainViewController *mainVC = [[MainViewController alloc]init];
+                [self presentViewController:mainVC animated:YES completion:nil];
                 
             }else{
                 

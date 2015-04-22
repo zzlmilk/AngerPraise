@@ -14,5 +14,11 @@
 @property(nonatomic,strong) UITextField *recentCompanyTextField;//最近工作的公司名称
 @property(nonatomic,strong) UITextField *payRangeTextField;//薪资范围
 
+@property(nonatomic,strong)NSArray *payRangeArray;
+
+@property(nonatomic,strong)NSString *positionNameString;
+@property(nonatomic,strong)NSString *educationString;
+
+
 
 @end

@@ -1,39 +1,62 @@
 //
-//  MainViewController.m
+//  HomeViewControllers.m
 //  angerPraise
 //
-//  Created by 单好坤 on 15/3/18.
+//  Created by zhilingzhou on 15/3/9.
 //  Copyright (c) 2015年 Rex. All rights reserved.
 //
 
 #import "MainViewController.h"
+#import "ResumeViewController.h"
+#import "UserViewController.h"
+#import "PositionViewController.h"
+#import "HomeViewController.h"
 
-@interface MainViewController ()
+#import "DSNavigationBar.h"
 
-@end
 
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor yellowColor];
-}
+    //self.view.backgroundColor = [UIColor yellowColor];
+    
+    HomeViewController *homeVC = [[HomeViewController alloc]init];
+    homeVC.title =@"首页";
+    homeVC.tabBarItem.image = [UIImage imageNamed:@"home1"];
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+    
+    ResumeViewController *resumeVC = [[ResumeViewController alloc]init];
+    resumeVC.title =@"简历";
+    resumeVC.tabBarItem.image = [UIImage imageNamed:@"resume_tabBar1"];
+    
+    
+    PositionViewController *posotionVC = [[PositionViewController alloc]init];
+    posotionVC.title = @"职位";
+    posotionVC.tabBarItem.image = [UIImage imageNamed:@"zhiwei1"];
+    
+    
+    UserViewController *userVC = [[UserViewController alloc]init];
+    userVC.title = @"我的";
+    userVC.tabBarItem.image = [UIImage imageNamed:@"wode1"];
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    NSArray *viewControllers = [NSArray arrayWithObjects:homeVC,resumeVC,posotionVC,userVC, nil];
+    
+    self.viewControllers =viewControllers;
+    
+    self.delegate = self;
+    
+    self.tabBar.translucent = NO;
+    self.tabBar.tintColor = [UIColor whiteColor];
+    self.tabBar.barTintColor = RGBACOLOR(70, 70, 70, 0.8f);
+    
+    
+    
+    
+    
+    
 }
-*/
 
 @end

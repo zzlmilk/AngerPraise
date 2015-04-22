@@ -19,7 +19,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"评价审核";
     
     UILabel *describeLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 100, self.view.frame.size.width-2*30, 40)];
     //describeLabel.backgroundColor = [UIColor yellowColor];

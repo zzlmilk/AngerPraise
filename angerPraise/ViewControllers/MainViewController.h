@@ -1,13 +1,13 @@
 //
-//  MainViewController.h
+//  HomeViewControllers.h
 //  angerPraise
 //
-//  Created by 单好坤 on 15/3/18.
+//  Created by zhilingzhou on 15/3/9.
 //  Copyright (c) 2015年 Rex. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UITabBarController
+@interface MainViewController : UITabBarController<UITabBarControllerDelegate>
 
 @end
