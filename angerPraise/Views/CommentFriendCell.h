@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CommentFriend.h"
+#include "CommentFriend.h"
 
 @interface CommentFriendCell : UITableViewCell
 

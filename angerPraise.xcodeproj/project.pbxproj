@@ -59,6 +59,7 @@
 		DF5F8DBA1AF8A1CA00205B60 /* HrPrivilege.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DB91AF8A1CA00205B60 /* HrPrivilege.m */; };
 		DF5F8DBD1AF8B4A600205B60 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DBC1AF8B4A600205B60 /* Home.m */; };
 		DF5F8DC31AF8D92A00205B60 /* MyDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DC21AF8D92A00205B60 /* MyDynamic.m */; };
+		DF5F8DCB1AF9C07C00205B60 /* radar.html in Resources */ = {isa = PBXBuildFile; fileRef = DF5F8DCA1AF9C07C00205B60 /* radar.html */; };
 		DF826CAD1AAECCF200EAC61F /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */; };
 		DF826CAE1AAECCF200EAC61F /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF826C9A1AAECCF200EAC61F /* MYIntroductionPanel.m */; };
 		DF826CAF1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826C9E1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png */; };
@@ -152,7 +153,6 @@
 		DFBEB19B1AB05F2A002692EF /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB19A1AB05F2A002692EF /* libz.1.2.5.dylib */; };
 		DFBEB19D1AB05F39002692EF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB19C1AB05F39002692EF /* Security.framework */; };
 		DFBEB19F1AB05F95002692EF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB19E1AB05F95002692EF /* MessageUI.framework */; };
-		DFBEB1A11AB1367E002692EF /* radar.html in Resources */ = {isa = PBXBuildFile; fileRef = DFBEB1A01AB1367E002692EF /* radar.html */; };
 		DFBEB1A51AB1372C002692EF /* Chart.js in Resources */ = {isa = PBXBuildFile; fileRef = DFBEB1A41AB1372C002692EF /* Chart.js */; };
 		DFD2740C1AE504B500BEED59 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD2740B1AE504B500BEED59 /* AddressBookUI.framework */; };
 		DFD2740E1AE504C000BEED59 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD2740D1AE504C000BEED59 /* AddressBook.framework */; };
@@ -343,6 +343,7 @@
 		DF5F8DBC1AF8B4A600205B60 /* Home.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Home.m; sourceTree = "<group>"; };
 		DF5F8DC11AF8D92A00205B60 /* MyDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDynamic.h; sourceTree = "<group>"; };
 		DF5F8DC21AF8D92A00205B60 /* MyDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDynamic.m; sourceTree = "<group>"; };
+		DF5F8DCA1AF9C07C00205B60 /* radar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = radar.html; sourceTree = "<group>"; };
 		DF826C971AAECCF200EAC61F /* MYBlurIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYBlurIntroductionView.h; sourceTree = "<group>"; };
 		DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYBlurIntroductionView.m; sourceTree = "<group>"; };
 		DF826C991AAECCF200EAC61F /* MYIntroductionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
@@ -450,7 +451,6 @@
 		DFBEB19A1AB05F2A002692EF /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		DFBEB19C1AB05F39002692EF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DFBEB19E1AB05F95002692EF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		DFBEB1A01AB1367E002692EF /* radar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = radar.html; path = "../../../../Downloads/下载文件/Chart.js-master/samples/radar.html"; sourceTree = "<group>"; };
 		DFBEB1A41AB1372C002692EF /* Chart.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Chart.js; sourceTree = "<group>"; };
 		DFD2740B1AE504B500BEED59 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		DFD2740D1AE504C000BEED59 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -993,9 +993,9 @@
 		DF826C951AAECCE100EAC61F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DF5F8DCA1AF9C07C00205B60 /* radar.html */,
 				DF0B924C1AB14D4400A1698E /* evaluateList.html */,
 				DFBEB1A41AB1372C002692EF /* Chart.js */,
-				DFBEB1A01AB1367E002692EF /* radar.html */,
 				DFE2C2EA1AB02AD700C66DF9 /* ApIClient.h */,
 				DFE2C2EB1AB02AD700C66DF9 /* ApIClient.m */,
 				DFE2C2E41AB012CC00C66DF9 /* questionnaire.html */,
@@ -1636,6 +1636,7 @@
 				DF4B445C1AF0CF2C00C94D7E /* BarcodeScanner.bundle in Resources */,
 				DFBEB1771AB0464D002692EF /* WeiboSDK.bundle in Resources */,
 				DF0B924D1AB14D4400A1698E /* evaluateList.html in Resources */,
+				DF5F8DCB1AF9C07C00205B60 /* radar.html in Resources */,
 				DFEE77161AE09F5D00401AF0 /* graph_year@2x.png in Resources */,
 				DFEE770D1AE09F5D00401AF0 /* circle_outline.png in Resources */,
 				DFEE77131AE09F5D00401AF0 /* graph_week.png in Resources */,
@@ -1655,7 +1656,6 @@
 				DFEE77101AE09F5D00401AF0 /* circle_ridge@2x.png in Resources */,
 				DF826CB31AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 3.09.52 PM.png in Resources */,
 				DFD274221AE7776400BEED59 /* NZAlertView-Icons.bundle in Resources */,
-				DFBEB1A11AB1367E002692EF /* radar.html in Resources */,
 				19BD477D1AAD5BA600D44A9D /* LaunchScreen.xib in Resources */,
 				DFEE77141AE09F5D00401AF0 /* graph_week@2x.png in Resources */,
 				DFBEB1711AB0464D002692EF /* PinterestSDKResources.bundle in Resources */,

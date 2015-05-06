@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface InterviewPayViewController : BaseViewController
+@interface InterviewPayViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property(nonatomic,strong)UITableView *interviewPayTableView;
+
+@property NSMutableArray *interviewPayArray;
 
 @end

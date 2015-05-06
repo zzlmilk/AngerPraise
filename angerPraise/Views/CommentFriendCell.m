@@ -8,6 +8,7 @@
 
 #import "CommentFriendCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "CommentFriend.h"
 
 @implementation CommentFriendCell
 
@@ -47,22 +48,28 @@
 
 
 -(void)setCommentFriendList:(CommentFriend *)commentFriendList{
-    
-    _friendNameLabel.text = commentFriendList.user_name;
-    [_friendPhotoImageView setImageWithURL:[NSURL URLWithString:commentFriendList.friend_evluation_url]];
-    
-    if ([commentFriendList.friend_evluation_status isEqualToString:@"1"]) {
-        
-        _isReviewLabel.text = @"可点评";
-        
-    }else{
-    
-        _isReviewLabel.text = @"已点评";
-        _isReviewLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
-        
-    }
-    
+
+    NSLog(@"%@",commentFriendList);
+
 }
+
+//-(void)setCommentFriendList:(CommentFriend *)commentFriendList{
+//    
+//    _friendNameLabel.text = commentFriendList.user_name;
+//    [_friendPhotoImageView setImageWithURL:[NSURL URLWithString:commentFriendList.friend_evluation_url]];
+//    
+//    if ([commentFriendList.friend_evluation_status isEqualToString:@"1"]) {
+//        
+//        _isReviewLabel.text = @"可点评";
+//        
+//    }else{
+//    
+//        _isReviewLabel.text = @"已点评";
+//        _isReviewLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
+//        
+//    }
+//    
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
