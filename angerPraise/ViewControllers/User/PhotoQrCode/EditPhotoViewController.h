@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface EditPhotoViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface EditPhotoViewController : BaseViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property(nonatomic,strong) UITableView *editPhotoTableView;
 

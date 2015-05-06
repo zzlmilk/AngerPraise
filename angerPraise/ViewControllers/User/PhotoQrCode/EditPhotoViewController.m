@@ -7,6 +7,11 @@
 //
 
 #import "EditPhotoViewController.h"
+#import "ShowQrCodeViewController.h"
+#import "UserViewController.h"
+#import "EditPhoto.h"
+#import "ApIClient.h"
+
 
 @interface EditPhotoViewController ()
 
@@ -26,17 +31,42 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = backItem;
     
-    _editListArray = [[NSArray alloc]initWithObjects:
-                         @"",@"  修改头像",@"  我的二维码",nil];
+
+    UILabel *lineLabel = [[UILabel alloc]init];
+    lineLabel.frame = CGRectMake(0, backBtn.frame.size.height+backBtn.frame.origin.y+50, WIDTH, 0.5);
+    lineLabel.backgroundColor = RGBACOLOR(204, 204, 204, 1.0f);
+    [self.view addSubview:lineLabel];
     
-    _editPhotoTableView = [[UITableView alloc]init];
-    _editPhotoTableView.frame = CGRectMake(0,100, WIDTH,250);
-    _editPhotoTableView.delegate = self;
-    _editPhotoTableView.dataSource = self;
-    _editPhotoTableView.scrollEnabled = NO;
-    //隐藏多余分割线 函数调用
-    [self setExtraCellLineHidden:_editPhotoTableView];
-    [self.view addSubview:_editPhotoTableView];
+    UIButton *editPhotoButton = [[UIButton alloc]init];
+    editPhotoButton.frame = CGRectMake(0, lineLabel.frame.origin.y+lineLabel.frame.size.height, WIDTH, 60);
+    [editPhotoButton setTitle:@"修改头像" forState:UIControlStateNormal];
+    [editPhotoButton setTitleColor:RGBACOLOR(100, 100, 100, 1.0f)forState:UIControlStateNormal];
+    editPhotoButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
+    editPhotoButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
+    [editPhotoButton addTarget:self action:@selector(onClickImageView) forControlEvents:UIControlEventTouchUpInside];
+    editPhotoButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [self.view addSubview:editPhotoButton];
+    
+    UILabel *lineLabel1 = [[UILabel alloc]init];
+    lineLabel1.frame = CGRectMake(0, editPhotoButton.frame.size.height+editPhotoButton.frame.origin.y, WIDTH, 0.5);
+    lineLabel1.backgroundColor = RGBACOLOR(204, 204, 204, 1.0f);
+    [self.view addSubview:lineLabel1];
+    
+    UIButton *myQrCodeButton = [[UIButton alloc]init];
+    myQrCodeButton.frame = CGRectMake(0, lineLabel1.frame.origin.y+lineLabel1.frame.size.height, WIDTH, 60);
+    [myQrCodeButton setTitle:@"我的二维码" forState:UIControlStateNormal];
+    [myQrCodeButton setTitleColor:RGBACOLOR(100, 100, 100, 1.0f)forState:UIControlStateNormal];
+    myQrCodeButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
+    myQrCodeButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
+    [myQrCodeButton addTarget:self action:@selector(lookQrCode) forControlEvents:UIControlEventTouchUpInside];
+    myQrCodeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    myQrCodeButton.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:myQrCodeButton];
+    
+    UILabel *lineLabel2 = [[UILabel alloc]init];
+    lineLabel2.frame = CGRectMake(0, myQrCodeButton.frame.size.height+myQrCodeButton.frame.origin.y, WIDTH, 0.5);
+    lineLabel2.backgroundColor = RGBACOLOR(204, 204, 204, 1.0f);
+    [self.view addSubview:lineLabel2];
     
 }
 
@@ -47,49 +77,144 @@
 }
 
 
-#pragma mark -- UITableView height
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 50.f;
+-(void)lookQrCode{
+
+    ShowQrCodeViewController *showQrCodeVC = [[ShowQrCodeViewController alloc]init];
+    [self.navigationController pushViewController:showQrCodeVC animated:YES];
 }
 
-#pragma mark -- UITableView cell 个数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+// 调用相机
+-(void)onClickImageView{
     
-    return 3;
-}
-
-#pragma mark -- UITableView dataSource
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIActionSheet *sheet;
     
-    static NSString * CellId = @"CellId";
-    
-    UITableViewCell * cell = [_editPhotoTableView dequeueReusableCellWithIdentifier:CellId];
-    if (cell == nil)
+    // 判断是否支持相机
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        
     {
-        // Create a cell to display an ingredient.
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:CellId];
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"设置头像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从相册选择",nil];
     }
+    else {
+        
+        sheet = [[UIActionSheet alloc] initWithTitle:@"设置头像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"从相册选择", nil];
+    }
+    sheet.tag = 255;
+    [sheet showInView:self.view];
     
-    
-    cell.textLabel.text = [_editListArray objectAtIndex:indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);//上左下右 就可以通过设置这四个参数来设置分割线了
-    return cell;
 }
 
-
-//隐藏多余分割线
--(void)setExtraCellLineHidden: (UITableView *)tableView
+// 跳转到相机 或 相册界面
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    [tableView setTableFooterView:view];
+    if (actionSheet.tag == 255) {
+        
+        NSUInteger sourceType = 0;
+        
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            switch (buttonIndex) {
+                case 0:
+                    // 取消
+                    return;
+                case 1:
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                case 2:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+            }
+            
+        }
+        
+        else {
+            
+            if (buttonIndex == 0) {
+                
+                return;
+                
+            } else {
+                
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                
+            }
+            
+        }
+        
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        
+        imagePickerController.delegate = self;
+        imagePickerController.allowsEditing = YES;
+        imagePickerController.sourceType = sourceType;
+        [self presentViewController:imagePickerController animated:YES completion:^{}];
+    }
 }
 
+
+// 实现 picker delegte
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self saveImage:image withName:@"currentImage.png"];
+    
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"currentImage.png"];
+    
+    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+    
+    UserViewController *userVC = [[UserViewController alloc]init];
+    [userVC.userPhotoImageView setImage:savedImage];
+    
+    
+    // isFullScreen = NO;
+//    [_avatarImageView setImage:savedImage];
+//    
+//    _avatarImageView.tag = 100;
+    
+    [self UploadPhoto];
+    
+}
+
+
+#pragma mark - 保存图片至沙盒
+- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+{
+    NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
+    // 获取沙盒目录
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+    // 将图片写入文件
+    [imageData writeToFile:fullPath atomically:NO];
+}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+
+
+-(void)UploadPhoto{
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:@"4" forKey:@"user_id"];
+
+    [EditPhoto uploadUserProfileImageParameters:dic WithBlock:^(EditPhoto *e) {
+        
+       // NSLog(@"%@",e);
+        
+        if ([e.res isEqualToString:@"1"]) {
+            
+            [APIClient showSuccess:@"头像上传成功" title:@"成功"];
+            
+        }
+        
+    }];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

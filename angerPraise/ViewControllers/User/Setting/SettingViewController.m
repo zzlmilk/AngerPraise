@@ -29,8 +29,9 @@
                        @"",@"  隐私",@"  版本",@"  关于我们",@"  我要评价",nil];
     
     UILabel *settingLabel = [[UILabel alloc]init];
-    settingLabel.frame = CGRectMake(0, 80, WIDTH, 35);
-    settingLabel.backgroundColor = [UIColor yellowColor];
+    settingLabel.frame = CGRectMake(20, backBtn.frame.size.height+backBtn.frame.origin.y+30, WIDTH, 35);
+    settingLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.f];
+    settingLabel.backgroundColor = [UIColor clearColor];
     settingLabel.text = @"设置";
     [self.view addSubview:settingLabel];
     

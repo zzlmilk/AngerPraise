@@ -23,6 +23,15 @@
     
 //    [self.navigationController setNavigationBarHidden:YES];
     
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(0, 0, 44, 44);
+    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
+    
+    
     UIImageView *inputBgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, 100, self.view.frame.size.width-2*30, 100)];
     [inputBgImageView setImage:[UIImage imageNamed:@"inputbox"]];
     [self.view addSubview:inputBgImageView];
@@ -55,6 +64,12 @@
     
 
 }
+
+-(void)doBack{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark -- 用户登录
 -(void)userLogin{

@@ -18,8 +18,10 @@
 @property(nonatomic,strong)UILabel *userNameLabel;
 @property(nonatomic,strong)UILabel *hirelibNumberLabel;
 
-@property(nonatomic,strong)UIImageView *imageView;
+@property(nonatomic,strong)UIImageView *userPhotoImageView;
 
 @property(nonatomic,strong)NSString *user_type;
+
+@property(nonatomic, strong)UIView *editView;
 
 @end

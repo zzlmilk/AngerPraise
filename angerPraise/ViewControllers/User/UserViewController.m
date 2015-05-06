@@ -23,29 +23,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    RKCardView* cardView= [[RKCardView alloc]initWithFrame:CGRectMake(0, 0, WIDTH,HEIGHT)];
-    
-    cardView.backgroundColor = [UIColor clearColor];
-    
-    cardView.coverImageView.image = [UIImage imageNamed:@"exampleCover"];
-    cardView.profileImageView.image = [UIImage imageNamed:@"exampleProfile"];
+
+    UIView *cardView = [[UIView alloc]init];
+    cardView.frame = CGRectMake(0, 0, WIDTH, 200);
+    cardView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"exampleCover"]];
     [self.view addSubview:cardView];
     
-    UIButton *editPhotoButton = [[UIButton alloc]init];
-    //editPhotoButton.frame = cardView.profileImageView.frame;
-    editPhotoButton.frame = CGRectMake(100, cardView.profileImageView.frame.origin.y+32, WIDTH-2*100, cardView.profileImageView.frame.size.height);
     
-    editPhotoButton.backgroundColor = RGBACOLOR(75, 90, 248, 0.5f);
-    [editPhotoButton addTarget:self action:@selector(editPhoto) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:editPhotoButton];
-    
-//    _userNameLabel = [[UILabel alloc]init];
 
+    _userPhotoImageView = [[UIImageView alloc]init];
+    _userPhotoImageView.image = [UIImage imageNamed:@"touxiang"];
+    _userPhotoImageView.userInteractionEnabled = YES;
+    _userPhotoImageView.backgroundColor = [UIColor clearColor];
+    _userPhotoImageView.frame = CGRectMake((WIDTH-100)/2, 30, 100, 100);
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editPersonInfo)];
+    [_userPhotoImageView addGestureRecognizer:singleTap];
+    [cardView addSubview:_userPhotoImageView];
     
-    
-    NSUserDefaults *userType = [NSUserDefaults standardUserDefaults];
+     NSUserDefaults *userType = [NSUserDefaults standardUserDefaults];
      _user_type = [userType objectForKey:@"userType"];
     
     if ([_user_type isEqualToString:@"1"]) {
@@ -59,28 +54,30 @@
     }
 
     _userTableView = [[UITableView alloc]init];
-    _userTableView.frame = CGRectMake(0,cardView.coverImageView.frame.size.height+cardView.coverImageView.frame.origin.y, WIDTH,HEIGHT);
+    _userTableView.frame = CGRectMake(0,cardView.frame.size.height+cardView.frame.origin.y, WIDTH,HEIGHT);
     _userTableView.delegate = self;
     _userTableView.dataSource = self;
     _userTableView.scrollEnabled = NO;
     //隐藏多余分割线 函数调用
     [self setExtraCellLineHidden:_userTableView];
     [self.view addSubview:_userTableView];
-    
+
 }
 
+
 //修改头像 查看 二维码
--(void)editPhoto{
+-(void)editPersonInfo{
 
     EditPhotoViewController *editPhotoVC = [[EditPhotoViewController alloc]init];
     [self.navigationController pushViewController:editPhotoVC animated:YES];
 
 }
 
+
 #pragma mark -- UITableView height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 50.f;
+    return 60.f;
 }
 
 #pragma mark -- UITableView cell 个数
@@ -224,6 +221,7 @@
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];
 }
+
 
 
 @end

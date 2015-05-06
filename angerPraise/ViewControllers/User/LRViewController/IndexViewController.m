@@ -67,8 +67,8 @@
 #pragma mark -- 去注册
 -(void)goRegister{
     
-//    RegisterViewController *registerVC = [[RegisterViewController alloc]init];
-//    [self.navigationController pushViewController:registerVC animated:YES];
+    RegisterViewController *registerVC = [[RegisterViewController alloc]init];
+    [self.navigationController pushViewController:registerVC animated:YES];
     
 
 }

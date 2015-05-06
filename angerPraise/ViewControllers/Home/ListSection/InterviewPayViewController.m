@@ -59,6 +59,17 @@
     
 }
 
+-(void)doBack{
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _interviewPayArray.count;
+}
+
 
 //隐藏多余分割线
 //-(void)setExtraCellLineHidden: (UITableView *)tableView
@@ -68,16 +79,8 @@
 //    [tableView setTableFooterView:view];
 //}
 //
-//-(void)doBack{
-//    
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-//
-//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return _interviewPayArray.count;
-//}
-//
+
+
 //#pragma mark -- UITableView dataSource
 //-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    
