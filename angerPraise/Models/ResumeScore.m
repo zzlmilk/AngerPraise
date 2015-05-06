@@ -33,7 +33,7 @@
 
     return [[APIClient sharedClient]GET:@"user/resume" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        NSLog(@"%@",responseObject);
+        //NSLog(@"%@",responseObject);
         if ([responseObject objectForKey:@"error"]) {
             Error *error = [[Error alloc]init];
             
@@ -51,12 +51,10 @@
             
         }
 
-        
-        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        NSLog(@"网络异常");
-        [APIClient showMessage:@"网络异常"];
+        //NSLog(@"网络异常");
+        [APIClient showInfo: @"请稍后再试..." title:@"网络异常"];
         
     }];
 }

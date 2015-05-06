@@ -111,6 +111,7 @@
     return self;
 }
 
+
 -(void)setPositionList:(Position *)positionList{
     
     NSString *positionNameString = [positionList.positionName stringByReplacingOccurrencesOfString:@" " withString:@""];

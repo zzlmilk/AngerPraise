@@ -20,4 +20,6 @@
 @property int page;
 @property NSString* pageString;
 
+@property int lastPosition;
+
 @end

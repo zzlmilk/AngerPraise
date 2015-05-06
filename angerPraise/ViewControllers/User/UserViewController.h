@@ -9,7 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface UserViewController : BaseViewController
+@interface UserViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property(nonatomic,strong)UITableView *userTableView;
+
+@property NSArray *modelListArray;
+
+@property(nonatomic,strong)UILabel *userNameLabel;
+@property(nonatomic,strong)UILabel *hirelibNumberLabel;
+
+@property(nonatomic,strong)UIImageView *imageView;
+
+@property(nonatomic,strong)NSString *user_type;
 
 @end

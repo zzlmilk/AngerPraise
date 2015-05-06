@@ -23,59 +23,49 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    UILabel *integrityScoreTitleLabel= [[UILabel alloc]initWithFrame:CGRectMake(30, 90, 145, 40)];
-    integrityScoreTitleLabel.backgroundColor = [UIColor clearColor];
-    integrityScoreTitleLabel.text=@"简历的完整度:";
-    integrityScoreTitleLabel.textColor = RGBACOLOR(76, 63, 55, 1.0f);
-    [self.view addSubview:integrityScoreTitleLabel];
-    
-    UILabel *integrityScoreLabel= [[UILabel alloc]initWithFrame:CGRectMake(integrityScoreTitleLabel.frame.size.width+integrityScoreTitleLabel.frame.origin.x, integrityScoreTitleLabel.frame.origin.y, 100, 40)];
-    integrityScoreLabel.backgroundColor = [UIColor clearColor];
-    integrityScoreLabel.text=@"偏低";
-    integrityScoreLabel.textColor = RGBACOLOR(52, 46, 48, 1.0f);
-    [integrityScoreLabel setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:18]];
-    [self.view addSubview:integrityScoreLabel];
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(0, 0, 44, 44);
+    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
     
     
-    UILabel *qualityScoreTitleLabel= [[UILabel alloc]initWithFrame:CGRectMake(30, integrityScoreTitleLabel.frame.size.height+integrityScoreTitleLabel.frame.origin.y, 145, 40)];
-    qualityScoreTitleLabel.backgroundColor = [UIColor clearColor];
-    qualityScoreTitleLabel.text=@"简历的质量度:";
-    qualityScoreTitleLabel.textColor = RGBACOLOR(76, 63, 55, 1.0f);
-    [self.view addSubview:qualityScoreTitleLabel];
-    
-    UILabel *qualityScoreLabel= [[UILabel alloc]initWithFrame:CGRectMake(integrityScoreTitleLabel.frame.size.width+integrityScoreTitleLabel.frame.origin.x, qualityScoreTitleLabel.frame.origin.y, 100, 40)];
-    qualityScoreLabel.backgroundColor = [UIColor clearColor];
-    qualityScoreLabel.text=@"偏低";
-    qualityScoreLabel.textColor = RGBACOLOR(52, 46, 48, 1.0f);
-    [qualityScoreLabel setFont:[UIFont fontWithName:@"Helvetica-BoldOblique" size:18]];
-    [self.view addSubview:qualityScoreLabel];
-    
-    
-    UILabel *guidePerfectLabel= [[UILabel alloc]initWithFrame:CGRectMake(qualityScoreTitleLabel.frame.origin.x, qualityScoreTitleLabel.frame.origin.y+qualityScoreTitleLabel.frame.size.height+20, self.view.frame.size.width - 2*qualityScoreTitleLabel.frame.origin.x, 150)];
-    [guidePerfectLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+    UILabel *guidePerfectLabel= [[UILabel alloc]initWithFrame:CGRectMake(30,90,WIDTH-2*30, 100)];
+    [guidePerfectLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
     guidePerfectLabel.backgroundColor = [UIColor clearColor];
-    guidePerfectLabel.text=@"由于您简历的完整度分数和质量度分数偏低, 不能更佳有效地帮助你进行简历推广, 我们已经为你'私人定制'出个性问卷帮助你提高简历竞争力,分享后立即生成问卷,朋友对你的问卷进行回答或点评便可提高简历竞争力,好友也可获得现金红包哦！";
+    guidePerfectLabel.text=@"分享给朋友或朋友圈，邀请他们对自己分享的问卷点评可以提高竞争力和综合评分!";
     guidePerfectLabel.numberOfLines = 0;
+    guidePerfectLabel.textAlignment = NSTextAlignmentCenter;
     guidePerfectLabel.textColor = RGBACOLOR(77, 77, 77, 1.0f);
     [self.view addSubview:guidePerfectLabel];
     
     
+    UILabel *introduceLabel= [[UILabel alloc]initWithFrame:CGRectMake(80,guidePerfectLabel.frame.origin.y+guidePerfectLabel.frame.size.height-20,WIDTH-2*80, 100)];
+    [introduceLabel setFont:[UIFont fontWithName:@"Helvetica" size:14]];
+    introduceLabel.backgroundColor = [UIColor clearColor];
+    introduceLabel.text=@"我们会给出专业的问卷评测,可以邀请好友来点评";
+    introduceLabel.numberOfLines = 0;
+    introduceLabel.textAlignment = NSTextAlignmentCenter;
+    introduceLabel.textColor = RGBACOLOR(135, 135, 135, 1.0f);
+    [self.view addSubview:introduceLabel];
     
-    UIButton *inviteButton = [[UIButton alloc]initWithFrame:CGRectMake(guidePerfectLabel.frame.origin.x, guidePerfectLabel.frame.origin.y + guidePerfectLabel.frame.size.height+100,self.view.frame.size.width-2*guidePerfectLabel.frame.origin.x, 40)];
+    UIButton *inviteButton = [[UIButton alloc]init];
+    inviteButton.frame = CGRectMake(introduceLabel.frame.origin.x, introduceLabel.frame.origin.y + introduceLabel.frame.size.height+100,WIDTH-2*introduceLabel.frame.origin.x, 40);
+    [inviteButton setTitle:@"去 分 享" forState:UIControlStateNormal];
     [inviteButton.layer setMasksToBounds:YES];
-    [inviteButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
-    [inviteButton.layer setBorderWidth:1.0]; //边框宽度
+    [inviteButton.layer setCornerRadius:15.0]; //设置矩形四个圆角半径
+    [inviteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    inviteButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+    inviteButton.backgroundColor = RGBACOLOR(75, 90, 248, 1.0f);
     [inviteButton addTarget:self action:@selector(inviteFriend) forControlEvents:UIControlEventTouchUpInside];
-    CGColorSpaceRef colorSpace2 = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref2 = CGColorCreate(colorSpace2,(CGFloat[]){ 211, 58, 59, 1 });
-    [inviteButton.layer setBorderColor:colorref2];//边框颜色
-    [inviteButton setTitle:@"去分享" forState:UIControlStateNormal];
-    inviteButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-    inviteButton.backgroundColor = RGBACOLOR(56, 199, 191, 1.0f);
     [self.view addSubview:inviteButton];
     
+}
+
+-(void)doBack{
     
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -- 去分享

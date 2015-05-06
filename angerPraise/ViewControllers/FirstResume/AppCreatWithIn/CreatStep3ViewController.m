@@ -98,7 +98,8 @@
         
     }else{
         
-        [APIClient showMessage:@"公司名称和薪资范围不能为空"];
+//        [APIClient showMessage:@"公司名称和薪资范围不能为空"];
+        [APIClient showInfo:nil title:@"公司名称和薪资范围不能为空"];
         
     }
     

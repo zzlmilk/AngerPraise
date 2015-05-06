@@ -44,8 +44,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        NSLog(@"网络异常");
-        [APIClient showMessage:@"网络异常"];
+        [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         
     }];
 }
@@ -76,7 +75,8 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-         NSLog(@"网络异常");
+        [APIClient showInfo: @"请稍后再试..." title:@"网络异常"];
+//         NSLog(@"网络异常");
         
     }];
 

@@ -102,15 +102,15 @@
             //NSLog(@"%@",resume.res);
             
             if ([resume.res isEqualToString:@"1"]) {
-                
-                [APIClient showMessage:@"导入成功"];
+
+                [APIClient showSuccess:nil title:@"导入成功"];
                 
                 MainViewController *mainVC = [[MainViewController alloc]init];
                 [self presentViewController:mainVC animated:YES completion:nil];
                 
             }else{
-                
-                [APIClient showMessage:e.info title:@"导入失败"];
+
+                [APIClient showError:e.info title:@"导入失败"];
             
             }
             

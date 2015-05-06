@@ -82,12 +82,12 @@
     CGFloat height = self.frame.size.height;
     CGFloat width = self.frame.size.width;
     UIView *cp_mask = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, height * CP_RATIO)];
-    UIView *pp_mask = [[UIView alloc]initWithFrame:CGRectMake(width * PP_X_RATIO, height * PP_Y_RATIO, height * PP_RATIO, height *PP_RATIO)];
-    UIView *pp_circle = [[UIView alloc]initWithFrame:CGRectMake(pp_mask.frame.origin.x - PP_BUFF, pp_mask.frame.origin.y - PP_BUFF, pp_mask.frame.size.width + 2* PP_BUFF, pp_mask.frame.size.height + 2*PP_BUFF)];
+    UIView *pp_mask = [[UIView alloc]initWithFrame:CGRectMake(102, 32, self.frame.size.width-2*102, self.frame.size.width-2*102)];
+    UIView *pp_circle = [[UIView alloc]initWithFrame:CGRectMake(100, 30,self.frame.size.width-2*100,self.frame.size.width-2*100)];
     pp_circle.backgroundColor = [UIColor whiteColor];
     pp_circle.layer.cornerRadius = pp_circle.frame.size.height/2;
     pp_mask.layer.cornerRadius = pp_mask.frame.size.height/2;
-    cp_mask.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
+    cp_mask.backgroundColor = [UIColor redColor];
     
     CGFloat cornerRadius = self.layer.cornerRadius;
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cp_mask.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
@@ -114,16 +114,16 @@
     cp_mask.clipsToBounds = YES;
     pp_mask.clipsToBounds = YES;
     
-    CGFloat titleLabelX = pp_circle.frame.origin.x+pp_circle.frame.size.width;
-    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(titleLabelX, cp_mask.frame.size.height + 7, self.frame.size.width - titleLabelX, 26)];
-    titleLabel.adjustsFontSizeToFitWidth = NO;
-    titleLabel.lineBreakMode = NSLineBreakByClipping;
-    
-    [titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20]];
-    [titleLabel setTextColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
-    titleLabel.text = @"Title Label";
-   
-    [self addSubview:titleLabel];
+//    CGFloat titleLabelX = pp_circle.frame.origin.x+pp_circle.frame.size.width;
+//    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(titleLabelX, cp_mask.frame.size.height + 7, self.frame.size.width - titleLabelX, 26)];
+//    titleLabel.adjustsFontSizeToFitWidth = NO;
+//    titleLabel.lineBreakMode = NSLineBreakByClipping;
+//    
+//    [titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20]];
+//    [titleLabel setTextColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
+//    titleLabel.text = @"Title Label";
+//   
+//    [self addSubview:titleLabel];
     [self addSubview:cp_mask];
     [self addSubview:pp_circle];
     [self addSubview:pp_mask];

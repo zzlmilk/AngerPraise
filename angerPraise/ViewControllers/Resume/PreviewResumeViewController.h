@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+
 @interface PreviewResumeViewController :BaseViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *previewResumeWebView;

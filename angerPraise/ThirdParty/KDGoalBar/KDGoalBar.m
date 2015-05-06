@@ -12,7 +12,7 @@
 #define toRadians(x) ((x)*M_PI / 180.0)
 #define toDegrees(x) ((x)*180.0 / M_PI)
 
-#define divideNum 36 
+#define divideNum 36
 
 @implementation KDGoalBar
 @synthesize allowTap, allowDragging, allowSwitching, allowDecimal, percentLabel, delegate, customText, currentGoal;
@@ -93,14 +93,22 @@
     ridge = [UIImage imageNamed:@"circle_ridge"];
     
     percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 125, 125)];
-    [percentLabel setFont:[UIFont fontWithName:@"Futura-CondensedMedium" size:60]];
+    [percentLabel setFont:[UIFont fontWithName:@"Futura-CondensedMedium" size:30]];
     [percentLabel setTextColor:[UIColor colorWithRed:89/255.0 green:89/255.0 blue:89/255.0 alpha:1.0]];
-    [percentLabel setTextAlignment:UITextAlignmentCenter];
+    [percentLabel setTextAlignment:NSTextAlignmentCenter];
     [percentLabel setBackgroundColor:[UIColor clearColor]];
     percentLabel.adjustsFontSizeToFitWidth = YES;
-    percentLabel.minimumFontSize = 10;
-    
     [self addSubview:percentLabel];
+    
+    UILabel *scorelabel = [[UILabel alloc]init];
+    scorelabel.frame = CGRectMake(0,percentLabel.frame.size.height+percentLabel.frame.origin.y-15, self.frame.size.width, 30);
+    scorelabel.backgroundColor = [UIColor clearColor];
+    scorelabel.textAlignment = NSTextAlignmentCenter;
+    scorelabel.text = @"简历综合评分";
+    scorelabel.font = [UIFont fontWithName:@"Helvetica" size:12];
+    [self addSubview:scorelabel];
+
+    
     
     thumbLayer = [CALayer layer];
     thumbLayer.contentsScale = [UIScreen mainScreen].scale;
@@ -136,7 +144,7 @@
     currentAnimating = NO;
     
     allowTap = YES;
-    allowDragging = YES;
+    allowDragging = NO;
     
     tappableRect = CGRectMake(50, 50, 127, 127);
 }

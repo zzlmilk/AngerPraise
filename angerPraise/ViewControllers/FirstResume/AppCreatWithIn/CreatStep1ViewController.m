@@ -40,7 +40,7 @@
     [nextStepButton.layer setMasksToBounds:YES];
     [nextStepButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
     [nextStepButton.layer setBorderWidth:1.0]; //边框宽度
-    [nextStepButton addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
+    [nextStepButton addTarget:self action:@selector(nextStepa) forControlEvents:UIControlEventTouchUpInside];
     CGColorSpaceRef colorSpace2 = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref2 = CGColorCreate(colorSpace2,(CGFloat[]){ 40, 164, 201, 1 });
     [nextStepButton.layer setBorderColor:colorref2];//边框颜色
@@ -52,7 +52,7 @@
 }
 
 #pragma mark -- 下一步
--(void)nextStep{
+-(void)nextStepa{
 
     CreatStep2ViewController *creatStep2VC = [[CreatStep2ViewController alloc]init];
 

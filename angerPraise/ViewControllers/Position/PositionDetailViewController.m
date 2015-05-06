@@ -8,7 +8,7 @@
 
 #import "PositionDetailViewController.h"
 #import "Position.h"
-#import "MBProgressHUD.h"
+#import "SMS_MBProgressHUD.h"
 
 @interface PositionDetailViewController ()
 
@@ -19,10 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(0, 0, 44, 44);
+    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
+    
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
-    _positionDetailWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -70, WIDTH, HEIGHT+70)];
+    _positionDetailWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+70)];
     _positionDetailWebView.delegate = self;
     NSURL *url=[NSURL URLWithString:_positionDetailUrl];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
@@ -32,25 +39,28 @@
     
 }
 
+-(void)doBack{
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 //网页 刚开始加载
 - (void )webViewDidStartLoad:(UIWebView  *)webView{
-
-    MBProgressHUD *progressHUD = [[MBProgressHUD alloc]init];
-    progressHUD.mode = MBProgressHUDModeDeterminate;
-    [progressHUD show:YES];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
 }
 
 //网页 加载完成
 - (void )webViewDidFinishLoad:(UIWebView  *)webView{
 
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 
 /*

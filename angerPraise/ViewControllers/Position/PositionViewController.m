@@ -10,7 +10,7 @@
 #import "PositionListCell.h"
 #import "Position.h"
 #import "PositionDetailViewController.h"
-#import "MBProgressHUD.h"
+#import "SMS_MBProgressHUD.h"
 #import "MJRefresh.h"
 
 
@@ -25,28 +25,18 @@ static CGFloat kImageOriginHight = 150.f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
+
     _page = 1;
     
     _positionTableView = [[UITableView alloc]init];
     _positionTableView.frame = CGRectMake(0,0, WIDTH,HEIGHT);
     _positionTableView.delegate = self;
     _positionTableView.dataSource = self;
- 
-
-    [_positionTableView addLegendFooterWithRefreshingBlock:^{
-        // 进入刷新状态后会自动调用这个block
-        [self getMorePositionInfo];
-        
-    }];
     
     _positionTableView.contentInset = UIEdgeInsetsMake(kImageOriginHight, 0, 0, 0);
     _expandZoomImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"image1"]];
     //  _expandZoomImageView.contentMode = UIViewContentModeRedraw;
     _expandZoomImageView.frame = CGRectMake(0, 0, WIDTH, kImageOriginHight);
-    
     
     UILabel *positionNameLabel = [[UILabel alloc]init];
     positionNameLabel.frame = CGRectMake(8, 5, 300, 30);
@@ -70,6 +60,12 @@ static CGFloat kImageOriginHight = 150.f;
     
     [self getPositionInfo];
 
+    [_positionTableView addLegendFooterWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+        
+        [self getMorePositionInfo];
+        
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -79,14 +75,33 @@ static CGFloat kImageOriginHight = 150.f;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat yOffset  = scrollView.contentOffset.y;
-    if (yOffset < -kImageOriginHight) {
+    
+    //CGFloat yOffset  = scrollView.contentOffset.y;
+    
+    if (scrollView.contentOffset.y < -kImageOriginHight) {
         CGRect f = self.expandZoomImageView.frame;
-        f.origin.y = yOffset;
-        f.size.height =  -yOffset;
+        f.origin.y = scrollView.contentOffset.y;
+        f.size.height =  -scrollView.contentOffset.y;
         self.expandZoomImageView.frame = f;
     }
+    
+    
+    int currentPostion = scrollView.contentOffset.y;
+    
+    if (currentPostion - _lastPosition > 0  && currentPostion > 0) {
+        _lastPosition = currentPostion;
+        self.tabBarController.tabBar.hidden = YES;
+        
+    }
+    
+    else if ((_lastPosition - currentPostion > 0) && (currentPostion  <= scrollView.contentSize.height-scrollView.bounds.size.height) )
+    {
+        _lastPosition = currentPostion;
+        self.tabBarController.tabBar.hidden = NO;
+        
+    }
 }
+
 
 //获取推荐职位列表
 -(void)getPositionInfo{
@@ -98,15 +113,12 @@ static CGFloat kImageOriginHight = 150.f;
     [dic setObject:@"1" forKey:@"type"];
     [dic setObject:@"1" forKey:@"user_id"];
     
-    MBProgressHUD *progressHUD = [[MBProgressHUD alloc]init];
-    progressHUD.mode = MBProgressHUDModeDeterminate;
-    [progressHUD show:YES];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     [Position getPositionList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
 
         _positionListArray = positionArray;
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
         [_positionTableView reloadData];
         
     }];
@@ -124,14 +136,11 @@ static CGFloat kImageOriginHight = 150.f;
     [dic setObject:@"1" forKey:@"type"];
     [dic setObject:@"1" forKey:@"user_id"];
     
-    MBProgressHUD *progressHUD = [[MBProgressHUD alloc]init];
-    progressHUD.mode = MBProgressHUDModeDeterminate;
-    [progressHUD show:YES];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [Position getPositionList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
         
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
         [_positionListArray addObjectsFromArray:positionArray];
         
@@ -168,7 +177,6 @@ static CGFloat kImageOriginHight = 150.f;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
     return cell;
 }
 
