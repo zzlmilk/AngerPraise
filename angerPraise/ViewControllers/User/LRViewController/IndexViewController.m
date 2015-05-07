@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     UILabel *describeLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 80, self.view.frame.size.width-2*30, 50)];
     //describeLabel.backgroundColor = [UIColor yellowColor];
     describeLabel.text = @"登录HireLib, 享受个性化推荐!";

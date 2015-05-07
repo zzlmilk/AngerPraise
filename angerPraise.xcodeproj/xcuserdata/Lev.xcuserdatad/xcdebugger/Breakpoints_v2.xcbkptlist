@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "angerPraise/Views/CommentFriendCell.m"
-            timestampString = "452572183.293189"
+            timestampString = "452689183.036302"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-setCommentFriendList:"
             landmarkType = "5">
          </BreakpointContent>

@@ -10,6 +10,8 @@
 #import "InitPassword.h"
 #import "ApIClient.h"
 
+#import "NewPasswordViewController.h"
+
 @interface RegisterViewController ()
 
 @end
@@ -60,7 +62,7 @@
     [getCaptchaButton setTitle:@"获取验证码" forState:UIControlStateNormal];
     getCaptchaButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     [getCaptchaButton addTarget:self action:@selector(getInitPassword) forControlEvents:UIControlEventTouchUpInside];
-    getCaptchaButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);;
+    getCaptchaButton.backgroundColor = RGBACOLOR(75, 90, 248, 1.0f);
     [self.view addSubview:getCaptchaButton];
     
     
@@ -96,17 +98,16 @@
 //    userNameLabel.textColor = RGBACOLOR(189, 190, 184, 1.0f);
 //    [self.view addSubview:userNameLabel];
     
-    UIButton *isInitPasswordButton = [[UIButton alloc]initWithFrame:CGRectMake(20, _captchaTextField.frame.size.height+_captchaTextField.frame.origin.y+130, self.view.frame.size.width - 2*20, 45)];
+    
+    UIButton *isInitPasswordButton = [[UIButton alloc]init];
+    isInitPasswordButton.frame = CGRectMake(20, _captchaTextField.frame.size.height+_captchaTextField.frame.origin.y+130, self.view.frame.size.width - 2*20, 45);
+    [isInitPasswordButton setTitle:@"注 册" forState:UIControlStateNormal];
     [isInitPasswordButton.layer setMasksToBounds:YES];
-    [isInitPasswordButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
-    [isInitPasswordButton.layer setBorderWidth:1.0]; //边框宽度
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 211, 58, 59, 1 });
-    [isInitPasswordButton addTarget:self action:@selector(isInitPassword) forControlEvents:UIControlEventTouchUpInside];
-    [isInitPasswordButton.layer setBorderColor:colorref];//边框颜色
-    [isInitPasswordButton setTitle:@"注册" forState:UIControlStateNormal];
+    [isInitPasswordButton.layer setCornerRadius:15.0]; //设置矩形四个圆角半径
+    [isInitPasswordButton setTitleColor:RGBACOLOR(255, 255, 255, 1.0f) forState:UIControlStateNormal];
     isInitPasswordButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-    isInitPasswordButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);
+    isInitPasswordButton.backgroundColor = RGBACOLOR(75, 90, 248, 1.0f);
+    [isInitPasswordButton addTarget:self action:@selector(isInitPassword) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:isInitPasswordButton];
     
     
@@ -144,21 +145,41 @@
 //验证初始密码
 -(void)isInitPassword{
     
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
-    [dic setObject:_captchaTextField.text forKey:@"password"];
     
-    [InitPassword isInitPassword:dic WithBlock:^(InitPassword *initPassword, Error *e) {
+//    NewPasswordViewController *newPasswordVC =[[NewPasswordViewController alloc]init];
+//    newPasswordVC.phoneNumberString = _phoneNumberTextField.text;
+//    [self.navigationController pushViewController:newPasswordVC animated:YES];
+    
+    if ([_phoneNumberTextField.text isEqual:@""]) {
         
-        if (e.info !=nil) {
-            [APIClient showMessage:e.info title:@"提示"];
-        }else if ([initPassword.validation_inital isEqualToString:@"1"] ) {
-          
-            //跳转页面
-            [APIClient showSuccess:@"等待页面跳转" title:@"验证成功"];
-        }
-    }];
+        [APIClient showMessage:@"手机号码不能为空"];
+        
+    }else{
+    
+            NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+            [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
+            [dic setObject:_captchaTextField.text forKey:@"password"];
+        
+            [InitPassword isInitPassword:dic WithBlock:^(InitPassword *initPassword, Error *e) {
+        
+                if (e.info !=nil) {
+                    
+                    [APIClient showMessage:e.info title:@"提示"];
+                    
+                }else if ([initPassword.validation_inital isEqualToString:@"1"] ) {
+        
+                    //跳转页面
+                    //[APIClient showSuccess:@"等待页面跳转" title:@"验证成功"];
+        
+                    NewPasswordViewController *newPasswordVC =[[NewPasswordViewController alloc]init];
+                    newPasswordVC.phoneNumberString = _phoneNumberTextField.text;
+                    [self.navigationController pushViewController:newPasswordVC animated:YES];
+                    
+                }
+            }];
 
+    
+    }
 }
 
 

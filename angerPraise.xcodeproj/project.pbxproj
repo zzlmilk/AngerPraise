@@ -80,6 +80,10 @@
 		DF5F8E071AFA154100205B60 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DF51AFA154100205B60 /* UIRefreshControl+AFNetworking.m */; };
 		DF5F8E081AFA154100205B60 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DF71AFA154100205B60 /* UIWebView+AFNetworking.m */; };
 		DF5F8E0B1AFA1CFB00205B60 /* InitPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E0A1AFA1CFB00205B60 /* InitPassword.m */; };
+		DF5F8E111AFB3C0D00205B60 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E101AFB3C0D00205B60 /* PersonInfoViewController.m */; };
+		DF5F8E141AFB3C3F00205B60 /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E131AFB3C3F00205B60 /* NewPasswordViewController.m */; };
+		DF5F8E171AFB482F00205B60 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E161AFB482F00205B60 /* Register.m */; };
+		DF5F8E1A1AFB72EB00205B60 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E191AFB72EB00205B60 /* Login.m */; };
 		DF826CAD1AAECCF200EAC61F /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */; };
 		DF826CAE1AAECCF200EAC61F /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF826C9A1AAECCF200EAC61F /* MYIntroductionPanel.m */; };
 		DF826CAF1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = DF826C9E1AAECCF200EAC61F /* iOS Simulator Screen shot Oct 17, 2013 4.51.36 PM.png */; };
@@ -389,6 +393,14 @@
 		DF5F8DF71AFA154100205B60 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		DF5F8E091AFA1CFB00205B60 /* InitPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitPassword.h; sourceTree = "<group>"; };
 		DF5F8E0A1AFA1CFB00205B60 /* InitPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitPassword.m; sourceTree = "<group>"; };
+		DF5F8E0F1AFB3C0D00205B60 /* PersonInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonInfoViewController.h; path = angerPraise/ViewControllers/User/LRViewController/PersonInfoViewController.h; sourceTree = SOURCE_ROOT; };
+		DF5F8E101AFB3C0D00205B60 /* PersonInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonInfoViewController.m; path = angerPraise/ViewControllers/User/LRViewController/PersonInfoViewController.m; sourceTree = SOURCE_ROOT; };
+		DF5F8E121AFB3C3F00205B60 /* NewPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewPasswordViewController.h; path = angerPraise/ViewControllers/User/LRViewController/NewPasswordViewController.h; sourceTree = SOURCE_ROOT; };
+		DF5F8E131AFB3C3F00205B60 /* NewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewPasswordViewController.m; path = angerPraise/ViewControllers/User/LRViewController/NewPasswordViewController.m; sourceTree = SOURCE_ROOT; };
+		DF5F8E151AFB482F00205B60 /* Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register.h; sourceTree = "<group>"; };
+		DF5F8E161AFB482F00205B60 /* Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
+		DF5F8E181AFB72EB00205B60 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
+		DF5F8E191AFB72EB00205B60 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		DF826C971AAECCF200EAC61F /* MYBlurIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYBlurIntroductionView.h; sourceTree = "<group>"; };
 		DF826C981AAECCF200EAC61F /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYBlurIntroductionView.m; sourceTree = "<group>"; };
 		DF826C991AAECCF200EAC61F /* MYIntroductionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
@@ -784,6 +796,10 @@
 				DF5F8DD01AFA0CE800205B60 /* EditPhoto.m */,
 				DF5F8E091AFA1CFB00205B60 /* InitPassword.h */,
 				DF5F8E0A1AFA1CFB00205B60 /* InitPassword.m */,
+				DF5F8E151AFB482F00205B60 /* Register.h */,
+				DF5F8E161AFB482F00205B60 /* Register.m */,
+				DF5F8E181AFB72EB00205B60 /* Login.h */,
+				DF5F8E191AFB72EB00205B60 /* Login.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1402,12 +1418,16 @@
 		DFD274321AE783C400BEED59 /* LRViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DF5F8E121AFB3C3F00205B60 /* NewPasswordViewController.h */,
+				DF5F8E131AFB3C3F00205B60 /* NewPasswordViewController.m */,
 				DFD274451AE7852C00BEED59 /* LoginViewController.h */,
 				DFD274461AE7852C00BEED59 /* LoginViewController.m */,
 				DFD274471AE7852C00BEED59 /* RegisterViewController.h */,
 				DFD274481AE7852C00BEED59 /* RegisterViewController.m */,
 				DFD2744B1AE7871B00BEED59 /* IndexViewController.h */,
 				DFD2744C1AE7871B00BEED59 /* IndexViewController.m */,
+				DF5F8E0F1AFB3C0D00205B60 /* PersonInfoViewController.h */,
+				DF5F8E101AFB3C0D00205B60 /* PersonInfoViewController.m */,
 			);
 			name = LRViewController;
 			path = LRViewControllers;
@@ -1706,6 +1726,7 @@
 				DF4D97BB1ADCBA6E00F65140 /* DSNavigationBar.m in Sources */,
 				DFD274441AE784E800BEED59 /* MainViewController.m in Sources */,
 				DF5F8E041AFA154100205B60 /* UIButton+AFNetworking.m in Sources */,
+				DF5F8E171AFB482F00205B60 /* Register.m in Sources */,
 				DF5F8DFB1AFA154100205B60 /* AFNetworkReachabilityManager.m in Sources */,
 				DFEE76F31ADF9E6A00401AF0 /* MJRefreshGifFooter.m in Sources */,
 				DF5F8DCE1AF9E48400205B60 /* ShowQrCodeViewController.m in Sources */,
@@ -1759,6 +1780,7 @@
 				DFA061B61AD536C2004EEB4C /* CreatStep2ViewController.m in Sources */,
 				DF4B44691AF0DB1400C94D7E /* guideHrViewController.m in Sources */,
 				DF5F8DA41AF7825C00205B60 /* CommentFriend.m in Sources */,
+				DF5F8E1A1AFB72EB00205B60 /* Login.m in Sources */,
 				DFE2C2E91AB0132C00C66DF9 /* NeedDataViewController.m in Sources */,
 				DF4D97B71ADCB6EF00F65140 /* HomeViewController.m in Sources */,
 				DF4B44771AF229B700C94D7E /* ResumeScoreViewController.m in Sources */,
@@ -1787,6 +1809,7 @@
 				DFEE77241AE0B92300401AF0 /* PreviewResumeViewController.m in Sources */,
 				DF826CAD1AAECCF200EAC61F /* MYBlurIntroductionView.m in Sources */,
 				DF4B447E1AF22A8700C94D7E /* CommentFriendViewController.m in Sources */,
+				DF5F8E111AFB3C0D00205B60 /* PersonInfoViewController.m in Sources */,
 				DFEE76F61ADF9E6A00401AF0 /* MJRefreshLegendFooter.m in Sources */,
 				DF4B44881AF234B400C94D7E /* InterviewPayWebViewController.m in Sources */,
 				DFEE77171AE09F5D00401AF0 /* KDBarGraph.m in Sources */,
@@ -1798,6 +1821,7 @@
 				DF5F8E021AFA154100205B60 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				DFE2C3271AB02D8500C66DF9 /* ShareViewController.m in Sources */,
 				19BD476F1AAD5BA600D44A9D /* main.m in Sources */,
+				DF5F8E141AFB3C3F00205B60 /* NewPasswordViewController.m in Sources */,
 				DF4D979C1AD656D400F65140 /* Resume.m in Sources */,
 				DF4B447B1AF22A6300C94D7E /* MyDynamicViewController.m in Sources */,
 				DFEE772E1AE0DCE800401AF0 /* AHKActionSheet.m in Sources */,

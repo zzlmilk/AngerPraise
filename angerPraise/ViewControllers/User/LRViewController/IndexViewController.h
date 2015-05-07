@@ -14,5 +14,4 @@
 @property(nonatomic,strong) UITextField *phoneNumberTextField;
 @property(nonatomic,strong) UITextField *passwordTextField;
 
-
 @end

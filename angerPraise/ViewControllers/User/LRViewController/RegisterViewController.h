@@ -14,6 +14,6 @@
 @property(nonatomic,strong) UITextField *phoneNumberTextField;
 @property(nonatomic,strong) UITextField *captchaTextField;
 @property(nonatomic,strong) UITextField *passwordTextField;
-@property(nonatomic,strong) UITextField *userNameTextField;
+
 
 @end

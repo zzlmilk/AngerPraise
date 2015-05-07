@@ -89,6 +89,10 @@
 
 -(void)getCommentFriendInfo{
 
+    
+//    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+//    [userId setObject:login.user_id forKey:@"userId"];
+    
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:@"1" forKey:@"user_id"];
     

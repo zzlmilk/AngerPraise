@@ -26,7 +26,9 @@
         _friendPhotoImageView = [[UIImageView alloc]init];
         _friendPhotoImageView.frame = CGRectMake(20, 15, 70, 70);
 //        _friendPhotoImageView.image = [UIImage imageNamed:@"exampleProfile"];
-        [_friendPhotoImageView setImageWithURL:[NSURL URLWithString:@"http://61.174.13.143/photo/4.jpg"]];
+        [_friendPhotoImageView setImageWithURL:[NSURL URLWithString:@"http://61.174.13.143/photo/12.jpg"]];
+        
+        [_friendPhotoImageView setImageWithURL:[NSURL URLWithString:@"http://61.174.13.143/photo/14.jpg"] placeholderImage:[UIImage imageNamed:@"user_avatar_default"]];
         [self addSubview:_friendPhotoImageView];
         
         _friendNameLabel = [[UILabel alloc]init];
@@ -40,7 +42,6 @@
         _isReviewLabel.text = @"可点评";
         _isReviewLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_isReviewLabel];
-        
         
     }
     return self;

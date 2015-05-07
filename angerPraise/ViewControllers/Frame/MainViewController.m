@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationItem setHidesBackButton:YES];
+    
     //self.view.backgroundColor = [UIColor yellowColor];
     
     HomeViewController *homeVC = [[HomeViewController alloc]init];

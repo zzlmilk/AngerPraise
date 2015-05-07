@@ -11,6 +11,10 @@
 #import "ImportResumeViewController.h"
 #import "NeedDataViewController.h"
 #import "ShareViewController.h"
+#import "Login.h"
+#import "ApIClient.h"
+#import "MainViewController.h"
+
 @interface LoginViewController ()
 
 @end
@@ -38,6 +42,7 @@
     
     _phoneNumberTextField = [[UITextField alloc]initWithFrame:CGRectMake(inputBgImageView.frame.origin.x+10, inputBgImageView.frame.origin.y, inputBgImageView.frame.size.width-10, inputBgImageView.frame.size.height/2)];
     _phoneNumberTextField.placeholder = @"手机号";
+    _phoneNumberTextField.keyboardType = UIKeyboardTypeNumberPad;
     //[_emailOrPhoneTextField setBorderStyle:UITextBorderStyleLine];
     [self.view addSubview:_phoneNumberTextField];
     
@@ -74,7 +79,35 @@
 #pragma mark -- 用户登录
 -(void)userLogin{
 
-
+    NSString * uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    
+    [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
+    [dic setObject:_passwordTextField.text forKey:@"password"];
+    [dic setObject:@"ios" forKey:@"device"];
+    [dic setObject:uuid forKey:@"device_id"];
+    [dic setObject:@"e91eabc2c2f181f4a0c3715a4ec049df" forKey:@"client_id"];
+    
+    [Login userLogin:dic WithBlock:^(Login *login, Error *e) {
+        
+        if (e.info !=nil) {
+            
+            [APIClient showInfo:e.info title:@"提示"];
+            
+        }else if(![login.user_id isEqual: @""]){
+            
+            NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+            [userId setObject:login.user_id forKey:@"userId"];
+            
+            [APIClient showSuccess:@"登录成功" title:@"成功"];
+            
+            MainViewController *mainVC = [[MainViewController alloc]init];
+            [self.navigationController pushViewController:mainVC animated:YES];
+            
+            
+        }
+    }];
 }
 
 

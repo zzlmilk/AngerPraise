@@ -95,6 +95,7 @@
 
 -(void)getresumeInfo{
 
+    
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:@"1" forKey:@"user_id"];
     
