@@ -19,6 +19,8 @@
 
 #import "Home.h"
 #import "SMS_MBProgressHUD.h"
+#import "AddressBook.h"
+
 
 @interface HomeViewController ()
 
@@ -172,11 +174,11 @@
 //    [self.view addSubview:_resumeScoreUrlLabel];
     
     
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    btn.frame = CGRectMake(30, 360, 90, 35);
-//    [btn setTitle:@"读取通讯录" forState:UIControlStateNormal];
-//    [btn addTarget:self action:@selector(getAddressBook) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:btn];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btn.frame = CGRectMake(30, 360, 90, 35);
+    [btn setTitle:@"读取通讯录" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(getAddressBook) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
 }
 
 
@@ -205,6 +207,7 @@
 
 
 -(void)getHomeInfo{
+
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:@"4" forKey:@"user_id"];
@@ -227,15 +230,140 @@
 #pragma 获取通讯录信息
 -(void)getAddressBook{
     //获得Vcard
-    NSMutableDictionary* dic= [[ZCAddressBook shareControl]getPersonInfo];
+    NSMutableDictionary* dick= [[ZCAddressBook shareControl]getPersonInfo];
     //获得序列索引
     NSArray *array=[[ZCAddressBook shareControl]sortMethod];
-    NSLog(@"Vcard%@~~~序列%@",dic,array);
+    NSLog(@"Vcard%@~~~序列%@",dick,array);
     
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+//    [userId setObject:login.user_id forKey:@"userId"];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:dick forKey:@"phone_book"];
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    
+    [AddressBook uploadAddressBook:dic WithBlock:^(AddressBook *addressBook, Error *e) {
+       
+        
+    }];
+    
+    
+    
+    
+    
+//    _dicBook = [[NSMutableDictionary alloc]init];
+//    
+//    ABAddressBookRef tmpAddressBook = nil;
+//    tmpAddressBook=ABAddressBookCreateWithOptions(NULL, NULL);
+//    dispatch_semaphore_t sema=dispatch_semaphore_create(0);
+//    ABAddressBookRequestAccessWithCompletion(tmpAddressBook, ^(bool greanted, CFErrorRef error){
+//
+//        dispatch_semaphore_signal(sema);
+//    });
+//    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//    
+//    //取得通讯录失败
+//
+//    if (tmpAddressBook==nil) {
+//        return ;
+//
+//    }else{
+//    
+//        //将通讯录中的信息用数组方式读出
+//        NSArray* tmpPeoples = (__bridge NSArray*)ABAddressBookCopyArrayOfAllPeople(tmpAddressBook);
+//    
+//        for(id tmpPerson in tmpPeoples){
+//            
+//            //获取的联系人单一属性:First name
+//            NSString* tmpFirstName = (__bridge NSString*)ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonFirstNameProperty);
+//            NSLog(@"First name:%@", tmpFirstName);
+//
+//            //获取的联系人单一属性:Last name
+//            NSString* tmpLastName = (__bridge NSString*)ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonLastNameProperty);
+//            NSLog(@"Last name:%@", tmpLastName);
+//            
+//
+//            //获取的联系人单一属性:Nickname
+//            NSString* tmpNickname = (__bridge NSString*)ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonNicknameProperty);
+//            NSLog(@"Nick__bridge name:%@", tmpNickname);
+//
+//
+//            //获取的联系人单一属性:Company name
+//            NSString* tmpCompanyname = (__bridge NSString*)ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonOrganizationProperty);
+//            NSLog(@"Company name:%@", tmpCompanyname);
+//
+//            
+//            
+//            //获取的联系人单一属性:Job Title
+//            NSString* tmpJobTitle= (__bridge NSString*)ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonJobTitleProperty);
+//            NSLog(@"Job Title:%@", tmpJobTitle);
+//
+//
+//            //获取的联系人单一属性:Department name
+//            NSString* tmpDepartmentName = (__bridge NSString*)ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonDepartmentProperty);
+//            NSLog(@"Department name:%@", tmpDepartmentName);
+//
+//
+//            //获取的联系人单一属性:Email(s)
+//            ABMultiValueRef tmpEmails = ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonEmailProperty);
+//            for(NSInteger j = 0; ABMultiValueGetCount(tmpEmails); j++)
+//
+//            {
+//
+//                NSString* tmpEmailIndex = (__bridge NSString*)ABMultiValueCopyValueAtIndex(tmpEmails, j);
+//                NSLog(@"Emails%ld:%@", (long)j, tmpEmailIndex);
+//
+//                
+//            }
+//
+//            CFRelease(tmpEmails);
+//
+//            //获取的联系人单一属性:Birthday
+//
+//            NSDate* tmpBirthday = (__bridge NSDate*)ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonBirthdayProperty);
+//            NSLog(@"Birthday:%@", tmpBirthday);
+//
+//
+//            //获取的联系人单一属性:Note
+//
+//            NSString* tmpNote = (__bridge NSString*)ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonNoteProperty);
+//            NSLog(@"Note:%@", tmpNote);
+//
+//
+//            //获取的联系人单一属性:Generic phone number
+//
+//            ABMultiValueRef tmpPhones = ABRecordCopyValue((__bridge ABRecordRef)(tmpPerson), kABPersonPhoneProperty);
+//
+//            for(NSInteger j = 0; j < ABMultiValueGetCount(tmpPhones); j++)
+//
+//            {
+//
+//                NSString* tmpPhoneIndex = (__bridge NSString*)ABMultiValueCopyValueAtIndex(tmpPhones, j);
+//
+//                NSLog(@"tmpPhoneIndex%ld:%@", (long)j, tmpPhoneIndex);
+//
+//
+//            }
+//            
+//            CFRelease(tmpPhones);
+//            
+////            NSString *fullNameString = [NSString initWithFormat:@"%@,%@", tmpFirstName, tmpLastName ];
+//            
+//            
+//            [_dicBook setObject:(__bridge id)(tmpPhones) forKey:@"user_id"];
+//            
+//        }
+//
+//        
+//    }
+//    
 }
+
 
 //简历综合评分
 -(void)resumeScoreAction{
+    
+    
 
     ResumeScoreViewController *resumeScoreVC = [[ResumeScoreViewController alloc]init];
     resumeScoreVC.resumeScoreUrl = _resumeScoreUrlLabel.text;

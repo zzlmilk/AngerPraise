@@ -352,7 +352,10 @@
     // Add label if label text was set
     if (nil != self.labelText) {
         // Get size of label text
-        CGSize dims = [self.labelText sizeWithFont:self.labelFont];
+        //CGSize dims = [self.labelText sizeWithFont:self.labelFont];
+        
+        CGSize dims = [self.labelText sizeWithAttributes:@{NSFontAttributeName:self.labelFont}];
+        
 		
         // Compute label dimensions based on font metrics if size is larger than max then clip the label width
         float lHeight = dims.height;
@@ -367,7 +370,7 @@
         // Set label properties
         label.font = self.labelFont;
         label.adjustsFontSizeToFitWidth = NO;
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         label.opaque = NO;
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
@@ -397,7 +400,7 @@
             // Set label properties
             detailsLabel.font = self.detailsLabelFont;
             detailsLabel.adjustsFontSizeToFitWidth = NO;
-            detailsLabel.textAlignment = UITextAlignmentCenter;
+            detailsLabel.textAlignment = NSTextAlignmentCenter;
             detailsLabel.opaque = NO;
             detailsLabel.backgroundColor = [UIColor clearColor];
             detailsLabel.textColor = [UIColor whiteColor];
@@ -406,6 +409,7 @@
 
 			CGFloat maxHeight = frame.size.height - self.height - 2*margin;
 			CGSize labelSize = [detailsLabel.text sizeWithFont:detailsLabel.font constrainedToSize:CGSizeMake(frame.size.width - 4*margin, maxHeight) lineBreakMode:detailsLabel.lineBreakMode];
+
             lHeight = labelSize.height;
             lWidth = labelSize.width;
 			

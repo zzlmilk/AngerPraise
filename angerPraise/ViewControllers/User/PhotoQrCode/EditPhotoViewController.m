@@ -11,7 +11,7 @@
 #import "UserViewController.h"
 #import "EditPhoto.h"
 #import "ApIClient.h"
-
+#import "SMS_MBProgressHUD.h"
 
 @interface EditPhotoViewController ()
 
@@ -165,15 +165,19 @@
     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
     
     UserViewController *userVC = [[UserViewController alloc]init];
-    [userVC.userPhotoImageView setImage:savedImage];
     
+    [userVC.userPhotoImageView setImage:savedImage];
+    //[userVC uploadUserImage:savedImage];
+    
+    [self presentViewController:userVC animated:YES completion:nil];
     
     // isFullScreen = NO;
 //    [_avatarImageView setImage:savedImage];
 //    
 //    _avatarImageView.tag = 100;
     
-    [self UploadPhoto];
+    
+   // [self UploadPhoto];
     
 }
 
@@ -190,7 +194,6 @@
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-
 {
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
@@ -199,17 +202,20 @@
 
 -(void)UploadPhoto{
     
+    
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:@"4" forKey:@"user_id"];
 
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [EditPhoto uploadUserProfileImageParameters:dic WithBlock:^(EditPhoto *e) {
         
        // NSLog(@"%@",e);
         
+        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         if ([e.res isEqualToString:@"1"]) {
             
             [APIClient showSuccess:@"头像上传成功" title:@"成功"];
-            
         }
         
     }];

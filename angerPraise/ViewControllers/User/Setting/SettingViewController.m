@@ -7,6 +7,8 @@
 //
 
 #import "SettingViewController.h"
+#import "User.h"
+#import "ApIClient.h"
 
 @interface SettingViewController ()
 
@@ -68,8 +70,31 @@
 
 //退出登录
 -(void)loginOut{
-
     
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+
+    [User userLoginOut:dic WithBlock:^(User *user, Error *e) {
+       
+        if ((int)user.res == 1) {
+            //退出成功  清空 NSUserDefaults  的值 做跳转
+            
+            [APIClient showSuccess:@"退出成功" title:@"成功"];
+            
+//            NSUserDefaults *userId=[NSUserDefaults standardUserDefaults];
+//            [userId removeObjectForKey:@"userId"];
+            
+            
+        }else if (e != nil){
+            //退出失败
+            
+            [APIClient showInfo:e.info title:@"提示"];
+        
+        }
+        
+    }];
 }
 
 #pragma mark -- UITableView height

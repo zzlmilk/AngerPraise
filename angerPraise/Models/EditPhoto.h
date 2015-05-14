@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Error.h"
 
 @interface EditPhoto : NSObject
 

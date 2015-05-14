@@ -77,8 +77,8 @@
 // 完善资料
 -(void)perfectInfo{
     
-    CFUUIDRef puuid = CFUUIDCreate( nil );
-    CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
+//    CFUUIDRef puuid = CFUUIDCreate( nil );
+//    CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
 
     
 }

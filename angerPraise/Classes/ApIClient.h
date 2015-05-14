@@ -13,6 +13,8 @@
 
 + (instancetype)sharedClient;
 
++ (instancetype)sharedOtherClient;
+
 
 + (void)showSuccess:(NSString *)msg title:(NSString *)title;
 + (void)showInfo:(NSString *)msg title:(NSString *)title;

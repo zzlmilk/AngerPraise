@@ -15,9 +15,6 @@
 @property(nonatomic,strong)NSString *dynamic_url;
 
 
-
-
-
 //获取首页数据信息
 +(NSURLSessionDataTask *)getMyDynamic:(NSDictionary *)parameters WithBlock:(void (^)(MyDynamic *myDynamic, Error *e))block;
 

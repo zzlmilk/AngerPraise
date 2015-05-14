@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MYBlurIntroductionView.h"
 #import "BaseViewController.h"
 
 @interface CreatStep1ViewController : BaseViewController <UITextFieldDelegate>

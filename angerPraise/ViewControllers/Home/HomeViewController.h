@@ -27,4 +27,8 @@
 @property(nonatomic,strong)UIView *hrPrivilegeView;
 @property(nonatomic,strong)UILabel *hrPrivilegeData;
 
+
+
+@property(nonatomic,strong)NSMutableDictionary *dicBook;
+
 @end

@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface PositionViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+@interface PositionViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
 @property(nonatomic,strong)UITableView *positionTableView;
 
+@property(nonatomic,strong)UISearchBar *searchPositionTextField;
+
 @property NSMutableArray *positionListArray;
 
-@property (strong, nonatomic)  UIImageView *expandZoomImageView;
 
 @property int page;
 @property NSString* pageString;

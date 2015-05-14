@@ -15,5 +15,7 @@
 @property(nonatomic,strong) UITextField *captchaTextField;
 @property(nonatomic,strong) UITextField *passwordTextField;
 
+@property(nonatomic,strong) UIButton *getStarPasswordButton;
+
 
 @end

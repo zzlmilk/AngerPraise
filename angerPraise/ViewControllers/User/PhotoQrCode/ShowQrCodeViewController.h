@@ -11,6 +11,6 @@
 
 @interface ShowQrCodeViewController : BaseViewController
 
-@property(nonatomic,strong)NSString *qrCodeUrlString;
+@property(nonatomic,strong)UIImageView *qrImageView;
 
 @end

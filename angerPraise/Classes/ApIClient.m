@@ -11,6 +11,9 @@
 
 static NSString * const AFAppDotNetAPIBaseURLString = @"http://61.174.13.143/AngerPraises/v1/";
 
+//other  备用
+static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://61.174.13.143/website/";
+
 @implementation APIClient
 
 + (instancetype)sharedClient {
@@ -22,6 +25,18 @@ static NSString * const AFAppDotNetAPIBaseURLString = @"http://61.174.13.143/Ang
     });
     
     return _sharedClient;
+}
+
++ (instancetype)sharedOtherClient{
+    static APIClient *_sharedOther = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedOther = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:AFAppDotNetAPIBaseURLStringOther]];
+        _sharedOther.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    });
+    
+    return _sharedOther;
+
 }
 
 //自定义弹框 － 成功

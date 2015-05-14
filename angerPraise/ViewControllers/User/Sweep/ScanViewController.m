@@ -10,6 +10,8 @@
 
 #import "XMBarcodeScannerView.h"
 #import "ApIClient.h"
+#import "Sweep.h"
+#import "SMS_MBProgressHUD.h"
 
 
 @interface ScanViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -60,6 +62,32 @@
 }
 
 
+//扫描二维码 修改简历
+-(void)sweepEditResume:(NSString *)sweepResultString{
+    
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:sweepResultString forKey:@"qcode_string"];
+    
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Sweep sweepEditResume:dic WithBlock:^(Sweep *sweep, Error *e) {
+        
+        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if (sweep.res !=nil) {
+            
+         [APIClient showSuccess:@"扫描成功" title:@"成功"];
+            
+        }else if (e.info != nil){
+        
+            [APIClient showInfo:e.info title:@"提示"];
+        }
+        
+    }];
+    
+}
 
 
 
@@ -92,8 +120,7 @@
     self.scanView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
 //    
     self.tableView.frame = CGRectMake((width - consoleViewWidth) * 0.5f, CGRectGetMaxY(self.scanView.frame) + 20.0f, consoleViewWidth, consoleViewHeight);
-    
-    
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -149,7 +176,7 @@
     return self.dataList.count;
 }
 
-
+#pragma mark - tableView DataSource
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *reuserIdentifier = @"codeCell";
@@ -161,15 +188,15 @@
     
     cell.textLabel.text = self.dataList[indexPath.row];
     
-    [APIClient showSuccess:cell.textLabel.text title:@"扫码成功"];
+    [self sweepEditResume:cell.textLabel.text];
     
-    
+    //[APIClient showSuccess:cell.textLabel.text title:@"扫码成功"];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
-
+#pragma mark - tableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -178,6 +205,7 @@
 - (NSMutableArray *)dataList
 {
     if (_dataList == nil) {
+        
         _dataList = [NSMutableArray array];
     }
     

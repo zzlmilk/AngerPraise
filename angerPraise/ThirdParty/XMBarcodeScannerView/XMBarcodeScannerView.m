@@ -457,7 +457,7 @@
 
 - (UIView *)overlayForCodeString:(NSString *)codeString bounds:(CGRect)bounds valid:(BOOL)valid {
     
-    UIColor *viewColor = valid ? [UIColor greenColor] : [UIColor redColor];
+    UIColor *viewColor = valid ? [UIColor greenColor] : RGBACOLOR(102, 189, 99, 1.0f);
     UIView *view = [[UIView alloc] initWithFrame:bounds];
     //    UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
     

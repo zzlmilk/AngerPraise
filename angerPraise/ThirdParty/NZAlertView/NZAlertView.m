@@ -53,6 +53,9 @@ static BOOL IsPresenting;
                                       owner:self
                                     options:nil];
         
+        
+        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, 100);
+        
         CGRect frame = self.view.frame;
         frame.size.width = CGRectGetWidth([[UIScreen mainScreen] bounds]);
         self.view.frame = frame;
@@ -282,7 +285,7 @@ static BOOL IsPresenting;
 
 - (void)defaultDurationsAndLevels
 {
-    self.alertDuration = 5.0f;
+    self.alertDuration = 1.0f;
     self.animationDuration = 0.6f;
     self.screenBlurLevel = 0.6f;
 }

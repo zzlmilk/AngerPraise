@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MYBlurIntroductionView.h"
+//#import "MYBlurIntroductionView.h"
 #import "BaseViewController.h"
 
-@interface VirtualImportViewController : BaseViewController<MYIntroductionDelegate,UIWebViewDelegate>
+@interface VirtualImportViewController : BaseViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *virtuaImportlWebView;
 

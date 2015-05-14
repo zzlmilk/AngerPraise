@@ -18,8 +18,6 @@
 
 @end
 
-static CGFloat kImageOriginHight = 150.f;
-
 @implementation PositionViewController
 
 - (void)viewDidLoad {
@@ -32,59 +30,26 @@ static CGFloat kImageOriginHight = 150.f;
     _positionTableView.frame = CGRectMake(0,0, WIDTH,HEIGHT);
     _positionTableView.delegate = self;
     _positionTableView.dataSource = self;
-    
-    _positionTableView.contentInset = UIEdgeInsetsMake(kImageOriginHight, 0, 0, 0);
-    _expandZoomImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"image1"]];
-    //  _expandZoomImageView.contentMode = UIViewContentModeRedraw;
-    _expandZoomImageView.frame = CGRectMake(0, 0, WIDTH, kImageOriginHight);
-    
-    UILabel *positionNameLabel = [[UILabel alloc]init];
-    positionNameLabel.frame = CGRectMake(8, 5, 300, 30);
-    positionNameLabel.text = @"PHP工程师";
-    positionNameLabel.font =  [UIFont fontWithName:@"Helvetica" size:26.f];
-    positionNameLabel.textColor = [UIColor whiteColor];
-    positionNameLabel.backgroundColor = [UIColor clearColor];
-    
-    UILabel *describeLabel = [[UILabel alloc]init];
-    describeLabel.frame = CGRectMake(11, positionNameLabel.frame.origin.y+positionNameLabel.frame.size.height-5, 200, 20);
-    describeLabel.text = @"推荐的职位名称";
-    describeLabel.textColor = [UIColor whiteColor];
-    describeLabel.backgroundColor = [UIColor clearColor];
-    describeLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:12.f];
-    [_expandZoomImageView addSubview:describeLabel];
-    [_expandZoomImageView addSubview:positionNameLabel];
-    [_positionTableView addSubview:_expandZoomImageView];
-    
+    _positionTableView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    _positionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_positionTableView];
-    
     
     [self getPositionInfo];
 
+    __block PositionViewController *controller = self;
     [_positionTableView addLegendFooterWithRefreshingBlock:^{
         // 进入刷新状态后会自动调用这个block
-        
-        [self getMorePositionInfo];
-        
+
+        [controller getMorePositionInfo];
+
     }];
+    
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    self.expandZoomImageView.frame = CGRectMake(0, -kImageOriginHight, _positionTableView.frame.size.width, kImageOriginHight);
-}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     //CGFloat yOffset  = scrollView.contentOffset.y;
-    
-    if (scrollView.contentOffset.y < -kImageOriginHight) {
-        CGRect f = self.expandZoomImageView.frame;
-        f.origin.y = scrollView.contentOffset.y;
-        f.size.height =  -scrollView.contentOffset.y;
-        self.expandZoomImageView.frame = f;
-    }
-    
     
     int currentPostion = scrollView.contentOffset.y;
     
@@ -174,9 +139,11 @@ static CGFloat kImageOriginHight = 150.f;
         cell = [[PositionListCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:cellId];
     }
-    
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    cell.separatorInset = UIEdgeInsetsMake(-15, 0, 0, 0);//上左下右 就可以通过设置这四个参数来设置分割线了
     return cell;
 }
 
@@ -184,7 +151,7 @@ static CGFloat kImageOriginHight = 150.f;
 #pragma mark -- UITableView height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return 150.f;
+    return 290.f;
 }
 
 #pragma mark -- UITableView delegate

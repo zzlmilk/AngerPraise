@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface InterviewPayViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface InterviewPayViewController : BaseViewController
 
 @property(nonatomic,strong)UITableView *interviewPayTableView;
 

@@ -52,10 +52,10 @@
     self.delegate = self;
     
     self.tabBar.translucent = NO;
-    self.tabBar.alpha = 0.7f;
-    self.tabBar.tintColor = RGBACOLOR(75, 90, 248, 1.0f);
-    self.tabBar.barTintColor = RGBACOLOR(255, 255, 255, 0.7f);
-    self.tabBar.backgroundColor = [UIColor whiteColor];
+    self.tabBar.alpha = 1.0f;
+    self.tabBar.tintColor = RGBACOLOR(255, 255, 255, 1.0f);
+    self.tabBar.barTintColor = RGBACOLOR(20, 20, 20, 1.0f);
+    self.tabBar.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     
 }
 

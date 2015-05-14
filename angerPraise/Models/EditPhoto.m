@@ -42,7 +42,7 @@
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
             
-            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+           [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
             
         } else {
             //解析

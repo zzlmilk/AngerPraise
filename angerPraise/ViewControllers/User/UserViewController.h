@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "EditPhotoViewController.h"
 
-@interface UserViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+@interface UserViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property(nonatomic,strong)UITableView *userTableView;
 

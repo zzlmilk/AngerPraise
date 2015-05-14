@@ -52,18 +52,18 @@
     _phoneNumberTextField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:_phoneNumberTextField];
     
-    UIButton *getCaptchaButton = [[UIButton alloc]initWithFrame:CGRectMake(_phoneNumberTextField.frame.size.width+_phoneNumberTextField.frame.origin.x+5,_phoneNumberTextField.frame.origin.y,self.view.frame.size.width-_phoneNumberTextField.frame.size.width-2*20,50)];
-    [getCaptchaButton.layer setMasksToBounds:YES];
-    [getCaptchaButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
-    [getCaptchaButton.layer setBorderWidth:1.0]; //边框宽度
+    _getStarPasswordButton = [[UIButton alloc]initWithFrame:CGRectMake(_phoneNumberTextField.frame.size.width+_phoneNumberTextField.frame.origin.x+5,_phoneNumberTextField.frame.origin.y,self.view.frame.size.width-_phoneNumberTextField.frame.size.width-2*20,50)];
+    [_getStarPasswordButton.layer setMasksToBounds:YES];
+    [_getStarPasswordButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
+    [_getStarPasswordButton.layer setBorderWidth:1.0]; //边框宽度
     CGColorSpaceRef colorSpace1 = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref2 = CGColorCreate(colorSpace1,(CGFloat[]){ 211, 58, 59, 1 });
-    [getCaptchaButton.layer setBorderColor:colorref2];//边框颜色
-    [getCaptchaButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-    getCaptchaButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
-    [getCaptchaButton addTarget:self action:@selector(getInitPassword) forControlEvents:UIControlEventTouchUpInside];
-    getCaptchaButton.backgroundColor = RGBACOLOR(75, 90, 248, 1.0f);
-    [self.view addSubview:getCaptchaButton];
+    [_getStarPasswordButton.layer setBorderColor:colorref2];//边框颜色
+    [_getStarPasswordButton setTitle:@"获取密码" forState:UIControlStateNormal];
+    _getStarPasswordButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    [_getStarPasswordButton addTarget:self action:@selector(getInitPassword) forControlEvents:UIControlEventTouchUpInside];
+    _getStarPasswordButton.backgroundColor = RGBACOLOR(75, 90, 248, 1.0f);
+    [self.view addSubview:_getStarPasswordButton];
     
     
     _captchaTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, _phoneNumberTextField.frame.size.height+_phoneNumberTextField.frame.origin.y+20, _phoneNumberTextField.frame.size.width, 50)];
@@ -126,20 +126,62 @@
 
 //获取初始密码
 -(void)getInitPassword{
-
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
     
-    [InitPassword getInitPassword:dic WithBlock:^(InitPassword *initPassword, Error *e) {
-        
-        //NSLog(@"%@",initPassword);
-        
-        if (initPassword.password !=nil) {
-         
-            [APIClient showMessage:@"初始密码已发送,请注意查收"];
+    [self reGetInitPassword];
+    
+    __block int timeout=60; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                _getStarPasswordButton.userInteractionEnabled = YES;
+                _getStarPasswordButton.backgroundColor = RGBACOLOR(75, 90, 248, 1.0f);
+                [_getStarPasswordButton setTitle:@"重新获取" forState:UIControlStateNormal];
+                
+            });
+        }else{
+            //            int minutes = timeout / 60;
+            int seconds = timeout % 60;
+            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                NSLog(@"____%@",strTime);
+                [_getStarPasswordButton setTitle:[NSString stringWithFormat:@"%@秒",strTime] forState:UIControlStateNormal];
+    
+                _getStarPasswordButton.userInteractionEnabled = NO;
+                _getStarPasswordButton.backgroundColor = [UIColor grayColor];
+                
+                
+            });
+            timeout--;
+            
         }
-        
-    }];
+    });
+    dispatch_resume(_timer);
+
+}
+
+//获取初始密码
+-(void)reGetInitPassword{
+
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
+    
+        [InitPassword getInitPassword:dic WithBlock:^(InitPassword *initPassword, Error *e) {
+    
+            //NSLog(@"%@",initPassword);
+    
+            if (initPassword.password !=nil) {
+    
+                [APIClient showMessage:@"初始密码已发送,请注意查收"];
+            }
+            
+        }];
+    
 }
 
 //验证初始密码

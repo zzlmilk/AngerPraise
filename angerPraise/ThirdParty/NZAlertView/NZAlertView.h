@@ -47,6 +47,8 @@ typedef void(^NZAlertViewCompletion)(void);
 @property (nonatomic, assign) CGFloat animationDuration;
 @property (nonatomic, assign) CGFloat screenBlurLevel;
 
+
+
 - (id)initWithStyle:(NZAlertStyle)style
             message:(NSString *)message;
 

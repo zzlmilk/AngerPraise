@@ -37,14 +37,19 @@ static ZCAddressBook *instance;
     ABRecordSetValue(record, kABPersonFirstNameProperty, (__bridge CFTypeRef)name, &error);
     // 添加联系人电话号码以及该号码对应的标签名
     ABMutableMultiValueRef multi = ABMultiValueCreateMutable(kABPersonPhoneProperty);    ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)num, (__bridge CFTypeRef)label, NULL);    ABRecordSetValue(record, kABPersonPhoneProperty, multi, &error);
+    
     ABAddressBookRef addressBook = nil;
+    
     // 如果为iOS6以上系统，需要等待用户确认是否允许访问通讯录。
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)    {        addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
         //等待同意后向下执行
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error)                                                 {                                                     dispatch_semaphore_signal(sema);                                                 });
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);         dispatch_release(sema);
     }else{
-        addressBook = ABAddressBookCreate();     }
+        
+        addressBook = ABAddressBookCreate();
+
+    }
     // 将新建联系人记录添加如通讯录中
     BOOL success = ABAddressBookAddRecord(addressBook, record, &error);
     if (!success) {
@@ -72,7 +77,7 @@ static ZCAddressBook *instance;
         records = ABAddressBookCopyArrayOfAllPeople(addressBook);
     }else{
         
-#ifdef DEBUG        NSLog(@"can not connect to address book");
+#ifdef DEBUG        //NSLog(@"can not connect to address book");
 #endif
         return ABHelperCanNotConncetToAddressBook;
     }
@@ -177,7 +182,7 @@ static ZCAddressBook *instance;
         NSString* str=[dic objectForKey:@"first"];
         //获得中文拼音首字母，如果是英文或数字则#
         
-//        NSLog(@"%@",dic);
+        //        NSLog(@"%@",dic);
         NSString *strFirLetter = [NSString stringWithFormat:@"%c",pinyinFirstLetter([str characterAtIndex:0])];
         
         if ([strFirLetter isEqualToString:@"#"]) {
@@ -277,7 +282,7 @@ NSInteger cmp(NSString * a, NSString* b, void * p)
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     //0 取消  1是成功 2是失败
-//    NSLog(@"~~~%d",result);
+    //    NSLog(@"~~~%d",result);
     self.MessageBlock(result);
     [controller dismissViewControllerAnimated:YES completion:nil];
     

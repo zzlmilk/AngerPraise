@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Error.h"
 
 @interface User : NSObject
 
+@property(nonatomic,strong)NSString *res;
 
-@property NSString *userNameString;
+//退出登录
++(NSURLSessionDataTask *)userLoginOut:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
+
+-(instancetype)initWithDic:(NSDictionary *)dic;
+
 
 @end
