@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface CommentFriendViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+@interface CommentFriendViewController : BaseViewController
 
 @property(nonatomic,strong)UITableView *commentFriendTableView;
 

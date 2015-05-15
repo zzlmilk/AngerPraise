@@ -53,6 +53,7 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     
+    
     //短信 及 邀请好友  怒赞
     [SMS_SDK registerApp:@"6f14962663be" withSecret:@"0b1ad3ef793449821b2c90171b5ad742"];
     
@@ -61,9 +62,7 @@
     [ShareSDK connectWeChatWithAppId:@"wx73d4adffe3bc51da"
                            wechatCls:[WXApi class]];
     [ShareSDK connectMail];
-    [ShareSDK connectAirPrint];
-    
-    
+    [ShareSDK connectSMS];
     [ShareSDK ssoEnabled:NO];
     
     //    self.window.rootViewController = [[DefaultTempViewController alloc] init];

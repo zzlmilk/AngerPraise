@@ -42,7 +42,7 @@
 		DF4D979F1AD657F000F65140 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D979E1AD657F000F65140 /* Error.m */; };
 		DF4D97A21AD7790D00F65140 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97A11AD7790D00F65140 /* GuideViewController.m */; };
 		DF4D97B31AD7C44900F65140 /* ResumeScore.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97B21AD7C44900F65140 /* ResumeScore.m */; };
-		DF4D97B71ADCB6EF00F65140 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97B61ADCB6EF00F65140 /* HomeViewController.m */; };
+		DF4D97B71ADCB6EF00F65140 /* HomeOldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97B61ADCB6EF00F65140 /* HomeOldViewController.m */; };
 		DF4D97BB1ADCBA6E00F65140 /* DSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97BA1ADCBA6E00F65140 /* DSNavigationBar.m */; };
 		DF5B3EED1ADCCA490004EF2F /* PositionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5B3EEC1ADCCA490004EF2F /* PositionListCell.m */; };
 		DF5B3EF01ADCCB0E0004EF2F /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5B3EEF1ADCCB0E0004EF2F /* Position.m */; };
@@ -91,14 +91,15 @@
 		DFA061B91AD536DD004EEB4C /* CreatStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA061B81AD536DD004EEB4C /* CreatStep3ViewController.m */; };
 		DFB32F6D1B031C9F0049D9F2 /* Sweep.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB32F6C1B031C9F0049D9F2 /* Sweep.m */; };
 		DFB32F6F1B0353820049D9F2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB32F6E1B0353820049D9F2 /* ImageIO.framework */; };
-		DFB32FBD1B048D8F0049D9F2 /* InfiniteScrollPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB32FB31B048D8F0049D9F2 /* InfiniteScrollPicker.m */; };
 		DFB32FBE1B048D8F0049D9F2 /* s1_0.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB32FB51B048D8F0049D9F2 /* s1_0.png */; };
 		DFB32FBF1B048D8F0049D9F2 /* s1_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB32FB61B048D8F0049D9F2 /* s1_1.png */; };
 		DFB32FC01B048D8F0049D9F2 /* s1_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB32FB71B048D8F0049D9F2 /* s1_2.png */; };
 		DFB32FC11B048D8F0049D9F2 /* s1_3.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB32FB81B048D8F0049D9F2 /* s1_3.png */; };
 		DFB32FC21B048D8F0049D9F2 /* s1_4.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB32FB91B048D8F0049D9F2 /* s1_4.png */; };
 		DFB32FC31B048D8F0049D9F2 /* s1_5.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB32FBA1B048D8F0049D9F2 /* s1_5.png */; };
-		DFB32FC41B048D8F0049D9F2 /* UIView+viewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB32FBC1B048D8F0049D9F2 /* UIView+viewController.m */; };
+		DFB32FD61B04A4500049D9F2 /* InfiniteScrollPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB32FD31B04A4500049D9F2 /* InfiniteScrollPicker.m */; };
+		DFB32FD71B04A4500049D9F2 /* UIView+viewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB32FD51B04A4500049D9F2 /* UIView+viewController.m */; };
+		DFB32FDA1B04A7180049D9F2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB32FD91B04A7180049D9F2 /* HomeViewController.m */; };
 		DFBEB1471AB0464D002692EF /* CopyConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB0F21AB0464C002692EF /* CopyConnection.framework */; };
 		DFBEB1481AB0464D002692EF /* DouBanConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB0F31AB0464C002692EF /* DouBanConnection.framework */; };
 		DFBEB1491AB0464D002692EF /* DropboxConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB0F41AB0464C002692EF /* DropboxConnection.framework */; };
@@ -304,8 +305,8 @@
 		DF4D97A11AD7790D00F65140 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		DF4D97B11AD7C44900F65140 /* ResumeScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeScore.h; sourceTree = "<group>"; };
 		DF4D97B21AD7C44900F65140 /* ResumeScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeScore.m; sourceTree = "<group>"; };
-		DF4D97B51ADCB6EF00F65140 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		DF4D97B61ADCB6EF00F65140 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		DF4D97B51ADCB6EF00F65140 /* HomeOldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeOldViewController.h; sourceTree = "<group>"; };
+		DF4D97B61ADCB6EF00F65140 /* HomeOldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeOldViewController.m; sourceTree = "<group>"; };
 		DF4D97B91ADCBA6E00F65140 /* DSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSNavigationBar.h; sourceTree = "<group>"; };
 		DF4D97BA1ADCBA6E00F65140 /* DSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSNavigationBar.m; sourceTree = "<group>"; };
 		DF5B3EEB1ADCCA490004EF2F /* PositionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionListCell.h; sourceTree = "<group>"; };
@@ -402,16 +403,18 @@
 		DFB32F6B1B031C9F0049D9F2 /* Sweep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sweep.h; sourceTree = "<group>"; };
 		DFB32F6C1B031C9F0049D9F2 /* Sweep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sweep.m; sourceTree = "<group>"; };
 		DFB32F6E1B0353820049D9F2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		DFB32FB21B048D8F0049D9F2 /* InfiniteScrollPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollPicker.h; sourceTree = "<group>"; };
-		DFB32FB31B048D8F0049D9F2 /* InfiniteScrollPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollPicker.m; sourceTree = "<group>"; };
 		DFB32FB51B048D8F0049D9F2 /* s1_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1_0.png; sourceTree = "<group>"; };
 		DFB32FB61B048D8F0049D9F2 /* s1_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1_1.png; sourceTree = "<group>"; };
 		DFB32FB71B048D8F0049D9F2 /* s1_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1_2.png; sourceTree = "<group>"; };
 		DFB32FB81B048D8F0049D9F2 /* s1_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1_3.png; sourceTree = "<group>"; };
 		DFB32FB91B048D8F0049D9F2 /* s1_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1_4.png; sourceTree = "<group>"; };
 		DFB32FBA1B048D8F0049D9F2 /* s1_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s1_5.png; sourceTree = "<group>"; };
-		DFB32FBB1B048D8F0049D9F2 /* UIView+viewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+viewController.h"; sourceTree = "<group>"; };
-		DFB32FBC1B048D8F0049D9F2 /* UIView+viewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+viewController.m"; sourceTree = "<group>"; };
+		DFB32FD21B04A4500049D9F2 /* InfiniteScrollPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollPicker.h; sourceTree = "<group>"; };
+		DFB32FD31B04A4500049D9F2 /* InfiniteScrollPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollPicker.m; sourceTree = "<group>"; };
+		DFB32FD41B04A4500049D9F2 /* UIView+viewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+viewController.h"; sourceTree = "<group>"; };
+		DFB32FD51B04A4500049D9F2 /* UIView+viewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+viewController.m"; sourceTree = "<group>"; };
+		DFB32FD81B04A7180049D9F2 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		DFB32FD91B04A7180049D9F2 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		DFBEB0F21AB0464C002692EF /* CopyConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CopyConnection.framework; sourceTree = "<group>"; };
 		DFBEB0F31AB0464C002692EF /* DouBanConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DouBanConnection.framework; sourceTree = "<group>"; };
 		DFBEB0F41AB0464C002692EF /* DropboxConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxConnection.framework; sourceTree = "<group>"; };
@@ -968,8 +971,10 @@
 			isa = PBXGroup;
 			children = (
 				DF4B44781AF22A4400C94D7E /* ListSection */,
-				DF4D97B51ADCB6EF00F65140 /* HomeViewController.h */,
-				DF4D97B61ADCB6EF00F65140 /* HomeViewController.m */,
+				DF4D97B51ADCB6EF00F65140 /* HomeOldViewController.h */,
+				DF4D97B61ADCB6EF00F65140 /* HomeOldViewController.m */,
+				DFB32FD81B04A7180049D9F2 /* HomeViewController.h */,
+				DFB32FD91B04A7180049D9F2 /* HomeViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1096,11 +1101,11 @@
 		DFB32FB11B048D8F0049D9F2 /* InfiniteScrollPicker */ = {
 			isa = PBXGroup;
 			children = (
-				DFB32FB21B048D8F0049D9F2 /* InfiniteScrollPicker.h */,
-				DFB32FB31B048D8F0049D9F2 /* InfiniteScrollPicker.m */,
+				DFB32FD21B04A4500049D9F2 /* InfiniteScrollPicker.h */,
+				DFB32FD31B04A4500049D9F2 /* InfiniteScrollPicker.m */,
+				DFB32FD41B04A4500049D9F2 /* UIView+viewController.h */,
+				DFB32FD51B04A4500049D9F2 /* UIView+viewController.m */,
 				DFB32FB41B048D8F0049D9F2 /* Set1 */,
-				DFB32FBB1B048D8F0049D9F2 /* UIView+viewController.h */,
-				DFB32FBC1B048D8F0049D9F2 /* UIView+viewController.m */,
 			);
 			path = InfiniteScrollPicker;
 			sourceTree = "<group>";
@@ -1680,6 +1685,7 @@
 				DFD274231AE7776400BEED59 /* NZAlertView.m in Sources */,
 				DFD274431AE784E800BEED59 /* BaseViewController.m in Sources */,
 				DFA061B31AD53527004EEB4C /* VirtualImportViewController.m in Sources */,
+				DFB32FDA1B04A7180049D9F2 /* HomeViewController.m in Sources */,
 				DF2BF17A1AD4CF2100CF8BED /* PositionViewController.m in Sources */,
 				DF2BF1881AD4D0D600CF8BED /* ResumeViewController.m in Sources */,
 				DF5F8E011AFA154100205B60 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -1714,7 +1720,7 @@
 				DF5F8DA41AF7825C00205B60 /* CommentFriend.m in Sources */,
 				DF5F8E1A1AFB72EB00205B60 /* Login.m in Sources */,
 				DFE2C2E91AB0132C00C66DF9 /* NeedDataViewController.m in Sources */,
-				DF4D97B71ADCB6EF00F65140 /* HomeViewController.m in Sources */,
+				DF4D97B71ADCB6EF00F65140 /* HomeOldViewController.m in Sources */,
 				DF4B44771AF229B700C94D7E /* ResumeScoreViewController.m in Sources */,
 				DFEE76F51ADF9E6A00401AF0 /* MJRefreshHeader.m in Sources */,
 				DFEE76F91ADF9E6A00401AF0 /* UIScrollView+MJRefresh.m in Sources */,
@@ -1736,7 +1742,7 @@
 				DF5F8DAE1AF88BF000205B60 /* InviteFriend.m in Sources */,
 				DF4B448F1AF238E600C94D7E /* HrPrivilegeWebViewController.m in Sources */,
 				DFEE76F21ADF9E6A00401AF0 /* MJRefreshFooter.m in Sources */,
-				DFB32FC41B048D8F0049D9F2 /* UIView+viewController.m in Sources */,
+				DFB32FD71B04A4500049D9F2 /* UIView+viewController.m in Sources */,
 				DFEE77241AE0B92300401AF0 /* PreviewResumeViewController.m in Sources */,
 				DF4B447E1AF22A8700C94D7E /* CommentFriendViewController.m in Sources */,
 				DF5F8E111AFB3C0D00205B60 /* PersonInfoViewController.m in Sources */,
@@ -1746,7 +1752,7 @@
 				DF5F8E001AFA154100205B60 /* AFURLSessionManager.m in Sources */,
 				DF5F8DC31AF8D92A00205B60 /* MyDynamic.m in Sources */,
 				DF5F8DFF1AFA154100205B60 /* AFURLResponseSerialization.m in Sources */,
-				DFB32FBD1B048D8F0049D9F2 /* InfiniteScrollPicker.m in Sources */,
+				DFB32FD61B04A4500049D9F2 /* InfiniteScrollPicker.m in Sources */,
 				DFD2744D1AE7871B00BEED59 /* IndexViewController.m in Sources */,
 				DFD274301AE778A700BEED59 /* UIImage+ImageWithColor.m in Sources */,
 				DF5F8E021AFA154100205B60 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

@@ -64,7 +64,9 @@
             [self addSubview:temp];
         }
         
-        self.contentSize = CGSizeMake(_imageAry.count * 5 * _itemSize.width, self.frame.size.height);
+//        self.contentSize = CGSizeMake(_imageAry.count * 5 * _itemSize.width, self.frame.size.height);
+        
+        self.contentSize = CGSizeMake(_imageAry.count * 5 * _itemSize.width, 0);
         
         float viewMiddle = _imageAry.count * 2 * _itemSize.width - self.frame.size.width/2 + _itemSize.width + (_itemSize.width * index);
         [self setContentOffset:CGPointMake(viewMiddle, 0)];

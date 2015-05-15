@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "angerPraise/Views/CommentFriendCell.m"
-            timestampString = "452689183.036302"
+            timestampString = "453374937.738865"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -26,43 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "angerPraise/ViewControllers/Home/HomeViewController.m"
-            timestampString = "453094199.951179"
+            timestampString = "453373123.765575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
-            landmarkName = "-getAddressBook"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-getCommentFriendInfo"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HomeViewController getAddressBook]"
-                  moduleName = "angerPraise"
-                  urlString = "file:///Users/Lev/Ios/AngerPraise/angerPraise/ViewControllers/Home/HomeViewController.m"
-                  timestampString = "453263685.740491"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "245"
-                  endingLineNumber = "245"
-                  offsetFromSymbolStart = "484">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__36-[HomeViewController getAddressBook]_block_invoke"
-                  moduleName = "angerPraise"
-                  urlString = "file:///Users/Lev/Ios/AngerPraise/angerPraise/ViewControllers/Home/HomeViewController.m"
-                  timestampString = "453263685.740642"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "245"
-                  endingLineNumber = "245"
-                  offsetFromSymbolStart = "76">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

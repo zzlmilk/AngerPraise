@@ -70,11 +70,16 @@
 
 #pragma mark -- 去分享
 -(void)inviteFriend{
+
+//    NSArray *shareList = [ShareSDK getShareListWithType:
+//                          ShareTypeWeixiSession,
+//                          ShareTypeWeixiTimeline,
+//                          ShareTypeMail,nil];
     
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
     
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:@"分享内容"
+    id<ISSContent> publishContent = [ShareSDK content:@"我通过<怒赞APP>对你进行了点评，点击链接 www.baidu.com下载查看"
                                        defaultContent:@"默认分享内容，没内容时显示"
                                                 image:[ShareSDK imageWithPath:imagePath]
                                                 title:@"怒赞"

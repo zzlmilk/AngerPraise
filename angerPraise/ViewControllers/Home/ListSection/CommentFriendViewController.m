@@ -88,7 +88,6 @@
 }
 
 -(void)getCommentFriendInfo{
-
     
 //    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
 //    [userId setObject:login.user_id forKey:@"userId"];
@@ -109,8 +108,6 @@
         [_commentFriendTableView reloadData];
         
     }];
-
-    
 
 }
 
