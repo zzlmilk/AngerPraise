@@ -22,4 +22,5 @@
 
 @property(nonatomic,strong)NSMutableArray *collectionArray;
 
+
 @end

@@ -12,6 +12,7 @@
 
 #import "CommentFriendCell.h"
 #import "CommentFriend.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface HomeViewController ()
 {
@@ -57,7 +58,7 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];//设置其布局方向
     flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);//设置其边界
     
-    _homeCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(_scrollView.frame.size.width/7, 5, self.view.frame.size.width+200, self.view.frame.size.height) collectionViewLayout:flowLayout];
+    _homeCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(_scrollView.frame.size.width/7, 5, self.view.frame.size.width+100, self.view.frame.size.height) collectionViewLayout:flowLayout];
     _homeCollectionView.dataSource = self;
     _homeCollectionView.delegate = self;
     _homeCollectionView.backgroundColor = [UIColor clearColor];
@@ -121,9 +122,46 @@
         cell.backgroundColor = [UIColor redColor];
         cell.layer.cornerRadius = 30.f;
     }
+    
+    //CommentFriend *commtDic = [_collectionArray objectAtIndex:indexPath.row];
+
+
     if (indexPath.row ==0) {
         cell.backgroundColor = [UIColor yellowColor];
+        UILabel *payLabel = [[UILabel alloc]init];
+        payLabel.frame= CGRectMake(0, 15, 60, 30);
+        payLabel.text = @"125";
+        payLabel.textAlignment = NSTextAlignmentCenter;
+        [cell addSubview:payLabel];
+    }else if (indexPath.row ==1){
+        
+        UIImageView *bgImageView = [[UIImageView alloc]init];
+        bgImageView.frame = CGRectMake(0, 0, 60, 60);
+        [bgImageView setImageWithURL:
+         [NSURL URLWithString:@"http://app.hirelib.com/photo/149.jpg"]];
+        bgImageView.layer.cornerRadius = 30.f;
+        bgImageView.layer.masksToBounds=YES;
+        [cell addSubview:bgImageView];
+    
+    }else if(indexPath.row ==2){
+
+        UIImageView *bgImageView = [[UIImageView alloc]init];
+        bgImageView.frame = CGRectMake(0, 0, 60, 60);
+        [bgImageView setImageWithURL:[NSURL URLWithString:@"http://wx.qlogo.cn/mmopen/kr1yFKtaMQaloVm9RVLrWru3pzE2MiblxeJpN2CxMuIiauRzefSMU8d7FzjXRHRfZ1iae1ojUQKyr5hicxpDDmTg8uOGKkjeH3f5/0"]];
+        bgImageView.layer.cornerRadius = 30.f;
+        bgImageView.layer.masksToBounds=YES;
+        [cell addSubview:bgImageView];
+        
+    }else if(indexPath.row==3){
+        
+        UILabel *payLabel = [[UILabel alloc]init];
+        payLabel.frame= CGRectMake(0, 15, 60, 30);
+        payLabel.text = @"65%";
+        payLabel.textAlignment = NSTextAlignmentCenter;
+        [cell addSubview:payLabel];
+    
     }
+    
     
     return cell;
 }
@@ -138,31 +176,29 @@
     NSLog(@"row=======%ld",(long)indexPath.row);
     NSLog(@"section===%ld",(long)indexPath.section);
     
-    if (indexPath.row ==1) {
+    if (indexPath.row ==3) {
+        
+        NSURL *url=[NSURL URLWithString:@"http://app.hirelib.com/website/user/user_resume?user_id=1"];
+        NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+        [_homeWebView loadRequest:request];
+        
+    }else{
+        
+        CommentFriend *commtDic = [_collectionArray objectAtIndex:indexPath.row-1];
 
-        NSURL *url=[NSURL URLWithString:@"http://61.174.13.143/website/user/review?user_id=1&fid=2"];
-        NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-        [_homeWebView loadRequest:request];
-        
-    }else if (indexPath.row ==2) {
-        
-        NSURL *url=[NSURL URLWithString:@"http://61.174.13.143/website/user/review?user_id=1&fid=2"];
-        NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-        [_homeWebView loadRequest:request];
-        
-    }else if (indexPath.row ==3) {
-        
-        NSURL *url=[NSURL URLWithString:@"http://61.174.13.143/website/user/review?user_id=1&fid=2"];
-        NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-        [_homeWebView loadRequest:request];
-        
-    }else if (indexPath.row ==4) {
-        
-        NSURL *url=[NSURL URLWithString:@"http://192.168.0.112/website/user/user_resume?user_id=1"];
-        NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-        [_homeWebView loadRequest:request];
-
-        
+        if (indexPath.row ==1) {
+            
+            NSURL *url=[NSURL URLWithString:commtDic.friend_evluation_url];
+            NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+            [_homeWebView loadRequest:request];
+            
+        }else if (indexPath.row ==2) {
+            
+            NSURL *url=[NSURL URLWithString:commtDic.friend_evluation_url];
+            NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+            [_homeWebView loadRequest:request];
+        }
+    
     }
 
 }
@@ -171,7 +207,9 @@
 //返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.row ==0) {
+        return NO;
+    }
     return YES;
 }
 
