@@ -20,17 +20,19 @@
 		DF0B924D1AB14D4400A1698E /* evaluateList.html in Resources */ = {isa = PBXBuildFile; fileRef = DF0B924C1AB14D4400A1698E /* evaluateList.html */; };
 		DF1698381B0DBF4500A5E453 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1698371B0DBF4500A5E453 /* Default-568h@2x.png */; };
 		DF16983B1B0DC12800A5E453 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF1698391B0DC12800A5E453 /* LaunchScreen.xib */; };
+		DF16984D1B0EF98400A5E453 /* guideHrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF16983F1B0EF98400A5E453 /* guideHrViewController.m */; };
+		DF16984E1B0EF98400A5E453 /* IsOrNoHrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1698411B0EF98400A5E453 /* IsOrNoHrViewController.m */; };
+		DF16984F1B0EF98400A5E453 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1698441B0EF98400A5E453 /* EditPhotoViewController.m */; };
+		DF1698501B0EF98400A5E453 /* ShowQrCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1698461B0EF98400A5E453 /* ShowQrCodeViewController.m */; };
+		DF1698511B0EF98400A5E453 /* smssdk.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF1698491B0EF98400A5E453 /* smssdk.bundle */; };
+		DF1698521B0EF98400A5E453 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF16984C1B0EF98400A5E453 /* ScanViewController.m */; };
 		DF2BF17A1AD4CF2100CF8BED /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BF1791AD4CF2100CF8BED /* PositionViewController.m */; };
 		DF2BF1881AD4D0D600CF8BED /* ResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2BF1871AD4D0D600CF8BED /* ResumeViewController.m */; };
 		DF4B445C1AF0CF2C00C94D7E /* BarcodeScanner.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF4B44571AF0CF2C00C94D7E /* BarcodeScanner.bundle */; };
 		DF4B445D1AF0CF2C00C94D7E /* MTBBarcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B44591AF0CF2C00C94D7E /* MTBBarcodeScanner.m */; };
 		DF4B445E1AF0CF2C00C94D7E /* XMBarcodeScannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B445B1AF0CF2C00C94D7E /* XMBarcodeScannerView.m */; };
-		DF4B44621AF0CFA600C94D7E /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B44611AF0CFA600C94D7E /* ScanViewController.m */; };
-		DF4B44661AF0D89000C94D7E /* IsOrNoHrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B44651AF0D89000C94D7E /* IsOrNoHrViewController.m */; };
-		DF4B44691AF0DB1400C94D7E /* guideHrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B44681AF0DB1400C94D7E /* guideHrViewController.m */; };
 		DF4B446C1AF1CED900C94D7E /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B446B1AF1CED900C94D7E /* UserViewController.m */; };
 		DF4B44701AF1CF0C00C94D7E /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B446F1AF1CF0C00C94D7E /* SettingViewController.m */; };
-		DF4B44741AF1FED700C94D7E /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B44731AF1FED700C94D7E /* EditPhotoViewController.m */; };
 		DF4B44771AF229B700C94D7E /* ResumeScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B44761AF229B700C94D7E /* ResumeScoreViewController.m */; };
 		DF4B447B1AF22A6300C94D7E /* MyDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B447A1AF22A6300C94D7E /* MyDynamicViewController.m */; };
 		DF4B447E1AF22A8700C94D7E /* CommentFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4B447D1AF22A8700C94D7E /* CommentFriendViewController.m */; };
@@ -59,7 +61,6 @@
 		DF5F8DBD1AF8B4A600205B60 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DBC1AF8B4A600205B60 /* Home.m */; };
 		DF5F8DC31AF8D92A00205B60 /* MyDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DC21AF8D92A00205B60 /* MyDynamic.m */; };
 		DF5F8DCB1AF9C07C00205B60 /* radar.html in Resources */ = {isa = PBXBuildFile; fileRef = DF5F8DCA1AF9C07C00205B60 /* radar.html */; };
-		DF5F8DCE1AF9E48400205B60 /* ShowQrCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DCD1AF9E48400205B60 /* ShowQrCodeViewController.m */; };
 		DF5F8DD11AFA0CE800205B60 /* EditPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DD01AFA0CE800205B60 /* EditPhoto.m */; };
 		DF5F8DF81AFA154100205B60 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DD41AFA154100205B60 /* AFHTTPRequestOperation.m */; };
 		DF5F8DF91AFA154100205B60 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DD61AFA154100205B60 /* AFHTTPRequestOperationManager.m */; };
@@ -91,6 +92,10 @@
 		DFA061B31AD53527004EEB4C /* VirtualImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA061B11AD53527004EEB4C /* VirtualImportViewController.m */; };
 		DFA061B61AD536C2004EEB4C /* CreatStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA061B51AD536C2004EEB4C /* CreatStep2ViewController.m */; };
 		DFA061B91AD536DD004EEB4C /* CreatStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA061B81AD536DD004EEB4C /* CreatStep3ViewController.m */; };
+		DFA34C961B0EFB8C003722BC /* WalletWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA34C951B0EFB8C003722BC /* WalletWebViewController.m */; };
+		DFA34C991B0EFBA1003722BC /* CollectWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA34C981B0EFBA1003722BC /* CollectWebViewController.m */; };
+		DFA34C9C1B0EFBB6003722BC /* MyFriendWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA34C9B1B0EFBB6003722BC /* MyFriendWebViewController.m */; };
+		DFA34C9F1B0EFBCA003722BC /* HrWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA34C9E1B0EFBCA003722BC /* HrWebViewController.m */; };
 		DFB32F6D1B031C9F0049D9F2 /* Sweep.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB32F6C1B031C9F0049D9F2 /* Sweep.m */; };
 		DFB32F6F1B0353820049D9F2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB32F6E1B0353820049D9F2 /* ImageIO.framework */; };
 		DFB32FBE1B048D8F0049D9F2 /* s1_0.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB32FB51B048D8F0049D9F2 /* s1_0.png */; };
@@ -263,6 +268,17 @@
 		DF0B924C1AB14D4400A1698E /* evaluateList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = evaluateList.html; sourceTree = "<group>"; };
 		DF1698371B0DBF4500A5E453 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DF16983A1B0DC12800A5E453 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DF16983E1B0EF98400A5E453 /* guideHrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guideHrViewController.h; sourceTree = "<group>"; };
+		DF16983F1B0EF98400A5E453 /* guideHrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = guideHrViewController.m; sourceTree = "<group>"; };
+		DF1698401B0EF98400A5E453 /* IsOrNoHrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsOrNoHrViewController.h; sourceTree = "<group>"; };
+		DF1698411B0EF98400A5E453 /* IsOrNoHrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsOrNoHrViewController.m; sourceTree = "<group>"; };
+		DF1698431B0EF98400A5E453 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
+		DF1698441B0EF98400A5E453 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
+		DF1698451B0EF98400A5E453 /* ShowQrCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowQrCodeViewController.h; sourceTree = "<group>"; };
+		DF1698461B0EF98400A5E453 /* ShowQrCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowQrCodeViewController.m; sourceTree = "<group>"; };
+		DF1698491B0EF98400A5E453 /* smssdk.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = smssdk.bundle; sourceTree = "<group>"; };
+		DF16984B1B0EF98400A5E453 /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
+		DF16984C1B0EF98400A5E453 /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		DF2BF1781AD4CF2100CF8BED /* PositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionViewController.h; sourceTree = "<group>"; };
 		DF2BF1791AD4CF2100CF8BED /* PositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
 		DF2BF1861AD4D0D600CF8BED /* ResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeViewController.h; sourceTree = "<group>"; };
@@ -273,18 +289,10 @@
 		DF4B44591AF0CF2C00C94D7E /* MTBBarcodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTBBarcodeScanner.m; sourceTree = "<group>"; };
 		DF4B445A1AF0CF2C00C94D7E /* XMBarcodeScannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMBarcodeScannerView.h; sourceTree = "<group>"; };
 		DF4B445B1AF0CF2C00C94D7E /* XMBarcodeScannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMBarcodeScannerView.m; sourceTree = "<group>"; };
-		DF4B44601AF0CFA600C94D7E /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
-		DF4B44611AF0CFA600C94D7E /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
-		DF4B44641AF0D89000C94D7E /* IsOrNoHrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsOrNoHrViewController.h; sourceTree = "<group>"; };
-		DF4B44651AF0D89000C94D7E /* IsOrNoHrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsOrNoHrViewController.m; sourceTree = "<group>"; };
-		DF4B44671AF0DB1400C94D7E /* guideHrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guideHrViewController.h; sourceTree = "<group>"; };
-		DF4B44681AF0DB1400C94D7E /* guideHrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = guideHrViewController.m; sourceTree = "<group>"; };
 		DF4B446A1AF1CED900C94D7E /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		DF4B446B1AF1CED900C94D7E /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		DF4B446E1AF1CF0C00C94D7E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		DF4B446F1AF1CF0C00C94D7E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		DF4B44721AF1FED700C94D7E /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
-		DF4B44731AF1FED700C94D7E /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		DF4B44751AF229B700C94D7E /* ResumeScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResumeScoreViewController.h; path = ../../Resume/ResumeScoreViewController.h; sourceTree = "<group>"; };
 		DF4B44761AF229B700C94D7E /* ResumeScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResumeScoreViewController.m; path = ../../Resume/ResumeScoreViewController.m; sourceTree = "<group>"; };
 		DF4B44791AF22A6300C94D7E /* MyDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDynamicViewController.h; sourceTree = "<group>"; };
@@ -340,8 +348,6 @@
 		DF5F8DC11AF8D92A00205B60 /* MyDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDynamic.h; sourceTree = "<group>"; };
 		DF5F8DC21AF8D92A00205B60 /* MyDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDynamic.m; sourceTree = "<group>"; };
 		DF5F8DCA1AF9C07C00205B60 /* radar.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = radar.html; sourceTree = "<group>"; };
-		DF5F8DCC1AF9E48400205B60 /* ShowQrCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowQrCodeViewController.h; sourceTree = "<group>"; };
-		DF5F8DCD1AF9E48400205B60 /* ShowQrCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowQrCodeViewController.m; sourceTree = "<group>"; };
 		DF5F8DCF1AFA0CE800205B60 /* EditPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhoto.h; sourceTree = "<group>"; };
 		DF5F8DD01AFA0CE800205B60 /* EditPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhoto.m; sourceTree = "<group>"; };
 		DF5F8DD31AFA154100205B60 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -405,6 +411,14 @@
 		DFA061B51AD536C2004EEB4C /* CreatStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatStep2ViewController.m; sourceTree = "<group>"; };
 		DFA061B71AD536DD004EEB4C /* CreatStep3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatStep3ViewController.h; sourceTree = "<group>"; };
 		DFA061B81AD536DD004EEB4C /* CreatStep3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatStep3ViewController.m; sourceTree = "<group>"; };
+		DFA34C941B0EFB8C003722BC /* WalletWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletWebViewController.h; sourceTree = "<group>"; };
+		DFA34C951B0EFB8C003722BC /* WalletWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletWebViewController.m; sourceTree = "<group>"; };
+		DFA34C971B0EFBA1003722BC /* CollectWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectWebViewController.h; sourceTree = "<group>"; };
+		DFA34C981B0EFBA1003722BC /* CollectWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectWebViewController.m; sourceTree = "<group>"; };
+		DFA34C9A1B0EFBB6003722BC /* MyFriendWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendWebViewController.h; sourceTree = "<group>"; };
+		DFA34C9B1B0EFBB6003722BC /* MyFriendWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendWebViewController.m; sourceTree = "<group>"; };
+		DFA34C9D1B0EFBCA003722BC /* HrWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HrWebViewController.h; sourceTree = "<group>"; };
+		DFA34C9E1B0EFBCA003722BC /* HrWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HrWebViewController.m; sourceTree = "<group>"; };
 		DFB32F6B1B031C9F0049D9F2 /* Sweep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sweep.h; sourceTree = "<group>"; };
 		DFB32F6C1B031C9F0049D9F2 /* Sweep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sweep.m; sourceTree = "<group>"; };
 		DFB32F6E1B0353820049D9F2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -829,6 +843,64 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		DF16983C1B0EF95400A5E453 /* OldUsre */ = {
+			isa = PBXGroup;
+			children = (
+				DF1698421B0EF98400A5E453 /* PhotoQrCode */,
+				DF16983D1B0EF98400A5E453 /* HrPrivilege */,
+				DF1698471B0EF98400A5E453 /* SMS_SDK */,
+				DF16984A1B0EF98400A5E453 /* Sweep */,
+			);
+			path = OldUsre;
+			sourceTree = "<group>";
+		};
+		DF16983D1B0EF98400A5E453 /* HrPrivilege */ = {
+			isa = PBXGroup;
+			children = (
+				DF16983E1B0EF98400A5E453 /* guideHrViewController.h */,
+				DF16983F1B0EF98400A5E453 /* guideHrViewController.m */,
+				DF1698401B0EF98400A5E453 /* IsOrNoHrViewController.h */,
+				DF1698411B0EF98400A5E453 /* IsOrNoHrViewController.m */,
+			);
+			path = HrPrivilege;
+			sourceTree = "<group>";
+		};
+		DF1698421B0EF98400A5E453 /* PhotoQrCode */ = {
+			isa = PBXGroup;
+			children = (
+				DF1698431B0EF98400A5E453 /* EditPhotoViewController.h */,
+				DF1698441B0EF98400A5E453 /* EditPhotoViewController.m */,
+				DF1698451B0EF98400A5E453 /* ShowQrCodeViewController.h */,
+				DF1698461B0EF98400A5E453 /* ShowQrCodeViewController.m */,
+			);
+			path = PhotoQrCode;
+			sourceTree = "<group>";
+		};
+		DF1698471B0EF98400A5E453 /* SMS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				DF1698481B0EF98400A5E453 /* UI */,
+			);
+			path = SMS_SDK;
+			sourceTree = "<group>";
+		};
+		DF1698481B0EF98400A5E453 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DF1698491B0EF98400A5E453 /* smssdk.bundle */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		DF16984A1B0EF98400A5E453 /* Sweep */ = {
+			isa = PBXGroup;
+			children = (
+				DF16984B1B0EF98400A5E453 /* ScanViewController.h */,
+				DF16984C1B0EF98400A5E453 /* ScanViewController.m */,
+			);
+			path = Sweep;
+			sourceTree = "<group>";
+		};
 		DF2BF1771AD4CF1000CF8BED /* Position */ = {
 			isa = PBXGroup;
 			children = (
@@ -865,12 +937,14 @@
 		DF360C601AAD7E3D0090FF51 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				DF4B44711AF1FE8E00C94D7E /* PhotoQrCode */,
+				DFA34C931B0EFB7B003722BC /* Wallet */,
+				DFA34C8F1B0EFA4C003722BC /* Collect */,
+				DFA34C8E1B0EFA2C003722BC /* MyFriend */,
+				DFA34C8C1B0EF9EC003722BC /* HR */,
+				DF16983C1B0EF95400A5E453 /* OldUsre */,
 				DF4B446A1AF1CED900C94D7E /* UserViewController.h */,
 				DF4B446B1AF1CED900C94D7E /* UserViewController.m */,
 				DF4B446D1AF1CEF500C94D7E /* Setting */,
-				DF4B44631AF0D1EC00C94D7E /* HrPrivilege */,
-				DF4B445F1AF0CF9A00C94D7E /* Sweep */,
 				DFD274321AE783C400BEED59 /* LRViewController */,
 			);
 			path = User;
@@ -888,26 +962,6 @@
 			path = XMBarcodeScannerView;
 			sourceTree = "<group>";
 		};
-		DF4B445F1AF0CF9A00C94D7E /* Sweep */ = {
-			isa = PBXGroup;
-			children = (
-				DF4B44601AF0CFA600C94D7E /* ScanViewController.h */,
-				DF4B44611AF0CFA600C94D7E /* ScanViewController.m */,
-			);
-			path = Sweep;
-			sourceTree = "<group>";
-		};
-		DF4B44631AF0D1EC00C94D7E /* HrPrivilege */ = {
-			isa = PBXGroup;
-			children = (
-				DF4B44641AF0D89000C94D7E /* IsOrNoHrViewController.h */,
-				DF4B44651AF0D89000C94D7E /* IsOrNoHrViewController.m */,
-				DF4B44671AF0DB1400C94D7E /* guideHrViewController.h */,
-				DF4B44681AF0DB1400C94D7E /* guideHrViewController.m */,
-			);
-			path = HrPrivilege;
-			sourceTree = "<group>";
-		};
 		DF4B446D1AF1CEF500C94D7E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,17 +969,6 @@
 				DF4B446F1AF1CF0C00C94D7E /* SettingViewController.m */,
 			);
 			path = Setting;
-			sourceTree = "<group>";
-		};
-		DF4B44711AF1FE8E00C94D7E /* PhotoQrCode */ = {
-			isa = PBXGroup;
-			children = (
-				DF4B44721AF1FED700C94D7E /* EditPhotoViewController.h */,
-				DF4B44731AF1FED700C94D7E /* EditPhotoViewController.m */,
-				DF5F8DCC1AF9E48400205B60 /* ShowQrCodeViewController.h */,
-				DF5F8DCD1AF9E48400205B60 /* ShowQrCodeViewController.m */,
-			);
-			path = PhotoQrCode;
 			sourceTree = "<group>";
 		};
 		DF4B44781AF22A4400C94D7E /* ListSection */ = {
@@ -1105,6 +1148,42 @@
 				DF4D97A11AD7790D00F65140 /* GuideViewController.m */,
 			);
 			path = VirtualImport;
+			sourceTree = "<group>";
+		};
+		DFA34C8C1B0EF9EC003722BC /* HR */ = {
+			isa = PBXGroup;
+			children = (
+				DFA34C9D1B0EFBCA003722BC /* HrWebViewController.h */,
+				DFA34C9E1B0EFBCA003722BC /* HrWebViewController.m */,
+			);
+			path = HR;
+			sourceTree = "<group>";
+		};
+		DFA34C8E1B0EFA2C003722BC /* MyFriend */ = {
+			isa = PBXGroup;
+			children = (
+				DFA34C9A1B0EFBB6003722BC /* MyFriendWebViewController.h */,
+				DFA34C9B1B0EFBB6003722BC /* MyFriendWebViewController.m */,
+			);
+			path = MyFriend;
+			sourceTree = "<group>";
+		};
+		DFA34C8F1B0EFA4C003722BC /* Collect */ = {
+			isa = PBXGroup;
+			children = (
+				DFA34C971B0EFBA1003722BC /* CollectWebViewController.h */,
+				DFA34C981B0EFBA1003722BC /* CollectWebViewController.m */,
+			);
+			path = Collect;
+			sourceTree = "<group>";
+		};
+		DFA34C931B0EFB7B003722BC /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				DFA34C941B0EFB8C003722BC /* WalletWebViewController.h */,
+				DFA34C951B0EFB8C003722BC /* WalletWebViewController.m */,
+			);
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 		DFB32FB11B048D8F0049D9F2 /* InfiniteScrollPicker */ = {
@@ -1651,6 +1730,7 @@
 				DFD274221AE7776400BEED59 /* NZAlertView-Icons.bundle in Resources */,
 				DFEE77141AE09F5D00401AF0 /* graph_week@2x.png in Resources */,
 				DFBEB1711AB0464D002692EF /* PinterestSDKResources.bundle in Resources */,
+				DF1698511B0EF98400A5E453 /* smssdk.bundle in Resources */,
 				DFEE77151AE09F5D00401AF0 /* graph_year.png in Resources */,
 				DFBEB1741AB0464D002692EF /* RennSDK.bundle in Resources */,
 				DFD274531AE789B100BEED59 /* SMS_SDKLocalizable.strings in Resources */,
@@ -1688,37 +1768,39 @@
 				DF5F8DFB1AFA154100205B60 /* AFNetworkReachabilityManager.m in Sources */,
 				DFEE76F31ADF9E6A00401AF0 /* MJRefreshGifFooter.m in Sources */,
 				DFDF87BF1B01A51A005E65B5 /* AddressBook.m in Sources */,
-				DF5F8DCE1AF9E48400205B60 /* ShowQrCodeViewController.m in Sources */,
 				DF5F8E0B1AFA1CFB00205B60 /* InitPassword.m in Sources */,
+				DF1698501B0EF98400A5E453 /* ShowQrCodeViewController.m in Sources */,
 				DFEE77181AE09F5D00401AF0 /* KDGoalBar.m in Sources */,
 				DFD274491AE7852C00BEED59 /* LoginViewController.m in Sources */,
 				DF5F8E071AFA154100205B60 /* UIRefreshControl+AFNetworking.m in Sources */,
 				DF4B446C1AF1CED900C94D7E /* UserViewController.m in Sources */,
+				DF1698521B0EF98400A5E453 /* ScanViewController.m in Sources */,
 				DFB834DC1B0AD8BB009C08C7 /* TKRoundedView.m in Sources */,
 				DF5F8DFA1AFA154100205B60 /* AFHTTPSessionManager.m in Sources */,
 				DF5F8DBA1AF8A1CA00205B60 /* HrPrivilege.m in Sources */,
 				19BD479C1AAD7BC600D44A9D /* User.m in Sources */,
 				DFA061B91AD536DD004EEB4C /* CreatStep3ViewController.m in Sources */,
 				DF4B44931AF23B5600C94D7E /* CommentFriendWebViewController.m in Sources */,
+				DF16984D1B0EF98400A5E453 /* guideHrViewController.m in Sources */,
 				DF5F8DF81AFA154100205B60 /* AFHTTPRequestOperation.m in Sources */,
 				DF5F8DFD1AFA154100205B60 /* AFURLConnectionOperation.m in Sources */,
 				DF5F8DF91AFA154100205B60 /* AFHTTPRequestOperationManager.m in Sources */,
+				DFA34C991B0EFBA1003722BC /* CollectWebViewController.m in Sources */,
 				DF5F8DB31AF8956700205B60 /* SMS_MBProgressHUD.m in Sources */,
 				DFD274231AE7776400BEED59 /* NZAlertView.m in Sources */,
 				DFD274431AE784E800BEED59 /* BaseViewController.m in Sources */,
+				DFA34C961B0EFB8C003722BC /* WalletWebViewController.m in Sources */,
 				DFA061B31AD53527004EEB4C /* VirtualImportViewController.m in Sources */,
 				DFB32FDA1B04A7180049D9F2 /* HomeViewController.m in Sources */,
 				DF2BF17A1AD4CF2100CF8BED /* PositionViewController.m in Sources */,
 				DF2BF1881AD4D0D600CF8BED /* ResumeViewController.m in Sources */,
 				DF5F8E011AFA154100205B60 /* AFNetworkActivityIndicatorManager.m in Sources */,
-				DF4B44621AF0CFA600C94D7E /* ScanViewController.m in Sources */,
 				DF5F8E051AFA154100205B60 /* UIImageView+AFNetworking.m in Sources */,
 				19BD47751AAD5BA600D44A9D /* ViewController.m in Sources */,
-				DF4B44661AF0D89000C94D7E /* IsOrNoHrViewController.m in Sources */,
 				DF5F8DD11AFA0CE800205B60 /* EditPhoto.m in Sources */,
 				DF5F8DBD1AF8B4A600205B60 /* Home.m in Sources */,
-				DF4B44741AF1FED700C94D7E /* EditPhotoViewController.m in Sources */,
 				DF4B448B1AF2384200C94D7E /* HrPrivilegeViewController.m in Sources */,
+				DF16984F1B0EF98400A5E453 /* EditPhotoViewController.m in Sources */,
 				DFE2C2EC1AB02AD700C66DF9 /* ApIClient.m in Sources */,
 				DFB32F6D1B031C9F0049D9F2 /* Sweep.m in Sources */,
 				DF4D97A21AD7790D00F65140 /* GuideViewController.m in Sources */,
@@ -1738,7 +1820,6 @@
 				DF5F8DFC1AFA154100205B60 /* AFSecurityPolicy.m in Sources */,
 				DF5F8DB71AF8A1B300205B60 /* HrPrivilegeCell.m in Sources */,
 				DFA061B61AD536C2004EEB4C /* CreatStep2ViewController.m in Sources */,
-				DF4B44691AF0DB1400C94D7E /* guideHrViewController.m in Sources */,
 				DF5F8DA41AF7825C00205B60 /* CommentFriend.m in Sources */,
 				DF5F8E1A1AFB72EB00205B60 /* Login.m in Sources */,
 				DFE2C2E91AB0132C00C66DF9 /* NeedDataViewController.m in Sources */,
@@ -1748,6 +1829,7 @@
 				DFEE76F91ADF9E6A00401AF0 /* UIScrollView+MJRefresh.m in Sources */,
 				DFD2742F1AE778A700BEED59 /* UIImage+Blur.m in Sources */,
 				DF5F8E031AFA154100205B60 /* UIAlertView+AFNetworking.m in Sources */,
+				DFA34C9C1B0EFBB6003722BC /* MyFriendWebViewController.m in Sources */,
 				DF0B92481AB1463900A1698E /* CheckQuestionViewController.m in Sources */,
 				19BD47721AAD5BA600D44A9D /* AppDelegate.m in Sources */,
 				DF5F8DFE1AFA154100205B60 /* AFURLRequestSerialization.m in Sources */,
@@ -1768,6 +1850,7 @@
 				DFEE77241AE0B92300401AF0 /* PreviewResumeViewController.m in Sources */,
 				DF4B447E1AF22A8700C94D7E /* CommentFriendViewController.m in Sources */,
 				DF5F8E111AFB3C0D00205B60 /* PersonInfoViewController.m in Sources */,
+				DFA34C9F1B0EFBCA003722BC /* HrWebViewController.m in Sources */,
 				DFEE76F61ADF9E6A00401AF0 /* MJRefreshLegendFooter.m in Sources */,
 				DF4B44881AF234B400C94D7E /* InterviewPayWebViewController.m in Sources */,
 				DFEE77171AE09F5D00401AF0 /* KDBarGraph.m in Sources */,
@@ -1782,6 +1865,7 @@
 				19BD476F1AAD5BA600D44A9D /* main.m in Sources */,
 				DF5F8E141AFB3C3F00205B60 /* NewPasswordViewController.m in Sources */,
 				DF4D979C1AD656D400F65140 /* Resume.m in Sources */,
+				DF16984E1B0EF98400A5E453 /* IsOrNoHrViewController.m in Sources */,
 				DF4B447B1AF22A6300C94D7E /* MyDynamicViewController.m in Sources */,
 				DFEE772E1AE0DCE800401AF0 /* AHKActionSheet.m in Sources */,
 				DF4B44701AF1CF0C00C94D7E /* SettingViewController.m in Sources */,

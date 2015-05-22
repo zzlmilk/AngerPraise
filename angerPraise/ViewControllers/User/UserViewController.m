@@ -20,7 +20,15 @@
 #import "EditPhoto.h"
 #import "ApIClient.h"
 #import "SMS_MBProgressHUD.h"
+#import "User.h"
+#import "UIImageView+AFNetworking.h"
 
+#import "WalletWebViewController.h"
+#import "MyFriendWebViewController.h"
+#import "CollectWebViewController.h"
+#import "HrWebViewController.h"
+
+#import "SMS_MBProgressHUD.h"
 
 #define BUFFERX 5 //distance from side to the card (higher makes thinner card)
 #define BUFFERY 10 //distance from top to the card (higher makes shorter card)
@@ -68,16 +76,16 @@
     
     
     
-    UILabel *matchPositionLabel = [[UILabel alloc]init];
-    matchPositionLabel.frame = CGRectMake(30, _hirelibNumberLabel.frame.origin.y+_hirelibNumberLabel.frame.size.height+10, WIDTH-2*30, 35);
-    matchPositionLabel.backgroundColor = [UIColor clearColor];
-    matchPositionLabel.textColor = RGBACOLOR(0,204,252,1.0f);
-    matchPositionLabel.text= @"28";
-    matchPositionLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
-    [cardView addSubview:matchPositionLabel];
+    _matchPositionLabel = [[UILabel alloc]init];
+    _matchPositionLabel.frame = CGRectMake(30, _hirelibNumberLabel.frame.origin.y+_hirelibNumberLabel.frame.size.height+10, WIDTH-2*30, 35);
+    _matchPositionLabel.backgroundColor = [UIColor clearColor];
+    _matchPositionLabel.textColor = RGBACOLOR(0,204,252,1.0f);
+    _matchPositionLabel.text= @"28";
+    _matchPositionLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
+    [cardView addSubview:_matchPositionLabel];
     
     UILabel *matchPositionTitleLabel = [[UILabel alloc]init];
-    matchPositionTitleLabel.frame = CGRectMake(20, matchPositionLabel.frame.origin.y+matchPositionLabel.frame.size.height-12, WIDTH-2*20, 35);
+    matchPositionTitleLabel.frame = CGRectMake(20, _matchPositionLabel.frame.origin.y+_matchPositionLabel.frame.size.height-12, WIDTH-2*20, 35);
     matchPositionTitleLabel.backgroundColor = [UIColor clearColor];
     matchPositionTitleLabel.textColor = RGBACOLOR(100,100,100,1.0f);
     matchPositionTitleLabel.text= @"匹配职位";
@@ -86,14 +94,14 @@
     
     
     
-    UILabel *synthesisScoreLabel = [[UILabel alloc]init];
-    synthesisScoreLabel.frame =matchPositionLabel.frame;
-    synthesisScoreLabel.backgroundColor = [UIColor clearColor];
-    synthesisScoreLabel.textColor = RGBACOLOR(0,204,252,1.0f);
-    synthesisScoreLabel.text= @"65";
-    synthesisScoreLabel.textAlignment = NSTextAlignmentCenter;
-    synthesisScoreLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
-    [cardView addSubview:synthesisScoreLabel];
+    _synthesisScoreLabel = [[UILabel alloc]init];
+    _synthesisScoreLabel.frame =_matchPositionLabel.frame;
+    _synthesisScoreLabel.backgroundColor = [UIColor clearColor];
+    _synthesisScoreLabel.textColor = RGBACOLOR(0,204,252,1.0f);
+    _synthesisScoreLabel.text= @"65";
+    _synthesisScoreLabel.textAlignment = NSTextAlignmentCenter;
+    _synthesisScoreLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
+    [cardView addSubview:_synthesisScoreLabel];
     
     UILabel *synthesisScoreTitleLabel = [[UILabel alloc]init];
     synthesisScoreTitleLabel.frame = matchPositionTitleLabel.frame;
@@ -106,14 +114,14 @@
     
     
     
-    UILabel *walletNumberLabel = [[UILabel alloc]init];
-    walletNumberLabel.frame =matchPositionLabel.frame;
-    walletNumberLabel.backgroundColor = [UIColor clearColor];
-    walletNumberLabel.textColor = RGBACOLOR(0,204,252,1.0f);
-    walletNumberLabel.text= @"125";
-    walletNumberLabel.textAlignment = NSTextAlignmentRight;
-    walletNumberLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
-    [cardView addSubview:walletNumberLabel];
+    _walletNumberLabel = [[UILabel alloc]init];
+    _walletNumberLabel.frame =_matchPositionLabel.frame;
+    _walletNumberLabel.backgroundColor = [UIColor clearColor];
+    _walletNumberLabel.textColor = RGBACOLOR(0,204,252,1.0f);
+    _walletNumberLabel.text= @"125";
+    _walletNumberLabel.textAlignment = NSTextAlignmentRight;
+    _walletNumberLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
+    [cardView addSubview:_walletNumberLabel];
     
     UILabel *walletNumberTitleLabel = [[UILabel alloc]init];
     walletNumberTitleLabel.frame = matchPositionTitleLabel.frame;
@@ -210,6 +218,41 @@
     lineLabel2.backgroundColor = RGBACOLOR(204, 204, 204, 1.0f);
     [_editView addSubview:lineLabel2];
     
+
+    [self getUserInfo];
+}
+
+-(void)getUserInfo{
+
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [User getUserInfo:dic WithBlock:^(User *user, Error *e) {
+        
+        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (e.info !=nil) {
+            
+            [APIClient showInfo:e.info title:@"提示"];
+            
+        }else{
+        
+            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"touxiang"]];
+            _userNameLabel.text = user.user_name;//hirelib No.11122
+            _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
+            _matchPositionLabel.text = user.position_number;
+            _synthesisScoreLabel.text = user.user_resume_synthesize_grade;
+            _walletNumberLabel.text = user.user_intergral;
+        
+            _hr_url = user.hr_url;
+            _pay_url = user.pay_url;
+            _user_apply_url = user.user_apply_url;
+            _user_friend_url = user.user_friend_url;
+        }
+        
+    }];
     
 }
 
@@ -325,7 +368,8 @@
     _editView.hidden = YES;
     self.tabBarController.tabBar.hidden = NO;
     
-    [self UploadPhoto];
+    //[self UploadPhoto];
+    [self UploadPhoto:savedImage];
     
 }
 
@@ -346,10 +390,16 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
--(void)UploadPhoto{
+-(void)UploadPhoto:(UIImage *)image{
+    
+    UIImage *img = image;
+    NSData *imageData = UIImagePNGRepresentation(img);
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:@"4" forKey:@"user_id"];
+    
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:imageData forKey:@"imageData"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [EditPhoto uploadUserProfileImageParameters:dic WithBlock:^(EditPhoto *e) {
@@ -457,24 +507,33 @@
         
         switch (indexPath.row) {
             case 0://钱包
-                
-                break;
-            case 1://投递记录
             {
-                InterviewPayViewController *interviewPayVC = [[InterviewPayViewController alloc]init];
-                [self.navigationController pushViewController:interviewPayVC animated:YES];
+                WalletWebViewController *walletWebVC = [[WalletWebViewController alloc]init];
+                walletWebVC.walletUrl = _pay_url;
+                [self.navigationController pushViewController:walletWebVC animated:YES];
+            }
+                break;
+            case 1://投递记录 收藏
+            {
+                CollectWebViewController *collectWebVC = [[CollectWebViewController alloc]init];
+                collectWebVC.collectUrl = _user_apply_url;
+                [self.navigationController pushViewController:collectWebVC animated:YES];
             }
                 break;
             case 2: //我的好友
             {
-                ScanViewController *scanVC = [[ScanViewController alloc]init];
-                [self.navigationController pushViewController:scanVC animated:YES];
+                MyFriendWebViewController *myFriendWebVC = [[MyFriendWebViewController alloc]init];
+                myFriendWebVC.myFriendUrl = _user_friend_url;
+                [self.navigationController pushViewController:myFriendWebVC animated:YES];
             }
                 break;
             case 3://HR特权
             {
-                IsOrNoHrViewController *isOrNoHrVC = [[IsOrNoHrViewController alloc]init];
-                [self.navigationController pushViewController:isOrNoHrVC animated:YES];
+                HrWebViewController *hrWebVC = [[HrWebViewController alloc]init];
+                hrWebVC.hrUrl = _hr_url;
+                [self.navigationController pushViewController:hrWebVC animated:YES];
+//                IsOrNoHrViewController *isOrNoHrVC = [[IsOrNoHrViewController alloc]init];
+//                [self.navigationController pushViewController:isOrNoHrVC animated:YES];
             }
                 break;
             case 4://设置
@@ -492,20 +551,25 @@
         
         switch (indexPath.row) {
             case 0://钱包
-                
-                break;
-            case 1://投递记录
             {
-                InterviewPayViewController *interviewPayVC = [[InterviewPayViewController alloc]init];
-                [self.navigationController pushViewController:interviewPayVC animated:YES];
+                WalletWebViewController *walletWebVC = [[WalletWebViewController alloc]init];
+                walletWebVC.walletUrl = _pay_url;
+                [self.navigationController pushViewController:walletWebVC animated:YES];
             }
                 break;
-            case 2://我的好友
+            case 1://投递记录 收藏
             {
-                ScanViewController *scanVC = [[ScanViewController alloc]init];
-                [self.navigationController pushViewController:scanVC animated:YES];
+                CollectWebViewController *collectWebVC = [[CollectWebViewController alloc]init];
+                collectWebVC.collectUrl = _user_apply_url;
+                [self.navigationController pushViewController:collectWebVC animated:YES];
             }
                 break;
+            case 2: //我的好友
+            {
+                MyFriendWebViewController *myFriendWebVC = [[MyFriendWebViewController alloc]init];
+                myFriendWebVC.myFriendUrl = _user_friend_url;
+                [self.navigationController pushViewController:myFriendWebVC animated:YES];
+            }
             case 3://设置
             {
                 SettingViewController *settingVC = [[SettingViewController alloc]init];

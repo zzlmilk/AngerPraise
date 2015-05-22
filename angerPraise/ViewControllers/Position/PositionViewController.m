@@ -226,7 +226,7 @@
    
     if (![_searchPositionTextField.text isEqualToString:@""]) {
         
-        NSLog(@"%@",_searchPositionTextField.text);
+      //  NSLog(@"%@",_searchPositionTextField.text);
         
     }else{
     
@@ -246,7 +246,9 @@
     [dic setObject:@"PHP" forKey:@"keyword"];
     [dic setObject:_pageString forKey:@"page"];
     [dic setObject:@"1" forKey:@"type"];
-    [dic setObject:@"1" forKey:@"user_id"];
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
 

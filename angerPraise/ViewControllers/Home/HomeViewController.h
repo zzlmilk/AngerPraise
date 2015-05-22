@@ -22,5 +22,7 @@
 
 @property(nonatomic,strong)NSMutableArray *collectionArray;
 
+@property(nonatomic,strong)UILabel *tipNumberLabel;
+
 
 @end

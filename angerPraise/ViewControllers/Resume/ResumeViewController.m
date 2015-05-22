@@ -11,7 +11,8 @@
 #import "PreviewResumeViewController.h"
 #import "SMS_MBProgressHUD.h"
 #import "ShareViewController.h"
-
+#import "ApIClient.h"
+#import "ImportResumeViewController.h"
 
 @interface ResumeViewController ()
 
@@ -94,26 +95,42 @@
 //获取简历基本信息
 -(void)getresumeInfo{
 
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:@"1" forKey:@"user_id"];
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [ResumeScore getResumeScoer:dic WithBlock:^(ResumeScore *resumeScoer, Error *e) {
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-        //NSLog(@"%@",resumeScoer);
-        _positionNameLabel.text = resumeScoer.user_position;
-//        _competitionNumberLabel.text =[[NSString alloc] initWithFormat:@"竞争力: %@",resumeScoer.user_resume_competitiveness];
         
-        _workPlaceLabel.text =[@"工作地点: " stringByAppendingString:resumeScoer.live];
         
-        _updateTimelabel.text =[@"更新时间: " stringByAppendingString:resumeScoer.resume_update_time];
-        _user_resume_synthesize_grade = resumeScoer.user_resume_synthesize_grade;
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+            ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
+            [self.navigationController pushViewController:importResumeVC animated:YES];
+            
+        }else{
+            
+            //NSLog(@"%@",resumeScoer);
+            _positionNameLabel.text = resumeScoer.user_position;
+            //        _competitionNumberLabel.text =[[NSString alloc] initWithFormat:@"竞争力: %@",resumeScoer.user_resume_competitiveness];
+            
+            _workPlaceLabel.text =[@"工作地点: " stringByAppendingString:resumeScoer.live];
+            
+            _updateTimelabel.text =[@"更新时间: " stringByAppendingString:resumeScoer.resume_update_time];
+            _user_resume_synthesize_grade = resumeScoer.user_resume_synthesize_grade;
+            
+            [[NSUserDefaults standardUserDefaults]setObject:resumeScoer.resume_preview_url forKey:@"previewResumeUrl"];
+            
+            [self getRing];
 
-        [[NSUserDefaults standardUserDefaults]setObject:resumeScoer.resume_preview_url forKey:@"previewResumeUrl"];
-        
-        [self getRing];
+        }
+            
     }];
 }
 

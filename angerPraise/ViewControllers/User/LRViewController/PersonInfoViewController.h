@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface PersonInfoViewController : BaseViewController<UITextFieldDelegate>
+@interface PersonInfoViewController : BaseViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property(nonatomic,strong) UITextField *userNameTextField;
 @property(nonatomic,strong) UITextField *sexTextField;
@@ -18,8 +18,12 @@
 
 @property NSString *phoneNumberString;
 @property NSString *newsPasswordString;
+@property NSArray *sexArray;
 
-@property(nonatomic,strong)NSArray *sexArray;
-@property(nonatomic,strong)NSArray *sexArray;
+@property NSString *sexId;
+
+@property(nonatomic,strong)UIDatePicker *datePicker;
+
+@property(nonatomic,strong)UIPickerView *pickerView;
 
 @end

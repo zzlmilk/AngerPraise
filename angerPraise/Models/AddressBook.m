@@ -25,7 +25,7 @@
 
     return [[APIClient sharedClient]GET:@"user/phone_book" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        NSLog(@"%@",responseObject);
+       // NSLog(@"%@",responseObject);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         

@@ -45,13 +45,46 @@
     [_titleView addSubview:titleButton];
     
     
+    
+    UIImageView *tipImageView = [[UIImageView alloc]init];
+    tipImageView.frame = CGRectMake(10, 70, 50, 50);
+    [tipImageView setImage:[UIImage imageNamed:@"0bonus1"]];
+    [self.view addSubview:tipImageView];
+    
+    _tipNumberLabel = [[UILabel alloc]init];
+    
+    _tipNumberLabel.frame = CGRectMake(0, 0, tipImageView.frame.size.width, tipImageView.frame.size.height);
+    
+    _tipNumberLabel.text = @"270";
+    
+    _tipNumberLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [tipImageView addSubview:_tipNumberLabel];
+    
+    
+    
+    UILabel *tipTextLabel= [[UILabel alloc]init];
+    
+    tipTextLabel.frame = CGRectMake(8, tipImageView.frame.size.height+tipImageView.frame.origin.y, tipImageView.frame.size.width+5, 20);
+    
+    tipTextLabel.textAlignment = NSTextAlignmentCenter;
+    
+    tipTextLabel.text = @"点评赏银";
+    
+    tipTextLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
+    
+    tipTextLabel.font = [UIFont fontWithName:@"Helvetica" size:10.f];
+    
+    [self.view addSubview:tipTextLabel];
+    
+    
     //滑动圆球 开始
     _scrollView = [[UIScrollView alloc]init];
-    _scrollView.frame = CGRectMake(10, 50, self.view.frame.size.width-2*10, 80);
+    _scrollView.frame = CGRectMake(tipImageView.frame.size.width+tipImageView.frame.origin.x+5, 50, self.view.frame.size.width-2*10, 80);
     _scrollView.backgroundColor = [UIColor blackColor];
     _scrollView.delegate = self;
     //_scrollView.showsHorizontalScrollIndicator = NO;//水平方向的滚动指示
-    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width+185, 70)];
+    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width+80, 70)];
     [self.view addSubview:_scrollView];
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
@@ -59,7 +92,7 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];//设置其布局方向
     flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);//设置其边界
     
-    _homeCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(_scrollView.frame.size.width/7, 5, self.view.frame.size.width+100, self.view.frame.size.height) collectionViewLayout:flowLayout];
+    _homeCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 5, self.view.frame.size.width+100, self.view.frame.size.height) collectionViewLayout:flowLayout];
     _homeCollectionView.dataSource = self;
     _homeCollectionView.delegate = self;
     _homeCollectionView.backgroundColor = [UIColor clearColor];
@@ -68,7 +101,7 @@
     //滑动圆球 结束
     
     _homeWebView = [[UIWebView alloc] init];
-    _homeWebView.frame = CGRectMake(10, _scrollView.frame.size.height+_scrollView.frame.origin.y+5,WIDTH-2*10, HEIGHT - _scrollView.frame.size.height-_scrollView.frame.origin.y-60);
+    _homeWebView.frame = CGRectMake(10, _scrollView.frame.size.height+_scrollView.frame.origin.y+10,WIDTH-2*10, HEIGHT - _scrollView.frame.size.height-_scrollView.frame.origin.y-60);
     _homeWebView.layer.cornerRadius = 10.f;
     [_homeWebView setClipsToBounds:YES];
     [[_homeWebView layer]setBorderColor:[UIColor blackColor].CGColor];
@@ -82,12 +115,10 @@
 
 -(void)getCommentFriendInfo{
     
-    //    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-    //    [userId setObject:login.user_id forKey:@"userId"];
-    
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:@"1" forKey:@"user_id"];
-    
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -106,7 +137,7 @@
 #pragma mark - collectionView dataSource Or delegate
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _collectionArray.count+2;
+    return _collectionArray.count+1;
 }
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -120,7 +151,7 @@
     
     if(indexPath.section==0)
     {
-        cell.backgroundColor = [UIColor redColor];
+        cell.backgroundColor = RGBACOLOR(0, 203, 205, 1.0f);
         cell.layer.cornerRadius = 30.f;
     }
     
@@ -128,13 +159,12 @@
 
 
     if (indexPath.row ==0) {
-        cell.backgroundColor = [UIColor yellowColor];
-        UILabel *payLabel = [[UILabel alloc]init];
-        payLabel.frame= CGRectMake(0, 15, 60, 30);
-        payLabel.text = @"125";
-        payLabel.textAlignment = NSTextAlignmentCenter;
-        [cell addSubview:payLabel];
-    }else if (indexPath.row ==1){
+//        cell.backgroundColor = [UIColor yellowColor];
+//        UILabel *payLabel = [[UILabel alloc]init];
+//        payLabel.frame= CGRectMake(0, 15, 60, 30);
+//        payLabel.text = @"48";
+//        payLabel.textAlignment = NSTextAlignmentCenter;
+//        [cell addSubview:payLabel];
         
         UIImageView *bgImageView = [[UIImageView alloc]init];
         bgImageView.frame = CGRectMake(0, 0, 60, 60);
@@ -144,23 +174,24 @@
         bgImageView.layer.masksToBounds=YES;
         [cell addSubview:bgImageView];
     
-    }else if(indexPath.row ==2){
-
+        
+    }else if (indexPath.row ==1){
+        
         UIImageView *bgImageView = [[UIImageView alloc]init];
         bgImageView.frame = CGRectMake(0, 0, 60, 60);
         [bgImageView setImageWithURL:[NSURL URLWithString:@"http://wx.qlogo.cn/mmopen/kr1yFKtaMQaloVm9RVLrWru3pzE2MiblxeJpN2CxMuIiauRzefSMU8d7FzjXRHRfZ1iae1ojUQKyr5hicxpDDmTg8uOGKkjeH3f5/0"]];
         bgImageView.layer.cornerRadius = 30.f;
         bgImageView.layer.masksToBounds=YES;
         [cell addSubview:bgImageView];
-        
-    }else if(indexPath.row==3){
-        
+    
+    }else if(indexPath.row ==2){
+
         UILabel *payLabel = [[UILabel alloc]init];
         payLabel.frame= CGRectMake(0, 15, 60, 30);
-        payLabel.text = @"65%";
+        payLabel.text = @"4%";
         payLabel.textAlignment = NSTextAlignmentCenter;
         [cell addSubview:payLabel];
-    
+        
     }
     
     
@@ -171,13 +202,13 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+  //  UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
 
-    cell.backgroundColor = [UIColor yellowColor];
+//    cell.backgroundColor = [UIColor yellowColor];
     NSLog(@"row=======%ld",(long)indexPath.row);
-    NSLog(@"section===%ld",(long)indexPath.section);
+   // NSLog(@"section===%ld",(long)indexPath.section);
     
-    if (indexPath.row ==3) {
+    if (indexPath.row ==2) {
         
         NSURL *url=[NSURL URLWithString:@"http://app.hirelib.com/website/user/user_resume?user_id=1"];
         NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
@@ -185,15 +216,15 @@
         
     }else{
         
-        CommentFriend *commtDic = [_collectionArray objectAtIndex:indexPath.row-1];
+        CommentFriend *commtDic = [_collectionArray objectAtIndex:indexPath.row];
 
-        if (indexPath.row ==1) {
+        if (indexPath.row ==0) {
             
             NSURL *url=[NSURL URLWithString:commtDic.friend_evluation_url];
             NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
             [_homeWebView loadRequest:request];
             
-        }else if (indexPath.row ==2) {
+        }else if (indexPath.row ==1) {
             
             NSURL *url=[NSURL URLWithString:commtDic.friend_evluation_url];
             NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
@@ -208,9 +239,7 @@
 //返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row ==0) {
-        return NO;
-    }
+
     return YES;
 }
 

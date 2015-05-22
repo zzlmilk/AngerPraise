@@ -11,10 +11,14 @@
 
 @interface CreatStep3ViewController : BaseViewController<UITextFieldDelegate>
 
-@property(nonatomic,strong) UITextField *recentCompanyTextField;//最近工作的公司名称
-@property(nonatomic,strong) UITextField *payRangeTextField;//薪资范围
+@property(nonatomic,strong) UITextField *companyNameTextField;//最近工作的公司名称
 
-@property(nonatomic,strong)NSArray *payRangeArray;
+@property(nonatomic,strong) UITextField *workTimeTextField;
+@property(nonatomic,strong) UITextField *workPalceTextField;
+
+
+@property(nonatomic,strong)NSArray *workTimeArray;
+@property(nonatomic,strong)NSArray *workPlaceArray;
 
 @property(nonatomic,strong)NSString *positionNameString;
 @property(nonatomic,strong)NSString *educationString;

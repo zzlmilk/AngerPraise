@@ -12,9 +12,9 @@
 #import "MainViewController.h"
 #import "ImportResumeViewController.h"
 
-#import "AHKActionSheet.h"
 
 @interface PersonInfoViewController ()
+
 
 @end
 
@@ -52,6 +52,7 @@
     _userNameTextField.delegate = self;
     _userNameTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
     _userNameTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
+    _userNameTextField.textAlignment = NSTextAlignmentCenter;
     _userNameTextField.layer.borderWidth = 1.0f;
     UIView *nameView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     _userNameTextField.leftView = nameView;
@@ -69,10 +70,12 @@
     _sexTextField = [[UITextField alloc]initWithFrame:CGRectMake(sexTipLabel.frame.origin.x, sexTipLabel.frame.size.height+sexTipLabel.frame.origin.y, sexTipLabel.frame.size.width, 40)];
     _sexTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
     _sexTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
-    _sexTextField.secureTextEntry = YES;
     _sexTextField.layer.borderWidth = 1.0f;
     [_sexTextField setBorderStyle:UITextBorderStyleLine];
-    _sexTextField.placeholder = @" ";
+    _sexTextField.placeholder = @"--请选择--";
+    _sexTextField.delegate = self;
+    _sexTextField.tag = 105;
+    _sexTextField.textAlignment = NSTextAlignmentCenter;
     UIView *sexView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     _sexTextField.leftView = sexView;
     _sexTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -89,15 +92,16 @@
     _birthdayTextField = [[UITextField alloc]initWithFrame:CGRectMake(birthdayTipLabel.frame.origin.x, birthdayTipLabel.frame.size.height+birthdayTipLabel.frame.origin.y, birthdayTipLabel.frame.size.width, 40)];
     _birthdayTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
     _birthdayTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
-    _birthdayTextField.secureTextEntry = YES;
+    _birthdayTextField.delegate = self;
+    _birthdayTextField.tag = 106;
     _birthdayTextField.layer.borderWidth = 1.0f;
     [_birthdayTextField setBorderStyle:UITextBorderStyleLine];
-    _birthdayTextField.placeholder = @" ";
+    _birthdayTextField.placeholder = @"--请选择--";
     UIView *birthdayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    _birthdayTextField.textAlignment = NSTextAlignmentCenter;
     _birthdayTextField.leftView = birthdayView;
     _birthdayTextField.leftViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:_birthdayTextField];
-    
     
     
     UIButton *submitButton = [[UIButton alloc]init];
@@ -110,67 +114,202 @@
     submitButton.layer.borderColor = RGBACOLOR(0, 203, 251, 1.0f).CGColor;
     submitButton.layer.borderWidth = 1.0f;
     [submitButton addTarget:self action:@selector(submitRegister) forControlEvents:UIControlEventTouchUpInside];
+    submitButton.backgroundColor = [UIColor clearColor];
     [self.view addSubview:submitButton];
 
+    
+    //日期选择器
+    NSDate *currentTime  = [NSDate date];
+    _datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, HEIGHT-200, WIDTH, 200)];
+    _datePicker.backgroundColor = RGBACOLOR(250, 250, 250, 1.0f);
+    // [datePicker   setTimeZone:[NSTimeZone defaultTimeZone]];
+    // [datePicker setTimeZone:[NSTimeZone timeZoneWithName:@"GMT+8"]];
+    // 设置当前显示
+    _datePicker.hidden = YES;
+    [_datePicker setDate:currentTime animated:YES];
+    // 设置显示最大时间（
+    [_datePicker setMaximumDate:currentTime];
+    // 显示模式
+    [_datePicker setDatePickerMode:UIDatePickerModeDate];
+    // 回调的方法由于UIDatePicker 是UIControl的子类 ,可以在UIControl类的通知结构中挂接一个委托
+    [_datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_datePicker];
+    
+    
+    
+    //性别选择
+    _sexArray = [NSArray arrayWithObjects:@"男",@"女",@"保密", nil];
+    
+    _pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    _pickerView.backgroundColor =  RGBACOLOR(250, 250, 250, 1.0f);
+    _pickerView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth; //这里设置了就可以自定                                                                                                                           义高度了，一般默认是无法修改其216像素的高度
+    _pickerView.dataSource = self;   //这个不用说了瑟
+    _pickerView.delegate = self;       //这个不用说了瑟
+    _pickerView.frame = CGRectMake(0, HEIGHT-160, WIDTH, 160);
+    _pickerView.showsSelectionIndicator = YES;    //这个最好写 你不写来试下哇
+    _pickerView.hidden = YES;
+    
+    [self.view addSubview:_pickerView];
 }
 
-#pragma mark -- 注册 提交
--(void)submitRegister{
+#pragma mark -
 
-    if (![_userNameTextField.text isEqualToString:@""]) {
+#pragma mark UIPickerViewDataSource
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    
+    return 1;     //这个picker里的组键数
+    
+}
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    
+    return _sexArray.count;  //数组个数
+    
+}
+
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+    
+    return WIDTH;
+    
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+
+{
+    
+    return 40.0;
+    
+}
+
+#pragma mark -
+
+#pragma mark UIPickerViewDelegate
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+
+{
+    
+        UILabel *myView = nil;
         
-        ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
-        [self.navigationController pushViewController:importResumeVC animated:YES];
+        myView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 180, 30)];
         
+        myView.text = [_sexArray objectAtIndex:row];
+        myView.textAlignment = NSTextAlignmentCenter;
+        myView.font = [UIFont systemFontOfSize:16];
+        myView.backgroundColor = [UIColor clearColor];
+    
+    _sexTextField.text = myView.text;
+    
+    
+    return myView;
+    
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+
+    if (textField.tag ==106) {
         
-//        NSString * uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        [_birthdayTextField resignFirstResponder];
+        _datePicker.hidden = NO;
         
-        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:_phoneNumberString forKey:@"phone"];
-        [dic setObject:_newsPasswordString forKey:@"password"];
-        [dic setObject:_userNameTextField.text forKey:@"name"];
-        [dic setObject:@"1" forKey:@"sex_id"];
-        [dic setObject:@"1987-7-8" forKey:@"birthday"];
-//        [dic setObject:@"ios" forKey:@"device"];
-//        [dic setObject:uuid forKey:@"device_id"];
-//        [dic setObject:@"e91eabc2c2f181f4a0c3715a4ec049df" forKey:@"client_id"];
+    }else if(textField.tag ==105){
         
-        [Register userRegister:dic WithBlock:^(Register *reg, Error *e) {
-            
-            if (e.info !=nil) {
-                
-                [APIClient showInfo:e.info title:@"提示"];
-                
-            }else if(![reg.user_id isEqual: @""]){
-                
-                NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-                [userId setObject:reg.user_id forKey:@"userId"];
-                
-                [APIClient showSuccess:@"注册成功" title:@"成功"];
-                
-                ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
-                [self.navigationController pushViewController:importResumeVC animated:YES];
-                
-            }
-            
-        }];
+        [_sexTextField resignFirstResponder];
+        _pickerView.hidden = NO;
         
+    }
+    
+}
+-(void)datePickerValueChanged:(id)sender{
+
+ //   NSDate *selected = [_datePicker date];
+    //NSLog(@"date: %@", selected);
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    _birthdayTextField.text = [dateFormatter stringFromDate:[_datePicker date]];
+}
+
+
+#pragma mark -- 注册 信息验证
+-(void)submitRegister{
+    
+    if ([_userNameTextField.text isEqualToString:@""]) {
         
+        [APIClient showMessage:@"姓名不能为空"];
+        
+    }else if([_birthdayTextField.text isEqualToString:@""]){
+        
+         [APIClient showMessage:@"请选择生日"];
+    
     }else{
     
-        [APIClient showMessage:@"姓名不能为空"];
-    
+        if([_sexTextField.text isEqualToString:@"男"]){
+            
+            _sexId = @"1";
+            
+        }else if ([_sexTextField.text isEqualToString:@"女"]){
+            
+            _sexId = @"2";
+            
+        } else if ([_sexTextField.text isEqualToString:@"保密"]){
+            
+            _sexId = @"3";
+            
+        }
+        
+        [self sendDateForServer];
+        
     }
-
+    
 }
 
+#pragma mark -- 注册 提交 调用接口
+-(void)sendDateForServer{
+
+    //        NSString * uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:_phoneNumberString forKey:@"phone"];
+    [dic setObject:_newsPasswordString forKey:@"password"];
+    [dic setObject:_userNameTextField.text forKey:@"name"];
+    [dic setObject:_sexId forKey:@"sex_id"];
+    [dic setObject:_birthdayTextField.text forKey:@"birthday"];
+    //        [dic setObject:@"ios" forKey:@"device"];
+    //        [dic setObject:uuid forKey:@"device_id"];
+    //        [dic setObject:@"e91eabc2c2f181f4a0c3715a4ec049df" forKey:@"client_id"];
+    
+    [Register userRegister:dic WithBlock:^(Register *reg, Error *e) {
+        
+        if (e.info !=nil) {
+            
+            [APIClient showInfo:e.info title:@"提示"];
+            
+        }else if(![reg.user_id isEqual: @""]){
+            
+            NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+            [userId setObject:reg.user_id forKey:@"userId"];
+            
+            [APIClient showSuccess:@"注册成功" title:@"成功"];
+            
+            ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
+            [self.navigationController pushViewController:importResumeVC animated:YES];
+            
+        }
+        
+    }];
+    
+
+}
 #pragma mark -- 隐藏键盘事件
 -(void)keyboardHide:(UITapGestureRecognizer*)tap{
     
     [_userNameTextField resignFirstResponder];
     [_sexTextField resignFirstResponder];
     [_birthdayTextField resignFirstResponder];
-
+    _datePicker.hidden = YES;
+    _pickerView.hidden = YES;
     
 }
 

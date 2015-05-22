@@ -19,28 +19,41 @@
     _photo_url = [dic objectForKey: @"photo_url"];
     _user_name = [dic objectForKey: @"user_name"];
     
+    
     return self;
     
 }
 
-+(NSURLSessionDataTask *)getCommentFriendList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *commentFriendArray, Error *))block{
++(NSURLSessionDataTask *)getCommentFriendList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *commentFriendArray, Error *e))block{
 
-    return [[APIClient sharedClient]GET:@"home/friend" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    return [[APIClient sharedClient]GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
-       // NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
         
-        NSMutableArray *dataArray = [responseObject objectForKey:@"friend_list"];
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"code"] objectForKey:@"error"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            CommentFriend *c;
+            block(c,error);
+            
+        }else{
         
-        NSMutableArray *commentFriendList = [NSMutableArray array];
+            NSMutableArray *dataArray = [responseObject objectForKey:@"friend_list"];
+            
+            NSMutableArray *commentFriendList = [NSMutableArray array];
+            
+            for (int i=0; i<dataArray.count; i++) {
+                NSDictionary *commDic = [dataArray objectAtIndex:i];
+                CommentFriend * c = [[CommentFriend alloc]initWithDic:commDic];
+                [commentFriendList addObject:c];
+            }
+            
+            block(commentFriendList,nil);
         
-        for (int i=0; i<dataArray.count; i++) {
-            NSDictionary *commDic = [dataArray objectAtIndex:i];
-            CommentFriend * c = [[CommentFriend alloc]initWithDic:commDic];
-            [commentFriendList addObject:c];
         }
-        
-        block(commentFriendList,nil);
-
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         

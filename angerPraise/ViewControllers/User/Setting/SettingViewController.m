@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "User.h"
 #import "ApIClient.h"
+#import "IndexViewController.h"
 
 @interface SettingViewController ()
 
@@ -78,14 +79,16 @@
 
     [User userLoginOut:dic WithBlock:^(User *user, Error *e) {
        
-        if ((int)user.res == 1) {
+        if ([user.res isEqualToString:@"1"]) {
             //退出成功  清空 NSUserDefaults  的值 做跳转
             
             [APIClient showSuccess:@"退出成功" title:@"成功"];
             
-//            NSUserDefaults *userId=[NSUserDefaults standardUserDefaults];
-//            [userId removeObjectForKey:@"userId"];
+            NSUserDefaults *userId=[NSUserDefaults standardUserDefaults];
+            [userId removeObjectForKey:@"userId"];
             
+            IndexViewController *indexVC= [[IndexViewController alloc]init];
+            [self.navigationController pushViewController:indexVC animated:YES];
             
         }else if (e != nil){
             //退出失败

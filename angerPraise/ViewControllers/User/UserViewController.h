@@ -25,4 +25,13 @@
 
 @property(nonatomic, strong)UIView *editView;
 
+@property(nonatomic,strong)UILabel *matchPositionLabel;
+@property(nonatomic,strong)UILabel *synthesisScoreLabel;
+@property(nonatomic,strong)UILabel *walletNumberLabel;
+
+@property(nonatomic,strong)NSString *hr_url;
+@property(nonatomic,strong)NSString *pay_url;
+@property(nonatomic,strong)NSString *user_apply_url;
+@property(nonatomic,strong)NSString *user_friend_url;
+
 @end

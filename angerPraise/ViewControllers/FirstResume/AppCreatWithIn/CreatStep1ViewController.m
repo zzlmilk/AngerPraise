@@ -22,6 +22,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(0, 0, 44, 44);
+    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
+    
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     tapGestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGestureRecognizer];
@@ -31,7 +38,6 @@
     _userNameTextField.placeholder = @"姓名";
     _userNameTextField.delegate = self;
     [self.view addSubview:_userNameTextField];
-    
     
     
     UIButton *nextStepButton = [[UIButton alloc]initWithFrame:CGRectMake(30, 200+140, self.view.frame.size.width-2*30, 45)];
@@ -48,6 +54,14 @@
     [self.view addSubview:nextStepButton];
     
 }
+
+
+#pragma mark -- 返回
+-(void)doBack{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark -- 下一步
 -(void)nextStepa{
