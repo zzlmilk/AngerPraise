@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface PersonInfoViewController : BaseViewController
+@interface PersonInfoViewController : BaseViewController<UITextFieldDelegate>
 
 @property(nonatomic,strong) UITextField *userNameTextField;
 @property(nonatomic,strong) UITextField *sexTextField;
@@ -18,5 +18,8 @@
 
 @property NSString *phoneNumberString;
 @property NSString *newsPasswordString;
+
+@property(nonatomic,strong)NSArray *sexArray;
+@property(nonatomic,strong)NSArray *sexArray;
 
 @end

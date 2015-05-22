@@ -58,8 +58,9 @@
     [SMS_SDK registerApp:@"6f14962663be" withSecret:@"0b1ad3ef793449821b2c90171b5ad742"];
     
     
-    [ShareSDK registerApp:@"10c3b9f61bc4"];
-    [ShareSDK connectWeChatWithAppId:@"wx73d4adffe3bc51da"
+    [ShareSDK registerApp:@"6f0fe448ecca"];
+    
+    [ShareSDK connectWeChatWithAppId:@"wxa10386b68f005ad8"
                            wechatCls:[WXApi class]];
     [ShareSDK connectMail];
     [ShareSDK connectSMS];

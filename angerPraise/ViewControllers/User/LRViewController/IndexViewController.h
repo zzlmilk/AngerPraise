@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface IndexViewController : BaseViewController<UITextFieldDelegate>
+@interface IndexViewController : BaseViewController
 
-@property(nonatomic,strong) UITextField *phoneNumberTextField;
-@property(nonatomic,strong) UITextField *passwordTextField;
 
 @end

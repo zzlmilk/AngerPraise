@@ -16,8 +16,8 @@
     _resume_perfect_url = [dic objectForKey: @"resume_perfect_url"];
     _resume_preview_url = [dic objectForKey: @"resume_preview_url"];
     _user_dynamic_number = [dic objectForKey: @"user_dynamic_number"];
-    _user_nickname = [dic objectForKey: @"user_nickname"];
-    _user_phone = [dic objectForKey: @"user_phone"];
+    _resume_update_time = [dic objectForKey: @"resume_update_time"];
+    _live = [dic objectForKey: @"live"];
     _user_photo_url = [dic objectForKey: @"user_photo_url"];
     _user_position = [dic objectForKey: @"user_position"];
     _user_resume_competitiveness = [dic objectForKey: @"user_resume_competitiveness"];

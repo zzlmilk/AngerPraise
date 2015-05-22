@@ -78,8 +78,7 @@
         
     }else{
     
-//        [APIClient showMessage:@"职位和学历均不能为空"];
-        [APIClient showInfo:nil title:@"职位和学历均不能为空"];
+        [APIClient showMessage:@"职位和学历均不能为空"];
         
     }
     

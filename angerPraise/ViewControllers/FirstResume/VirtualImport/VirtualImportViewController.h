@@ -14,8 +14,8 @@
 
 @property(nonatomic,strong)UIWebView *virtuaImportlWebView;
 
-@property int secondsCountDown;
+@property(nonatomic,strong)UILabel *tipLabel;
+@property(nonatomic,strong)UIButton *importButton;
 
-@property NSTimer *countDownTimer;
 
 @end

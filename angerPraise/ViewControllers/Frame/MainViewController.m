@@ -25,23 +25,28 @@
     //self.view.backgroundColor = [UIColor yellowColor];
     
     HomeViewController *homeVC = [[HomeViewController alloc]init];
-    homeVC.title =@"首页";
-    homeVC.tabBarItem.image = [UIImage imageNamed:@"home1"];
+//    homeVC.title =@"首页";
+    homeVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar1"];
+    homeVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
 
     
     ResumeViewController *resumeVC = [[ResumeViewController alloc]init];
-    resumeVC.title =@"简历";
-    resumeVC.tabBarItem.image = [UIImage imageNamed:@"resume_tabBar1"];
+//    resumeVC.title =@"简历";
+    resumeVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar2"];
+    resumeVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
+
     
     
     PositionViewController *posotionVC = [[PositionViewController alloc]init];
-    posotionVC.title = @"职位";
-    posotionVC.tabBarItem.image = [UIImage imageNamed:@"zhiwei1"];
+//    posotionVC.title = @"职位";
+    posotionVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar3"];
+    posotionVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
     
     
     UserViewController *userVC = [[UserViewController alloc]init];
-    userVC.title = @"我的";
-    userVC.tabBarItem.image = [UIImage imageNamed:@"wode1"];
+//    userVC.title = @"我的";
+    userVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar4"];
+    userVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
 //    userVC.tabBarItem.badgeValue = @"3";
     //userVC.tabBarItem.badgeValue = nil;
     
@@ -50,7 +55,6 @@
     self.viewControllers =viewControllers;
     
     self.delegate = self;
-    
     self.tabBar.translucent = NO;
     self.tabBar.alpha = 1.0f;
     self.tabBar.tintColor = RGBACOLOR(255, 255, 255, 1.0f);

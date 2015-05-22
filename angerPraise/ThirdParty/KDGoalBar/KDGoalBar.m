@@ -86,25 +86,26 @@
 -(void)setup {
     self.backgroundColor = [UIColor clearColor];
     self.clipsToBounds = NO;
-    bg = [UIImage imageNamed:@"circle_outline"];
+    //bg = [UIImage imageNamed:@"0score_bg"];
     bgPressed = [UIImage imageNamed:@"circle_outline_pressed"];
     
-    thumb = [UIImage imageNamed:@"circle_thumb"];
-    ridge = [UIImage imageNamed:@"circle_ridge"];
+    thumb = [UIImage imageNamed:@"circle_thumb"];//circle_thumb
+    ridge = [UIImage imageNamed:@"circle_thumb"];
     
     percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 125, 125)];
     [percentLabel setFont:[UIFont fontWithName:@"Futura-CondensedMedium" size:30]];
-    [percentLabel setTextColor:[UIColor colorWithRed:89/255.0 green:89/255.0 blue:89/255.0 alpha:1.0]];
+    [percentLabel setTextColor:RGBACOLOR(0, 203, 251, 1.0f)];
     [percentLabel setTextAlignment:NSTextAlignmentCenter];
     [percentLabel setBackgroundColor:[UIColor clearColor]];
     percentLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:percentLabel];
     
     UILabel *scorelabel = [[UILabel alloc]init];
-    scorelabel.frame = CGRectMake(0,percentLabel.frame.size.height+percentLabel.frame.origin.y-15, self.frame.size.width, 30);
+    scorelabel.frame = CGRectMake(0,percentLabel.frame.size.height+percentLabel.frame.origin.y-5, self.frame.size.width, 30);
     scorelabel.backgroundColor = [UIColor clearColor];
     scorelabel.textAlignment = NSTextAlignmentCenter;
     scorelabel.text = @"简历综合评分";
+    scorelabel.textColor = RGBACOLOR(150, 150, 150, 1.0f);
     scorelabel.font = [UIFont fontWithName:@"Helvetica" size:12];
     [self addSubview:scorelabel];
 

@@ -133,11 +133,11 @@
     
     if ([_user_type isEqualToString:@"1"]) {
         _modelListArray = [[NSArray alloc]initWithObjects:
-                           @"钱包",@"投递记录和收藏",@"扫一扫",@"激活HR特权？",@"设置",nil];
+                           @"钱包",@"投递记录和收藏",@"我的好友",@"激活HR特权？",@"设置",nil];
     }else{
     
         _modelListArray = [[NSArray alloc]initWithObjects:
-                           @"钱包",@"投递记录和收藏",@"扫一扫",@"设置",nil];
+                           @"钱包",@"投递记录和收藏",@"我的好友",@"设置",nil];
     
     }
 
@@ -197,6 +197,13 @@
     myQrCodeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     myQrCodeButton.backgroundColor = [UIColor clearColor];
     [_editView addSubview:myQrCodeButton];
+    
+    UIImageView *iconQrImageView = [[UIImageView alloc]init];
+    iconQrImageView.frame = CGRectMake(WIDTH-50, 20, 35/2, 35/2);
+    //iconQrImageView.backgroundColor = [UIColor yellowColor];
+    [iconQrImageView setImage:[UIImage imageNamed:@"0code"]];
+    [myQrCodeButton addSubview:iconQrImageView];
+    
     
     UILabel *lineLabel2 = [[UILabel alloc]init];
     lineLabel2.frame = CGRectMake(0, myQrCodeButton.frame.size.height+myQrCodeButton.frame.origin.y, WIDTH, 0.5);
@@ -401,30 +408,30 @@
     if(indexPath.row == 0)
     {
     
-        cell.imageView.image = [UIImage imageNamed:@"e"];
+        cell.imageView.image = [UIImage imageNamed:@"0userwallet1"];
         
     }else if (indexPath.row == 1)
     {
-        cell.imageView.image = [UIImage imageNamed:@"f"];
+        cell.imageView.image = [UIImage imageNamed:@"0usermap1"];
         
     }else if(indexPath.row == 2){
         
-        cell.imageView.image = [UIImage imageNamed:@"g"];
+        cell.imageView.image = [UIImage imageNamed:@"0userfriend1"];
 
     }else if (indexPath.row ==3){
     
-        cell.imageView.image = [UIImage imageNamed:@"h"];
+        cell.imageView.image = [UIImage imageNamed:@"0userhr1"];
         
     }else if(indexPath.row ==4){
     
-     cell.imageView.image = [UIImage imageNamed:@"i"];
+     cell.imageView.image = [UIImage imageNamed:@"0usersetting1"];
         
     }
     
     
-    UILabel *cellBglabel = [[UILabel alloc]init];
-    cellBglabel.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
-    cell.selectedBackgroundView = cellBglabel;
+    UIImageView *cellBgImageView = [[UIImageView alloc]init];
+    [cellBgImageView setImage:[UIImage imageNamed:@"0cell_bg"]];
+    cell.selectedBackgroundView = cellBgImageView;
     
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.highlightedTextColor = RGBACOLOR(0, 204, 252, 1.0f);
@@ -435,6 +442,9 @@
     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);//上左下右 就可以通过设置这四个参数来设置分割线了
     return cell;
 }
+
+//- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated;
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
 
 #pragma mark -- UITableView delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -455,7 +465,7 @@
                 [self.navigationController pushViewController:interviewPayVC animated:YES];
             }
                 break;
-            case 2://扫一扫
+            case 2: //我的好友
             {
                 ScanViewController *scanVC = [[ScanViewController alloc]init];
                 [self.navigationController pushViewController:scanVC animated:YES];
@@ -490,7 +500,7 @@
                 [self.navigationController pushViewController:interviewPayVC animated:YES];
             }
                 break;
-            case 2://扫一扫
+            case 2://我的好友
             {
                 ScanViewController *scanVC = [[ScanViewController alloc]init];
                 [self.navigationController pushViewController:scanVC animated:YES];

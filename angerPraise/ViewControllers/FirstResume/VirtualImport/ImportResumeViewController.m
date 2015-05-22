@@ -9,6 +9,7 @@
 #import "ImportResumeViewController.h"
 #import "CreatStep2ViewController.h"
 #import "GuideViewController.h"
+#import "MainViewController.h"
 
 @interface ImportResumeViewController ()
 
@@ -20,34 +21,95 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIButton *virtualButton = [[UIButton alloc]initWithFrame:CGRectMake(30, 200, self.view.frame.size.width-2*30, 45)];
-    [virtualButton.layer setMasksToBounds:YES];
-    [virtualButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
-    [virtualButton.layer setBorderWidth:1.0]; //边框宽度
-    [virtualButton addTarget:self action:@selector(guideStatus) forControlEvents:UIControlEventTouchUpInside];
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 62, 143, 62, 1 });
-    [virtualButton.layer setBorderColor:colorref];//边框颜色
-    [virtualButton setTitle:@"虚拟投放" forState:UIControlStateNormal];
-    virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-    virtualButton.backgroundColor = RGBACOLOR(68, 229, 220, 1.0f);
-    [self.view addSubview:virtualButton];
-
+    self.view.backgroundColor =[UIColor whiteColor];
     
-    UIButton *guideButton = [[UIButton alloc]initWithFrame:CGRectMake(30, 200+140, self.view.frame.size.width-2*30, 45)];
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(0, 0, 44, 44);
+    //[backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    [backBtn setEnabled:NO];
+    self.navigationItem.leftBarButtonItem = backItem;
+    
+    
+    
+//    UIImageView *setImageView = [[UIImageView alloc]initWithFrame:CGRectMake((WIDTH-200)/2, 70, 200, 200)];
+//    [setImageView setImage:[UIImage imageNamed:@"ic_recommend_douban"]];
+//    [self.view addSubview:setImageView];
+    
+    UILabel *tip1Label = [[UILabel alloc]init];
+    tip1Label.frame =CGRectMake(40, 100, WIDTH-2*40, 25);
+    tip1Label.text = @"简历信息不完善!";
+    tip1Label.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    tip1Label.textColor = [UIColor blackColor];
+    tip1Label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:tip1Label];
+    
+    UILabel *tip2Label = [[UILabel alloc]init];
+    tip2Label.frame =CGRectMake(40, tip1Label.frame.size.height+tip1Label.frame.origin.y, WIDTH-2*40, 25);
+    tip2Label.text = @"你这样是找不到工作的!";
+    tip2Label.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    tip2Label.textColor = [UIColor blackColor];
+    tip2Label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:tip2Label];
+    
+    UILabel *tip3Label = [[UILabel alloc]init];
+    tip3Label.frame =CGRectMake(40, tip2Label.frame.size.height+tip2Label.frame.origin.y, WIDTH-2*40, 25);
+    tip3Label.text = @"以下两种方式解救你!";
+    tip3Label.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+    tip3Label.textColor = [UIColor blackColor];
+    tip3Label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:tip3Label];
+    
+    
+    
+    
+    UIButton *virtualButton = [[UIButton alloc]init];
+    virtualButton.frame = CGRectMake(80, tip3Label.frame.size.height+tip3Label.frame.origin.y+80, WIDTH - 2*80, 40);
+    [virtualButton setTitle:@"虚 拟 投 递" forState:UIControlStateNormal];
+    [virtualButton.layer setMasksToBounds:YES];
+    [virtualButton.layer setCornerRadius:40/2.0f]; //设置矩形四个圆角半径
+    [virtualButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
+    virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    virtualButton.layer.borderColor = RGBACOLOR(0, 203, 251, 1.0f).CGColor;
+    virtualButton.layer.borderWidth = 1.0f;
+    [virtualButton addTarget:self action:@selector(guideStatus) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:virtualButton];
+    
+    
+    UIButton *guideButton = [[UIButton alloc]init];
+    guideButton.frame = CGRectMake(80, virtualButton.frame.size.height+virtualButton.frame.origin.y+40, WIDTH - 2*80, 40);
+    [guideButton setTitle:@"应 用 内 创 建" forState:UIControlStateNormal];
     [guideButton.layer setMasksToBounds:YES];
-    [guideButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
-    [guideButton.layer setBorderWidth:1.0]; //边框宽度
+    [guideButton.layer setCornerRadius:40/2.0f]; //设置矩形四个圆角半径
+    [guideButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
+    guideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    guideButton.layer.borderColor = RGBACOLOR(0, 203, 251, 1.0f).CGColor;
+    guideButton.layer.borderWidth = 1.0f;
     [guideButton addTarget:self action:@selector(guideImport) forControlEvents:UIControlEventTouchUpInside];
-    CGColorSpaceRef colorSpace2 = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref2 = CGColorCreate(colorSpace2,(CGFloat[]){ 40, 164, 201, 1 });
-    [guideButton.layer setBorderColor:colorref2];//边框颜色
-    [guideButton setTitle:@"应用内创建" forState:UIControlStateNormal];
-    guideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-    guideButton.backgroundColor = RGBACOLOR(56, 198, 190, 1.0f);
     [self.view addSubview:guideButton];
-
+    
+    
+    UIButton *skipButton = [[UIButton alloc]init];
+    skipButton.frame = CGRectMake(80, guideButton.frame.size.height+guideButton.frame.origin.y+40, WIDTH - 2*80, 40);
+    [skipButton setTitle:@"跳 过" forState:UIControlStateNormal];
+    [skipButton.layer setMasksToBounds:YES];
+    [skipButton.layer setCornerRadius:40/2.0f]; //设置矩形四个圆角半径
+    [skipButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
+    skipButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    skipButton.layer.borderColor = RGBACOLOR(0, 203, 251, 1.0f).CGColor;
+    skipButton.layer.borderWidth = 1.0f;
+    [skipButton addTarget:self action:@selector(skip) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:skipButton];
+    
 }
+
+#pragma mark -- 返回
+-(void)doBack{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark -- 虚拟投放
 -(void)guideStatus{
@@ -61,6 +123,13 @@
 
     CreatStep2ViewController *creatStep2VC = [[CreatStep2ViewController alloc]init];
     [self.navigationController pushViewController:creatStep2VC animated:YES];
+}
+
+#pragma mark -- 跳过
+-(void)skip{
+    
+    MainViewController *mainVC = [[MainViewController alloc]init];
+    [self.navigationController pushViewController:mainVC animated:YES];
 
 }
 

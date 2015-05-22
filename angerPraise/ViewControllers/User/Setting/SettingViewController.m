@@ -50,7 +50,7 @@
     
     //退出登录
     UIButton *loginOutButton = [[UIButton alloc]init];
-    loginOutButton.frame = CGRectMake(100,_settingTableView.frame.origin.y+_settingTableView.frame.size.height+50, WIDTH-2*100, 35);
+    loginOutButton.frame = CGRectMake(100,_settingTableView.frame.origin.y+_settingTableView.frame.size.height+90, WIDTH-2*100, 35);
     [loginOutButton setTitle:@"退 出 登 录" forState:UIControlStateNormal];
     [loginOutButton.layer setMasksToBounds:YES];
     [loginOutButton.layer setCornerRadius:15.0]; //设置矩形四个圆角半径

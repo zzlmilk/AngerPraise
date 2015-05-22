@@ -19,8 +19,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(0, 0, 44, 44);
+    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
     
-    UIButton *virtualButton = [[UIButton alloc]initWithFrame:CGRectMake(30, 200, self.view.frame.size.width-2*30, 45)];
+    
+    UIImageView *bgView= [[UIImageView alloc]init];
+    bgView.frame = CGRectMake(150/2, 0, WIDTH-150, HEIGHT);
+    [bgView setImage:[UIImage imageNamed:@"0guide"]];
+    [self.view addSubview:bgView];
+    
+    
+    UIButton *virtualButton = [[UIButton alloc]initWithFrame:CGRectMake(100, HEIGHT-140, WIDTH-2*100, 70)];
     [virtualButton.layer setMasksToBounds:YES];
     [virtualButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
     [virtualButton.layer setBorderWidth:1.0]; //边框宽度
@@ -28,14 +41,18 @@
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 62, 143, 62, 1 });
     [virtualButton.layer setBorderColor:colorref];//边框颜色
-    [virtualButton setTitle:@"下一步" forState:UIControlStateNormal];
-    virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-    virtualButton.backgroundColor =  RGBACOLOR(68, 229, 220, 1.0f);
     [self.view addSubview:virtualButton];
     
 }
 
-#pragma mark -- 虚拟投放
+#pragma mark -- 返回
+-(void)doBack{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark -- 虚拟投递
 -(void)virtualImport{
     
     VirtualImportViewController *virtualVC = [[VirtualImportViewController alloc]init];

@@ -25,22 +25,24 @@
         CGRect rect = [[UIScreen mainScreen] bounds];
         
         UIView *cellView = [[UIView alloc]init];
-        cellView.frame = CGRectMake(15, 35, rect.size.width-2*15, 240);
-        cellView.backgroundColor = RGBACOLOR(48, 47, 53, 1.0f);
+        cellView.frame = CGRectMake(15, 35, rect.size.width-2*15, [[UIScreen mainScreen] bounds].size.height*0.36);
+        cellView.backgroundColor = RGBACOLOR(252, 254, 253, 1.0f);
         cellView.layer.masksToBounds = YES;
         cellView.layer.cornerRadius = 10;
         [self.contentView addSubview:cellView];
         
         _indexButton = [[UIButton alloc]init];
         _indexButton.frame = CGRectMake((rect.size.width-50)/2,8, 50, 50);
-        [_indexButton setTitle:@"." forState:UIControlStateNormal];
+        [_indexButton setTitle:@"..." forState:UIControlStateNormal];
         [_indexButton.layer setMasksToBounds:YES];
         [_indexButton.layer setCornerRadius:25.0]; //设置矩形四个圆角半径
         [_indexButton setTitleColor:RGBACOLOR(0, 204, 252, 1.0f) forState:UIControlStateNormal];
-        _indexButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+        _indexButton.titleLabel.font = [UIFont fontWithName:hlScoreFont size:22];
         _indexButton.layer.borderWidth = 2;
         _indexButton.layer.cornerRadius=50/2;
         _indexButton.layer.borderColor = RGBACOLOR(58, 57, 63, 1.0f).CGColor;
+        _indexButton.titleEdgeInsets = UIEdgeInsetsMake(0, 1,-5, 0);
+        
         _indexButton.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:_indexButton];
         
@@ -49,7 +51,7 @@
         //职位名称
         _positionNameLabel = [[UILabel alloc]init];
         _positionNameLabel.frame = CGRectMake(0, 40, cellView.frame.size.width, 35);
-        _positionNameLabel.textColor = [UIColor whiteColor];
+        _positionNameLabel.textColor = RGBACOLOR(20, 20, 20, 1.0F);
         _positionNameLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.f];
         _positionNameLabel.textAlignment = NSTextAlignmentCenter;
         _positionNameLabel.backgroundColor = [UIColor clearColor];
@@ -60,35 +62,36 @@
         _workPlaceLabel.frame = CGRectMake(0, _positionNameLabel.frame.size.height+_positionNameLabel.frame.origin.y-5, cellView.frame.size.width, 35);
         _workPlaceLabel.textAlignment = NSTextAlignmentCenter;
         _workPlaceLabel.backgroundColor = [UIColor clearColor];
-        _workPlaceLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
-        _workPlaceLabel.textColor = RGBACOLOR(120, 120, 120, 1.0f);
+        _workPlaceLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
+        _workPlaceLabel.textColor = RGBACOLOR(177, 179, 180, 1.0f);
         [cellView addSubview:_workPlaceLabel];
         
         //面试补贴
         _subsidiesInterImageView = [[UIImageView alloc]init];
-        _subsidiesInterImageView.frame = CGRectMake(self.frame.size.width-80,_positionNameLabel.frame.origin.y,100,28);
-        //        competitionNumberImageView.backgroundColor = [UIColor redColor];
-        _subsidiesInterImageView.image = [UIImage imageNamed:@"mianshibutie"];
+        _subsidiesInterImageView.frame = CGRectMake(cellView.frame.size.width-76,cellView.frame.size.height-76,76,76);
+        _subsidiesInterImageView.backgroundColor = [UIColor clearColor];
+        _subsidiesInterImageView.image = [UIImage imageNamed:@"0interviewbonus"];
         [cellView addSubview:_subsidiesInterImageView];
  
         
         //竞争人数
         _competitionNumberUIButton = [[UIButton alloc]init];
-        _competitionNumberUIButton.frame = CGRectMake(0,_workPlaceLabel.frame.size.height+_workPlaceLabel.frame.origin.y+28,cellView.frame.size.width, 30);
-        [_competitionNumberUIButton setTitle:@"..." forState:UIControlStateNormal];
+        _competitionNumberUIButton.frame = CGRectMake(0,_workPlaceLabel.frame.size.height+_workPlaceLabel.frame.origin.y+15,cellView.frame.size.width, 30);
+        [_competitionNumberUIButton setTitle:@"加载中..." forState:UIControlStateNormal];
         [_competitionNumberUIButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
-        [_competitionNumberUIButton setImage:[UIImage imageNamed:@"paiming"] forState:UIControlStateNormal];
-        
+        [_competitionNumberUIButton setImage:[UIImage imageNamed:@"0ranking"] forState:UIControlStateNormal];
+        [_competitionNumberUIButton setTitleColor:RGBACOLOR(177, 179, 180, 1.0f) forState:UIControlStateNormal];
+        _competitionNumberUIButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
         _competitionNumberUIButton.backgroundColor = [UIColor clearColor];
         [cellView addSubview:_competitionNumberUIButton];
         
         
         //公司名称
         _companyNameLabel = [[UILabel alloc]init];
-        _companyNameLabel.frame = CGRectMake(0, _competitionNumberUIButton.frame.size.height+_competitionNumberUIButton.frame.origin.y+28,cellView.frame.size.width, 35);
-        _companyNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:14.f];
+        _companyNameLabel.frame = CGRectMake(0, _competitionNumberUIButton.frame.size.height+_competitionNumberUIButton.frame.origin.y+15,cellView.frame.size.width, 35);
+        _companyNameLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
         _companyNameLabel.textAlignment = NSTextAlignmentCenter;
-        _companyNameLabel.textColor = RGBACOLOR(100, 100, 100, 1.0f);
+        _companyNameLabel.textColor =RGBACOLOR(177, 179, 180, 1.0f);
         _companyNameLabel.backgroundColor = [UIColor clearColor];
         [cellView addSubview:_companyNameLabel];
 //

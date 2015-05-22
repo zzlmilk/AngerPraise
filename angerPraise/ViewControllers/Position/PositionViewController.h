@@ -13,8 +13,6 @@
 
 @property(nonatomic,strong)UITableView *positionTableView;
 
-@property(nonatomic,strong)UISearchBar *searchPositionTextField;
-
 @property NSMutableArray *positionListArray;
 
 
@@ -23,4 +21,10 @@
 
 @property int lastPosition;
 
+@property(nonatomic,strong)UIView *searchView;
+@property(nonatomic,strong)UITextField *searchPositionTextField;
+@property(nonatomic,strong)UILabel *searchPositionPlaceholderlabel;
+
+@property(nonatomic,strong)UIView *tipView;
+@property(nonatomic,strong)UILabel *recommondLabel;
 @end

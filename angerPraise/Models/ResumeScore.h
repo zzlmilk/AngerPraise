@@ -14,8 +14,8 @@
 @property(nonatomic,strong)NSString *resume_perfect_url;
 @property(nonatomic,strong)NSString *resume_preview_url;
 @property(nonatomic,strong)NSString *user_dynamic_number;
-@property(nonatomic,strong)NSString *user_nickname;
-@property(nonatomic,strong)NSString *user_phone;
+@property(nonatomic,strong)NSString *resume_update_time;
+@property(nonatomic,strong)NSString *live;
 @property(nonatomic,strong)NSString *user_position;
 @property(nonatomic,strong)NSString *user_photo_url;
 @property(nonatomic,strong)NSString *user_resume_competitiveness;

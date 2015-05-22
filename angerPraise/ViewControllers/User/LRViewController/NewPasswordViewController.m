@@ -21,6 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor =[UIColor whiteColor];
+    
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
     tapGestureRecognizer.cancelsTouchesInView = NO;
@@ -35,55 +37,96 @@
     self.navigationItem.leftBarButtonItem = backItem;
     
     
-    _newsPasswordTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, backBtn.frame.size.height+backBtn.frame.origin.y+40, self.view.frame.size.width-2*20, 50)];
+    UILabel *newsPasswordTipLabel = [[UILabel alloc]init];
+    newsPasswordTipLabel.frame = CGRectMake(35, backBtn.frame.size.height+backBtn.frame.origin.y+50, self.view.frame.size.width-2*35, 35);
+    newsPasswordTipLabel.text = @"设置新密码";
+    newsPasswordTipLabel.font =[UIFont fontWithName:@"Helvetica" size:16];
+    newsPasswordTipLabel.textColor = RGBACOLOR(70, 70, 70, 1.0f);
+    [self.view addSubview:newsPasswordTipLabel];
+    
+    _newsPasswordTextField = [[UITextField alloc]initWithFrame:CGRectMake(newsPasswordTipLabel.frame.origin.x, newsPasswordTipLabel.frame.size.height+newsPasswordTipLabel.frame.origin.y,newsPasswordTipLabel.frame.size.width, 40)];
     [_newsPasswordTextField setBorderStyle:UITextBorderStyleLine];
-    _newsPasswordTextField.background = [UIImage imageNamed:@"baiKuang"];
-    _newsPasswordTextField.placeholder = @"请输入新密码";
+    _newsPasswordTextField.placeholder = @" 字母 / 数字 至少6个字符";
+    _newsPasswordTextField.delegate = self;
+    _newsPasswordTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
+    _newsPasswordTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
+    _newsPasswordTextField.secureTextEntry = YES;
+    _newsPasswordTextField.layer.borderWidth = 1.0f;
+    UIView *retractView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    _newsPasswordTextField.leftView = retractView;
+    _newsPasswordTextField.leftViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:_newsPasswordTextField];
     
     
-    _reNewsPasswordTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, _newsPasswordTextField.frame.size.height+_newsPasswordTextField.frame.origin.y+20, self.view.frame.size.width-2*20, 50)];
+    UILabel *reNewsPasswordTipLabel = [[UILabel alloc]init];
+    reNewsPasswordTipLabel.frame = CGRectMake(_newsPasswordTextField.frame.origin.x,_newsPasswordTextField.frame.size.height+_newsPasswordTextField.frame.origin.y +30, _newsPasswordTextField.frame.size.width, 35);
+    reNewsPasswordTipLabel.text = @"确认密码";
+    reNewsPasswordTipLabel.font =[UIFont fontWithName:@"Helvetica" size:15];
+    reNewsPasswordTipLabel.textColor = RGBACOLOR(70, 70, 70, 1.0f);
+    [self.view addSubview:reNewsPasswordTipLabel];
+    
+    
+    _reNewsPasswordTextField = [[UITextField alloc]initWithFrame:CGRectMake(reNewsPasswordTipLabel.frame.origin.x, reNewsPasswordTipLabel.frame.size.height+reNewsPasswordTipLabel.frame.origin.y, reNewsPasswordTipLabel.frame.size.width, 40)];
+    _reNewsPasswordTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
+    _reNewsPasswordTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
+    _reNewsPasswordTextField.secureTextEntry = YES;
+    _reNewsPasswordTextField.layer.borderWidth = 1.0f;
     [_reNewsPasswordTextField setBorderStyle:UITextBorderStyleLine];
-    _reNewsPasswordTextField.background = [UIImage imageNamed:@"baiKuang"];
-    _reNewsPasswordTextField.placeholder = @" 重新输入新密码";
+    _reNewsPasswordTextField.placeholder = @" 再次输入新密码";
+    UIView *retractView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    _reNewsPasswordTextField.leftView = retractView2;
+    _reNewsPasswordTextField.leftViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:_reNewsPasswordTextField];
     
     
+    
     UIButton *nextButton = [[UIButton alloc]init];
-    nextButton.frame = CGRectMake(20, _reNewsPasswordTextField.frame.size.height+_reNewsPasswordTextField.frame.origin.y+130, self.view.frame.size.width - 2*20, 45);
+    nextButton.frame = CGRectMake(90, _reNewsPasswordTextField.frame.size.height+_reNewsPasswordTextField.frame.origin.y+130, WIDTH - 2*90, 40);
     [nextButton setTitle:@"下 一 步" forState:UIControlStateNormal];
     [nextButton.layer setMasksToBounds:YES];
-    [nextButton.layer setCornerRadius:15.0]; //设置矩形四个圆角半径
-    [nextButton setTitleColor:RGBACOLOR(255, 255, 255, 1.0f) forState:UIControlStateNormal];
-    nextButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-    nextButton.backgroundColor = RGBACOLOR(75, 90, 248, 1.0f);
+    [nextButton.layer setCornerRadius:40/2.0f]; //设置矩形四个圆角半径
+    [nextButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
+    nextButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    nextButton.layer.borderColor = RGBACOLOR(0, 203, 251, 1.0f).CGColor;
+    nextButton.layer.borderWidth = 1.0f;
     [nextButton addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
     
     
 }
 
+
+#pragma mark -- 下一步
 -(void)next{
     
     
+    NSUInteger pLength = 6;
     
-    if ([_newsPasswordTextField.text isEqual:@""]) {
+    if (_newsPasswordTextField.text.length < pLength &&_reNewsPasswordTextField.text.length < pLength) {
         
 
-        [APIClient showMessage:@"新密码不能为空"];
+        [APIClient showMessage:@"密码长度需大于5个字符"];
         
-    }else {
-    
-        PersonInfoViewController *personInfoVC = [[PersonInfoViewController alloc]init];
-        personInfoVC.phoneNumberString = _phoneNumberString;
-        personInfoVC.newsPasswordString = _newsPasswordTextField.text;
+    }else{
         
-        [self.navigationController pushViewController:personInfoVC animated:YES];
+        if ([_newsPasswordTextField.text isEqualToString:_reNewsPasswordTextField.text]) {
+            
+            PersonInfoViewController *personInfoVC = [[PersonInfoViewController alloc]init];
+            personInfoVC.phoneNumberString = _phoneNumberString;
+            personInfoVC.newsPasswordString = _newsPasswordTextField.text;
+            
+            [self.navigationController pushViewController:personInfoVC animated:YES];
+            
+        }else{
         
+            [APIClient showMessage:@"两次密码不一致,请重新输入!"];
+        }
+
     }
     
 }
 
+#pragma mark -- 隐藏键盘事件
 -(void)keyboardHide:(UITapGestureRecognizer*)tap{
     
     [_newsPasswordTextField resignFirstResponder];
@@ -91,6 +134,7 @@
     
 }
 
+#pragma mark -- 返回
 -(void)doBack{
     
     [self.navigationController popViewControllerAnimated:YES];

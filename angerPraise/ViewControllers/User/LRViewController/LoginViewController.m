@@ -14,6 +14,7 @@
 #import "Login.h"
 #import "ApIClient.h"
 #import "MainViewController.h"
+#import "TKRoundedView.h"
 
 @interface LoginViewController ()
 
@@ -25,8 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [self.navigationController setNavigationBarHidden:YES];
-    
+    self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"0index_bg"]];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 44, 44);
@@ -35,79 +35,180 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = backItem;
     
+    UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:CGRectMake((WIDTH-162/2)/2, 50, 162/2, 207/2)];
+    [logoImageView setImage:[UIImage imageNamed:@"0index_logo"]];
+    [self.view addSubview:logoImageView];
     
-    UIImageView *inputBgImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, 100, self.view.frame.size.width-2*30, 100)];
-    [inputBgImageView setImage:[UIImage imageNamed:@"inputbox"]];
-    [self.view addSubview:inputBgImageView];
     
-    _phoneNumberTextField = [[UITextField alloc]initWithFrame:CGRectMake(inputBgImageView.frame.origin.x+10, inputBgImageView.frame.origin.y, inputBgImageView.frame.size.width-10, inputBgImageView.frame.size.height/2)];
-    _phoneNumberTextField.placeholder = @"手机号";
-    _phoneNumberTextField.keyboardType = UIKeyboardTypeNumberPad;
-    //[_emailOrPhoneTextField setBorderStyle:UITextBorderStyleLine];
-    [self.view addSubview:_phoneNumberTextField];
-    
-    _passwordTextField = [[UITextField alloc]initWithFrame:CGRectMake(_phoneNumberTextField.frame.origin.x, _phoneNumberTextField.frame.origin.y+_phoneNumberTextField.frame.size.height, _phoneNumberTextField.frame.size.width, _phoneNumberTextField.frame.size.height)];
-    _passwordTextField.placeholder = @"  密 码";
-    //[_passwordTextField setBorderStyle:UITextBorderStyleLine];
-    [self.view addSubview:_passwordTextField];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 
     
+    _phoneNumberTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, logoImageView.frame.size.height+logoImageView.frame.origin.y+80, WIDTH-2*20, 40)];
+    [_phoneNumberTextField setBorderStyle:UITextBorderStyleNone];
+    _phoneNumberTextField.keyboardType = UIKeyboardTypeNumberPad;
+    _phoneNumberTextField.tag = 101;
+    _phoneNumberTextField.textAlignment = NSTextAlignmentCenter;
+    _phoneNumberTextField.delegate =self;
+    _phoneNumberTextField.textColor = [UIColor whiteColor];
+    //    _phoneNumberTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
+    //    _phoneNumberTextField.layer.borderWidth = 1.0f;
+    [self.view addSubview:_phoneNumberTextField];
+    
+    UILabel *lineLabel = [[UILabel alloc]init];
+    lineLabel.frame =CGRectMake(_phoneNumberTextField.frame.origin.x, _phoneNumberTextField.frame.size.height+_phoneNumberTextField.frame.origin.y, _phoneNumberTextField.frame.size.width, 0.3);
+    lineLabel.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:lineLabel];
+    
+    _phonePlaceholderLabel = [[UILabel alloc]init];
+    _phonePlaceholderLabel.frame = _phoneNumberTextField.frame;
+    _phonePlaceholderLabel.text = @"手 机 号 码";
+    _phonePlaceholderLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
+    _phonePlaceholderLabel.textColor = [UIColor grayColor];
+    _phonePlaceholderLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_phonePlaceholderLabel];
     
     
-    UIButton *LoginButton = [[UIButton alloc]initWithFrame:CGRectMake(inputBgImageView.frame.origin.x, inputBgImageView.frame.origin.y + inputBgImageView.frame.size.height +30, inputBgImageView.frame.size.width, 45)];
-    [LoginButton.layer setMasksToBounds:YES];
-    [LoginButton.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
-    [LoginButton.layer setBorderWidth:1.0]; //边框宽度
-    [LoginButton addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 211, 58, 59, 1 });
-    [LoginButton.layer setBorderColor:colorref];//边框颜色
-    [LoginButton setTitle:@"登录" forState:UIControlStateNormal];
-    LoginButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:22];
-    LoginButton.backgroundColor = RGBACOLOR(94, 123, 167, 1.0f);
-    [self.view addSubview:LoginButton];
     
+    
+    _passwordTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, _phoneNumberTextField.frame.origin.y+_phoneNumberTextField.frame.size.height+30, WIDTH-2*20, 40)];
+    _passwordTextField.secureTextEntry = YES;
+    [_passwordTextField setBorderStyle:UITextBorderStyleNone];
+//    _passwordTextField.keyboardType = UIKeyboardTypeNumberPad;
+    _passwordTextField.tag = 102;
+    _passwordTextField.textAlignment = NSTextAlignmentCenter;
+    _passwordTextField.delegate =self;
+    _passwordTextField.textColor = [UIColor whiteColor];
+    //    _phoneNumberTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
+    //    _phoneNumberTextField.layer.borderWidth = 1.0f;
+    [self.view addSubview:_passwordTextField];
+    
+    UILabel *lineLabel2 = [[UILabel alloc]init];
+    lineLabel2.frame =CGRectMake(_passwordTextField.frame.origin.x, _passwordTextField.frame.size.height+_passwordTextField.frame.origin.y, _passwordTextField.frame.size.width, 0.3);
+    lineLabel2.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:lineLabel2];
+    
+    _passwordPlaceholderLabel = [[UILabel alloc]init];
+    _passwordPlaceholderLabel.frame = _passwordTextField.frame;
+    _passwordPlaceholderLabel.text = @"密 码";
+    _passwordPlaceholderLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
+    _passwordPlaceholderLabel.textColor = [UIColor grayColor];
+    _passwordPlaceholderLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_passwordPlaceholderLabel];
+    
+    
+
+    UIButton *userLoginButton= [[UIButton alloc]initWithFrame:CGRectMake(20,_passwordTextField.frame.origin.y+_passwordTextField.frame.size.height+50,WIDTH-2*20,50)];
+    [userLoginButton.layer setMasksToBounds:YES];
+    [userLoginButton.layer setCornerRadius:50/2.f]; //设置矩形四个圆角半径
+    //[_userRegisterButton.layer setBorderWidth:1.0]; //边框宽度
+    //    _userRegisterButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
+    [userLoginButton setTitle:@"登    陆" forState:UIControlStateNormal];
+    [userLoginButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
+    userLoginButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    userLoginButton.backgroundColor = [UIColor whiteColor];
+    [userLoginButton addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:userLoginButton];
+
 
 }
 
+#pragma mark -- 返回
 -(void)doBack{
     
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark -- 隐藏键盘事件
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    
+    [_phoneNumberTextField resignFirstResponder];
+    [_passwordTextField resignFirstResponder];
+    
+    if ([_phoneNumberTextField.text isEqual: @""]) {
+        
+        _phonePlaceholderLabel.text = @"手 机 号 码";
+        
+    }
+    if ([_passwordTextField.text isEqual: @""]){
+    
+        _passwordPlaceholderLabel.text = @"密 码";
+    }
+    
+}
+
+#pragma mark -- 用户登录 TextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    if (textField.tag ==101) {
+        
+        _phonePlaceholderLabel.text = @"";
+    }else if(textField.tag ==102){
+        
+        _passwordPlaceholderLabel.text = @"";
+        
+    }
+    
+}
+
+//控制编辑文本时所在的位置，左右缩 10
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+    return CGRectInset( bounds , 10 , 0 );
+}
+
 
 #pragma mark -- 用户登录
 -(void)userLogin{
-
-    NSString * uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+     NSUInteger pLength = 11;
     
-    [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
-    [dic setObject:_passwordTextField.text forKey:@"password"];
-    [dic setObject:@"ios" forKey:@"device"];
-    [dic setObject:uuid forKey:@"device_id"];
-    [dic setObject:@"e91eabc2c2f181f4a0c3715a4ec049df" forKey:@"client_id"];
-    
-    [Login userLogin:dic WithBlock:^(Login *login, Error *e) {
+    if (_phoneNumberTextField.text.length !=pLength) {
         
-        if (e.info !=nil) {
+        [APIClient showMessage:@"手机号码格式不正确"];
+        
+    }else if (_passwordTextField.text == nil){
+        
+        [APIClient showMessage:@"密码不能为空"];
+        
+    }else{
+        
+        
+//        NSString * uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        
+        [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
+        [dic setObject:_passwordTextField.text forKey:@"password"];
+//        [dic setObject:@"ios" forKey:@"device"];
+//        [dic setObject:uuid forKey:@"device_id"];
+//        [dic setObject:@"e91eabc2c2f181f4a0c3715a4ec049df" forKey:@"client_id"];
+        
+        [Login userLogin:dic WithBlock:^(Login *login, Error *e) {
             
-            [APIClient showInfo:e.info title:@"提示"];
-            
-        }else if(![login.user_id isEqual: @""]){
-            
-            NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-            [userId setObject:login.user_id forKey:@"userId"];
-            
-            [APIClient showSuccess:@"登录成功" title:@"成功"];
-            
-            MainViewController *mainVC = [[MainViewController alloc]init];
-            [self.navigationController pushViewController:mainVC animated:YES];
-            
-            
-        }
-    }];
+            if (e.info !=nil) {
+                
+                [APIClient showInfo:e.info title:@"提示"];
+                
+            }else if(![login.user_id isEqual: @""]){
+                
+                NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+                [userId setObject:login.user_id forKey:@"userId"];
+                
+                [APIClient showSuccess:@"登录成功" title:@"成功"];
+                
+                MainViewController *mainVC = [[MainViewController alloc]init];
+                [self.navigationController pushViewController:mainVC animated:YES];
+                
+                
+            }
+        }];
+        
+        
+        
+    }
 }
 
 

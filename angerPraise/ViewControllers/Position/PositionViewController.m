@@ -12,7 +12,7 @@
 #import "PositionDetailViewController.h"
 #import "SMS_MBProgressHUD.h"
 #import "MJRefresh.h"
-
+#import "ApIClient.h"
 
 @interface PositionViewController ()
 
@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
     _page = 1;
     
     _positionTableView = [[UITableView alloc]init];
@@ -44,7 +44,144 @@
 
     }];
     
+    
+    _tipView = [[UIView alloc]init];
+    _tipView.frame = CGRectMake((WIDTH-235)/2, 0, 235, 59);
+    _tipView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"0position"]];
+    _tipView.hidden = YES;
+    [self.view addSubview:_tipView];
+    
+    _recommondLabel = [[UILabel alloc]init];
+    _recommondLabel.frame = CGRectMake(0, -3, _tipView.frame.size.width, _tipView.frame.size.height);
+    _recommondLabel.textAlignment = NSTextAlignmentCenter;
+    _recommondLabel.text = @"今日为你匹配12个职位";
+    _recommondLabel.textColor =hl_black;
+    _recommondLabel.font = [UIFont fontWithName:hlTextFont size:16.f];
+    [_tipView addSubview:_recommondLabel];
+    
+    
+    _searchView = [[UIView alloc]init];
+    _searchView.frame = self.view.frame;
+    _searchView.backgroundColor = RGBACOLOR(0, 0, 0, 0.7);
+    _searchView.hidden = YES;
+    [self.view addSubview:_searchView];
+    
+    _searchPositionTextField = [[UITextField alloc]initWithFrame:CGRectMake(20,5, WIDTH-2*20, 40)];
+    _searchPositionTextField.returnKeyType = UITextBorderStyleBezel;
+    [_searchPositionTextField setBorderStyle:UITextBorderStyleLine];
+    _searchPositionTextField.delegate =self;
+    _searchPositionTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
+    _searchPositionTextField.hidden = YES;
+    _searchPositionTextField.textColor = [UIColor whiteColor];
+    _searchPositionTextField.layer.borderWidth = 1.0f;
+    [self.navigationController.navigationBar addSubview:_searchPositionTextField];
+
+    _searchPositionPlaceholderlabel = [[UILabel alloc]init];
+    _searchPositionPlaceholderlabel.frame = CGRectMake(10, 0, _searchPositionTextField.frame.size.width, 40);
+    _searchPositionPlaceholderlabel.text = @"请输入职位关键字";
+    _searchPositionPlaceholderlabel.font = [UIFont fontWithName:@"Helvetica" size:14];
+    _searchPositionPlaceholderlabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
+    [_searchPositionTextField addSubview:_searchPositionPlaceholderlabel];
+    
+    
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [_searchView addGestureRecognizer:tapGestureRecognizer];
+    
+    // 向上滑动
+    UISwipeGestureRecognizer *oneFingerSwipeUp =
+    [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeUp:)];
+    [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
+    [_searchView addGestureRecognizer:oneFingerSwipeUp];
+    
 }
+
+
+#pragma mark -- 手势事件监听
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.4;
+    [_searchView.layer addAnimation:animation forKey:nil];
+    [_searchPositionTextField.layer addAnimation:animation forKey:nil];
+    
+    _searchView.hidden = YES;
+    _searchPositionTextField.hidden = YES;
+    
+    [_searchPositionTextField resignFirstResponder];
+    
+}
+
+#pragma mark -- 手势向上滑动
+- (void)oneFingerSwipeUp:(UISwipeGestureRecognizer *)recognizer
+{
+    [self keyboardHide:nil];
+}
+
+#pragma mark -- uitextfield 得到焦点
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    _searchPositionPlaceholderlabel.hidden= YES;
+    
+}
+
+
+// 显示推荐职位  动画
+-(void)tipAnimation{
+
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.4;
+    [_tipView.layer addAnimation:animation forKey:nil];
+    
+    _tipView.hidden = NO;
+
+    [self hideTipAnimation];
+}
+
+// 使用计时器 隐藏动画
+-(void)hideTipAnimation{
+
+    __block int timeout=3; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+
+                CATransition *animation = [CATransition animation];
+                animation.type = kCATransitionFade;
+                animation.duration = 0.4;
+                [_tipView.layer addAnimation:animation forKey:nil];
+                
+                _tipView.hidden = YES;
+                
+            });
+        }else{
+            //            int minutes = timeout / 60;
+            //int seconds = timeout % 60;
+            //NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                //NSLog(@"____%@",strTime);
+ 
+    
+                
+            });
+            timeout--;
+            
+        }
+    });
+    dispatch_resume(_timer);
+}
+
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -52,6 +189,22 @@
     //CGFloat yOffset  = scrollView.contentOffset.y;
     
     int currentPostion = scrollView.contentOffset.y;
+    
+    if (currentPostion < 0) {
+    
+        CATransition *animation = [CATransition animation];
+        animation.type = kCATransitionFade;
+        animation.duration = 0.4;
+        [_searchView.layer addAnimation:animation forKey:nil];
+        [_searchPositionTextField.layer addAnimation:animation forKey:nil];
+        
+        //显示searchView 及其附属元素
+        _searchView.hidden = NO;
+        _searchPositionTextField.hidden = NO;
+        _searchPositionPlaceholderlabel.hidden= NO;
+        _searchPositionTextField.text = @"";
+        
+    }
     
     if (currentPostion - _lastPosition > 0  && currentPostion > 0) {
         _lastPosition = currentPostion;
@@ -66,6 +219,23 @@
         
     }
 }
+
+
+#pragma mark -- 响应键盘 search 事件
+- (BOOL)textFieldShouldReturn:(UITextField *)aTextfield {
+   
+    if (![_searchPositionTextField.text isEqualToString:@""]) {
+        
+        NSLog(@"%@",_searchPositionTextField.text);
+        
+    }else{
+    
+        [APIClient showMessage:@"职位关键字不能为空"];
+    }
+    
+    return YES;
+}
+
 
 
 //获取推荐职位列表
@@ -85,6 +255,8 @@
         _positionListArray = positionArray;
         [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
         [_positionTableView reloadData];
+        
+        [self tipAnimation];//显示推荐职位数量
         
     }];
     _page++;

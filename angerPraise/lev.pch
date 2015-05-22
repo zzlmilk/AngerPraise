@@ -16,6 +16,19 @@
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
 
+#define hl_blue [UIColor colorWithRed:(0)/255.0f green:(199)/255.0f blue:(255)/255.0f alpha:(1.0f)]   // hirelib 主蓝色
+
+#define hl_black [UIColor colorWithRed:(20)/255.0f green:(20)/255.0f blue:(20)/255.0f alpha:(1.0f)]   // hirelib 主黑色
+
+#define hl_gary [UIColor colorWithRed:(177)/255.0f green:(179)/255.0f blue:(180)/255.0f alpha:(1.0f)]   // hirelib 灰色
+
+
+
+#define hlScoreFont @"DINCondensed-Bold"  //分数字体
+
+#define hlTextFont @"兰亭黑"  //分数字体
+
+
 #define WIDTH self.view.frame.size.width
 #define HEIGHT self.view.frame.size.height
 

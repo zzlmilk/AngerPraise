@@ -60,7 +60,6 @@
     myQrCodeButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
     [myQrCodeButton addTarget:self action:@selector(lookQrCode) forControlEvents:UIControlEventTouchUpInside];
     myQrCodeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    myQrCodeButton.backgroundColor = [UIColor clearColor];
     [self.view addSubview:myQrCodeButton];
     
     UILabel *lineLabel2 = [[UILabel alloc]init];

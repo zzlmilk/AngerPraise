@@ -39,7 +39,8 @@
     titleButton.frame = CGRectMake(100, 0, WIDTH-2*100, _titleView.frame.size.height);
     [titleButton setTitle:@"怒 赞" forState:UIControlStateNormal];
     [titleButton setTitleColor:RGBACOLOR(255, 255, 255, 1.0f) forState:UIControlStateNormal];
-    titleButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:20];
+    titleButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
+    [titleButton setTitleColor:RGBACOLOR(177, 179, 180, 1.0f) forState:UIControlStateNormal];
     titleButton.backgroundColor = [UIColor clearColor];
     [_titleView addSubview:titleButton];
     
