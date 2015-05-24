@@ -13,6 +13,7 @@
 #import "CommentFriendCell.h"
 #import "CommentFriend.h"
 #import "UIImageView+AFNetworking.h"
+#import "ApIClient.h"
 
 @interface HomeViewController ()
 {
@@ -47,7 +48,7 @@
     
     
     UIImageView *tipImageView = [[UIImageView alloc]init];
-    tipImageView.frame = CGRectMake(10, 70, 50, 50);
+    tipImageView.frame = CGRectMake(10, 60, 50, 50);
     [tipImageView setImage:[UIImage imageNamed:@"0bonus1"]];
     [self.view addSubview:tipImageView];
     
@@ -81,7 +82,7 @@
     //滑动圆球 开始
     _scrollView = [[UIScrollView alloc]init];
     _scrollView.frame = CGRectMake(tipImageView.frame.size.width+tipImageView.frame.origin.x+5, 50, self.view.frame.size.width-2*10, 80);
-    _scrollView.backgroundColor = [UIColor blackColor];
+    _scrollView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     _scrollView.delegate = self;
     //_scrollView.showsHorizontalScrollIndicator = NO;//水平方向的滚动指示
     [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width+80, 70)];
@@ -101,7 +102,7 @@
     //滑动圆球 结束
     
     _homeWebView = [[UIWebView alloc] init];
-    _homeWebView.frame = CGRectMake(10, _scrollView.frame.size.height+_scrollView.frame.origin.y+10,WIDTH-2*10, HEIGHT - _scrollView.frame.size.height-_scrollView.frame.origin.y-60);
+    _homeWebView.frame = CGRectMake(0, _scrollView.frame.size.height+_scrollView.frame.origin.y+10,WIDTH, HEIGHT - _scrollView.frame.size.height-_scrollView.frame.origin.y-60);
     _homeWebView.layer.cornerRadius = 10.f;
     [_homeWebView setClipsToBounds:YES];
     [[_homeWebView layer]setBorderColor:[UIColor blackColor].CGColor];
@@ -205,12 +206,12 @@
   //  UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
 
 //    cell.backgroundColor = [UIColor yellowColor];
-    NSLog(@"row=======%ld",(long)indexPath.row);
+    //NSLog(@"row=======%ld",(long)indexPath.row);
    // NSLog(@"section===%ld",(long)indexPath.section);
     
     if (indexPath.row ==2) {
         
-        NSURL *url=[NSURL URLWithString:@"http://app.hirelib.com/website/user/user_resume?user_id=1"];
+        NSURL *url=[NSURL URLWithString:@"http://app.hirelib.com/website/user/resume_score?user_id=1"];
         NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
         [_homeWebView loadRequest:request];
         
@@ -225,6 +226,10 @@
             [_homeWebView loadRequest:request];
             
         }else if (indexPath.row ==1) {
+            
+//            if ((int)commtDic.friend_evluation_status == (int)0) {
+//                [APIClient showMessage:@"已点评"];
+//            }
             
             NSURL *url=[NSURL URLWithString:commtDic.friend_evluation_url];
             NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];

@@ -293,8 +293,8 @@
 		DF4B446B1AF1CED900C94D7E /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		DF4B446E1AF1CF0C00C94D7E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		DF4B446F1AF1CF0C00C94D7E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		DF4B44751AF229B700C94D7E /* ResumeScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResumeScoreViewController.h; path = ../../Resume/ResumeScoreViewController.h; sourceTree = "<group>"; };
-		DF4B44761AF229B700C94D7E /* ResumeScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResumeScoreViewController.m; path = ../../Resume/ResumeScoreViewController.m; sourceTree = "<group>"; };
+		DF4B44751AF229B700C94D7E /* ResumeScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeScoreViewController.h; sourceTree = "<group>"; };
+		DF4B44761AF229B700C94D7E /* ResumeScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeScoreViewController.m; sourceTree = "<group>"; };
 		DF4B44791AF22A6300C94D7E /* MyDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDynamicViewController.h; sourceTree = "<group>"; };
 		DF4B447A1AF22A6300C94D7E /* MyDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDynamicViewController.m; sourceTree = "<group>"; };
 		DF4B447C1AF22A8700C94D7E /* CommentFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentFriendViewController.h; path = angerPraise/ViewControllers/Home/ListSection/CommentFriendViewController.h; sourceTree = SOURCE_ROOT; };
@@ -924,6 +924,8 @@
 		DF2BF1851AD4D0AC00CF8BED /* Resume */ = {
 			isa = PBXGroup;
 			children = (
+				DF4B44751AF229B700C94D7E /* ResumeScoreViewController.h */,
+				DF4B44761AF229B700C94D7E /* ResumeScoreViewController.m */,
 				DFE2C3251AB02D8500C66DF9 /* ShareViewController.h */,
 				DFE2C3261AB02D8500C66DF9 /* ShareViewController.m */,
 				DF2BF1861AD4D0D600CF8BED /* ResumeViewController.h */,
@@ -978,8 +980,6 @@
 				DF4B44901AF23B3700C94D7E /* CommentFriend */,
 				DF4B448C1AF238BD00C94D7E /* HrPrivilege */,
 				DF4B44851AF2349900C94D7E /* InterviewPay */,
-				DF4B44751AF229B700C94D7E /* ResumeScoreViewController.h */,
-				DF4B44761AF229B700C94D7E /* ResumeScoreViewController.m */,
 				DF4B44791AF22A6300C94D7E /* MyDynamicViewController.h */,
 				DF4B447A1AF22A6300C94D7E /* MyDynamicViewController.m */,
 			);

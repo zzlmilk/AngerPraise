@@ -14,5 +14,8 @@
 @property(nonatomic,strong)UIWebView *previewResumeWebView;
 
 @property(nonatomic,strong)NSString *resumePreviewUrl;
+@property(nonatomic,strong)UIButton *backBtn;
+@property(nonatomic,strong)UIButton *shareBtn;
+
 
 @end

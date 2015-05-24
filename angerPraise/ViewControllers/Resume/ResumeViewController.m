@@ -13,6 +13,7 @@
 #import "ShareViewController.h"
 #import "ApIClient.h"
 #import "ImportResumeViewController.h"
+#import "ResumeScoreViewController.h"
 
 @interface ResumeViewController ()
 
@@ -125,7 +126,7 @@
             _updateTimelabel.text =[@"更新时间: " stringByAppendingString:resumeScoer.resume_update_time];
             _user_resume_synthesize_grade = resumeScoer.user_resume_synthesize_grade;
             
-            [[NSUserDefaults standardUserDefaults]setObject:resumeScoer.resume_preview_url forKey:@"previewResumeUrl"];
+            _resume_preview_url = resumeScoer.resume_preview_url;
             
             [self getRing];
 
@@ -153,8 +154,9 @@
     [self.view addSubview:percentGoalBar];
     
     UIButton *resumeScoreButton = [[UIButton alloc]init];
-    resumeScoreButton.frame = CGRectMake(0, _titleMyResumeView.frame.size.height+_titleMyResumeView.frame.origin.y, WIDTH, 200);
-    resumeScoreButton.backgroundColor = RGBACOLOR(70, 70, 70, 0.0f);
+    resumeScoreButton.frame = goalBarFrame;
+    //resumeScoreButton.backgroundColor = [UIColor yellowColor];
+    [resumeScoreButton addTarget:self action:@selector(lookResumeScore) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:resumeScoreButton];
     
 //    //完善资料
@@ -178,7 +180,16 @@
 -(void)previewResume{
     
     PreviewResumeViewController *previewResumeVC = [[PreviewResumeViewController alloc]init];
+    previewResumeVC.resumePreviewUrl = _resume_preview_url;
     [self.navigationController pushViewController:previewResumeVC animated:YES];
+}
+
+// 查看简历综合评分
+-(void)lookResumeScore{
+
+    ResumeScoreViewController *resumeScoreVC = [[ResumeScoreViewController alloc]init];
+    [self.navigationController pushViewController:resumeScoreVC animated:YES];
+    
 }
 
 

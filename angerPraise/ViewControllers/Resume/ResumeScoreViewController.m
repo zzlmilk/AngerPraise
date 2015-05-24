@@ -30,7 +30,8 @@
     
     _resumeScoreWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+70)];
     _resumeScoreWebView.delegate = self;
-    NSURL *url=[NSURL URLWithString:_resumeScoreUrl];
+    //NSURL *url=[NSURL URLWithString:_resumeScoreUrl];
+    NSURL *url=[NSURL URLWithString:@"http://app.hirelib.com/website/user/resume_score?user_id=1"];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [_resumeScoreWebView loadRequest:request];
     [_resumeScoreWebView setUserInteractionEnabled:YES];

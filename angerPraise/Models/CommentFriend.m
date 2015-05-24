@@ -28,7 +28,7 @@
 
     return [[APIClient sharedClient]GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        NSLog(@"%@",responseObject);
+       // NSLog(@"%@",responseObject);
         
         if ([responseObject objectForKey:@"error"]) {
             Error *error = [[Error alloc]init];
