@@ -29,6 +29,7 @@
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
     _resumeScoreWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+70)];
+    _resumeScoreWebView.scrollView.bounces = NO;
     _resumeScoreWebView.delegate = self;
     //NSURL *url=[NSURL URLWithString:_resumeScoreUrl];
     NSURL *url=[NSURL URLWithString:@"http://app.hirelib.com/website/user/resume_score?user_id=1"];
@@ -41,7 +42,15 @@
 
 -(void)doBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_resumeScoreWebView.canGoBack)
+    {
+        [_resumeScoreWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 //网页 刚开始加载

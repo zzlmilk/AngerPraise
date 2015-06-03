@@ -35,6 +35,7 @@
     NSURL *url=[NSURL URLWithString:_myFriendUrl];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [_myfriendWebView loadRequest:request];
+    _myfriendWebView.scrollView.bounces = NO;
     [_myfriendWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_myfriendWebView];
     
@@ -44,7 +45,14 @@
 
 -(void)doBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_myfriendWebView.canGoBack)
+    {
+        [_myfriendWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

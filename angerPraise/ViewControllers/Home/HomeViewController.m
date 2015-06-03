@@ -14,11 +14,22 @@
 #import "CommentFriend.h"
 #import "UIImageView+AFNetworking.h"
 #import "ApIClient.h"
+#import "VWWWaterView.h"
+#import "Review.h"
+
+#import "WXApi.h"
+
+#import "WebViewJavascriptBridge.h"
+#import "Share.h"
+
+#define F2I  (*((int *)&f))
 
 @interface HomeViewController ()
 {
     InfiniteScrollPicker *isp;
 }
+@property WebViewJavascriptBridge* bridge;
+
 @end
 
 @implementation HomeViewController
@@ -29,223 +40,400 @@
     
     self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     
-    [self getCommentFriendInfo];
-    
     _titleView = [[UIView alloc]init];
     _titleView.frame =CGRectMake(0, 0, WIDTH, 50);
     _titleView.backgroundColor = RGBACOLOR(40, 40, 40, 1.0f);
     [self.view addSubview:_titleView];
     
+    _hrBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _hrBtn.frame = CGRectMake((WIDTH-44-10), 0, 44, 44);
+    [_hrBtn setImage:[UIImage imageNamed:@"0homepage_hr"] forState:UIControlStateNormal];
+    _hrBtn.hidden = YES;
+    [_hrBtn addTarget:self action:@selector(hrPrivilege)forControlEvents:UIControlEventTouchUpInside];
+    [_titleView addSubview:_hrBtn];
+    
+    
     UIButton *titleButton= [[UIButton alloc]init];
-    titleButton.frame = CGRectMake(100, 0, WIDTH-2*100, _titleView.frame.size.height);
-    [titleButton setTitle:@"怒 赞" forState:UIControlStateNormal];
+    titleButton.frame = CGRectMake((WIDTH-118/2)/2, 15, 118/2, 38/2);
+    [titleButton setTitle:@"怒         赞" forState:UIControlStateNormal];
     [titleButton setTitleColor:RGBACOLOR(255, 255, 255, 1.0f) forState:UIControlStateNormal];
-    titleButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
+    titleButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
     [titleButton setTitleColor:RGBACOLOR(177, 179, 180, 1.0f) forState:UIControlStateNormal];
     titleButton.backgroundColor = [UIColor clearColor];
     [_titleView addSubview:titleButton];
     
+    UIImageView *titleLogoImageView = [[UIImageView alloc]init];
+    titleLogoImageView.frame =titleButton.frame;
+    titleLogoImageView.image = [UIImage imageNamed:@"0logoathomepage"];
+    titleLogoImageView.backgroundColor = [UIColor clearColor];
+    [_titleView addSubview:titleLogoImageView];
     
     
-    UIImageView *tipImageView = [[UIImageView alloc]init];
-    tipImageView.frame = CGRectMake(10, 60, 50, 50);
-    [tipImageView setImage:[UIImage imageNamed:@"0bonus1"]];
-    [self.view addSubview:tipImageView];
+    UIView *rolliew = [[UIView alloc]init];
+    rolliew.frame = CGRectMake(0, _titleView.frame.size.height+_titleView.frame.origin.y, WIDTH, 80);
+    rolliew.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:rolliew];
+    
+    //点评赏银 开始
+//    UIImageView *tipImageView = [[UIImageView alloc]init];
+//    tipImageView.frame = CGRectMake(5, 15, 45, 45);
+//    [tipImageView setImage:[UIImage imageNamed:@"0bonus1"]];
+//    [rolliew addSubview:tipImageView];
+    
+    _waterView = [[VWWWaterView alloc]init];
+    _waterView.backgroundColor = [UIColor whiteColor];
+    _waterView.frame = CGRectMake(20, 20, 38, 38);
+    _waterView.layer.cornerRadius = 38/2.f;
+    [_waterView setClipsToBounds:YES];
+    [_waterView setCurrentLinePointY:30]; //min 38   max 0
+    [rolliew addSubview:_waterView];
     
     _tipNumberLabel = [[UILabel alloc]init];
-    
-    _tipNumberLabel.frame = CGRectMake(0, 0, tipImageView.frame.size.width, tipImageView.frame.size.height);
-    
-    _tipNumberLabel.text = @"270";
-    
+    _tipNumberLabel.frame = CGRectMake(0, 0, _waterView.frame.size.width, _waterView.frame.size.height);
+    _tipNumberLabel.text = @"...";
+    _tipNumberLabel.textColor = RGBACOLOR(255, 153, 51, 1.0f);
+    _tipNumberLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
     _tipNumberLabel.textAlignment = NSTextAlignmentCenter;
-    
-    [tipImageView addSubview:_tipNumberLabel];
-    
-    
+    [_waterView addSubview:_tipNumberLabel];
     
     UILabel *tipTextLabel= [[UILabel alloc]init];
-    
-    tipTextLabel.frame = CGRectMake(8, tipImageView.frame.size.height+tipImageView.frame.origin.y, tipImageView.frame.size.width+5, 20);
-    
+    tipTextLabel.frame = CGRectMake(20, _waterView.frame.size.height+_waterView.frame.origin.y, _waterView.frame.size.width+5, 20);
     tipTextLabel.textAlignment = NSTextAlignmentCenter;
-    
     tipTextLabel.text = @"点评赏银";
-    
     tipTextLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
-    
     tipTextLabel.font = [UIFont fontWithName:@"Helvetica" size:10.f];
+    [rolliew addSubview:tipTextLabel];
+    //点评赏银 结束
+
+//    imageArray = [[NSMutableArray alloc] initWithObjects:@"exampleCover",@"exampleCover",nil];
     
-    [self.view addSubview:tipTextLabel];
+    _vFlowView = [[PagedFlowView alloc]init];
+    _vFlowView.frame = CGRectMake(tipTextLabel.frame.size.width+tipTextLabel.frame.origin.x,0, WIDTH-45-20-45-20, rolliew.frame.size.height);
+    _vFlowView.backgroundColor = [UIColor clearColor];
+    _vFlowView.delegate = self;
+    _vFlowView.dataSource = self;
+    _vFlowView.layer.cornerRadius =rolliew.frame.size.height/2;
+    [_vFlowView setClipsToBounds:YES];
+    _vFlowView.pageControl = _hPageControl;
+    _vFlowView.minimumPageAlpha = 0.3;
+    _vFlowView.minimumPageScale = 0.8;
+    [rolliew addSubview:_vFlowView];
     
     
-    //滑动圆球 开始
-    _scrollView = [[UIScrollView alloc]init];
-    _scrollView.frame = CGRectMake(tipImageView.frame.size.width+tipImageView.frame.origin.x+5, 50, self.view.frame.size.width-2*10, 80);
-    _scrollView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
-    _scrollView.delegate = self;
-    //_scrollView.showsHorizontalScrollIndicator = NO;//水平方向的滚动指示
-    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width+80, 70)];
-    [self.view addSubview:_scrollView];
+    //综合评分 开始
+    UIImageView *scoreImageView = [[UIImageView alloc]init];
+    scoreImageView.frame = CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38);
+    scoreImageView.layer.cornerRadius = 38/2.f;
+    [scoreImageView setClipsToBounds:YES];
+    scoreImageView.backgroundColor = RGBACOLOR(0, 199, 255, 1.0f);
+    [rolliew addSubview:scoreImageView];
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-    [flowLayout setItemSize:CGSizeMake(60, 60)];//设置cell的尺寸
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];//设置其布局方向
-    flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);//设置其边界
+    _scoreLabel = [[UILabel alloc]init];
+    _scoreLabel.frame = CGRectMake(0, 0, scoreImageView.frame.size.width, scoreImageView.frame.size.height);
+    _scoreLabel.text = @"...";
+    _scoreLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
+    _scoreLabel.textColor = [UIColor whiteColor];
+    _scoreLabel.textAlignment = NSTextAlignmentCenter;
+    [scoreImageView addSubview:_scoreLabel];
     
-    _homeCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 5, self.view.frame.size.width+100, self.view.frame.size.height) collectionViewLayout:flowLayout];
-    _homeCollectionView.dataSource = self;
-    _homeCollectionView.delegate = self;
-    _homeCollectionView.backgroundColor = [UIColor clearColor];
-    [_homeCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
-    [_scrollView addSubview:_homeCollectionView];
-    //滑动圆球 结束
+    UIButton *lookScoreButton = [[UIButton alloc]init];
+    lookScoreButton.frame = scoreImageView.frame;
+    [lookScoreButton addTarget:self action:@selector(lookScore) forControlEvents:UIControlEventTouchUpInside];
+    lookScoreButton.backgroundColor = [UIColor clearColor];
+    [rolliew addSubview:lookScoreButton];
+    
+    
+    UILabel *scoreTipLabel= [[UILabel alloc]init];
+    scoreTipLabel.frame = CGRectMake(scoreImageView.frame.origin.x, scoreImageView.frame.size.height+scoreImageView.frame.origin.y, scoreImageView.frame.size.width+5, 20);
+    scoreTipLabel.textAlignment = NSTextAlignmentCenter;
+    scoreTipLabel.text = @"综合评分";
+    scoreTipLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
+    scoreTipLabel.font = [UIFont fontWithName:@"Helvetica" size:10.f];
+    [rolliew addSubview:scoreTipLabel];
+    //综合评分 结束
+    
+    
+    [self getCommentFriendInfo];
+    [self isHR];
+    
+     if (_bridge) { return; }
+    [WebViewJavascriptBridge enableLogging];
     
     _homeWebView = [[UIWebView alloc] init];
-    _homeWebView.frame = CGRectMake(0, _scrollView.frame.size.height+_scrollView.frame.origin.y+10,WIDTH, HEIGHT - _scrollView.frame.size.height-_scrollView.frame.origin.y-60);
+    _homeWebView.frame = CGRectMake(0, rolliew.frame.size.height+rolliew.frame.origin.y,WIDTH, HEIGHT - rolliew.frame.size.height-rolliew.frame.origin.y-60);
     _homeWebView.layer.cornerRadius = 10.f;
     [_homeWebView setClipsToBounds:YES];
     [[_homeWebView layer]setBorderColor:[UIColor blackColor].CGColor];
     [[_homeWebView layer]setBorderWidth:1.0f];
     _homeWebView.delegate = self;
-
     [_homeWebView setUserInteractionEnabled:YES];
+    _homeWebView.scrollView.bounces = NO;
     [self.view addSubview:_homeWebView];
+    
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
+        NSLog(@"ObjC received message from JS: %@", data);
+        
+        //调用接口 获取相关地址和文案
+        
+        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        [dic setObject:data forKey:@"string"];
+        
+        [Share getShareInfo:dic
+                  WithBlock:^(Share *share, Error *e) {
+                      
+                      if (e.info !=nil) {
+                          
+                          [APIClient showMessage:e.info];
+                          
+                      }else{
+                          
+                          _shareTitle = share.title;
+                          _shareContent = share.content;
+                          
+                          if ([data isEqualToString:@"wechat_invite"]) {
+                              
+                              [self sendLinkContentByWeiXin];
+                              
+                          }else if([data isEqualToString:@"pengyouquan_invite"]){
+                              
+                              [self sendLinkContentByMoment];
+                              
+                          }else if([data isEqualToString:@"wechat_competitiveness"]){
+                              
+                              [self sendLinkContentByWeiXin];
+                              
+                          }else if ([data isEqualToString:@"pengyouquan_competitiveness"]){
+                              
+                              [self sendLinkContentByMoment];
+                              
+                          }else if ([data isEqualToString:@"user_review_success"]){
+                              
+                              [self getCommentFriendInfo];
+                              
+                          }
+                              
+                      }
+                      
+                  }];
+        
+    }];
+    
+    
     
 }
 
+
+
+#pragma mark - 动态计算水位高度
+-(void)calWaterHeightWithalreadyNumber:(float)alreadyNumber countNumber:(float)countNumber{
+
+    if (alreadyNumber +countNumber ==0.0) {
+        
+        [_waterView setCurrentLinePointY:38];
+        
+    }else{
+    
+        float minWater= 38; //与水位等高
+        //    float maxWater= 0.0f;
+        
+        _waterHeight = 38 - (alreadyNumber / countNumber *minWater);
+        
+        [_waterView setCurrentLinePointY:_waterHeight];
+        
+    }
+    
+}
+
+
+#pragma mark - 改变发送通道 微信 or 朋友圈
+-(void) changeScene:(NSInteger)scene
+{
+    _scene = scene;
+}
+
+
+#pragma mark - 通过 微信 发送链接
+- (void) sendLinkContentByWeiXin
+{
+    [self changeScene:WXSceneSession];
+    WXMediaMessage *message = [WXMediaMessage message];
+    message.title = _shareTitle;
+    message.description = nil;
+    [message setThumbImage:[UIImage imageNamed:@"Icon"]];
+    
+    WXWebpageObject *ext = [WXWebpageObject object];
+    ext.webpageUrl = _shareContent;
+    
+    message.mediaObject = ext;
+    message.mediaTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = _scene;
+    [WXApi sendReq:req];
+}
+#pragma mark - 通过 朋友圈 发送链接
+- (void) sendLinkContentByMoment
+{
+    [self changeScene:WXSceneTimeline];
+    WXMediaMessage *message = [WXMediaMessage message];
+    message.title = _shareTitle;
+    [message setThumbImage:[UIImage imageNamed:@"Icon"]];
+    
+    WXWebpageObject *ext = [WXWebpageObject object];
+    ext.webpageUrl = _shareContent;
+    
+    message.mediaObject = ext;
+    message.mediaTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = _scene;
+    [WXApi sendReq:req];
+}
+
+
+#pragma mark - 调用接口 获取数据
 -(void)getCommentFriendInfo{
     
     NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
 
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
-    
+//    [dic setObject:@"166" forKey:@"user_id"];
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [CommentFriend getCommentFriendList:dic WithBlock:^(NSMutableArray *commentFriendArray, Error *e) {
+    [CommentFriend getCommentFriendList:dic WithBlock:^(CommentFriend *commentFriend, Error *e) {
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
-        // NSLog(@"%@",commentFriendArray);
-        _collectionArray = commentFriendArray;
-        [_homeCollectionView reloadData];
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+        }else{
+        
+            // NSLog(@"%@",commentFriendArray);
+            // _tipNumberLabel.text = commentFriend.user_intergral;
+            
+            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
+            _scoreLabel.text = commentFriend.synthesize_grade;
+            _scoreUrlString = commentFriend.synthesize_grade_url;
+            
+            _collectionArray = commentFriend.commentFriendArray;
+            
+            imageArray = [[NSMutableArray alloc]init];
+            _commondUrlArray = [[NSMutableArray alloc]init];
+            
+            //改变水位高度
+            float alreadyNumber = [commentFriend.today_receive_award floatValue];
+            float countNumber = [commentFriend.today_award_total floatValue];
+
+            [self calWaterHeightWithalreadyNumber:alreadyNumber countNumber:countNumber];
+            
+            for (int i =0; i<_collectionArray.count; i++) {
+                Review *b = [[Review alloc]init];
+                b = [_collectionArray objectAtIndex:i];
+                
+                [imageArray addObject:b.photo_url];
+                [_commondUrlArray addObject:b.friend_evluation_url];
+            }
+            
+            [_vFlowView reloadData];
+            [self flowView:_vFlowView didScrollToPageAtIndex:0];
+        }
     }];
+}
+
+
+-(void)isHR{
+
+    NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
+    NSString *hrStringNumber = [NSString stringWithFormat:@"%@",[hrPrivilege objectForKey:@"hrPrivilege"]];
     
-}
-
-
-#pragma mark - collectionView dataSource Or delegate
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return _collectionArray.count+1;
-}
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString * CellIdentifier = @"UICollectionViewCell";
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    if(indexPath.section==0)
-    {
-        cell.backgroundColor = RGBACOLOR(0, 203, 205, 1.0f);
-        cell.layer.cornerRadius = 30.f;
+    if ([hrStringNumber isEqualToString:@"0"]) {
+        
+        _hrBtn.hidden = NO;
     }
-    
-    //CommentFriend *commtDic = [_collectionArray objectAtIndex:indexPath.row];
-
-
-    if (indexPath.row ==0) {
-//        cell.backgroundColor = [UIColor yellowColor];
-//        UILabel *payLabel = [[UILabel alloc]init];
-//        payLabel.frame= CGRectMake(0, 15, 60, 30);
-//        payLabel.text = @"48";
-//        payLabel.textAlignment = NSTextAlignmentCenter;
-//        [cell addSubview:payLabel];
-        
-        UIImageView *bgImageView = [[UIImageView alloc]init];
-        bgImageView.frame = CGRectMake(0, 0, 60, 60);
-        [bgImageView setImageWithURL:
-         [NSURL URLWithString:@"http://app.hirelib.com/photo/149.jpg"]];
-        bgImageView.layer.cornerRadius = 30.f;
-        bgImageView.layer.masksToBounds=YES;
-        [cell addSubview:bgImageView];
-    
-        
-    }else if (indexPath.row ==1){
-        
-        UIImageView *bgImageView = [[UIImageView alloc]init];
-        bgImageView.frame = CGRectMake(0, 0, 60, 60);
-        [bgImageView setImageWithURL:[NSURL URLWithString:@"http://wx.qlogo.cn/mmopen/kr1yFKtaMQaloVm9RVLrWru3pzE2MiblxeJpN2CxMuIiauRzefSMU8d7FzjXRHRfZ1iae1ojUQKyr5hicxpDDmTg8uOGKkjeH3f5/0"]];
-        bgImageView.layer.cornerRadius = 30.f;
-        bgImageView.layer.masksToBounds=YES;
-        [cell addSubview:bgImageView];
-    
-    }else if(indexPath.row ==2){
-
-        UILabel *payLabel = [[UILabel alloc]init];
-        payLabel.frame= CGRectMake(0, 15, 60, 30);
-        payLabel.text = @"4%";
-        payLabel.textAlignment = NSTextAlignmentCenter;
-        [cell addSubview:payLabel];
-        
-    }
-    
-    
-    return cell;
 }
 
-#pragma mark --UICollectionViewDelegate
-//UICollectionView被选中时调用的方法
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-  //  UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+#pragma mark - hr 特权
+-(void)hrPrivilege{
 
-//    cell.backgroundColor = [UIColor yellowColor];
-    //NSLog(@"row=======%ld",(long)indexPath.row);
-   // NSLog(@"section===%ld",(long)indexPath.section);
+
+
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+#pragma mark -
+#pragma mark PagedFlowView Delegate
+- (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView;{
+    return CGSizeMake(58, 58);
+}
+
+- (void)flowView:(PagedFlowView *)flowView didScrollToPageAtIndex:(NSInteger)index {
     
-    if (indexPath.row ==2) {
-        
-        NSURL *url=[NSURL URLWithString:@"http://app.hirelib.com/website/user/resume_score?user_id=1"];
+   // NSLog(@"Scrolled to page # %ld", (long)index);
+    
+    
+    if (_commondUrlArray.count != 0){
+    
+        NSURL *url=[NSURL URLWithString:[_commondUrlArray objectAtIndex:index]];
         NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
         [_homeWebView loadRequest:request];
-        
-    }else{
-        
-        CommentFriend *commtDic = [_collectionArray objectAtIndex:indexPath.row];
-
-        if (indexPath.row ==0) {
-            
-            NSURL *url=[NSURL URLWithString:commtDic.friend_evluation_url];
-            NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-            [_homeWebView loadRequest:request];
-            
-        }else if (indexPath.row ==1) {
-            
-//            if ((int)commtDic.friend_evluation_status == (int)0) {
-//                [APIClient showMessage:@"已点评"];
-//            }
-            
-            NSURL *url=[NSURL URLWithString:commtDic.friend_evluation_url];
-            NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-            [_homeWebView loadRequest:request];
-        }
-    
     }
 
 }
 
+- (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index{
+    
+    //NSLog(@"Tapped on page # %ld", (long)index);
+    
+    NSURL *url=[NSURL URLWithString:[_commondUrlArray objectAtIndex:index]];
+    NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+    [_homeWebView loadRequest:request];
+    
+}
 
-//返回这个UICollectionView是否可以被选择
--(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+#pragma mark 综合评分
+-(void)lookScore{
+    
+    NSURL *url=[NSURL URLWithString:_scoreUrlString];
+    NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+    [_homeWebView loadRequest:request];
+    
+}
 
-    return YES;
+////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark PagedFlowView Datasource
+//返回显示View的个数
+- (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView{
+    
+    return [imageArray count];
+    
+}
+
+//返回给某列使用的View
+- (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index{
+    UIImageView *imageView = (UIImageView *)[flowView dequeueReusableCell];
+    if (!imageView) {
+        imageView = [[UIImageView alloc] init];
+        imageView.layer.cornerRadius = 58/2;
+        imageView.layer.masksToBounds = YES;
+    }
+
+    [imageView setImageWithURL:[NSURL URLWithString:[imageArray objectAtIndex:index]] placeholderImage:[UIImage imageNamed:@"touxiang"]];
+    
+    return imageView;
 }
 
 

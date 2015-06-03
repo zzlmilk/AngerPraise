@@ -100,6 +100,7 @@
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:@"162" forKey:@"user_id"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -107,15 +108,15 @@
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
-        
-        if (e.info !=nil) {
+        int errorCode = [e.code intValue];
+        if (errorCode ==40004) {
             
             [APIClient showMessage:e.info];
             
             ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
             [self.navigationController pushViewController:importResumeVC animated:YES];
             
-        }else{
+        }else if(resumeScoer.user_position !=nil){
             
             //NSLog(@"%@",resumeScoer);
             _positionNameLabel.text = resumeScoer.user_position;
@@ -156,7 +157,7 @@
     UIButton *resumeScoreButton = [[UIButton alloc]init];
     resumeScoreButton.frame = goalBarFrame;
     //resumeScoreButton.backgroundColor = [UIColor yellowColor];
-    [resumeScoreButton addTarget:self action:@selector(lookResumeScore) forControlEvents:UIControlEventTouchUpInside];
+   // [resumeScoreButton addTarget:self action:@selector(lookResumeScore) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:resumeScoreButton];
     
 //    //完善资料
@@ -185,12 +186,12 @@
 }
 
 // 查看简历综合评分
--(void)lookResumeScore{
-
-    ResumeScoreViewController *resumeScoreVC = [[ResumeScoreViewController alloc]init];
-    [self.navigationController pushViewController:resumeScoreVC animated:YES];
-    
-}
+//-(void)lookResumeScore{
+//
+//    ResumeScoreViewController *resumeScoreVC = [[ResumeScoreViewController alloc]init];
+//    [self.navigationController pushViewController:resumeScoreVC animated:YES];
+//    
+//}
 
 
 - (void)didReceiveMemoryWarning {

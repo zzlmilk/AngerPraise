@@ -8,9 +8,8 @@
 
 #import "PreviewResumeViewController.h"
 #import "SMS_MBProgressHUD.h"
+#import "WXApi.h"
 
-#import <ShareSDK/ShareSDK.h>
-#import <AGCommon/UIDevice+Common.h>
 
 @interface PreviewResumeViewController ()
 
@@ -36,60 +35,163 @@
     UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:_shareBtn];
     self.navigationItem.rightBarButtonItem = shareItem;
     
-    
-    
     self.edgesForExtendedLayout = UIRectEdgeTop;
-    
     _previewResumeWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+65)];
     _previewResumeWebView.delegate = self;
+    _previewResumeWebView.scrollView.bounces = NO;
     
-//    _resumePreviewUrl = [[NSUserDefaults standardUserDefaults]objectForKey:@"previewResumeUrl"];
-    
-    //NSURL *url=[NSURL URLWithString:_resumePreviewUrl];
-    NSURL *url =[NSURL URLWithString:@"http://app.hirelib.com/website/user/user_resume?user_id=1"];
+    NSURL *url =[NSURL URLWithString:_resumePreviewUrl];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [_previewResumeWebView loadRequest:request];
     [_previewResumeWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_previewResumeWebView];
+    
+    _shareView = [[UIView alloc]init];
+    _shareView.frame = CGRectMake(0, 0, WIDTH, 160);
+    _shareView.backgroundColor = RGBACOLOR(0, 0, 0, 0.6);
+    _shareView.hidden = YES;
+    [self.view addSubview:_shareView];
+    
+    UILabel *shanreLabel = [[UILabel alloc]init];
+    shanreLabel.frame = CGRectMake(0, 0, WIDTH, 45);
+    shanreLabel.backgroundColor = RGBACOLOR(0, 0, 0, 0.8);
+    shanreLabel.textColor = RGBACOLOR(252, 254, 253, 1.0f);
+    shanreLabel.text = @"     分享简历";
+    [_shareView addSubview:shanreLabel];
+    
+    UIButton *weixinButton = [[UIButton alloc]init];
+    weixinButton.frame = CGRectMake(0, shanreLabel.frame.size.height+shanreLabel.frame.origin.y, WIDTH, 55);
+    weixinButton.backgroundColor = [UIColor clearColor];
+    [weixinButton setTitle:@" 微 信" forState:UIControlStateNormal];
+    [weixinButton setImage:[UIImage imageNamed:@"0wechat1"] forState:UIControlStateNormal];
+    [weixinButton setImage:[UIImage imageNamed:@"0wechat2"] forState:UIControlStateHighlighted];
+    [weixinButton addTarget:self action:@selector(sendLinkContent) forControlEvents:UIControlEventTouchUpInside];
+    weixinButton.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+    [weixinButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -(WIDTH/2-50), 0, 50)];
+    [weixinButton setImageEdgeInsets:UIEdgeInsetsMake(0, -(WIDTH/2+30), 0, 0)];
+    
+    [_shareView addSubview:weixinButton];
+    
+    UILabel *lineLabel= [[UILabel alloc]init];
+    lineLabel.frame = CGRectMake(0, weixinButton.frame.size.height+weixinButton.frame.origin.y, WIDTH, 0.5);
+    lineLabel.backgroundColor = RGBACOLOR(252, 254, 253, 1.0f);
+    [_shareView addSubview:lineLabel];
+    
+    UIButton *emailButton = [[UIButton alloc]init];
+    emailButton.frame = CGRectMake(0, lineLabel.frame.size.height+lineLabel.frame.origin.y, WIDTH, 55);
+    [emailButton setTitle:@" 邮 件" forState:UIControlStateNormal];
+    [emailButton setImage:[UIImage imageNamed:@"0email1"] forState:UIControlStateNormal];
+    [emailButton setImage:[UIImage imageNamed:@"0email2"] forState:UIControlStateHighlighted];
+    [emailButton addTarget:self action:@selector(sendResumeByEmail) forControlEvents:UIControlEventTouchUpInside];
+
+    [emailButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -(WIDTH/2-50), 0, 50)];
+    [emailButton setImageEdgeInsets:UIEdgeInsetsMake(0, -(WIDTH/2+30), 0, 0)];
+    emailButton.titleLabel.font = [UIFont systemFontOfSize: 14.0];
+    emailButton.backgroundColor = [UIColor clearColor];
+    [_shareView addSubview:emailButton];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
+    [tapGestureRecognizer setDelegate:self];
+    [_previewResumeWebView.scrollView addGestureRecognizer:tapGestureRecognizer];
+    
+    
 }
 
+-(void) changeScene:(NSInteger)scene
+{
+    _scene = scene;
+}
+
+#pragma mark -- 通过微信分享简历
+- (void) sendLinkContent
+{
+    WXMediaMessage *message = [WXMediaMessage message];
+    message.title = @"个人简历";
+    message.description = @"快快查看我的怒赞简历哦～";
+    [message setThumbImage:[UIImage imageNamed:@"0logooutapp"]];
+    
+    WXWebpageObject *ext = [WXWebpageObject object];
+    ext.webpageUrl = _resumePreviewUrl;
+    
+    message.mediaObject = ext;
+    message.mediaTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = _scene;
+    [WXApi sendReq:req];
+}
+
+#pragma mark -- 通过邮件分享简历
+-(void)sendResumeByEmail{
+
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+    picker.mailComposeDelegate = self;
+    
+    [picker setSubject:@"怒赞简历"];
+    
+    // Set up recipients
+    NSArray *toRecipients = [NSArray arrayWithObject:@"example@email.com"];
+    
+    [picker setToRecipients:toRecipients];
+    
+    // Attach an image to the email
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"" ofType:@"png"];
+//    NSData *myData = [NSData dataWithContentsOfFile:path];
+//    [picker addAttachmentData:myData mimeType:@"image/png" fileName:@""];
+    
+    [picker setMessageBody:_resumePreviewUrl
+                isHTML:YES];
+    
+    // Fill out the email body text
+
+    [self presentViewController:picker animated:YES completion:nil];
+    
+}
+
+#pragma mark -- 取消邮件分享
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark -- 隐藏键盘
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    _shareBtn.hidden = NO;
+    _backBtn.hidden = NO;
+    _shareView.hidden = YES;
+  
+    return YES;
+}
+
+
+
+#pragma mark -- 点击分享
 -(void)shareResume{
-
     
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
-    
-    //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:@"我通过<怒赞APP>对你进行了点评，点击链接 www.baidu.com下载查看"
-                                       defaultContent:@"默认分享内容，没内容时显示"
-                                                image:[ShareSDK imageWithPath:imagePath]
-                                                title:@"我的简历"
-                                                  url:@"http://app.hirelib.com/website/user/user_resume?user_id=1"
-                                          description:@"简历"
-                                            mediaType:SSPublishContentMediaTypeNews];
-    
-    [ShareSDK showShareActionSheet:nil
-                         shareList:nil
-                           content:publishContent
-                     statusBarTips:YES
-                       authOptions:nil
-                      shareOptions: nil
-                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                if (state == SSResponseStateSuccess)
-                                {
-                                    //  NSLog(@"分享成功");
-                                }
-                                else if (state == SSResponseStateFail)
-                                {
-                                    //NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"发布失败!error code == %d, error code == %@"), [error errorCode], [error errorDescription]);
-                                }
-                            }];
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.2;
+    [_shareView.layer addAnimation:animation forKey:nil];
 
-
+    _backBtn.hidden = YES;
+    _shareView.hidden = NO;
 }
 
 -(void)doBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_previewResumeWebView.canGoBack)
+    {
+        [_previewResumeWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 //网页 刚开始加载

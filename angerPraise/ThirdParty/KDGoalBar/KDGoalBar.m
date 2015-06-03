@@ -192,9 +192,9 @@
     } else if (!thumbLayer.hidden && thumbTouch) {
         CGFloat delta = [self angleBetweenCenterAndPoint:thisPoint] - lastAngle;
         
-        if (fabsf(delta) > (2*M_PI)-fabsf(delta)) {
+        if (fabs(delta) > (2*M_PI)-fabs(delta)) {
             BOOL greaterThanZero = (delta > 0);
-            delta = (2*M_PI)-fabsf(delta);
+            delta = (2*M_PI)-fabs(delta);
             if (greaterThanZero) {
                 delta = -1 * delta;
             }
@@ -336,7 +336,7 @@
     if (origAngle > 0) {
         origAngle = (M_PI - origAngle) + M_PI;
     } else {
-        origAngle = fabsf(origAngle);
+        origAngle = fabs(origAngle);
     }
     
     //Rotating so "origin" is at "due north/Noon", I need to stop mixing metaphors
@@ -358,8 +358,8 @@
     if (allowDecimal) {
         total = total / 4.0;
     } else {
-        if (abs(total) > 100) {
-            int remainder = abs(total) - 100;
+        if (fabsf(total) > 100) {
+            int remainder = fabsf(total) - 100;
             if (total < 0) {
                 remainder *= -1;
             }

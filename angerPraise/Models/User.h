@@ -34,4 +34,6 @@
 @property(nonatomic,strong)NSString *user_name;
 @property(nonatomic,strong)NSString *user_resume_synthesize_grade;
 
+
+@property(nonatomic,strong)NSString *mission_number;
 @end

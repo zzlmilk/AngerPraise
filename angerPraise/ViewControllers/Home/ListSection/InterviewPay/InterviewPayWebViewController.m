@@ -45,7 +45,14 @@
 
 -(void)doBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_interviewPayWebView.canGoBack)
+    {
+        [_interviewPayWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 //网页 刚开始加载

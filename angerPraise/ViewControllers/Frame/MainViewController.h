@@ -10,4 +10,5 @@
 
 @interface MainViewController : UITabBarController<UITabBarControllerDelegate>
 
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item;
 @end

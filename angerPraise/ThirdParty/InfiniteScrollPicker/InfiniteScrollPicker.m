@@ -185,7 +185,7 @@
 
 -(float)calculateFrameHeightByOffset:(float)offset
 {
-    return (-1 * fabsf((offset)*2 - self.frame.size.width/2) + self.frame.size.width/2)/4;
+    return (-1 * fabs((offset)*2 - self.frame.size.width/2) + self.frame.size.width/2)/4;
 }
 
 - (void)snapToAnEmotion
@@ -237,5 +237,6 @@
         });
     });
 }
+
 
 @end

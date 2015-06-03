@@ -7,13 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "IndexViewController.h"
+#import "MainViewController.h"
 
-#import <SMS_SDK/SMS_SDK.h>
-
-#import <ShareSDK/ShareSDK.h>
-#import <TencentOpenAPI/QQApiInterface.h>
-#import <TencentOpenAPI/TencentOAuth.h>
-#import "WXApi.h"
+//#import "WXApi.h"
 
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
@@ -53,24 +50,121 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     
+
+    // 判断user_id 如果存在 storyborder中 页面跳转到Home
     
-    //短信 及 邀请好友  怒赞
-    [SMS_SDK registerApp:@"6f14962663be" withSecret:@"0b1ad3ef793449821b2c90171b5ad742"];
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    UIStoryboard *storyBoard1 = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *storyBoard2 = [UIStoryboard storyboardWithName:@"Index" bundle:nil];
+    if([userId objectForKey:@"userId"]){
+        
+        self.window.rootViewController = [storyBoard1 instantiateInitialViewController];
+        
+    }else{
+        
+        self.window.rootViewController = [storyBoard2 instantiateInitialViewController];
+    }
     
-    [ShareSDK registerApp:@"6f0fe448ecca"];
+
+    [WXApi registerApp:@"wxa10386b68f005ad8"];
     
-    [ShareSDK connectWeChatWithAppId:@"wxa10386b68f005ad8"
-                           wechatCls:[WXApi class]];
-    [ShareSDK connectMail];
-    [ShareSDK connectSMS];
-    [ShareSDK ssoEnabled:NO];
-    
-    //    self.window.rootViewController = [[DefaultTempViewController alloc] init];
-    [self.window makeKeyAndVisible];
-    
-    //TODO: 第六步：开始使用 ShareSDK 进行分享，详见 wiki 上关于构造分享的例子。
-    
+    return YES;
+}
+
+
+//第二步 重写 两个方法
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+// onReq是微信终端向第三方程序发起请求，要求第三方程序响应。第三方程序响应完后必须调用sendRsp返回。在调用sendRsp返回时，会切回到微信终端程序界面。
+
+-(void) onReq:(BaseReq*)req
+{
+    if([req isKindOfClass:[GetMessageFromWXReq class]])
+    {
+        GetMessageFromWXReq *temp = (GetMessageFromWXReq *)req;
+        
+        // 微信请求App提供内容， 需要app提供内容后使用sendRsp返回
+        NSString *strTitle = [NSString stringWithFormat:@"微信请求App提供内容"];
+        NSString *strMsg = [NSString stringWithFormat:@"openID: %@", temp.openID];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = 1000;
+        [alert show];
+    }
+    else if([req isKindOfClass:[ShowMessageFromWXReq class]])
+    {
+        ShowMessageFromWXReq* temp = (ShowMessageFromWXReq*)req;
+        WXMediaMessage *msg = temp.message;
+        
+        //显示微信传过来的内容
+        WXAppExtendObject *obj = msg.mediaObject;
+        
+        NSString *strTitle = [NSString stringWithFormat:@"微信请求App显示内容"];
+        NSString *strMsg = [NSString stringWithFormat:@"openID: %@, 标题：%@ \n内容：%@ \n附带信息：%@ \n缩略图:%lu bytes\n附加消息:%@\n", temp.openID, msg.title, msg.description, obj.extInfo, (unsigned long)msg.thumbData.length, msg.messageExt];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if([req isKindOfClass:[LaunchFromWXReq class]])
+    {
+        LaunchFromWXReq *temp = (LaunchFromWXReq *)req;
+        WXMediaMessage *msg = temp.message;
+        
+        //从微信启动App
+        NSString *strTitle = [NSString stringWithFormat:@"从微信启动"];
+        NSString *strMsg = [NSString stringWithFormat:@"openID: %@, messageExt:%@", temp.openID, msg.messageExt];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+// 如果第三方程序向微信发送了sendReq的请求，那么onResp会被回调。sendReq请求调用后，会切到微信终端程序界面。
+-(void) onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+//        NSString *strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+//        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alert show];
+    }
+    else if([resp isKindOfClass:[SendAuthResp class]])
+    {
+        SendAuthResp *temp = (SendAuthResp*)resp;
+        
+        NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
+        NSString *strMsg = [NSString stringWithFormat:@"code:%@,state:%@,errcode:%d", temp.code, temp.state, temp.errCode];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if ([resp isKindOfClass:[AddCardToWXCardPackageResp class]])
+    {
+        AddCardToWXCardPackageResp* temp = (AddCardToWXCardPackageResp*)resp;
+        NSMutableString* cardStr = [[NSMutableString alloc] init];
+        for (WXCardItem* cardItem in temp.cardAry) {
+            [cardStr appendString:[NSString stringWithFormat:@"cardid:%@ cardext:%@ cardstate:%u\n",cardItem.cardId,cardItem.extMsg,(unsigned int)cardItem.cardState]];
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"add card resp" message:cardStr delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+//  其中req参数为SendMessageToWXReq类型。
+-(BOOL) sendReq:(BaseReq*)req{
     
     return YES;
 }

@@ -24,9 +24,13 @@
 @property(nonatomic,strong)NSString *user_type;
 
 @property(nonatomic, strong)UIView *editView;
+@property(nonatomic, strong)UIImageView *waitPhotoImageView;
+@property(nonatomic,strong)UIButton *backBtn;
+@property(nonatomic,strong)UILabel *waitUsernameLabel;
+
 
 @property(nonatomic,strong)UILabel *matchPositionLabel;
-@property(nonatomic,strong)UILabel *synthesisScoreLabel;
+@property(nonatomic,strong)UILabel *taskLabel;
 @property(nonatomic,strong)UILabel *walletNumberLabel;
 
 @property(nonatomic,strong)NSString *hr_url;

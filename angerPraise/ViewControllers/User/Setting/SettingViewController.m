@@ -29,21 +29,28 @@
     self.navigationItem.leftBarButtonItem = backItem;
     
     _settingListArray = [[NSArray alloc]initWithObjects:
-                       @"",@"  隐私",@"  版本",@"  关于我们",@"  我要评价",nil];
+                       @"",@"     隐私",@"     版本",@"     关于我们",@"     我要评价",nil];
     
-    UILabel *settingLabel = [[UILabel alloc]init];
-    settingLabel.frame = CGRectMake(20, backBtn.frame.size.height+backBtn.frame.origin.y+30, WIDTH, 35);
-    settingLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.f];
-    settingLabel.backgroundColor = [UIColor clearColor];
-    settingLabel.text = @"设置";
-    [self.view addSubview:settingLabel];
+    
+    
+    
+    UIButton *settingButton = [[UIButton alloc]init];
+    settingButton.frame = CGRectMake(18, backBtn.frame.size.height+backBtn.frame.origin.y+30, 100, 35);
+    settingButton.backgroundColor = [UIColor clearColor];
+    [settingButton setTitle:@"   设置" forState:UIControlStateNormal];
+    [settingButton setImage:[UIImage imageNamed:@"0usersetting1"] forState:UIControlStateNormal];
+    settingButton.titleLabel.font =  [UIFont fontWithName:@"Helvetica-Bold" size:18.f];
+    [settingButton setTitleColor:RGBACOLOR(77, 77, 80, 1.0f)forState:UIControlStateNormal];
+    [self.view addSubview:settingButton];
+    
     
     
     _settingTableView = [[UITableView alloc]init];
-    _settingTableView.frame = CGRectMake(0,settingLabel.frame.size.height+settingLabel.frame.origin.y, WIDTH,250);
+    _settingTableView.frame = CGRectMake(0,settingButton.frame.size.height+settingButton.frame.origin.y, WIDTH,250);
     _settingTableView.delegate = self;
     _settingTableView.dataSource = self;
     _settingTableView.scrollEnabled = NO;
+    [_settingTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     //隐藏多余分割线 函数调用
     [self setExtraCellLineHidden:_settingTableView];
     [self.view addSubview:_settingTableView];
@@ -60,7 +67,6 @@
     loginOutButton.backgroundColor = RGBACOLOR(255, 87, 102, 1.0f);
     [loginOutButton addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginOutButton];
-    
     
 }
 
@@ -82,10 +88,11 @@
         if ([user.res isEqualToString:@"1"]) {
             //退出成功  清空 NSUserDefaults  的值 做跳转
             
-            [APIClient showSuccess:@"退出成功" title:@"成功"];
-            
             NSUserDefaults *userId=[NSUserDefaults standardUserDefaults];
             [userId removeObjectForKey:@"userId"];
+            
+            NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
+            [hrPrivilege removeObjectForKey:@"hrPrivilege"];
             
             IndexViewController *indexVC= [[IndexViewController alloc]init];
             [self.navigationController pushViewController:indexVC animated:YES];
@@ -93,7 +100,7 @@
         }else if (e != nil){
             //退出失败
             
-            [APIClient showInfo:e.info title:@"提示"];
+            [APIClient showMessage:e.info title:@"提示"];
         
         }
         

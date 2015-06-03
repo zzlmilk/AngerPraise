@@ -30,6 +30,7 @@
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
     _positionDetailWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+70)];
+    _positionDetailWebView.scrollView.bounces = NO;
     _positionDetailWebView.delegate = self;
     NSURL *url=[NSURL URLWithString:_positionDetailUrl];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
@@ -41,7 +42,15 @@
 
 -(void)doBack{
 
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_positionDetailWebView.canGoBack)
+    {
+        [_positionDetailWebView goBack];
+
+    }else{
+    
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 //网页 刚开始加载

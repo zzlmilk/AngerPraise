@@ -26,7 +26,7 @@
         _user_intergral =[dic objectForKey:@"user_intergral"];
         _user_name =[dic objectForKey:@"user_name"];
         _user_resume_synthesize_grade = [dic objectForKeyedSubscript:@"user_resume_synthesize_grade"];
-        
+        _mission_number =[dic objectForKeyedSubscript:@"mission_number"];
         
     }else{
         

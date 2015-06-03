@@ -18,6 +18,11 @@
     _user_name = [dic objectForKey:@"user_name"];
     _user_phone = [dic objectForKey:@"user_phone"];
     
+    _hr_privilege =[dic objectForKey:@"hr_privilege"];
+    _resume_status =[dic objectForKey:@"resume_status"];
+    _user_status_type =[dic objectForKey:@"user_status_type"];
+
+    
     return self;
     
 }
@@ -36,7 +41,12 @@
             error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
             
             Login *l;
+            
+            
+            //登陆成功 UserID 存
             block(l,error);
+            
+            
             
         }else{
             

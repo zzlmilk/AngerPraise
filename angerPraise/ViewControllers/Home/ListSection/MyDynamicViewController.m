@@ -74,7 +74,15 @@
 
 -(void)doBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_myDynamicWebView.canGoBack)
+    {
+        [_myDynamicWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {

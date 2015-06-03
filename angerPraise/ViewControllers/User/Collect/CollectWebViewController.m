@@ -31,6 +31,8 @@
     
     _collectWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+65)];
     _collectWebView.delegate = self;
+    _collectWebView.scrollView.bounces = NO;
+
     
     NSURL *url=[NSURL URLWithString:_collectUrl];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
@@ -44,7 +46,14 @@
 
 -(void)doBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_collectWebView.canGoBack)
+    {
+        [_collectWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

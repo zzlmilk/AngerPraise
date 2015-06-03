@@ -8,18 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "Error.h"
+#import "Review.h"
+
 
 @interface CommentFriend : NSObject
 
-@property(nonatomic,strong)NSString *friend_evluation_status; // 点评状态 0 不可点评  1 可点评
-@property(nonatomic,strong)NSString *friend_evluation_url; // 点评页面url
-@property(nonatomic,strong)NSString *photo_url; //头像url
-@property(nonatomic,strong)NSString *user_name; //名称
+@property(nonatomic,strong)NSString *friend_number;  //可点评好友数
+@property(nonatomic,strong)NSString *synthesize_grade; //综合评分
+@property(nonatomic,strong)NSString *synthesize_grade_url; //综合评分url
+//@property(nonatomic,strong)NSString *user_intergral;  //赏银数量
+@property(nonatomic,strong)NSString *today_award_total;
+@property(nonatomic,strong)NSString *today_receive_award;
 
+@property(nonatomic,strong)NSMutableArray *commentFriendArray;
 
+@property Review *review;
 
 //获取待点评好友列表
-+(NSURLSessionDataTask *)getCommentFriendList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *commentFriendArray, Error *e))block;
++(NSURLSessionDataTask *)getCommentFriendList:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block;
 
 -(instancetype)initWithDic:(NSDictionary *)dic;
 

@@ -25,6 +25,7 @@
 @property(nonatomic,strong)NSString *webUrl; //职位详情
 @property(nonatomic,strong)NSString *type; // 1精确推荐 2关联推荐 3特长推荐
 
+
 //申请职位
 @property(nonatomic,strong)NSString *res;
 

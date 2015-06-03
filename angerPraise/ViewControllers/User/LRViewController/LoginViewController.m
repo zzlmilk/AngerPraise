@@ -76,8 +76,8 @@
     
     _passwordTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, _phoneNumberTextField.frame.origin.y+_phoneNumberTextField.frame.size.height+30, WIDTH-2*20, 40)];
     _passwordTextField.secureTextEntry = YES;
-    [_passwordTextField setBorderStyle:UITextBorderStyleNone];
-//    _passwordTextField.keyboardType = UIKeyboardTypeNumberPad;
+    _passwordTextField.keyboardType = UIKeyboardTypeDefault;
+    _passwordTextField.returnKeyType = UIReturnKeyDone;//    _passwordTextField.keyboardType = UIKeyboardTypeNumberPad;
     _passwordTextField.tag = 102;
     _passwordTextField.textAlignment = NSTextAlignmentCenter;
     _passwordTextField.delegate =self;
@@ -106,7 +106,7 @@
     [userLoginButton.layer setCornerRadius:50/2.f]; //设置矩形四个圆角半径
     //[_userRegisterButton.layer setBorderWidth:1.0]; //边框宽度
     //    _userRegisterButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
-    [userLoginButton setTitle:@"登    陆" forState:UIControlStateNormal];
+    [userLoginButton setTitle:@"登    入" forState:UIControlStateNormal];
     [userLoginButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
     userLoginButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
     userLoginButton.backgroundColor = [UIColor whiteColor];
@@ -115,6 +115,14 @@
 
 
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [self userLogin];
+    return YES;
+    
+}
+
 
 #pragma mark -- 返回
 -(void)doBack{
@@ -196,6 +204,9 @@
                 
                 NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
                 [userId setObject:login.user_id forKey:@"userId"];
+                
+                NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
+                [hrPrivilege setObject:login.hr_privilege forKey:@"hrPrivilege"];
                 
                 [APIClient showSuccess:@"登录成功" title:@"成功"];
                 

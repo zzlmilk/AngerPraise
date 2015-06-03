@@ -10,6 +10,7 @@
 #import "CreatStep2ViewController.h"
 #import "GuideViewController.h"
 #import "MainViewController.h"
+#import "QAResumeViewController.h"
 
 @interface ImportResumeViewController ()
 
@@ -39,23 +40,23 @@
     
     UILabel *tip1Label = [[UILabel alloc]init];
     tip1Label.frame =CGRectMake(40, 100, WIDTH-2*40, 25);
-    tip1Label.text = @"简历信息不完善!";
+    tip1Label.text = @"我们未发现你的个人职业信息";
     tip1Label.font = [UIFont fontWithName:@"Helvetica" size:14.0];
     tip1Label.textColor = [UIColor blackColor];
     tip1Label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:tip1Label];
     
     UILabel *tip2Label = [[UILabel alloc]init];
-    tip2Label.frame =CGRectMake(40, tip1Label.frame.size.height+tip1Label.frame.origin.y, WIDTH-2*40, 25);
-    tip2Label.text = @"你这样是找不到工作的!";
+    tip2Label.frame =CGRectMake(40, tip1Label.frame.size.height+tip1Label.frame.origin.y+10, WIDTH-2*40, 25);
+    tip2Label.text = @"我们无法推荐合适的职位信息给你";
     tip2Label.font = [UIFont fontWithName:@"Helvetica" size:14.0];
     tip2Label.textColor = [UIColor blackColor];
     tip2Label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:tip2Label];
     
     UILabel *tip3Label = [[UILabel alloc]init];
-    tip3Label.frame =CGRectMake(40, tip2Label.frame.size.height+tip2Label.frame.origin.y, WIDTH-2*40, 25);
-    tip3Label.text = @"以下两种方式解救你!";
+    tip3Label.frame =CGRectMake(40, tip2Label.frame.size.height+tip2Label.frame.origin.y+10, WIDTH-2*40, 25);
+    tip3Label.text = @"可以通过问答式创建的方式来告诉我们你的职位信息";
     tip3Label.font = [UIFont fontWithName:@"Helvetica" size:14.0];
     tip3Label.textColor = [UIColor blackColor];
     tip3Label.textAlignment = NSTextAlignmentCenter;
@@ -79,7 +80,7 @@
     
     UIButton *guideButton = [[UIButton alloc]init];
     guideButton.frame = CGRectMake(80, virtualButton.frame.size.height+virtualButton.frame.origin.y+40, WIDTH - 2*80, 40);
-    [guideButton setTitle:@"应 用 内 创 建" forState:UIControlStateNormal];
+    [guideButton setTitle:@"问 答 式 创 建" forState:UIControlStateNormal];
     [guideButton.layer setMasksToBounds:YES];
     [guideButton.layer setCornerRadius:40/2.0f]; //设置矩形四个圆角半径
     [guideButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
@@ -118,11 +119,11 @@
     [self.navigationController pushViewController:guidelVC animated:YES];
 }
 
-#pragma mark -- 应用内创建
+#pragma mark -- 问答式创建
 -(void)guideImport{
 
-    CreatStep2ViewController *creatStep2VC = [[CreatStep2ViewController alloc]init];
-    [self.navigationController pushViewController:creatStep2VC animated:YES];
+    QAResumeViewController *qaResumeVC = [[QAResumeViewController alloc]init];
+    [self.navigationController pushViewController:qaResumeVC animated:YES];
 }
 
 #pragma mark -- 跳过

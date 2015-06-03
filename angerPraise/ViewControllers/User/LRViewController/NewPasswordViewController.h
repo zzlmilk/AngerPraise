@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface NewPasswordViewController : BaseViewController<UITextFieldDelegate>
+@interface NewPasswordViewController : BaseViewController<UITextFieldDelegate,UIScrollViewDelegate>
+
+@property(nonatomic,strong) UIScrollView *scrollView;
 
 @property(nonatomic,strong) UITextField *newsPasswordTextField;
 @property(nonatomic,strong) UITextField *reNewsPasswordTextField;
+@property(nonatomic,strong) UITextField *userNameTextField;
 
 @property NSString *phoneNumberString;
 

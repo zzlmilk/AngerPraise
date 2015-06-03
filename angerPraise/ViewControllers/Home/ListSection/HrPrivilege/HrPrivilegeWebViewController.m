@@ -46,8 +46,16 @@
 
 -(void)doBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_HrPrivilegeWebView.canGoBack)
+    {
+        [_HrPrivilegeWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
+
 
 //网页 刚开始加载
 - (void)webViewDidStartLoad:(UIWebView  *)webView{
