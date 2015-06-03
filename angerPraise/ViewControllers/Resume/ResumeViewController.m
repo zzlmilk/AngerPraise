@@ -100,7 +100,7 @@
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
-    [dic setObject:@"162" forKey:@"user_id"];
+    //[dic setObject:@"162" forKey:@"user_id"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -109,9 +109,10 @@
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
         int errorCode = [e.code intValue];
+        
         if (errorCode ==40004) {
             
-            [APIClient showMessage:e.info];
+            [APIClient showInfo:e.info title:@"提示"];
             
             ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
             [self.navigationController pushViewController:importResumeVC animated:YES];

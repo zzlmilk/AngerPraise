@@ -56,7 +56,7 @@
     
     UILabel *tip3Label = [[UILabel alloc]init];
     tip3Label.frame =CGRectMake(40, tip2Label.frame.size.height+tip2Label.frame.origin.y+10, WIDTH-2*40, 25);
-    tip3Label.text = @"可以通过问答式创建的方式来告诉我们你的职位信息";
+    tip3Label.text = @"可以通过问答式创建的方式来告诉我们你的职位信息哦～";
     tip3Label.font = [UIFont fontWithName:@"Helvetica" size:14.0];
     tip3Label.textColor = [UIColor blackColor];
     tip3Label.textAlignment = NSTextAlignmentCenter;
@@ -65,21 +65,21 @@
     
     
     
-    UIButton *virtualButton = [[UIButton alloc]init];
-    virtualButton.frame = CGRectMake(80, tip3Label.frame.size.height+tip3Label.frame.origin.y+80, WIDTH - 2*80, 40);
-    [virtualButton setTitle:@"虚 拟 投 递" forState:UIControlStateNormal];
-    [virtualButton.layer setMasksToBounds:YES];
-    [virtualButton.layer setCornerRadius:40/2.0f]; //设置矩形四个圆角半径
-    [virtualButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
-    virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
-    virtualButton.layer.borderColor = RGBACOLOR(0, 203, 251, 1.0f).CGColor;
-    virtualButton.layer.borderWidth = 1.0f;
-    [virtualButton addTarget:self action:@selector(guideStatus) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:virtualButton];
+//    UIButton *virtualButton = [[UIButton alloc]init];
+//    virtualButton.frame = CGRectMake(80, tip3Label.frame.size.height+tip3Label.frame.origin.y+80, WIDTH - 2*80, 40);
+//    [virtualButton setTitle:@"虚 拟 投 递" forState:UIControlStateNormal];
+//    [virtualButton.layer setMasksToBounds:YES];
+//    [virtualButton.layer setCornerRadius:40/2.0f]; //设置矩形四个圆角半径
+//    [virtualButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
+//    virtualButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+//    virtualButton.layer.borderColor = RGBACOLOR(0, 203, 251, 1.0f).CGColor;
+//    virtualButton.layer.borderWidth = 1.0f;
+//    [virtualButton addTarget:self action:@selector(guideStatus) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:virtualButton];
     
     
     UIButton *guideButton = [[UIButton alloc]init];
-    guideButton.frame = CGRectMake(80, virtualButton.frame.size.height+virtualButton.frame.origin.y+40, WIDTH - 2*80, 40);
+    guideButton.frame = CGRectMake(80, tip3Label.frame.size.height+tip3Label.frame.origin.y+90, WIDTH - 2*80, 40);
     [guideButton setTitle:@"问 答 式 创 建" forState:UIControlStateNormal];
     [guideButton.layer setMasksToBounds:YES];
     [guideButton.layer setCornerRadius:40/2.0f]; //设置矩形四个圆角半径
@@ -92,8 +92,8 @@
     
     
     UIButton *skipButton = [[UIButton alloc]init];
-    skipButton.frame = CGRectMake(80, guideButton.frame.size.height+guideButton.frame.origin.y+40, WIDTH - 2*80, 40);
-    [skipButton setTitle:@"跳 过" forState:UIControlStateNormal];
+    skipButton.frame = CGRectMake(80, guideButton.frame.size.height+guideButton.frame.origin.y+60, WIDTH - 2*80, 40);
+    [skipButton setTitle:@"下 次 再 说" forState:UIControlStateNormal];
     [skipButton.layer setMasksToBounds:YES];
     [skipButton.layer setCornerRadius:40/2.0f]; //设置矩形四个圆角半径
     [skipButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
@@ -111,13 +111,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-#pragma mark -- 虚拟投放
--(void)guideStatus{
-    
-    GuideViewController *guidelVC = [[GuideViewController alloc]init];
-    [self.navigationController pushViewController:guidelVC animated:YES];
-}
+//
+//#pragma mark -- 虚拟投放
+//-(void)guideStatus{
+//    
+//    GuideViewController *guidelVC = [[GuideViewController alloc]init];
+//    [self.navigationController pushViewController:guidelVC animated:YES];
+//}
 
 #pragma mark -- 问答式创建
 -(void)guideImport{

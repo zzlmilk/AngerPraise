@@ -253,10 +253,12 @@
     safeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [_editView addSubview:safeButton];
     
-    
+
 
     [self getUserInfo];
+    [self refreshUserData];
 }
+
 
 //查看匹配的职位
 -(void)lookPosition{
@@ -300,44 +302,75 @@
 
 }
 
+// 每2秒 请求接口获取最新数据
+-(void)refreshUserData{
+
+    __block int timeout=86400; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),3.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                //NSLog(@"____%@",strTime);
+                
+                [self getUserInfo];
+            });
+            timeout--;
+            
+        }
+    });
+    dispatch_resume(_timer);
+    
+}
+
 -(void)getUserInfo{
 
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
     
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
     
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [User getUserInfo:dic WithBlock:^(User *user, Error *e) {
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
         
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (e.info !=nil) {
+        //    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [User getUserInfo:dic WithBlock:^(User *user, Error *e) {
             
-            [APIClient showInfo:e.info title:@"提示"];
+            //        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (e.info !=nil) {
+                
+                [APIClient showInfo:e.info title:@"提示"];
+                
+            }else{
+                
+                [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+                
+                [_waitPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url]];
+                
+                _userNameLabel.text = user.user_name;//hirelib No.11122
+                _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
+                
+                NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
+                _taskLabel.text = user.position_number;//匹配职位
+                _matchPositionLabel.text = stringInt;//剩余任务
+                
+                _walletNumberLabel.text = user.user_intergral;
+                _waitUsernameLabel.text = user.user_name;
+                
+                _hr_url = user.hr_url;
+                _pay_url = user.pay_url;
+                _user_apply_url = user.user_apply_url;
+                _user_friend_url = user.user_friend_url;
+                
+            }
             
-        }else{
-        
-            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
-            
-            [_waitPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url]];
-            
-            _userNameLabel.text = user.user_name;//hirelib No.11122
-            _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
-            
-            NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
-            _taskLabel.text = user.position_number;//匹配职位
-            _matchPositionLabel.text = stringInt;//剩余任务
-            
-            _walletNumberLabel.text = user.user_intergral;
-            _waitUsernameLabel.text = user.user_name;
-            
-            _hr_url = user.hr_url;
-            _pay_url = user.pay_url;
-            _user_apply_url = user.user_apply_url;
-            _user_friend_url = user.user_friend_url;
-        }
-        
-    }];
+        }];
     
 }
 

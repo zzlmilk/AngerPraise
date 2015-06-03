@@ -321,6 +321,7 @@
             // _tipNumberLabel.text = commentFriend.user_intergral;
             
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
+            
             _scoreLabel.text = commentFriend.synthesize_grade;
             _scoreUrlString = commentFriend.synthesize_grade_url;
             
@@ -438,18 +439,18 @@
 
 
 
-//网页 刚开始加载
-- (void)webViewDidStartLoad:(UIWebView  *)webView{
-    
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-}
-
-//网页 加载完成
-- (void)webViewDidFinishLoad:(UIWebView  *)webView{
-    
-    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-}
+////网页 刚开始加载
+//- (void)webViewDidStartLoad:(UIWebView  *)webView{
+//    
+//    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    
+//}
+//
+////网页 加载完成
+//- (void)webViewDidFinishLoad:(UIWebView  *)webView{
+//    
+//    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+//}
 
 
 - (void)didReceiveMemoryWarning {
