@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
-@interface SettingWebViewController : ViewController
+@interface SettingWebViewController : ViewController<UIWebViewDelegate>
+
+@property(nonatomic,strong)UIWebView *settingWebView;
+@property(nonatomic,strong) NSString *settingDetailUrl;
 
 @end

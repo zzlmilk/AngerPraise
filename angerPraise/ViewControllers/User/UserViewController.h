@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "EditPhotoViewController.h"
+#import "MainViewController.h"
 
-@interface UserViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface UserViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,TabBarItemSelectDelegate,UITextFieldDelegate>
 
 @property(nonatomic,strong)UITableView *userTableView;
 
@@ -37,5 +38,12 @@
 @property(nonatomic,strong)NSString *pay_url;
 @property(nonatomic,strong)NSString *user_apply_url;
 @property(nonatomic,strong)NSString *user_friend_url;
+
+
+//修改名称
+@property(nonatomic, strong)UIView *editNameView;
+
+
+@property(nonatomic,strong)UITextField *editNameTextField;
 
 @end

@@ -50,7 +50,7 @@
         
         //职位名称
         _positionNameLabel = [[UILabel alloc]init];
-        _positionNameLabel.frame = CGRectMake(0, 40, cellView.frame.size.width, 35);
+        _positionNameLabel.frame = CGRectMake(15, 40, cellView.frame.size.width-2*15, 35);
         _positionNameLabel.textColor = RGBACOLOR(20, 20, 20, 1.0F);
         _positionNameLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.f];
         _positionNameLabel.text = @"软件工程师";

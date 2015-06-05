@@ -13,6 +13,8 @@
 #import "SMS_MBProgressHUD.h"
 #import "MJRefresh.h"
 #import "ApIClient.h"
+#import "ImportResumeViewController.h"
+
 
 @interface PositionViewController ()
 
@@ -24,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _page = 1;
+    //_page = 1;
     
     _positionTableView = [[UITableView alloc]init];
     _positionTableView.frame = CGRectMake(0,0, WIDTH,HEIGHT);
@@ -36,13 +38,13 @@
     
     [self getPositionInfo];
 
-    __block PositionViewController *controller = self;
-    [_positionTableView addLegendFooterWithRefreshingBlock:^{
-        // 进入刷新状态后会自动调用这个block
-
-        [controller getMorePositionInfo];
-
-    }];
+//    __block PositionViewController *controller = self;
+//    [_positionTableView addLegendFooterWithRefreshingBlock:^{
+//        // 进入刷新状态后会自动调用这个block
+//
+//        [controller getMorePositionInfo];
+//
+//    }];
     
     
     _tipView = [[UIView alloc]init];
@@ -113,6 +115,16 @@
     [_searchView addGestureRecognizer:oneFingerSwipeUp];
  
 }
+
+#pragma mark TabBarItemSelectDelegate 方法
+-(void)positionItemSelected{
+
+    [self getPositionInfo];
+    
+}
+-(void)homeItemSelected{};
+-(void)userItemSelected{};
+-(void)resumeItemSelected{};
 
 
 #pragma mark -- 手势事件监听
@@ -255,10 +267,8 @@
 //获取推荐职位列表
 -(void)getPositionInfo{
 
-    _pageString =  [[NSString alloc] initWithFormat:@"%d",_page];
+    //_pageString =  [[NSString alloc] initWithFormat:@"%d",_page];
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:@"PHP" forKey:@"keyword"];
-    [dic setObject:_pageString forKey:@"page"];
     [dic setObject:@"1" forKey:@"type"];
     NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
 
@@ -268,11 +278,18 @@
 
     [Position getPositionList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
 
-        if (e.info !=nil) {
+        [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
+
+        int errorCode = [e.code intValue];
+        
+        if (errorCode ==40004) {
             
             [APIClient showInfo:e.info title:@"提示"];
             
-        }else{
+            ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
+            [self.navigationController pushViewController:importResumeVC animated:YES];
+            
+        }else if(positionArray.count >0){
             
             NSUserDefaults *recommendPosition= [[NSUserDefaults alloc]init];
         
@@ -283,44 +300,43 @@
             [recommendPosition removeObjectForKey:@"recommendPosition"];
             
             _positionListArray = positionArray;
-            [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
             [_positionTableView reloadData];
             
             [self tipAnimation];//显示推荐职位数量
         }
     }];
     
-    _page++;
+    //_page++;
 
 }
 
-//职位列表 上提 加载更多
--(void)getMorePositionInfo{
-    
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-    
-    _pageString =  [[NSString alloc] initWithFormat:@"%d",_page];
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:@"PHP" forKey:@"keyword"];
-    [dic setObject:_pageString forKey:@"page"];
-    [dic setObject:@"1" forKey:@"type"];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
-    
-     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [Position getPositionList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
-        
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        [_positionListArray addObjectsFromArray:positionArray];
-        
-        [_positionTableView reloadData];
-        
-    }];
-    
-    _page++;
-    
-}
+////职位列表 上提 加载更多
+//-(void)getMorePositionInfo{
+//    
+//    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+//    
+//    _pageString =  [[NSString alloc] initWithFormat:@"%d",_page];
+//    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+//    [dic setObject:@"PHP" forKey:@"keyword"];
+//    [dic setObject:_pageString forKey:@"page"];
+//    [dic setObject:@"1" forKey:@"type"];
+//    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+//    
+//     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    
+//    [Position getPositionList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
+//        
+//        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+//        
+//        [_positionListArray addObjectsFromArray:positionArray];
+//        
+//        [_positionTableView reloadData];
+//        
+//    }];
+//    
+//    _page++;
+//    
+//}
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

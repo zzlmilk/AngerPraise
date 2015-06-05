@@ -19,6 +19,7 @@
     _synthesize_grade_url =[dic objectForKey: @"synthesize_grade_url"];
     _today_award_total =[dic objectForKey: @"today_award_total"];
     _today_receive_award =[dic objectForKey: @"today_receive_award"];
+    _interview_number =[dic objectForKey: @"interview_number"];
     
     //friend_list
     if ([dic objectForKey:@"friend_list"]) {
@@ -42,6 +43,7 @@
     
 }
 
+//获取首页数据信息
 +(NSURLSessionDataTask *)getCommentFriendList:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block{
 
     return [[APIClient sharedClient]GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -72,5 +74,74 @@
     }];
 
 }
+
+
+//Hr 接口数据
++(NSURLSessionDataTask *)getHrReviewInfo:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block{
+
+    return [[APIClient sharedClient]GET:@"home/hr_interview" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        // NSLog(@"%@",responseObject);
+        
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"code"] objectForKey:@"error"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            CommentFriend *c;
+            block(c,error);
+            
+        }else{
+            
+            CommentFriend *c = [[CommentFriend alloc]initWithDic:responseObject];
+            
+            block(c,nil);
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        
+    }];
+    
+    
+}
+
+
+
+//点评成功后 重新获取 金币和 综合评分
++(NSURLSessionDataTask *)reviewSuccess:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block{
+    
+    return [[APIClient sharedClient]GET:@"home/indexs" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        // NSLog(@"%@",responseObject);
+        
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"code"] objectForKey:@"error"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            CommentFriend *c;
+            block(c,error);
+            
+        }else{
+            
+            CommentFriend *c = [[CommentFriend alloc]initWithDic:responseObject];
+            
+            block(c,nil);
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        
+    }];
+    
+}
+
 
 @end

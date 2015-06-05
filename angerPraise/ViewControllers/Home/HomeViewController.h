@@ -12,7 +12,7 @@
 #import "WXApiObject.h"
 #import "SMS_MBProgressHUD.h"
 #import "VWWWaterView.h"
-
+#import "MainViewController.h"
 
 @interface HomeViewController : BaseViewController<UIWebViewDelegate,PagedFlowViewDataSource,PagedFlowViewDelegate,MBProgressHUDDelegate>
 {
@@ -33,6 +33,7 @@ enum WXScene _scene;
 @property(nonatomic,strong)UIView *titleView;
 
 @property(nonatomic,strong)UIScrollView *scrollView;
+@property(nonatomic,strong)UIImageView *scoreImageView;
 
 @property(nonatomic,strong)UIWebView *homeWebView;
 @property(nonatomic,strong)NSString *urlString;
@@ -47,6 +48,8 @@ enum WXScene _scene;
 @property(nonatomic,strong)NSMutableArray *imgArray;
 @property(nonatomic,strong)NSMutableArray *commondUrlArray;
 
+@property(nonatomic,strong)UITapGestureRecognizer* singleTap;
+
 @property float waterHeight;
 
 @property(nonatomic,strong)VWWWaterView *waterView;
@@ -57,8 +60,10 @@ enum WXScene _scene;
 @property(nonatomic,strong)UIButton *weixinButton;
 @property(nonatomic,strong)UIButton *momentButton;
 
+@property  int isString;
 
-
+@property int intInterviewNumber;
+@property int addPage;
 @property(nonatomic,strong)NSString *shareTitle;
 @property(nonatomic,strong)NSString *shareContent;
 

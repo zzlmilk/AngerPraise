@@ -7,6 +7,9 @@
 //
 
 #import "EditNameViewController.h"
+#import "User.h"
+#import "ApIClient.h"
+#import "UserViewController.h"
 
 @interface EditNameViewController ()
 
@@ -64,8 +67,48 @@
 #pragma mark -- 键盘 return
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    
+    [self userUpdateNickname];
     return YES;
+    
+}
+
+
+-(void)userUpdateNickname{
+    
+    NSUInteger pLength = 1;
+    
+    if (_editNameTextField.text.length < pLength) {
+        
+        [APIClient showMessage:@"亲，新名称不能为空哟～"];
+
+    }else{
+        
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+        
+        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        [dic setObject:_editNameTextField.text forKey:@"nickname"];
+        
+        [User userUpdateNickname:dic WithBlock:^(User *user, Error *e) {
+            
+            if (e.info !=nil) {
+                
+                [APIClient showInfo:e.info title:@"提示"];
+                
+            }else{
+                
+                int intRes = [user.res intValue];
+                if (intRes == 1) {
+                    [APIClient showSuccess:@"昵称修改成功" title:@"成功"];
+                    
+                    [self doBack];
+                }
+
+            }
+            
+        }];
+    
+    }
     
 }
 

@@ -82,7 +82,7 @@
     forgetPasswordButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     forgetPasswordButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
     [forgetPasswordButton setTitleColor:RGBACOLOR(0, 199, 255, 1.0f) forState:UIControlStateNormal];
-    [self.view addSubview:forgetPasswordButton];
+    //[self.view addSubview:forgetPasswordButton];
     
     
 }

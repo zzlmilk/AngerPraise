@@ -48,8 +48,8 @@
         if ([responseObject objectForKeyedSubscript:@"error"]) {
             
             Error *error = [[Error alloc]init];
-            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"error"];
-            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"error_status"];
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
             
             NSMutableArray *p;
             

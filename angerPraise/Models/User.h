@@ -23,6 +23,13 @@
 //获取 user模块信息
 +(NSURLSessionDataTask *)getUserInfo:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
 
+//修改名称
++(NSURLSessionDataTask *)userUpdateNickname:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
+
+//修改密码
++(NSURLSessionDataTask *)userUpdatePassword:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
+
+
 @property(nonatomic,strong)NSString *hirelib_code;
 @property(nonatomic,strong)NSString *photo_url;
 @property(nonatomic,strong)NSString *hr_url;
@@ -33,7 +40,6 @@
 @property(nonatomic,strong)NSString *user_intergral;
 @property(nonatomic,strong)NSString *user_name;
 @property(nonatomic,strong)NSString *user_resume_synthesize_grade;
-
 
 @property(nonatomic,strong)NSString *mission_number;
 @end

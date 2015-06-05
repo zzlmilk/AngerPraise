@@ -257,7 +257,7 @@
                 [APIClient showMessage:e.info];
             }else{
                 
-                [APIClient showMessage:@"初始密码已发送,请注意查收"];
+                [APIClient showMessage:@"怒赞码已发射成功～"];
                 NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
                 [userId setObject:initPassword.user_id forKey:@"userId"];
             
