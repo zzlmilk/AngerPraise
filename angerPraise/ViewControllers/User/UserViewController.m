@@ -26,7 +26,7 @@
 #import "WalletWebViewController.h"
 #import "MyFriendWebViewController.h"
 #import "CollectWebViewController.h"
-#import "HrWebViewController.h"
+#import "HrWebViewCon                           `````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````   ```````````````troller.h"
 
 #import "SMS_MBProgressHUD.h"
 
