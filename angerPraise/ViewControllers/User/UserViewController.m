@@ -46,55 +46,52 @@
     
     self.view.backgroundColor = RGBACOLOR(48, 47, 53, 1.0f);
 
-    UIView *cardView = [[UIView alloc]init];
-    cardView.frame = CGRectMake(0, 0, WIDTH, 0.44*HEIGHT+10);
-    cardView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
-    [self.view addSubview:cardView];
+    _cardView = [[UIView alloc]init];
+    _cardView.frame = CGRectMake(0, 0, WIDTH, 0.44*HEIGHT+5);
+    _cardView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    [self.view addSubview:_cardView];
     
     _userPhotoImageView = [[UIImageView alloc]init];
-    [_userPhotoImageView setImage:[UIImage imageNamed:@"touxiang"]];
+    [_userPhotoImageView setImage:[UIImage imageNamed:@"Icon"]];
     _userPhotoImageView.userInteractionEnabled = YES;
     _userPhotoImageView.backgroundColor = [UIColor clearColor];
-    _userPhotoImageView.frame = CGRectMake((WIDTH-100)/2, 30, 100, 100);
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showEditPersonInfoView)];
+    _userPhotoImageView.frame = CGRectMake((WIDTH-100)/2, 20, 100, 100);
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickImageView)];
     _userPhotoImageView.layer.masksToBounds = YES;
     _userPhotoImageView.layer.cornerRadius = 50;
     [_userPhotoImageView addGestureRecognizer:singleTap];
-    [cardView addSubview:_userPhotoImageView];
+    [_cardView addSubview:_userPhotoImageView];
     
-    _userNameLabel = [[UILabel alloc]init];
-    _userNameLabel.frame = CGRectMake(100, _userPhotoImageView.frame.size.height+_userPhotoImageView.frame.origin.y, WIDTH-2*100, 35);
-    _userNameLabel.backgroundColor = [UIColor clearColor];
-    _userNameLabel.text = @"Allen Zhu";
-    _userNameLabel.textAlignment = NSTextAlignmentCenter;
-    [_userNameLabel setFont:[UIFont fontWithName:@"Helvetica" size:17.f]];
-    _userNameLabel.textColor = RGBACOLOR(0, 204, 252, 1.0f);
-    _userNameLabel.backgroundColor = [UIColor clearColor];
-    [cardView addSubview:_userNameLabel];
-    
-    UIButton *showEditViewButton = [[UIButton alloc]init];
-    showEditViewButton.frame = _userNameLabel.frame;
-    [showEditViewButton addTarget:self action:@selector(showEditPersonInfoView) forControlEvents:UIControlEventTouchUpInside];
-    [cardView addSubview:showEditViewButton];
+    _userNameButton = [[UIButton alloc]init];
+    _userNameButton.frame =CGRectMake(100, _userPhotoImageView.frame.size.height+_userPhotoImageView.frame.origin.y+5, WIDTH-2*100, 35);
+    [_userNameButton setTitle:@"Allen Zhu" forState:UIControlStateNormal];
+    [_userNameButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
+    [_userNameButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f) forState:UIControlStateHighlighted];
+    _userNameButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _userNameButton.backgroundColor = [UIColor clearColor];
+    _userNameButton.titleLabel.font = [UIFont systemFontOfSize: 17.0];
+    [_userNameButton addTarget:self action:@selector(showEditPersonInfoView) forControlEvents:UIControlEventTouchUpInside];
+    [_cardView addSubview:_userNameButton];
+
     
     _hirelibNumberLabel = [[UILabel alloc]init];
-    _hirelibNumberLabel.frame = CGRectMake(0, _userNameLabel.frame.size.height+_userNameLabel.frame.origin.y-5, WIDTH, 20);
+    _hirelibNumberLabel.frame = CGRectMake(0, _userNameButton.frame.size.height+_userNameButton.frame.origin.y-5, WIDTH, 20);
     _hirelibNumberLabel.backgroundColor = [UIColor clearColor];
     _hirelibNumberLabel.text = @"hirelib No.000000";
     _hirelibNumberLabel.textAlignment = NSTextAlignmentCenter;
     [_hirelibNumberLabel setFont:[UIFont fontWithName:@"Helvetica" size:14.f]];
     _hirelibNumberLabel.textColor = RGBACOLOR(82, 82, 82, 1.0f);
-    [cardView addSubview:_hirelibNumberLabel];
+    [_cardView addSubview:_hirelibNumberLabel];
     
     
     
     _matchPositionLabel = [[UILabel alloc]init];
-    _matchPositionLabel.frame = CGRectMake(55, _hirelibNumberLabel.frame.origin.y+_hirelibNumberLabel.frame.size.height+20, WIDTH-2*50-10, 35);
+    _matchPositionLabel.frame = CGRectMake(55, _hirelibNumberLabel.frame.origin.y+_hirelibNumberLabel.frame.size.height+12, WIDTH-2*50-10, 35);
     _matchPositionLabel.backgroundColor = [UIColor clearColor];
     _matchPositionLabel.textColor = RGBACOLOR(0,204,252,1.0f);
     _matchPositionLabel.text= @"0";
     _matchPositionLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
-    [cardView addSubview:_matchPositionLabel];
+    [_cardView addSubview:_matchPositionLabel];
     
     UILabel *matchPositionTitleLabel = [[UILabel alloc]init];
     matchPositionTitleLabel.frame = CGRectMake(40, _matchPositionLabel.frame.origin.y+_matchPositionLabel.frame.size.height-12, WIDTH-2*40, 35);
@@ -102,7 +99,7 @@
     matchPositionTitleLabel.textColor = RGBACOLOR(100,100,100,1.0f);
     matchPositionTitleLabel.text= @"剩余任务";
     matchPositionTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
-    [cardView addSubview:matchPositionTitleLabel];
+    [_cardView addSubview:matchPositionTitleLabel];
     
     
 //    _synthesisScoreLabel = [[UILabel alloc]init];
@@ -132,7 +129,7 @@
     _taskLabel.text= @"0";
     _taskLabel.textAlignment = NSTextAlignmentRight;
     _taskLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
-    [cardView addSubview:_taskLabel];
+    [_cardView addSubview:_taskLabel];
     
     UILabel *taskNumberTitleLabel = [[UILabel alloc]init];
     taskNumberTitleLabel.frame = matchPositionTitleLabel.frame;
@@ -141,21 +138,22 @@
     taskNumberTitleLabel.text= @"匹配职位";
     taskNumberTitleLabel.textAlignment = NSTextAlignmentRight;
     taskNumberTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
-    [cardView addSubview:taskNumberTitleLabel];
+    [_cardView addSubview:taskNumberTitleLabel];
     
     
-    UIButton *taskButton = [[UIButton alloc]init];
-    taskButton.frame =CGRectMake(10, _matchPositionLabel.frame.origin.y, WIDTH/2-20, 100);
-    [taskButton addTarget:self action:@selector(lookTask) forControlEvents:UIControlEventTouchUpInside];
-    taskButton.backgroundColor = [UIColor clearColor];
-    [cardView addSubview:taskButton];
+    _taskButton = [[UIButton alloc]init];
+    _taskButton.frame =CGRectMake(10, _matchPositionLabel.frame.origin.y, WIDTH/2-20, 100);
+    [_taskButton addTarget:self action:@selector(lookTask) forControlEvents:UIControlEventTouchUpInside];
+    //_taskButton.backgroundColor = RGBACOLOR(190, 231, 214, 0.5);
+    _taskButton.backgroundColor = [UIColor clearColor];
+    [_cardView addSubview:_taskButton];
     
     
     UIButton *positionButton = [[UIButton alloc]init];
-    positionButton.frame = CGRectMake(taskButton.frame.origin.x+taskButton.frame.size.width+10, _matchPositionLabel.frame.origin.y, WIDTH/2-10, 100);
+    positionButton.frame = CGRectMake(_taskButton.frame.origin.x+_taskButton.frame.size.width+10, _matchPositionLabel.frame.origin.y, WIDTH/2-10, 100);
     positionButton.backgroundColor = [UIColor clearColor];
     [positionButton addTarget:self action:@selector(lookPosition) forControlEvents:UIControlEventTouchUpInside];
-    [cardView addSubview:positionButton];
+    [_cardView addSubview:positionButton];
 
     
     NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
@@ -165,16 +163,16 @@
     if ([_user_type isEqualToString:@"0"]) {  // 不是hr
 
         _modelListArray = [[NSArray alloc]initWithObjects:
-                           @"钱包",@"投递记录和收藏",@"我的好友",nil];
+                           @"钱包",@"投递记录和收藏",@"我的好友",@"设置",nil];
         
     }else{
         
         _modelListArray = [[NSArray alloc]initWithObjects:
-                           @"钱包",@"投递记录和收藏",@"我的好友",@"激活HR特权？",nil];
+                           @"钱包",@"投递记录和收藏",@"我的好友",@"激活HR特权？",@"设置",nil];
     }
 
     _userTableView = [[UITableView alloc]init];
-    _userTableView.frame = CGRectMake(0,cardView.frame.size.height+cardView.frame.origin.y, WIDTH,HEIGHT);
+    _userTableView.frame = CGRectMake(0,_cardView.frame.size.height+_cardView.frame.origin.y, WIDTH,HEIGHT);
     _userTableView.delegate = self;
     _userTableView.dataSource = self;
     _userTableView.scrollEnabled = NO;
@@ -199,30 +197,33 @@
     [_backBtn addTarget:self action:@selector(hideView)forControlEvents:UIControlEventTouchUpInside];
     [_editView addSubview:_backBtn];
     
-    
-    _waitPhotoImageView = [[UIImageView alloc]init];
-//    _waitPhotoImageView.frame = CGRectMake(_userPhotoImageView.frame.origin.x, _userPhotoImageView.frame.origin.y+30, _userPhotoImageView.frame.size.width, _userPhotoImageView.frame.size.height);
-    _waitPhotoImageView.frame = _userPhotoImageView.frame;
-    _waitPhotoImageView.layer.masksToBounds = YES;
-    _waitPhotoImageView.layer.cornerRadius = 50;
-    [_editView addSubview:_waitPhotoImageView];
-
-    
-    UIButton *editPhotoButton = [[UIButton alloc]init];
-    editPhotoButton.frame =CGRectMake(0, _waitPhotoImageView.frame.size.height+_waitPhotoImageView.frame.origin.y+30, WIDTH, 60);
-    [editPhotoButton setTitle:@"修改头像" forState:UIControlStateNormal];
-    [editPhotoButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
-    editPhotoButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
-    editPhotoButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
-    [editPhotoButton addTarget:self action:@selector(onClickImageView) forControlEvents:UIControlEventTouchUpInside];
-    editPhotoButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [_editView addSubview:editPhotoButton];
+//    
+//    _waitPhotoImageView = [[UIImageView alloc]init];
+////    _waitPhotoImageView.frame = CGRectMake(_userPhotoImageView.frame.origin.x, _userPhotoImageView.frame.origin.y+30, _userPhotoImageView.frame.size.width, _userPhotoImageView.frame.size.height);
+//    _waitPhotoImageView.frame = _userPhotoImageView.frame;
+//    _waitPhotoImageView.layer.masksToBounds = YES;
+//    _waitPhotoImageView.layer.cornerRadius = 50;
+//    [_editView addSubview:_waitPhotoImageView];
+//
+//    
+//    UIButton *editPhotoButton = [[UIButton alloc]init];
+//    editPhotoButton.frame =CGRectMake(0, _waitPhotoImageView.frame.size.height+_waitPhotoImageView.frame.origin.y+30, WIDTH, 60);
+//    [editPhotoButton setTitle:@"修改头像" forState:UIControlStateNormal];
+//    [editPhotoButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
+//    [editPhotoButton setTitleColor:btnHighlightedColor forState:UIControlStateHighlighted];
+//    [editPhotoButton setBackgroundImage:[UIImage imageNamed:@"0cell_bg"] forState:UIControlStateHighlighted];
+//    editPhotoButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
+//    editPhotoButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
+//    [editPhotoButton addTarget:self action:@selector(onClickImageView) forControlEvents:UIControlEventTouchUpInside];
+//    editPhotoButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    [_editView addSubview:editPhotoButton];
     
     UIButton *editNameButton = [[UIButton alloc]init];
-    editNameButton.frame =CGRectMake(0, editPhotoButton.frame.size.height+editPhotoButton.frame.origin.y, WIDTH, 60);
+    editNameButton.frame =CGRectMake(0, _backBtn.frame.size.height+_backBtn.frame.origin.y+65, WIDTH, 60);
     [editNameButton setTitle:@"修改昵称" forState:UIControlStateNormal];
     [editNameButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
-    editNameButton.backgroundColor = [UIColor clearColor];
+    [editNameButton setTitleColor:btnHighlightedColor forState:UIControlStateHighlighted];
+    [editNameButton setBackgroundImage:[UIImage imageNamed:@"0cell_bg"] forState:UIControlStateHighlighted];
     editNameButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
     editNameButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
     [editNameButton addTarget:self action:@selector(editNameAction) forControlEvents:UIControlEventTouchUpInside];
@@ -240,26 +241,14 @@
     editPasswordButton.frame =CGRectMake(0, editNameButton.frame.size.height+editNameButton.frame.origin.y, WIDTH, 60);
     [editPasswordButton setTitle:@"修改密码" forState:UIControlStateNormal];
     [editPasswordButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
+    [editPasswordButton setTitleColor:btnHighlightedColor forState:UIControlStateHighlighted];
+    [editPasswordButton setBackgroundImage:[UIImage imageNamed:@"0cell_bg"] forState:UIControlStateHighlighted];
     editPasswordButton.backgroundColor = [UIColor clearColor];
     editPasswordButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
     editPasswordButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
     [editPasswordButton addTarget:self action:@selector(editPasswordAction) forControlEvents:UIControlEventTouchUpInside];
     editPasswordButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [_editView addSubview:editPasswordButton];
-    
-    
-    UIButton *safeButton = [[UIButton alloc]init];
-    safeButton.frame =CGRectMake(0, editPasswordButton.frame.size.height+editPasswordButton.frame.origin.y, WIDTH, 60);
-    [safeButton setTitle:@"安全隐私" forState:UIControlStateNormal];
-    [safeButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
-    safeButton.backgroundColor = [UIColor clearColor];
-    safeButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
-    safeButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
-    [safeButton addTarget:self action:@selector(safeAction) forControlEvents:UIControlEventTouchUpInside];
-    safeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [_editView addSubview:safeButton];
-    
-    
     
     
     
@@ -303,6 +292,7 @@
     
     
     [self getUserInfo];
+    [self timer];
 }
 
 #pragma mark -- 键盘 return
@@ -328,9 +318,9 @@
     }else{
         
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
         
-        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
         [dic setObject:_editNameTextField.text forKey:@"nickname"];
         
         [User userUpdateNickname:dic WithBlock:^(User *user, Error *e) {
@@ -347,7 +337,7 @@
                     
                     [_editNameTextField becomeFirstResponder];
                     _waitUsernameLabel.text = _editNameTextField.text;
-                    _userNameLabel.text = _editNameTextField.text;
+                    [_userNameButton setTitle:_editNameTextField.text forState:UIControlStateNormal];
                     [self hideEditnameView];
                 }
                 
@@ -359,7 +349,6 @@
     
 }
 
-
 #pragma mark 隐藏编辑姓名的界面
 -(void)hideEditnameView{
 
@@ -367,15 +356,6 @@
     [_editNameTextField resignFirstResponder];
 
 }
-
-#pragma mark TabBarItemSelectDelegate 方法
-- (void)userItemSelected{
-
-    [self getUserInfo];
-}
--(void)homeItemSelected{};
--(void)positionItemSelected{};
--(void)resumeItemSelected{};
 
 #pragma mark 查看匹配的职位
 -(void)lookPosition{
@@ -396,7 +376,6 @@
 //    EditNameViewController *editName = [[EditNameViewController alloc]init];
 //    editName.editNameString = _userNameLabel.text;
 //    [self.navigationController pushViewController:editName animated:YES];
-    
     
     _editNameView.hidden = NO;
     [_editNameTextField becomeFirstResponder];
@@ -422,13 +401,16 @@
 #pragma mark  获取 user 模块的用户基本信息
 -(void)getUserInfo{
     
-        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
         
-        //    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [User getUserInfo:dic WithBlock:^(User *user, Error *e) {
+        [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+        [User getUserInfoData:dic WithBlock:^(User *user, Error *e) {
+            
+        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
 
             if (e.info !=nil) {
                 
@@ -440,7 +422,7 @@
                 
                 [_waitPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url]];
                 _editNameTextField.text = user.user_name;
-                _userNameLabel.text = user.user_name;//hirelib No.11122
+                [_userNameButton setTitle:user.user_name forState:UIControlStateNormal];
                 _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
                 
                 NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
@@ -458,6 +440,65 @@
             }
             
         }];
+}
+
+#pragma mark 使用计时器 更新剩余任务数
+-(void)timer{
+
+    __block int timeout=12*3600; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),2.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                
+            });
+        }else{
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                //NSLog(@"____%@",strTime);
+                
+                [self getUserMissionNumber];
+                
+            });
+            timeout--;
+            
+        }
+    });
+    dispatch_resume(_timer);
+    
+}
+
+#pragma mark  获取 user 剩余任务数
+-(void)getUserMissionNumber{
+    
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    
+    if ([token objectForKey:@"token"] !=nil) {
+        
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        
+        [User getUserMissionNumber:dic WithBlock:^(User *user, Error *e) {
+            
+            if (e.info !=nil) {
+                
+                [APIClient showInfo:e.info title:@"提示"];
+                
+            }else{
+                
+                NSString *stringInt = [NSString stringWithFormat:@"%@",user.missionNumber];
+                _matchPositionLabel.text = stringInt;//剩余任务
+                
+            }
+            
+        }];
+
+    }
     
 }
 
@@ -474,7 +515,7 @@
     self.tabBarController.tabBar.hidden = YES;
     _backBtn.hidden = NO;
     _editView.hidden = NO;
-    
+
 }
 
 
@@ -486,10 +527,10 @@
     // 判断是否支持相机
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        sheet  = [[UIActionSheet alloc] initWithTitle:@"设置头像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从相册选择",nil];
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"设置头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择",nil];
     }else {
         
-        sheet = [[UIActionSheet alloc] initWithTitle:@"设置头像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"从相册选择", nil];
+        sheet = [[UIActionSheet alloc] initWithTitle:@"设置头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
     }
     sheet.tag = 255;
     [sheet showInView:self.view];
@@ -507,14 +548,16 @@
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             switch (buttonIndex) {
                 case 0:
-                    // 取消
-                    return;
-                case 1:
                     sourceType = UIImagePickerControllerSourceTypeCamera;
                     break;
-                case 2:
+                case 1:
                     // 相册
                     sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+                case 2:
+                    // 取消
+                    return;
+                    
                     break;
             }
             
@@ -524,11 +567,12 @@
             
             if (buttonIndex == 0) {
                 
-                return;
+               sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+
                 
             } else {
                 
-                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                 return;
                 
             }
             
@@ -595,8 +639,8 @@
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     [dic setObject:imageData forKey:@"imageData"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -622,7 +666,7 @@
 #pragma mark -- UITableView height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 55.f;
+    return 52.f;
 }
 
 #pragma mark -- UITableView cell 个数
@@ -631,13 +675,14 @@
     
     if ([_user_type isEqualToString:@"0"]) {  //不是 hr
         
-        return 3;
+        return 4;
         
     }else{
         
-        return 4;
+        return 5;
     }
 }
+
 
 #pragma mark -- UITableView dataSource
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -653,36 +698,79 @@
     }  
     
     // Configure the cell.
-    if(indexPath.row == 0)
-    {
     
-        cell.imageView.image = [UIImage imageNamed:@"0userwallet1"];
-        
-        _walletNumberLabel = [[UILabel alloc]init];
-        _walletNumberLabel.frame = CGRectMake(WIDTH-50-20, 10, 50, 30);
-        _walletNumberLabel.text = @"1000";
-        _walletNumberLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
-        _walletNumberLabel.backgroundColor = [UIColor clearColor];
-        _walletNumberLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
-        [cell addSubview:_walletNumberLabel];
-        
-        
-    }else if (indexPath.row == 1)
-    {
-        cell.imageView.image = [UIImage imageNamed:@"0usermap1"];
-        
-    }else if(indexPath.row == 2){
-        
-        cell.imageView.image = [UIImage imageNamed:@"0userfriend1"];
+    if ([_user_type isEqualToString:@"0"]) { //  不是hr
+        if(indexPath.row == 0)
+        {
+            
+            cell.imageView.image = [UIImage imageNamed:@"0userwallet1"];
+            cell.imageView.highlightedImage = [UIImage imageNamed:@"0userwallet2"];
+            
+            _walletNumberLabel = [[UILabel alloc]init];
+            _walletNumberLabel.frame = CGRectMake(WIDTH-50-20, 10, 50, 30);
+            _walletNumberLabel.text = @"1000";
+            _walletNumberLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
+            _walletNumberLabel.backgroundColor = [UIColor clearColor];
+            _walletNumberLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
+            [cell addSubview:_walletNumberLabel];
+            
+            
+        }else if (indexPath.row == 1)
+        {
+            cell.imageView.image = [UIImage imageNamed:@"0usermap1"];
+            cell.imageView.highlightedImage = [UIImage imageNamed:@"0usermap2"];
+            
+        }else if(indexPath.row == 2){
+            
+            cell.imageView.image = [UIImage imageNamed:@"0userfriend1"];
+            cell.imageView.highlightedImage = [UIImage imageNamed:@"0userfriend2"];
+            
+        }else if (indexPath.row ==3){
+            
+            cell.imageView.image = [UIImage imageNamed:@"0usersetting1"];
+            cell.imageView.highlightedImage = [UIImage imageNamed:@"0usersetting2"];
+            
+        }
 
-    }else if (indexPath.row ==3){
-    
-        cell.imageView.image = [UIImage imageNamed:@"0userhr1"];
         
-    }else if(indexPath.row ==4){
+    }else{ // 是HR
     
-     cell.imageView.image = [UIImage imageNamed:@"0usersetting1"];
-        
+        if(indexPath.row == 0)
+        {
+            
+            cell.imageView.image = [UIImage imageNamed:@"0userwallet1"];
+            cell.imageView.highlightedImage = [UIImage imageNamed:@"0userwallet2"];
+            
+            _walletNumberLabel = [[UILabel alloc]init];
+            _walletNumberLabel.frame = CGRectMake(WIDTH-50-20, 10, 50, 30);
+            _walletNumberLabel.text = @"1000";
+            _walletNumberLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
+            _walletNumberLabel.backgroundColor = [UIColor clearColor];
+            _walletNumberLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
+            [cell addSubview:_walletNumberLabel];
+            
+            
+        }else if (indexPath.row == 1)
+        {
+            cell.imageView.image = [UIImage imageNamed:@"0usermap1"];
+            cell.imageView.highlightedImage = [UIImage imageNamed:@"0usermap2"];
+            
+        }else if(indexPath.row == 2){
+            
+            cell.imageView.image = [UIImage imageNamed:@"0userfriend1"];
+            cell.imageView.highlightedImage = [UIImage imageNamed:@"0userfriend2"];
+            
+        }else if (indexPath.row ==3){
+            
+            cell.imageView.image = [UIImage imageNamed:@"0userhr1"];
+            cell.imageView.highlightedImage = [UIImage imageNamed:@"0userhr2"];
+            
+        }else if(indexPath.row ==4){
+            
+            cell.imageView.image = [UIImage imageNamed:@"0usersetting1"];
+            cell.imageView.highlightedImage = [UIImage imageNamed:@"0usersetting2"];
+        }
+
     }
     
     
@@ -734,7 +822,12 @@
                 [self.navigationController pushViewController:myFriendWebVC animated:YES];
             }
                 break;
-
+            case 3: //设置
+            {
+                SettingViewController *settingVC = [[SettingViewController alloc]init];
+                [self.navigationController pushViewController:settingVC animated:YES];
+            }
+                break;
 
                 
             default:
@@ -764,6 +857,7 @@
                 myFriendWebVC.myFriendUrl = _user_friend_url;
                 [self.navigationController pushViewController:myFriendWebVC animated:YES];
             }
+                break;
             case 3://HR特权
             {
                 HrWebViewController *hrWebVC = [[HrWebViewController alloc]init];
@@ -773,7 +867,12 @@
                 //                [self.navigationController pushViewController:isOrNoHrVC animated:YES];
             }
                 break;
-                
+            case 4: //设置
+            {
+                SettingViewController *settingVC = [[SettingViewController alloc]init];
+                [self.navigationController pushViewController:settingVC animated:YES];
+            }
+                break;
                 
             default:
                 break;

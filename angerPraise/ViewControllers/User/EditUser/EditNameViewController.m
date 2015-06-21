@@ -84,9 +84,9 @@
     }else{
         
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
         
-        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
         [dic setObject:_editNameTextField.text forKey:@"nickname"];
         
         [User userUpdateNickname:dic WithBlock:^(User *user, Error *e) {

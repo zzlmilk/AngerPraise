@@ -31,16 +31,17 @@
     }else{
         
         _res = [dic objectForKey:@"res"];
-    
+        
     }
     
-    
+    _missionNumber =[dic objectForKeyedSubscript:@"mission_number"];
+
     return self;
     
 }
 
 //获取 我的模块 信息
-+(NSURLSessionDataTask *)getUserInfo:(NSDictionary *)parameters WithBlock:(void (^)(User *, Error *))block{
++(NSURLSessionDataTask *)getUserInfoData:(NSDictionary *)parameters WithBlock:(void (^)(User *, Error *))block{
 
     return [[APIClient sharedClient]GET:@"user/info" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -172,6 +173,39 @@
     }];
     
 }
+
+//获取剩余任务数
++(NSURLSessionDataTask *)getUserMissionNumber:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
+
+    return [[APIClient sharedClient]GET:@"user/mission" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        //NSLog(@"%@",responseObject);
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"code"] objectForKey:@"error"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            User *u;
+            block(u,error);
+            
+        }else{
+            
+            User *u = [[User alloc]initWithDic:responseObject];
+            
+            block(u,nil);
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        
+    }];
+
+
+}
+
 
 
 @end

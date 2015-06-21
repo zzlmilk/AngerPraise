@@ -93,7 +93,7 @@
 //    [userId setObject:login.user_id forKey:@"userId"];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:@"1" forKey:@"user_id"];
+    [dic setObject:@"1" forKey:@"token"];
     
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];

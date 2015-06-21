@@ -190,9 +190,9 @@
     }else{
     
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
         
-        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
         [dic setObject:_oldPasswordTextField.text forKey:@"old_password"];
         [dic setObject:_editNewPasswordTextField.text forKey:@"new_password"];
         [dic setObject:_reEditNewPasswordTextField.text forKey:@"repeat_password"];

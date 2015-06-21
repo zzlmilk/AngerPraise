@@ -12,6 +12,7 @@
 #import "ApIClient.h"
 #import "Register.h"
 #import "MainViewController.h"
+#import "SMS_MBProgressHUD.h"
 
 @interface NewPasswordViewController ()
 
@@ -155,7 +156,8 @@
         
         [_scrollView setContentOffset:CGPointMake(0, 20) animated:YES];
 
-    }else if(textField.tag ==123){
+    }
+    if(textField.tag ==123){
         
         [_scrollView setContentOffset:CGPointMake(0, 60) animated:YES];
         
@@ -172,7 +174,7 @@
     if (_newsPasswordTextField.text.length < pLength &&_reNewsPasswordTextField.text.length < pLength) {
         
 
-        [APIClient showMessage:@"密码不能为空"];
+        [APIClient showMessage:@"新密码不能为空"];
         
     }else{
         
@@ -195,10 +197,10 @@
     
     //        NSString * uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"userId"] forKey:@"token"];
     [dic setObject:_newsPasswordTextField.text forKey:@"password"];
     [dic setObject:_userNameTextField.text forKey:@"name"];
     
@@ -206,16 +208,17 @@
     //        [dic setObject:uuid forKey:@"device_id"];
     //        [dic setObject:@"e91eabc2c2f181f4a0c3715a4ec049df" forKey:@"client_id"];
     
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Register userRegister:dic WithBlock:^(Register *reg, Error *e) {
+        
+        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if (e.info !=nil) {
             
             [APIClient showInfo:e.info title:@"提示"];
             
-        }else if(![reg.user_id isEqual: @""]){
-            
-            NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-            [userId setObject:reg.user_id forKey:@"userId"];
+        }
+        if(![reg.user_id isEqual: @""]){
             
             [APIClient showSuccess:@"注册成功" title:@"成功"];
             

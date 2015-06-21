@@ -22,6 +22,10 @@
 
 #define hl_gary [UIColor colorWithRed:(177)/255.0f green:(179)/255.0f blue:(180)/255.0f alpha:(1.0f)]   // hirelib 灰色
 
+#define btnNormalColor [UIColor colorWithRed:(20)/255.0f green:(20)/255.0f blue:(20)/255.0f alpha:(1.0f)]
+
+#define btnHighlightedColor [UIColor colorWithRed:(0)/255.0f green:(199)/255.0f blue:(255)/255.0f alpha:(1.0f)]
+
 
 
 #define hlScoreFont @"DINCondensed-Bold"  //分数字体
@@ -29,8 +33,12 @@
 #define hlTextFont @"兰亭黑"  //分数字体
 
 
-#define WIDTH self.view.frame.size.width
-#define HEIGHT self.view.frame.size.height
+#define WIDTH [[UIScreen mainScreen] bounds].size.width
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
+
+
+
+
 
 
 #endif

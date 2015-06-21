@@ -8,9 +8,12 @@
 
 #import "QAResumeViewController.h"
 #import "SMS_MBProgressHUD.h"
+#import "WebViewJavascriptBridge.h"
 
 
 @interface QAResumeViewController ()
+
+@property WebViewJavascriptBridge* bridge;
 
 @end
 
@@ -28,15 +31,25 @@
     
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
+    if (_bridge) { return; }
+    [WebViewJavascriptBridge enableLogging];
+    
     _qaResumeWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+70)];
     _qaResumeWebView.scrollView.bounces = NO;
     _qaResumeWebView.delegate = self;
-    //NSURL *url=[NSURL URLWithString:_resumeScoreUrl];
-    NSURL *url=[NSURL URLWithString:@"http://app.hirelib.com/website/user/create_resume?user_id=1"];
+    NSURL *url=[NSURL URLWithString:_qaResumeUrl];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [_qaResumeWebView loadRequest:request];
     [_qaResumeWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_qaResumeWebView];
+    
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:_qaResumeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
+        
+        NSLog(@"ObjC received message from JS: %@", data);
+        
+    }];
+
+    
     
 }
 

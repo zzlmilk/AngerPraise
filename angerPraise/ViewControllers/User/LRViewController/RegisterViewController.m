@@ -46,6 +46,7 @@
     _phoneNumberTextField.tag = 103;
     _phoneNumberTextField.textAlignment = NSTextAlignmentCenter;
     _phoneNumberTextField.delegate =self;
+    [_phoneNumberTextField becomeFirstResponder];
     _phoneNumberTextField.textColor = [UIColor whiteColor];
 //    _phoneNumberTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
 //    _phoneNumberTextField.layer.borderWidth = 1.0f;
@@ -112,14 +113,17 @@
     [self.view addSubview:_passwordPlaceholderLabel];
     
     
-    _userRegisterButton= [[UIButton alloc]initWithFrame:CGRectMake(20,_captchaTextField.frame.origin.y+_captchaTextField.frame.size.height+80,WIDTH-2*20,50)];
+    _userRegisterButton= [[UIButton alloc]initWithFrame:CGRectMake(30,_captchaTextField.frame.origin.y+_captchaTextField.frame.size.height+80,WIDTH-2*30,45)];
     [_userRegisterButton.layer setMasksToBounds:YES];
-    [_userRegisterButton.layer setCornerRadius:50/2.f]; //设置矩形四个圆角半径
+    [_userRegisterButton.layer setCornerRadius:45/2.f]; //设置矩形四个圆角半径
     //[_userRegisterButton.layer setBorderWidth:1.0]; //边框宽度
 //    _userRegisterButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
     [_userRegisterButton setTitle:@"提  交" forState:UIControlStateNormal];
     [_userRegisterButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     _userRegisterButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    [_userRegisterButton setTitleColor:btnNormalColor forState:UIControlStateNormal];
+    [_userRegisterButton setTitleColor:btnHighlightedColor forState:UIControlStateHighlighted];
+    
     [_userRegisterButton setEnabled:NO];
     _userRegisterButton.backgroundColor = RGBACOLOR(255, 255, 255, 0.6f);
     [_userRegisterButton addTarget:self action:@selector(isInitPassword) forControlEvents:UIControlEventTouchUpInside];
@@ -159,7 +163,8 @@
         
         _phonePlaceholderLabel.text = @"";
         
-    }else if(textField.tag ==104){
+    }
+    if(textField.tag ==104){
         
         _passwordPlaceholderLabel.text = @"";
         
@@ -283,7 +288,8 @@
                     
                     [APIClient showMessage:e.info title:@"提示"];
                     
-                }else if ([initPassword.validation_inital isEqualToString:@"1"] ) {
+                }
+                if ([initPassword.validation_inital isEqualToString:@"1"] ) {
         
                     //跳转页面
                     //[APIClient showSuccess:@"等待页面跳转" title:@"验证成功"];

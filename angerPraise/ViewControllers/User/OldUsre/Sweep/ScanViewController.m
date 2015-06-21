@@ -65,10 +65,10 @@
 //扫描二维码 修改简历
 -(void)sweepEditResume:(NSString *)sweepResultString{
     
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     [dic setObject:sweepResultString forKey:@"qcode_string"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -80,7 +80,8 @@
             
          [APIClient showSuccess:@"扫描成功" title:@"成功"];
             
-        }else if (e.info != nil){
+        }
+        if (e.info != nil){
         
             [APIClient showInfo:e.info title:@"提示"];
         }

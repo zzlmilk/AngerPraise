@@ -11,4 +11,8 @@
 
 @interface ImportResumeViewController : BaseViewController
 
+
+@property(nonatomic,strong) NSString *create_resume_url;
+
 @end
+

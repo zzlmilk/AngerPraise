@@ -11,6 +11,7 @@
 #import "ResumeScore.h"
 #import "KDGoalBar.h"
 #import "MainViewController.h"
+
 @interface ResumeViewController :BaseViewController<TabBarItemSelectDelegate>{
     KDGoalBar *percentGoalBar;
 }
@@ -21,7 +22,7 @@
 @property(nonatomic,strong)UILabel *workPlaceLabel;
 @property(nonatomic,strong)UILabel *competitionNumberLabel;
 @property(nonatomic,strong)UIView *titleMyResumeView;
-
+@property(nonatomic,strong)UIButton *previewResumeButton;
 
 @property(nonatomic,strong)NSString *resume_perfect_url;
 @property(nonatomic,strong)NSString *resume_preview_url;
@@ -29,5 +30,5 @@
 @property(nonatomic,strong)NSString *user_resume_synthesize_grade
 ;// 综合评分
 
-
+-(void)getresumeInfo;
 @end

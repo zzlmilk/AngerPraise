@@ -10,17 +10,9 @@
 
 @protocol TabBarItemSelectDelegate <NSObject>
 
-- (void)homeItemSelected;
-- (void)resumeItemSelected;
-- (void)userItemSelected;
-- (void)positionItemSelected;
-
 @end
 
 @interface MainViewController : UITabBarController<UITabBarControllerDelegate,TabBarItemSelectDelegate>
-
-@property(strong,nonatomic) id<TabBarItemSelectDelegate> delegate;
-
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item;
 

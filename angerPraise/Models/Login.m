@@ -14,6 +14,7 @@
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
     
+    _token = [dic objectForKey:@"token"];
     _user_id = [dic objectForKey:@"user_id"];
     _user_name = [dic objectForKey:@"user_name"];
     _user_phone = [dic objectForKey:@"user_phone"];

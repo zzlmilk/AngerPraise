@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "EditPhotoViewController.h"
-#import "MainViewController.h"
 
-@interface UserViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,TabBarItemSelectDelegate,UITextFieldDelegate>
+@interface UserViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
+@property(nonatomic,strong)UIView *cardView;
+
+@property(nonatomic,strong)UIButton *taskButton;
 
 @property(nonatomic,strong)UITableView *userTableView;
 
 @property NSArray *modelListArray;
 
-@property(nonatomic,strong)UILabel *userNameLabel;
+@property(nonatomic,strong)UIButton *userNameButton;
 @property(nonatomic,strong)UILabel *hirelibNumberLabel;
 
 @property(nonatomic,strong)UIImageView *userPhotoImageView;
