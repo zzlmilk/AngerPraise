@@ -10,6 +10,9 @@
 #import "User.h"
 #import "ApIClient.h"
 #import "IndexViewController.h"
+#import "SettingWebViewController.h"
+#import "Setting.h"
+
 
 @interface SettingViewController ()
 
@@ -68,7 +71,34 @@
     [loginOutButton addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginOutButton];
     
+    [self getSettingDetailUrl];
 }
+
+-(void)getSettingDetailUrl{
+
+    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+
+    [Setting getSettingUrl:dic WithBlock:^(Setting *setting, Error *e) {
+       
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+        }else{
+            
+            _about_url = setting.about_url;
+            _privacy_url = setting.privacy_url;
+            _review_app_url = setting.review_app_url;
+            _version_url = setting.version_url;
+        
+        }
+    }];
+    
+}
+
 
 -(void)doBack{
     
@@ -93,6 +123,7 @@
             
             NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
             [hrPrivilege removeObjectForKey:@"hrPrivilege"];
+
             
             IndexViewController *indexVC= [[IndexViewController alloc]init];
             [self.navigationController pushViewController:indexVC animated:YES];
@@ -141,6 +172,48 @@
     return cell;
 }
 
+#pragma mark -- UITableView delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
+
+    switch (indexPath.row) {
+        case 1:
+        {
+            _takeUrlString = _privacy_url;
+        }
+            break;
+        case 2:
+        {
+            _takeUrlString = _version_url;
+        }
+            break;
+        case 3:
+        {
+            _takeUrlString = _about_url;
+        }
+            break;
+        case 4:
+        {
+            _takeUrlString = _review_app_url;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
+//    Position * p = [_positionListArray objectAtIndex:indexPath.row];
+//    
+    SettingWebViewController *settingWebVC = [[SettingWebViewController alloc]init];
+    
+    settingWebVC.settingDetailUrl =_takeUrlString;
+    
+    [self.navigationController pushViewController:settingWebVC animated:YES];
+    
+}
 
 //隐藏多余分割线
 -(void)setExtraCellLineHidden: (UITableView *)tableView

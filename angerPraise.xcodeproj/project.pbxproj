@@ -18,6 +18,9 @@
 		DF0B92481AB1463900A1698E /* CheckQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */; };
 		DF0B924B1AB14C9000A1698E /* EvaluateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */; };
 		DF0B924D1AB14D4400A1698E /* evaluateList.html in Resources */ = {isa = PBXBuildFile; fileRef = DF0B924C1AB14D4400A1698E /* evaluateList.html */; };
+		DF137FE61B20290B008D0F82 /* UIView+i7Rotate360.m in Sources */ = {isa = PBXBuildFile; fileRef = DF137FE51B20290A008D0F82 /* UIView+i7Rotate360.m */; };
+		DF137FE91B20304A008D0F82 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = DF137FE81B20304A008D0F82 /* Setting.m */; };
+		DF137FEC1B2031F1008D0F82 /* SettingWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF137FEB1B2031F1008D0F82 /* SettingWebViewController.m */; };
 		DF1698381B0DBF4500A5E453 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1698371B0DBF4500A5E453 /* Default-568h@2x.png */; };
 		DF16983B1B0DC12800A5E453 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF1698391B0DC12800A5E453 /* LaunchScreen.xib */; };
 		DF16984D1B0EF98400A5E453 /* guideHrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF16983F1B0EF98400A5E453 /* guideHrViewController.m */; };
@@ -218,6 +221,12 @@
 		DF0B92491AB14C9000A1698E /* EvaluateListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateListViewController.h; sourceTree = "<group>"; };
 		DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateListViewController.m; sourceTree = "<group>"; };
 		DF0B924C1AB14D4400A1698E /* evaluateList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = evaluateList.html; sourceTree = "<group>"; };
+		DF137FE41B20290A008D0F82 /* UIView+i7Rotate360.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+i7Rotate360.h"; sourceTree = "<group>"; };
+		DF137FE51B20290A008D0F82 /* UIView+i7Rotate360.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+i7Rotate360.m"; sourceTree = "<group>"; };
+		DF137FE71B20304A008D0F82 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		DF137FE81B20304A008D0F82 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		DF137FEA1B2031F1008D0F82 /* SettingWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingWebViewController.h; sourceTree = "<group>"; };
+		DF137FEB1B2031F1008D0F82 /* SettingWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingWebViewController.m; sourceTree = "<group>"; };
 		DF1698371B0DBF4500A5E453 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DF16983A1B0DC12800A5E453 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DF16983E1B0EF98400A5E453 /* guideHrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guideHrViewController.h; sourceTree = "<group>"; };
@@ -671,6 +680,8 @@
 				DFB5F7B41B1574CD000A66D7 /* Review.m */,
 				DFE61ACB1B1C374A009FAFF4 /* Share.h */,
 				DFE61ACC1B1C374A009FAFF4 /* Share.m */,
+				DF137FE71B20304A008D0F82 /* Setting.h */,
+				DF137FE81B20304A008D0F82 /* Setting.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -704,6 +715,15 @@
 				DF5F8DB61AF8A1B300205B60 /* HrPrivilegeCell.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DF137FE31B20290A008D0F82 /* rotation360 */ = {
+			isa = PBXGroup;
+			children = (
+				DF137FE41B20290A008D0F82 /* UIView+i7Rotate360.h */,
+				DF137FE51B20290A008D0F82 /* UIView+i7Rotate360.m */,
+			);
+			path = rotation360;
 			sourceTree = "<group>";
 		};
 		DF16983C1B0EF95400A5E453 /* OldUsre */ = {
@@ -833,6 +853,8 @@
 			children = (
 				DF4B446E1AF1CF0C00C94D7E /* SettingViewController.h */,
 				DF4B446F1AF1CF0C00C94D7E /* SettingViewController.m */,
+				DF137FEA1B2031F1008D0F82 /* SettingWebViewController.h */,
+				DF137FEB1B2031F1008D0F82 /* SettingWebViewController.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1202,6 +1224,7 @@
 		DFE2C2ED1AB02B8D00C66DF9 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				DF137FE31B20290A008D0F82 /* rotation360 */,
 				DFE869B91B182E2200901F63 /* WebViewJavascriptBridge */,
 				DFE869A91B15C81600901F63 /* WeChatSDK_1.5 */,
 				DF69C1C51B130EA300D2FAC8 /* VWWWaterView */,
@@ -1475,6 +1498,7 @@
 			files = (
 				DF5F8E211AFC8BF100205B60 /* pinyin.c in Sources */,
 				DFEE77301AE0DCE800401AF0 /* UIImage+AHKAdditions.m in Sources */,
+				DF137FE91B20304A008D0F82 /* Setting.m in Sources */,
 				DF5F8E1E1AFC8B1000205B60 /* ZCAddressBook.m in Sources */,
 				DF4D979F1AD657F000F65140 /* Error.m in Sources */,
 				DF4D97BB1ADCBA6E00F65140 /* DSNavigationBar.m in Sources */,
@@ -1542,6 +1566,7 @@
 				DFA061B61AD536C2004EEB4C /* CreatStep2ViewController.m in Sources */,
 				DF5F8DA41AF7825C00205B60 /* CommentFriend.m in Sources */,
 				DF5F8E1A1AFB72EB00205B60 /* Login.m in Sources */,
+				DF137FE61B20290B008D0F82 /* UIView+i7Rotate360.m in Sources */,
 				DFE2C2E91AB0132C00C66DF9 /* NeedDataViewController.m in Sources */,
 				DF4D97B71ADCB6EF00F65140 /* HomeOldViewController.m in Sources */,
 				DF4B44771AF229B700C94D7E /* ResumeScoreViewController.m in Sources */,
@@ -1581,6 +1606,7 @@
 				DF5F8DFF1AFA154100205B60 /* AFURLResponseSerialization.m in Sources */,
 				DFB32FD61B04A4500049D9F2 /* InfiniteScrollPicker.m in Sources */,
 				DFD2744D1AE7871B00BEED59 /* IndexViewController.m in Sources */,
+				DF137FEC1B2031F1008D0F82 /* SettingWebViewController.m in Sources */,
 				DFD274301AE778A700BEED59 /* UIImage+ImageWithColor.m in Sources */,
 				DFF2C8471B1DA3DF006E3CB7 /* EditPasswordViewController.m in Sources */,
 				DF5F8E021AFA154100205B60 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

@@ -8,7 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UITabBarController<UITabBarControllerDelegate>
+@protocol TabBarItemSelectDelegate <NSObject>
+
+- (void)homeItemSelected;
+- (void)resumeItemSelected;
+- (void)userItemSelected;
+- (void)positionItemSelected;
+
+@end
+
+@interface MainViewController : UITabBarController<UITabBarControllerDelegate,TabBarItemSelectDelegate>
+
+@property(strong,nonatomic) id<TabBarItemSelectDelegate> delegate;
+
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item;
+
+
 @end

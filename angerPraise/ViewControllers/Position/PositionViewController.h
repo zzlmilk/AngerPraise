@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "MainViewController.h"
 
-@interface PositionViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface PositionViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,TabBarItemSelectDelegate>
 
 @property(nonatomic,strong)UITableView *positionTableView;
 

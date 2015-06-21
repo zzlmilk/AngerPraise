@@ -10,8 +10,8 @@
 #import "BaseViewController.h"
 #import "ResumeScore.h"
 #import "KDGoalBar.h"
-
-@interface ResumeViewController :BaseViewController{
+#import "MainViewController.h"
+@interface ResumeViewController :BaseViewController<TabBarItemSelectDelegate>{
     KDGoalBar *percentGoalBar;
 }
 

@@ -130,8 +130,8 @@
 -(void)skip{
     
     MainViewController *mainVC = [[MainViewController alloc]init];
-    [self.navigationController pushViewController:mainVC animated:YES];
-
+    //[self.navigationController pushViewController:mainVC animated:YES];
+    [self presentViewController:mainVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

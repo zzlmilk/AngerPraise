@@ -92,6 +92,15 @@
 //
 //}
 
+#pragma mark TabBarItemSelectDelegate 方法
+-(void)resumeItemSelected{
+    
+    [self getresumeInfo];
+    
+}
+- (void)homeItemSelected{};
+- (void)userItemSelected{};
+- (void)positionItemSelected{};
 
 //获取简历基本信息
 -(void)getresumeInfo{

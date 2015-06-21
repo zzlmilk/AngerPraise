@@ -7,6 +7,8 @@
 //
 
 #import "EditPasswordViewController.h"
+#import "User.h"
+#import "ApIClient.h"
 
 @interface EditPasswordViewController ()
 
@@ -42,14 +44,14 @@
     
     UILabel *oldPasswordTipLabel = [[UILabel alloc]init];
     oldPasswordTipLabel.frame = CGRectMake(35, backBtn.frame.size.height+backBtn.frame.origin.y-10, self.view.frame.size.width-2*35, 35);
-    oldPasswordTipLabel.text = @"旧密码";
+    oldPasswordTipLabel.text = @"当前密码";
     oldPasswordTipLabel.font =[UIFont fontWithName:@"Helvetica" size:16];
     oldPasswordTipLabel.textColor = RGBACOLOR(70, 70, 70, 1.0f);
     [_scrollView addSubview:oldPasswordTipLabel];
     
     _oldPasswordTextField = [[UITextField alloc]initWithFrame:CGRectMake(oldPasswordTipLabel.frame.origin.x, oldPasswordTipLabel.frame.size.height+oldPasswordTipLabel.frame.origin.y,oldPasswordTipLabel.frame.size.width, 40)];
     [_oldPasswordTextField setBorderStyle:UITextBorderStyleLine];
-    _oldPasswordTextField.placeholder = @"  输入旧密码";
+    _oldPasswordTextField.placeholder = @"  输入当前密码";
     _oldPasswordTextField.delegate = self;
     _oldPasswordTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
     _oldPasswordTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
@@ -64,7 +66,7 @@
     
     UILabel *newPasswordTipLabel = [[UILabel alloc]init];
     newPasswordTipLabel.frame = CGRectMake(35, _oldPasswordTextField.frame.size.height+_oldPasswordTextField.frame.origin.y+25, self.view.frame.size.width-2*35, 35);
-    newPasswordTipLabel.text = @"新密码";
+    newPasswordTipLabel.text = @"设置新密码";
     newPasswordTipLabel.font =[UIFont fontWithName:@"Helvetica" size:16];
     newPasswordTipLabel.textColor = RGBACOLOR(70, 70, 70, 1.0f);
     [_scrollView addSubview:newPasswordTipLabel];
@@ -148,12 +150,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark -- 确认修改
--(void)confirmEdit{
-
-
-}
-
 #pragma mark -- UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     
@@ -172,8 +168,55 @@
 #pragma mark -- 键盘 return
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    
+    [self confirmEdit];
     return YES;
+    
+}
+
+#pragma mark -- 确认修改
+-(void)confirmEdit{
+    
+    if (_oldPasswordTextField.text == nil || [_oldPasswordTextField.text isEqualToString:@""]) {
+        
+        [APIClient showMessage:@"请输入当前密码"];
+        
+    }else if (_editNewPasswordTextField.text == nil || [_editNewPasswordTextField.text isEqualToString:@""]){
+    
+        [APIClient showMessage:@"请输入新密码"];
+        
+    }else if (_reEditNewPasswordTextField.text == nil || [_reEditNewPasswordTextField.text isEqualToString:@""]){
+    
+        [APIClient showMessage:@"请确认新密码"];
+    }else{
+    
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+        
+        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        [dic setObject:_oldPasswordTextField.text forKey:@"old_password"];
+        [dic setObject:_editNewPasswordTextField.text forKey:@"new_password"];
+        [dic setObject:_reEditNewPasswordTextField.text forKey:@"repeat_password"];
+        
+        [User userUpdatePassword:dic WithBlock:^(User *user, Error *e) {
+            
+            if (e.info !=nil) {
+                
+                [APIClient showInfo:e.info title:@"提示"];
+                
+            }else{
+                
+                int intRes = [user.res intValue];
+                if (intRes == 1) {
+                    [APIClient showSuccess:@"密码修改成功" title:@"成功"];
+                    
+                    [self doBack];
+                }
+                
+            }
+            
+        }];
+    
+    }
     
 }
 
