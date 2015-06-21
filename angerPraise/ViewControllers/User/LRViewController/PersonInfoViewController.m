@@ -207,6 +207,7 @@
 }
 
 
+#pragma mark -- UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
 
     if (textField.tag ==106) {
@@ -222,6 +223,7 @@
     }
     
 }
+
 -(void)datePickerValueChanged:(id)sender{
 
  //   NSDate *selected = [_datePicker date];

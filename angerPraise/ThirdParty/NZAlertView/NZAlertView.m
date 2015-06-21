@@ -12,6 +12,7 @@
 #import "UIImage+Blur.h"
 #import "UIImage+Screenshot.h"
 
+
 static BOOL IsPresenting;
 
 
@@ -54,8 +55,8 @@ static BOOL IsPresenting;
                                     options:nil];
         
         
-        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, 100);
-        
+       // self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, 100);
+        self.view.frame = CGRectMake(0, 0, 540, 100);
         CGRect frame = self.view.frame;
         frame.size.width = CGRectGetWidth([[UIScreen mainScreen] bounds]);
         self.view.frame = frame;

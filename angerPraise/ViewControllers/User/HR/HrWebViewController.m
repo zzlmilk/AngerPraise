@@ -31,7 +31,8 @@
     
     _hrWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+65)];
     _hrWebView.delegate = self;
-    
+    _hrWebView.scrollView.bounces = NO;
+
     NSURL *url=[NSURL URLWithString:_hrUrl];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [_hrWebView loadRequest:request];
@@ -43,7 +44,14 @@
 
 -(void)doBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_hrWebView.canGoBack)
+    {
+        [_hrWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

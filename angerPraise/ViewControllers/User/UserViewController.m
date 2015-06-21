@@ -26,9 +26,19 @@
 #import "WalletWebViewController.h"
 #import "MyFriendWebViewController.h"
 #import "CollectWebViewController.h"
+<<<<<<< HEAD
 #import "HrWebViewCon                           `````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````   ```````````````troller.h"
+=======
+#import "HrWebViewController.h"
+#import "PositionViewController.h"
+#import "MainViewController.h"
+#import "WalletWebViewController.h"
+>>>>>>> 5e7be9ef4ddfacf87bb14cfbbd0bad22775df8ab
 
 #import "SMS_MBProgressHUD.h"
+#import "EditNameViewController.h"
+#import "EditPasswordViewController.h"
+
 
 #define BUFFERX 5 //distance from side to the card (higher makes thinner card)
 #define BUFFERY 10 //distance from top to the card (higher makes shorter card)
@@ -41,7 +51,7 @@
     self.view.backgroundColor = RGBACOLOR(48, 47, 53, 1.0f);
 
     UIView *cardView = [[UIView alloc]init];
-    cardView.frame = CGRectMake(0, 0, WIDTH, 245);
+    cardView.frame = CGRectMake(0, 0, WIDTH, 0.44*HEIGHT+10);
     cardView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     [self.view addSubview:cardView];
     
@@ -49,7 +59,7 @@
     [_userPhotoImageView setImage:[UIImage imageNamed:@"touxiang"]];
     _userPhotoImageView.userInteractionEnabled = YES;
     _userPhotoImageView.backgroundColor = [UIColor clearColor];
-    _userPhotoImageView.frame = CGRectMake((WIDTH-100)/2, 20, 100, 100);
+    _userPhotoImageView.frame = CGRectMake((WIDTH-100)/2, 30, 100, 100);
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showEditPersonInfoView)];
     _userPhotoImageView.layer.masksToBounds = YES;
     _userPhotoImageView.layer.cornerRadius = 50;
@@ -77,7 +87,7 @@
     
     
     _matchPositionLabel = [[UILabel alloc]init];
-    _matchPositionLabel.frame = CGRectMake(30, _hirelibNumberLabel.frame.origin.y+_hirelibNumberLabel.frame.size.height+10, WIDTH-2*30, 35);
+    _matchPositionLabel.frame = CGRectMake(55, _hirelibNumberLabel.frame.origin.y+_hirelibNumberLabel.frame.size.height+20, WIDTH-2*50-10, 35);
     _matchPositionLabel.backgroundColor = [UIColor clearColor];
     _matchPositionLabel.textColor = RGBACOLOR(0,204,252,1.0f);
     _matchPositionLabel.text= @"28";
@@ -85,68 +95,80 @@
     [cardView addSubview:_matchPositionLabel];
     
     UILabel *matchPositionTitleLabel = [[UILabel alloc]init];
-    matchPositionTitleLabel.frame = CGRectMake(20, _matchPositionLabel.frame.origin.y+_matchPositionLabel.frame.size.height-12, WIDTH-2*20, 35);
+    matchPositionTitleLabel.frame = CGRectMake(40, _matchPositionLabel.frame.origin.y+_matchPositionLabel.frame.size.height-12, WIDTH-2*40, 35);
     matchPositionTitleLabel.backgroundColor = [UIColor clearColor];
     matchPositionTitleLabel.textColor = RGBACOLOR(100,100,100,1.0f);
-    matchPositionTitleLabel.text= @"匹配职位";
+    matchPositionTitleLabel.text= @"剩余任务";
     matchPositionTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
     [cardView addSubview:matchPositionTitleLabel];
     
     
-    
-    _synthesisScoreLabel = [[UILabel alloc]init];
-    _synthesisScoreLabel.frame =_matchPositionLabel.frame;
-    _synthesisScoreLabel.backgroundColor = [UIColor clearColor];
-    _synthesisScoreLabel.textColor = RGBACOLOR(0,204,252,1.0f);
-    _synthesisScoreLabel.text= @"65";
-    _synthesisScoreLabel.textAlignment = NSTextAlignmentCenter;
-    _synthesisScoreLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
-    [cardView addSubview:_synthesisScoreLabel];
-    
-    UILabel *synthesisScoreTitleLabel = [[UILabel alloc]init];
-    synthesisScoreTitleLabel.frame = matchPositionTitleLabel.frame;
-    synthesisScoreTitleLabel.backgroundColor = [UIColor clearColor];
-    synthesisScoreTitleLabel.textColor = RGBACOLOR(100,100,100,1.0f);
-    synthesisScoreTitleLabel.text= @"综合评分";
-    synthesisScoreTitleLabel.textAlignment = NSTextAlignmentCenter;
-    synthesisScoreTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
-    [cardView addSubview:synthesisScoreTitleLabel];
-    
-    
-    
-    _walletNumberLabel = [[UILabel alloc]init];
-    _walletNumberLabel.frame =_matchPositionLabel.frame;
-    _walletNumberLabel.backgroundColor = [UIColor clearColor];
-    _walletNumberLabel.textColor = RGBACOLOR(0,204,252,1.0f);
-    _walletNumberLabel.text= @"125";
-    _walletNumberLabel.textAlignment = NSTextAlignmentRight;
-    _walletNumberLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
-    [cardView addSubview:_walletNumberLabel];
-    
-    UILabel *walletNumberTitleLabel = [[UILabel alloc]init];
-    walletNumberTitleLabel.frame = matchPositionTitleLabel.frame;
-    walletNumberTitleLabel.backgroundColor = [UIColor clearColor];
-    walletNumberTitleLabel.textColor = RGBACOLOR(100,100,100,1.0f);
-    walletNumberTitleLabel.text= @"钱包数额";
-    walletNumberTitleLabel.textAlignment = NSTextAlignmentRight;
-    walletNumberTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
-    [cardView addSubview:walletNumberTitleLabel];
+//    _synthesisScoreLabel = [[UILabel alloc]init];
+//    _synthesisScoreLabel.frame =_matchPositionLabel.frame;
+//    _synthesisScoreLabel.backgroundColor = [UIColor clearColor];
+//    _synthesisScoreLabel.textColor = RGBACOLOR(0,204,252,1.0f);
+//    _synthesisScoreLabel.text= @"65";
+//    _synthesisScoreLabel.textAlignment = NSTextAlignmentCenter;
+//    _synthesisScoreLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
+//    [cardView addSubview:_synthesisScoreLabel];
+//    
+//    UILabel *synthesisScoreTitleLabel = [[UILabel alloc]init];
+//    synthesisScoreTitleLabel.frame = matchPositionTitleLabel.frame;
+//    synthesisScoreTitleLabel.backgroundColor = [UIColor clearColor];
+//    synthesisScoreTitleLabel.textColor = RGBACOLOR(100,100,100,1.0f);
+//    synthesisScoreTitleLabel.text= @"剩余任务";
+//    synthesisScoreTitleLabel.textAlignment = NSTextAlignmentCenter;
+//    synthesisScoreTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
+//    [cardView addSubview:synthesisScoreTitleLabel];
     
     
     
-//     NSUserDefaults *userType = [NSUserDefaults standardUserDefaults];
-//     _user_type = [userType objectForKey:@"userType"];
+    _taskLabel = [[UILabel alloc]init];
+    _taskLabel.frame =_matchPositionLabel.frame;
+    _taskLabel.backgroundColor = [UIColor clearColor];
+    _taskLabel.textColor = RGBACOLOR(0,204,252,1.0f);
+    _taskLabel.text= @"125";
+    _taskLabel.textAlignment = NSTextAlignmentRight;
+    _taskLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
+    [cardView addSubview:_taskLabel];
     
-    _user_type = @"1";
+    UILabel *taskNumberTitleLabel = [[UILabel alloc]init];
+    taskNumberTitleLabel.frame = matchPositionTitleLabel.frame;
+    taskNumberTitleLabel.backgroundColor = [UIColor clearColor];
+    taskNumberTitleLabel.textColor = RGBACOLOR(100,100,100,1.0f);
+    taskNumberTitleLabel.text= @"匹配职位";
+    taskNumberTitleLabel.textAlignment = NSTextAlignmentRight;
+    taskNumberTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
+    [cardView addSubview:taskNumberTitleLabel];
     
-    if ([_user_type isEqualToString:@"1"]) {
+    
+    UIButton *taskButton = [[UIButton alloc]init];
+    taskButton.frame =CGRectMake(10, _matchPositionLabel.frame.origin.y, WIDTH/2-20, 100);
+    [taskButton addTarget:self action:@selector(lookTask) forControlEvents:UIControlEventTouchUpInside];
+    taskButton.backgroundColor = [UIColor clearColor];
+    [cardView addSubview:taskButton];
+    
+    
+    UIButton *positionButton = [[UIButton alloc]init];
+    positionButton.frame = CGRectMake(taskButton.frame.origin.x+taskButton.frame.size.width+10, _matchPositionLabel.frame.origin.y, WIDTH/2-10, 100);
+    positionButton.backgroundColor = [UIColor clearColor];
+    [positionButton addTarget:self action:@selector(lookPosition) forControlEvents:UIControlEventTouchUpInside];
+    [cardView addSubview:positionButton];
+
+    
+    NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
+    _user_type = [NSString stringWithFormat:@"%@",[hrPrivilege objectForKey:@"hrPrivilege"]];
+    
+    
+    if ([_user_type isEqualToString:@"0"]) {  // hr
+
         _modelListArray = [[NSArray alloc]initWithObjects:
-                           @"钱包",@"投递记录和收藏",@"我的好友",@"激活HR特权？",@"设置",nil];
+                           @"钱包",@"投递记录和收藏",@"我的好友",@"激活HR特权？",nil];
+        
     }else{
-    
+        
         _modelListArray = [[NSArray alloc]initWithObjects:
-                           @"钱包",@"投递记录和收藏",@"我的好友",@"设置",nil];
-    
+                           @"钱包",@"投递记录和收藏",@"我的好友",nil];
     }
 
     _userTableView = [[UITableView alloc]init];
@@ -163,96 +185,196 @@
     
     _editView = [[UIView alloc]init];
     _editView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
-    _editView.backgroundColor = [UIColor whiteColor];
+    _editView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     _editView.hidden = YES;
     [self.view addSubview:_editView];
     
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 15, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(hideView)forControlEvents:UIControlEventTouchUpInside];
-    [_editView addSubview:backBtn];
+    _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backBtn.frame = CGRectMake(10, 25, 44, 44);
+    _backBtn.backgroundColor = [UIColor clearColor];
+    [_backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+    [_backBtn addTarget:self action:@selector(hideView)forControlEvents:UIControlEventTouchUpInside];
+    [_editView addSubview:_backBtn];
     
     
-    UILabel *lineLabel = [[UILabel alloc]init];
-    lineLabel.frame = CGRectMake(0, backBtn.frame.size.height+backBtn.frame.origin.y+50, WIDTH, 0.5);
-    lineLabel.backgroundColor = RGBACOLOR(204, 204, 204, 1.0f);
-    [_editView addSubview:lineLabel];
+    _waitPhotoImageView = [[UIImageView alloc]init];
+//    _waitPhotoImageView.frame = CGRectMake(_userPhotoImageView.frame.origin.x, _userPhotoImageView.frame.origin.y+30, _userPhotoImageView.frame.size.width, _userPhotoImageView.frame.size.height);
+    _waitPhotoImageView.frame = _userPhotoImageView.frame;
+    _waitPhotoImageView.layer.masksToBounds = YES;
+    _waitPhotoImageView.layer.cornerRadius = 50;
+    [_editView addSubview:_waitPhotoImageView];
+
     
     UIButton *editPhotoButton = [[UIButton alloc]init];
-    editPhotoButton.frame = CGRectMake(0, lineLabel.frame.origin.y+lineLabel.frame.size.height, WIDTH, 60);
+    editPhotoButton.frame =CGRectMake(0, _waitPhotoImageView.frame.size.height+_waitPhotoImageView.frame.origin.y+30, WIDTH, 60);
     [editPhotoButton setTitle:@"修改头像" forState:UIControlStateNormal];
-    [editPhotoButton setTitleColor:RGBACOLOR(100, 100, 100, 1.0f)forState:UIControlStateNormal];
+    [editPhotoButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
     editPhotoButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
     editPhotoButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
     [editPhotoButton addTarget:self action:@selector(onClickImageView) forControlEvents:UIControlEventTouchUpInside];
     editPhotoButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [_editView addSubview:editPhotoButton];
     
-    UILabel *lineLabel1 = [[UILabel alloc]init];
-    lineLabel1.frame = CGRectMake(0, editPhotoButton.frame.size.height+editPhotoButton.frame.origin.y, WIDTH, 0.5);
-    lineLabel1.backgroundColor = RGBACOLOR(204, 204, 204, 1.0f);
-    [_editView addSubview:lineLabel1];
+    UIButton *editNameButton = [[UIButton alloc]init];
+    editNameButton.frame =CGRectMake(0, editPhotoButton.frame.size.height+editPhotoButton.frame.origin.y, WIDTH, 60);
+    [editNameButton setTitle:@"修改昵称" forState:UIControlStateNormal];
+    [editNameButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
+    editNameButton.backgroundColor = [UIColor clearColor];
+    editNameButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
+    editNameButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
+    [editNameButton addTarget:self action:@selector(editNameAction) forControlEvents:UIControlEventTouchUpInside];
+    editNameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_editView addSubview:editNameButton];
     
-    UIButton *myQrCodeButton = [[UIButton alloc]init];
-    myQrCodeButton.frame = CGRectMake(0, lineLabel1.frame.origin.y+lineLabel1.frame.size.height, WIDTH, 60);
-    [myQrCodeButton setTitle:@"我的二维码" forState:UIControlStateNormal];
-    [myQrCodeButton setTitleColor:RGBACOLOR(100, 100, 100, 1.0f)forState:UIControlStateNormal];
-    myQrCodeButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
-    myQrCodeButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
-    [myQrCodeButton addTarget:self action:@selector(lookQrCode) forControlEvents:UIControlEventTouchUpInside];
-    myQrCodeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    myQrCodeButton.backgroundColor = [UIColor clearColor];
-    [_editView addSubview:myQrCodeButton];
+    _waitUsernameLabel = [[UILabel alloc]init];
+    _waitUsernameLabel.frame = CGRectMake((WIDTH-200-20), 0, 200, editNameButton.frame.size.height);
+    _waitUsernameLabel.textColor =RGBACOLOR(0, 199, 255, 1.0f);
+    _waitUsernameLabel.backgroundColor = [UIColor clearColor];
+    _waitUsernameLabel.textAlignment = NSTextAlignmentRight;
+    [editNameButton addSubview:_waitUsernameLabel];
     
-    UIImageView *iconQrImageView = [[UIImageView alloc]init];
-    iconQrImageView.frame = CGRectMake(WIDTH-50, 20, 35/2, 35/2);
-    //iconQrImageView.backgroundColor = [UIColor yellowColor];
-    [iconQrImageView setImage:[UIImage imageNamed:@"0code"]];
-    [myQrCodeButton addSubview:iconQrImageView];
+    UIButton *editPasswordButton = [[UIButton alloc]init];
+    editPasswordButton.frame =CGRectMake(0, editNameButton.frame.size.height+editNameButton.frame.origin.y, WIDTH, 60);
+    [editPasswordButton setTitle:@"修改密码" forState:UIControlStateNormal];
+    [editPasswordButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
+    editPasswordButton.backgroundColor = [UIColor clearColor];
+    editPasswordButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
+    editPasswordButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
+    [editPasswordButton addTarget:self action:@selector(editPasswordAction) forControlEvents:UIControlEventTouchUpInside];
+    editPasswordButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_editView addSubview:editPasswordButton];
     
     
-    UILabel *lineLabel2 = [[UILabel alloc]init];
-    lineLabel2.frame = CGRectMake(0, myQrCodeButton.frame.size.height+myQrCodeButton.frame.origin.y, WIDTH, 0.5);
-    lineLabel2.backgroundColor = RGBACOLOR(204, 204, 204, 1.0f);
-    [_editView addSubview:lineLabel2];
+    UIButton *safeButton = [[UIButton alloc]init];
+    safeButton.frame =CGRectMake(0, editPasswordButton.frame.size.height+editPasswordButton.frame.origin.y, WIDTH, 60);
+    [safeButton setTitle:@"安全隐私" forState:UIControlStateNormal];
+    [safeButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
+    safeButton.backgroundColor = [UIColor clearColor];
+    safeButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
+    safeButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
+    [safeButton addTarget:self action:@selector(safeAction) forControlEvents:UIControlEventTouchUpInside];
+    safeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_editView addSubview:safeButton];
     
 
+
     [self getUserInfo];
+    [self refreshUserData];
+}
+
+
+//查看匹配的职位
+-(void)lookPosition{
+    
+//    PositionViewController *positionVC = [[PositionViewController alloc]init];
+//    [youViewController.navigationController popToRoot ViewController Animated:YES]
+//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+}
+
+//查看剩余任务
+-(void)lookTask{
+    
+    MainViewController *mainVC = [[MainViewController alloc]init];
+// [self presentViewController:homeVC animated:YES completion:^{}];
+
+    [self.tabBarController.navigationController pushViewController:mainVC animated:true];
+}
+
+
+//修改昵称
+-(void)editNameAction{
+
+    EditNameViewController *editName = [[EditNameViewController alloc]init];
+    editName.editNameString = _userNameLabel.text;
+    [self.navigationController pushViewController:editName animated:YES];
+}
+
+//修改密码
+-(void)editPasswordAction{
+    
+    EditPasswordViewController *editPassword = [[EditPasswordViewController alloc]init];
+    [self.navigationController pushViewController:editPassword animated:YES];
+}
+
+
+//安全与隐私
+-(void)safeAction{
+    
+    SettingViewController *settingVC = [[SettingViewController alloc]init];
+    [self.navigationController pushViewController:settingVC animated:YES];
+
+}
+
+// 每2秒 请求接口获取最新数据
+-(void)refreshUserData{
+
+    __block int timeout=86400; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),3.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                //NSLog(@"____%@",strTime);
+                
+                [self getUserInfo];
+            });
+            timeout--;
+            
+        }
+    });
+    dispatch_resume(_timer);
+    
 }
 
 -(void)getUserInfo{
 
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
     
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
     
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [User getUserInfo:dic WithBlock:^(User *user, Error *e) {
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
         
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (e.info !=nil) {
+        //    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [User getUserInfo:dic WithBlock:^(User *user, Error *e) {
             
-            [APIClient showInfo:e.info title:@"提示"];
+            //        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (e.info !=nil) {
+                
+                [APIClient showInfo:e.info title:@"提示"];
+                
+            }else{
+                
+                [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+                
+                [_waitPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url]];
+                
+                _userNameLabel.text = user.user_name;//hirelib No.11122
+                _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
+                
+                NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
+                _taskLabel.text = user.position_number;//匹配职位
+                _matchPositionLabel.text = stringInt;//剩余任务
+                
+                _walletNumberLabel.text = user.user_intergral;
+                _waitUsernameLabel.text = user.user_name;
+                
+                _hr_url = user.hr_url;
+                _pay_url = user.pay_url;
+                _user_apply_url = user.user_apply_url;
+                _user_friend_url = user.user_friend_url;
+                
+            }
             
-        }else{
-        
-            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"touxiang"]];
-            _userNameLabel.text = user.user_name;//hirelib No.11122
-            _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
-            _matchPositionLabel.text = user.position_number;
-            _synthesisScoreLabel.text = user.user_resume_synthesize_grade;
-            _walletNumberLabel.text = user.user_intergral;
-        
-            _hr_url = user.hr_url;
-            _pay_url = user.pay_url;
-            _user_apply_url = user.user_apply_url;
-            _user_friend_url = user.user_friend_url;
-        }
-        
-    }];
+        }];
     
 }
 
@@ -260,20 +382,14 @@
 -(void)hideView{
     
     _editView.hidden = YES;
+    _backBtn.hidden = YES;
     self.tabBarController.tabBar.hidden = NO;
-}
-
-//查看 二维码
--(void)lookQrCode{
-    
-    ShowQrCodeViewController *showQrCodeVC = [[ShowQrCodeViewController alloc]init];
-    [self.navigationController pushViewController:showQrCodeVC animated:YES];
 }
 
 
 -(void)showEditPersonInfoView{
     self.tabBarController.tabBar.hidden = YES;
-
+    _backBtn.hidden = NO;
     _editView.hidden = NO;
     
 }
@@ -286,11 +402,9 @@
     
     // 判断是否支持相机
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        
     {
         sheet  = [[UIActionSheet alloc] initWithTitle:@"设置头像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"拍照",@"从相册选择",nil];
-    }
-    else {
+    }else {
         
         sheet = [[UIActionSheet alloc] initWithTitle:@"设置头像" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"从相册选择", nil];
     }
@@ -362,6 +476,7 @@
     
     // isFullScreen = NO;
     [_userPhotoImageView setImage:savedImage];
+    [_waitPhotoImageView setImage:savedImage];
     //
     //_avatarImageView.tag = 100;
     
@@ -424,19 +539,20 @@
 #pragma mark -- UITableView height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 50.f;
+    return 55.f;
 }
 
 #pragma mark -- UITableView cell 个数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([_user_type isEqualToString:@"1"]) {
+    
+    if ([_user_type isEqualToString:@"0"]) {
         
-        return 5;
+        return 4;
         
     }else{
         
-        return 4;
+        return 3;
         
     }
 }
@@ -459,6 +575,15 @@
     {
     
         cell.imageView.image = [UIImage imageNamed:@"0userwallet1"];
+        
+        _walletNumberLabel = [[UILabel alloc]init];
+        _walletNumberLabel.frame = CGRectMake(WIDTH-50-20, 10, 50, 30);
+        _walletNumberLabel.text = @"1000";
+        _walletNumberLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
+        _walletNumberLabel.backgroundColor = [UIColor clearColor];
+        _walletNumberLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
+        [cell addSubview:_walletNumberLabel];
+        
         
     }else if (indexPath.row == 1)
     {
@@ -486,6 +611,7 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.highlightedTextColor = RGBACOLOR(0, 204, 252, 1.0f);
     cell.textLabel.text = [_modelListArray objectAtIndex:indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.f];
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.backgroundColor= RGBACOLOR(48, 47, 53, 1.0f);
@@ -503,7 +629,7 @@
     
     //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
     
-    if ([_user_type isEqualToString:@"1"]) { //  hr
+    if ([_user_type isEqualToString:@"0"]) { //  hr
         
         switch (indexPath.row) {
             case 0://钱包
@@ -536,12 +662,7 @@
 //                [self.navigationController pushViewController:isOrNoHrVC animated:YES];
             }
                 break;
-            case 4://设置
-            {
-                SettingViewController *settingVC = [[SettingViewController alloc]init];
-                [self.navigationController pushViewController:settingVC animated:YES];
-            }
-                break;
+
                 
             default:
                 break;
@@ -570,12 +691,7 @@
                 myFriendWebVC.myFriendUrl = _user_friend_url;
                 [self.navigationController pushViewController:myFriendWebVC animated:YES];
             }
-            case 3://设置
-            {
-                SettingViewController *settingVC = [[SettingViewController alloc]init];
-                [self.navigationController pushViewController:settingVC animated:YES];
-            }
-                break;
+
                 
             default:
                 break;

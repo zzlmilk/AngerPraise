@@ -13,6 +13,8 @@
 
 @property(nonatomic,strong)NSString *password;
 @property(nonatomic,strong)NSString *phone;
+@property(nonatomic,strong)NSString *user_id;
+
 
 
 @property(nonatomic,strong)NSString *validation_inital;

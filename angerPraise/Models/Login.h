@@ -15,6 +15,9 @@
 @property(nonatomic,strong)NSString *user_name;
 @property(nonatomic,strong)NSString *user_phone;
 
+@property(nonatomic,strong)NSString *hr_privilege;
+@property(nonatomic,strong)NSString *resume_status;
+@property(nonatomic,strong)NSString *user_status_type;
 
 //用户注册 并 提交基本信息
 +(NSURLSessionDataTask *)userLogin:(NSDictionary *)parameters WithBlock:(void (^)(Login *login, Error *e))block;

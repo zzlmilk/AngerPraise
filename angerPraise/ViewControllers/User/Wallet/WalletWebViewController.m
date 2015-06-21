@@ -35,6 +35,7 @@
     NSURL *url=[NSURL URLWithString:_walletUrl];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [_walletWebView loadRequest:request];
+    _walletWebView.scrollView.bounces = NO;
     [_walletWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_walletWebView];
     
@@ -44,7 +45,14 @@
 
 -(void)doBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_walletWebView.canGoBack)
+    {
+        [_walletWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

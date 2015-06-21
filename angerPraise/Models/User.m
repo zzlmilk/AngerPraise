@@ -26,7 +26,7 @@
         _user_intergral =[dic objectForKey:@"user_intergral"];
         _user_name =[dic objectForKey:@"user_name"];
         _user_resume_synthesize_grade = [dic objectForKeyedSubscript:@"user_resume_synthesize_grade"];
-        
+        _mission_number =[dic objectForKeyedSubscript:@"mission_number"];
         
     }else{
         
@@ -67,8 +67,8 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
-        
+        //[APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        [APIClient showMessage:@"无网络连接"];
     }];
 
 

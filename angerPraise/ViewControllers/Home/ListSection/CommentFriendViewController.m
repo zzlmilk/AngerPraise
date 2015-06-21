@@ -68,13 +68,13 @@
     [self.view addSubview:InviteFriendButton];
     
     
-    _commentFriendTableView = [[UITableView alloc]init];
-    _commentFriendTableView.frame = CGRectMake(0, lineLabel.frame.size.height+lineLabel.frame.origin.y+1, WIDTH,HEIGHT);
-    _commentFriendTableView.delegate = self;
-    _commentFriendTableView.dataSource = self;
-    [self.view addSubview:_commentFriendTableView];
-    
-    [self setExtraCellLineHidden:_commentFriendTableView];
+//    _commentFriendTableView = [[UITableView alloc]init];
+//    _commentFriendTableView.frame = CGRectMake(0, lineLabel.frame.size.height+lineLabel.frame.origin.y+1, WIDTH,HEIGHT);
+//    _commentFriendTableView.delegate = self;
+//    _commentFriendTableView.dataSource = self;
+//    [self.view addSubview:_commentFriendTableView];
+//    
+//    [self setExtraCellLineHidden:_commentFriendTableView];
 
 }
 
@@ -98,14 +98,14 @@
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [CommentFriend getCommentFriendList:dic WithBlock:^(NSMutableArray *commentFriendArray, Error *e) {
+    [CommentFriend getCommentFriendList:dic WithBlock:^(CommentFriend *commentFriendArray, Error *e) {
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
        // NSLog(@"%@",commentFriendArray);
-        _commentFriendArray = commentFriendArray;
-        
-        [_commentFriendTableView reloadData];
+//        _commentFriendArray = commentFriendArray;
+//        
+//        [_commentFriendTableView reloadData];
         
     }];
 
@@ -158,10 +158,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
-    CommentFriend *c = [_commentFriendArray objectAtIndex:indexPath.row];
+    //CommentFriend *c = [_commentFriendArray objectAtIndex:indexPath.row];
     
     CommentFriendWebViewController *commentFriendWebVC = [[CommentFriendWebViewController alloc]init];
-    commentFriendWebVC.commentFriendUrl = c.friend_evluation_url;
+    //commentFriendWebVC.commentFriendUrl = c.friend_evluation_url;
     
     [self.navigationController pushViewController:commentFriendWebVC animated:YES];
     

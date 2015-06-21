@@ -27,6 +27,7 @@
     _subsidiesInterview = [dic objectForKey:@"subsidies_interview"];
     _webUrl = [dic objectForKey:@"web_url"];
     _creatTime = [dic objectForKey:@"create_time"];
+    
     //申请职位
     _res =[dic objectForKey:@"res"];
     
@@ -35,22 +36,41 @@
 }
 
 //获取 推荐的 职位列表
-+(NSURLSessionDataTask *)getPositionList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *positionArray, Error *))block{
++(NSURLSessionDataTask *)getPositionList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *positionArray, Error *e))block{
     
     return [[APIClient sharedClient]GET:@"position/recommended" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
         //NSLog(@"%@",responseObject);
-        NSMutableArray *positionArray = [responseObject objectForKey:@"position_object"];
+        
+        NSUserDefaults *recommendPosition= [[NSUserDefaults alloc]init];
+        [recommendPosition setObject:[responseObject objectForKey:@"recommended_number"] forKey:@"recommendPosition"];
+        
+        if ([responseObject objectForKeyedSubscript:@"error"]) {
+            
+            Error *error = [[Error alloc]init];
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"error"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"error_status"];
+            
+            NSMutableArray *p;
+            
+            block(p,error);
+            
+        }else{
 
-        NSMutableArray *positionList = [NSMutableArray array];
-        
-        for (int i=0; i<positionArray.count; i++) {
-            NSDictionary *statusDic = [positionArray objectAtIndex:i];
-            Position * s = [[Position alloc]initWithDic:statusDic];
-            [positionList addObject:s];
+            
+            NSMutableArray *positionArray = [responseObject objectForKey:@"position_object"];
+            
+            NSMutableArray *positionList = [NSMutableArray array];
+            
+            for (int i=0; i<positionArray.count; i++) {
+                NSDictionary *statusDic = [positionArray objectAtIndex:i];
+                Position * s = [[Position alloc]initWithDic:statusDic];
+                [positionList addObject:s];
+            }
+            
+            block(positionList,nil);
+            
         }
-        
-        block(positionList,nil);
         
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -89,6 +109,8 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
+        [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+
     }];
 
 }

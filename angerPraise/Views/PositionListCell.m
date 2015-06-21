@@ -33,7 +33,7 @@
         
         _indexButton = [[UIButton alloc]init];
         _indexButton.frame = CGRectMake((rect.size.width-50)/2,8, 50, 50);
-        [_indexButton setTitle:@"..." forState:UIControlStateNormal];
+        [_indexButton setTitle:@"64%" forState:UIControlStateNormal];
         [_indexButton.layer setMasksToBounds:YES];
         [_indexButton.layer setCornerRadius:25.0]; //设置矩形四个圆角半径
         [_indexButton setTitleColor:RGBACOLOR(0, 204, 252, 1.0f) forState:UIControlStateNormal];
@@ -53,6 +53,7 @@
         _positionNameLabel.frame = CGRectMake(0, 40, cellView.frame.size.width, 35);
         _positionNameLabel.textColor = RGBACOLOR(20, 20, 20, 1.0F);
         _positionNameLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.f];
+        _positionNameLabel.text = @"软件工程师";
         _positionNameLabel.textAlignment = NSTextAlignmentCenter;
         _positionNameLabel.backgroundColor = [UIColor clearColor];
         [cellView addSubview:_positionNameLabel];
@@ -60,6 +61,7 @@
         
         _workPlaceLabel = [[UILabel alloc]init];
         _workPlaceLabel.frame = CGRectMake(0, _positionNameLabel.frame.size.height+_positionNameLabel.frame.origin.y-5, cellView.frame.size.width, 35);
+        _workPlaceLabel.text = @"上海－浦东";
         _workPlaceLabel.textAlignment = NSTextAlignmentCenter;
         _workPlaceLabel.backgroundColor = [UIColor clearColor];
         _workPlaceLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
@@ -77,7 +79,7 @@
         //竞争人数
         _competitionNumberUIButton = [[UIButton alloc]init];
         _competitionNumberUIButton.frame = CGRectMake(0,_workPlaceLabel.frame.size.height+_workPlaceLabel.frame.origin.y+15,cellView.frame.size.width, 30);
-        [_competitionNumberUIButton setTitle:@"加载中..." forState:UIControlStateNormal];
+        [_competitionNumberUIButton setTitle:@"31/126" forState:UIControlStateNormal];
         [_competitionNumberUIButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
         [_competitionNumberUIButton setImage:[UIImage imageNamed:@"0ranking"] forState:UIControlStateNormal];
         [_competitionNumberUIButton setTitleColor:RGBACOLOR(177, 179, 180, 1.0f) forState:UIControlStateNormal];
@@ -90,6 +92,7 @@
         _companyNameLabel = [[UILabel alloc]init];
         _companyNameLabel.frame = CGRectMake(0, _competitionNumberUIButton.frame.size.height+_competitionNumberUIButton.frame.origin.y+15,cellView.frame.size.width, 35);
         _companyNameLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
+        _companyNameLabel.text = @"红丘陵(上海)实业有限公司";
         _companyNameLabel.textAlignment = NSTextAlignmentCenter;
         _companyNameLabel.textColor =RGBACOLOR(177, 179, 180, 1.0f);
         _companyNameLabel.backgroundColor = [UIColor clearColor];

@@ -9,6 +9,9 @@
 #import "IndexViewController.h"
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "MainViewController.h"
+#import "NewPasswordViewController.h"
+
 //#import "TKRoundedView.h"
 
 @interface IndexViewController ()
@@ -20,6 +23,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(0, 0, 44, 44);
+    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+    backBtn.hidden =YES;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
+    
     
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"0index_bg"]];
     
@@ -42,7 +54,7 @@
     [loginButton.layer setCornerRadius:50/2.f]; //设置矩形四个圆角半径
 //    [loginButton.layer setBorderWidth:1.0]; //边框宽度
 //    loginButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
-    [loginButton setTitle:@"登    陆" forState:UIControlStateNormal];
+    [loginButton setTitle:@"登    入" forState:UIControlStateNormal];
     [loginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     loginButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
     loginButton.backgroundColor = [UIColor whiteColor];
@@ -55,7 +67,7 @@
     [registerButton.layer setCornerRadius:50/2.f]; //设置矩形四个圆角半径
 //    [registerButton.layer setBorderWidth:1.0]; //边框宽度
 //    registerButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
-    [registerButton setTitle:@"注    册" forState:UIControlStateNormal];
+    [registerButton setTitle:@"创 建 账 户" forState:UIControlStateNormal];
     [registerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     registerButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
     registerButton.backgroundColor = [UIColor whiteColor];
@@ -63,8 +75,14 @@
     [self.view addSubview:registerButton];
     
     
-    
-    
+    UIButton *forgetPasswordButton = [[UIButton alloc]init];
+    forgetPasswordButton.frame = CGRectMake(20, registerButton.frame.origin.y+registerButton.frame.size.height+20,WIDTH-2*20-20,30);
+    forgetPasswordButton.backgroundColor = [UIColor clearColor];
+    [forgetPasswordButton setTitle:@"忘 记 密 码 ？" forState:UIControlStateNormal];
+    forgetPasswordButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    forgetPasswordButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
+    [forgetPasswordButton setTitleColor:RGBACOLOR(0, 199, 255, 1.0f) forState:UIControlStateNormal];
+    [self.view addSubview:forgetPasswordButton];
     
     
 }
@@ -78,6 +96,8 @@
 
 #pragma mark -- 去注册
 -(void)goRegister{
+    
+    
     
     RegisterViewController *registerVC = [[RegisterViewController alloc]init];
     [self.navigationController pushViewController:registerVC animated:YES];

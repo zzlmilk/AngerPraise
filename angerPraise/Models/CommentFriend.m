@@ -13,18 +13,36 @@
 
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
+
+    _friend_number =[dic objectForKey: @"friend_number"];
+    _synthesize_grade =[dic objectForKey: @"synthesize_grade"];
+    _synthesize_grade_url =[dic objectForKey: @"synthesize_grade_url"];
+    _today_award_total =[dic objectForKey: @"today_award_total"];
+    _today_receive_award =[dic objectForKey: @"today_receive_award"];
     
-    _friend_evluation_status = [dic objectForKey: @"friend_evluation_status"];
-    _friend_evluation_url = [dic objectForKey: @"friend_evluation_url"];
-    _photo_url = [dic objectForKey: @"photo_url"];
-    _user_name = [dic objectForKey: @"user_name"];
-    
+    //friend_list
+    if ([dic objectForKey:@"friend_list"]) {
+        NSArray *friend_listArray =[dic objectForKey:@"friend_list"];
+        
+        _commentFriendArray = [NSMutableArray array];
+        for (int i =0; i<friend_listArray.count; i++) {
+
+            Review *r =[[Review alloc]init];
+            r.friend_evluation_status = [[friend_listArray objectAtIndex:i] objectForKey:@"friend_evluation_status"];
+            r.friend_evluation_url = [[friend_listArray objectAtIndex:i] objectForKey:@"friend_evluation_url"];
+            r.photo_url = [[friend_listArray objectAtIndex:i] objectForKey:@"photo_url"];
+            r.user_name = [[friend_listArray objectAtIndex:i] objectForKey:@"user_name"];
+            
+            [_commentFriendArray addObject:r];
+        }
+        
+    }
     
     return self;
     
 }
 
-+(NSURLSessionDataTask *)getCommentFriendList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *commentFriendArray, Error *e))block{
++(NSURLSessionDataTask *)getCommentFriendList:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block{
 
     return [[APIClient sharedClient]GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -41,17 +59,9 @@
             
         }else{
         
-            NSMutableArray *dataArray = [responseObject objectForKey:@"friend_list"];
+            CommentFriend *c = [[CommentFriend alloc]initWithDic:responseObject];
             
-            NSMutableArray *commentFriendList = [NSMutableArray array];
-            
-            for (int i=0; i<dataArray.count; i++) {
-                NSDictionary *commDic = [dataArray objectAtIndex:i];
-                CommentFriend * c = [[CommentFriend alloc]initWithDic:commDic];
-                [commentFriendList addObject:c];
-            }
-            
-            block(commentFriendList,nil);
+            block(c,nil);
         
         }
         
