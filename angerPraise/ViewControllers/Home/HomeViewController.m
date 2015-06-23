@@ -24,6 +24,10 @@
 
 #import "UIView+i7Rotate360.h"
 
+#import "IndexViewController.h"
+#import "Home.h"
+#import "WalletWebViewController.h"
+
 
 #define F2I  (*((int *)&f))
 
@@ -234,7 +238,11 @@
     
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
         //NSLog(@"ObjC received message from JS: %@", data);
-        
+        if ([data isEqualToString:@"pay"]) {
+            
+            [self getMyPayUrlString];
+            
+        }
         if ([data isEqualToString:@"wechat_invite"]) {
             
             [self weiXinShare:data];
@@ -274,6 +282,7 @@
     }];
     
 }
+
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
     
@@ -391,6 +400,30 @@
               }];
 
 }
+
+#pragma mark - 点击我的钱包 获取钱包的url
+
+-(void)getMyPayUrlString{
+
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    
+    [Home getMyPayUrlString:dic WithBlock:^(Home *home, Error *e) {
+        
+        if (home.payUrlString) {
+            
+            WalletWebViewController * walletWebVC = [[WalletWebViewController alloc]init];
+            walletWebVC.walletUrl = home.payUrlString;
+            
+            [self.navigationController pushViewController:walletWebVC animated:YES];
+        }
+        
+    }];
+    
+}
+
 
 #pragma mark -  点评成功后 重新获取更新金币和综合评分
 -(void)revirewSuccess{
@@ -516,7 +549,22 @@
         
         if (e.info !=nil) {
             
+            NSString *codeString = [NSString stringWithFormat:@"%@",e.code];
+            
+            if ([codeString isEqualToString:@"104"]) {// 服务端token不存在
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:e.info
+                                                                message:@"请重新登录"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil,nil];
+                [alert show];
+
+            }else{
+                
             [APIClient showMessage:e.info];
+                
+            }
             
         }else{
             
@@ -555,6 +603,24 @@
         }
     }];
 }
+#pragma marks -- UIAlertViewDelegate --
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex ==0) {
+        
+        NSUserDefaults *token=[NSUserDefaults standardUserDefaults];
+        [token removeObjectForKey:@"token"];
+        
+        NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
+        [hrPrivilege removeObjectForKey:@"hrPrivilege"];
+        
+        IndexViewController *indexVC= [[IndexViewController alloc]init];
+        [self.navigationController pushViewController:indexVC animated:YES];
+        
+    }
+}
+
+
 
 #pragma mark - hr 特权
 -(void)hrPrivilege{

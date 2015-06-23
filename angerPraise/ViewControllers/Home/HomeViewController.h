@@ -13,7 +13,7 @@
 #import "SMS_MBProgressHUD.h"
 #import "VWWWaterView.h"
 
-@interface HomeViewController : BaseViewController<UIWebViewDelegate,PagedFlowViewDataSource,PagedFlowViewDelegate,MBProgressHUDDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate>
+@interface HomeViewController : BaseViewController<UIWebViewDelegate,PagedFlowViewDataSource,PagedFlowViewDelegate,MBProgressHUDDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate>
 {
 NSMutableArray *imageArray;
 
@@ -67,4 +67,7 @@ enum WXScene _scene;
 @property(nonatomic,strong)NSString *shareContent;
 
 -(void)getCommentFriendInfo;
+
+@property(nonatomic,strong)NSString *payUrlString;
+
 @end
