@@ -26,14 +26,11 @@
 #import "WalletWebViewController.h"
 #import "MyFriendWebViewController.h"
 #import "CollectWebViewController.h"
-<<<<<<< HEAD
-#import "HrWebViewCon                           `````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````   ```````````````troller.h"
-=======
+#import "HrWebViewController.h"
 #import "HrWebViewController.h"
 #import "PositionViewController.h"
 #import "MainViewController.h"
 #import "WalletWebViewController.h"
->>>>>>> 5e7be9ef4ddfacf87bb14cfbbd0bad22775df8ab
 
 #import "SMS_MBProgressHUD.h"
 #import "EditNameViewController.h"
