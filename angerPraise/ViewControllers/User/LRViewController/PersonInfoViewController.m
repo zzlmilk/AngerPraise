@@ -215,7 +215,8 @@
         [_birthdayTextField resignFirstResponder];
         _datePicker.hidden = NO;
         
-    }else if(textField.tag ==105){
+    }
+    if(textField.tag ==105){
         
         [_sexTextField resignFirstResponder];
         _pickerView.hidden = NO;
@@ -241,7 +242,8 @@
         
         [APIClient showMessage:@"姓名不能为空"];
         
-    }else if([_birthdayTextField.text isEqualToString:@""]){
+    }
+    if([_birthdayTextField.text isEqualToString:@""]){
         
          [APIClient showMessage:@"请选择生日"];
     
@@ -251,11 +253,13 @@
             
             _sexId = @"1";
             
-        }else if ([_sexTextField.text isEqualToString:@"女"]){
+        }
+        if ([_sexTextField.text isEqualToString:@"女"]){
             
             _sexId = @"2";
             
-        } else if ([_sexTextField.text isEqualToString:@"保密"]){
+        }
+        if ([_sexTextField.text isEqualToString:@"保密"]){
             
             _sexId = @"3";
             

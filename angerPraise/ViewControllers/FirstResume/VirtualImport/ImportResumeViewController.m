@@ -11,6 +11,8 @@
 #import "GuideViewController.h"
 #import "MainViewController.h"
 #import "QAResumeViewController.h"
+#import "Resume.h"
+#import "ApIClient.h"
 
 @interface ImportResumeViewController ()
 
@@ -103,6 +105,31 @@
     [skipButton addTarget:self action:@selector(skip) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:skipButton];
     
+    [self getQaCreatResumeUrl];
+}
+
+
+-(void)getQaCreatResumeUrl{
+
+
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    
+    [Resume qACreatedResume:dic WithBlock:^(Resume *resume, Error *e) {
+       
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+        }else{
+        
+            _create_resume_url = resume.create_resume_url;
+        }
+        
+    }];
+
 }
 
 #pragma mark -- 返回
@@ -121,8 +148,9 @@
 
 #pragma mark -- 问答式创建
 -(void)guideImport{
-
+    
     QAResumeViewController *qaResumeVC = [[QAResumeViewController alloc]init];
+    qaResumeVC.qaResumeUrl = _create_resume_url;
     [self.navigationController pushViewController:qaResumeVC animated:YES];
 }
 
@@ -130,8 +158,7 @@
 -(void)skip{
     
     MainViewController *mainVC = [[MainViewController alloc]init];
-    //[self.navigationController pushViewController:mainVC animated:YES];
-    [self presentViewController:mainVC animated:YES completion:nil];
+    [self.navigationController pushViewController:mainVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

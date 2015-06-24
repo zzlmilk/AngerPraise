@@ -15,6 +15,8 @@
 #import "ApIClient.h"
 #import "MainViewController.h"
 #import "TKRoundedView.h"
+#import "SMS_MBProgressHUD.h"
+
 
 @interface LoginViewController ()
 
@@ -53,6 +55,7 @@
     _phoneNumberTextField.tag = 101;
     _phoneNumberTextField.textAlignment = NSTextAlignmentCenter;
     _phoneNumberTextField.delegate =self;
+    [_phoneNumberTextField becomeFirstResponder];
     _phoneNumberTextField.textColor = [UIColor whiteColor];
     //    _phoneNumberTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
     //    _phoneNumberTextField.layer.borderWidth = 1.0f;
@@ -101,13 +104,14 @@
     
     
 
-    UIButton *userLoginButton= [[UIButton alloc]initWithFrame:CGRectMake(20,_passwordTextField.frame.origin.y+_passwordTextField.frame.size.height+50,WIDTH-2*20,50)];
+    UIButton *userLoginButton= [[UIButton alloc]initWithFrame:CGRectMake(30,_passwordTextField.frame.origin.y+_passwordTextField.frame.size.height+50,WIDTH-2*30,45)];
     [userLoginButton.layer setMasksToBounds:YES];
-    [userLoginButton.layer setCornerRadius:50/2.f]; //设置矩形四个圆角半径
+    [userLoginButton.layer setCornerRadius:45/2.f]; //设置矩形四个圆角半径
     //[_userRegisterButton.layer setBorderWidth:1.0]; //边框宽度
     //    _userRegisterButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
     [userLoginButton setTitle:@"登    入" forState:UIControlStateNormal];
-    [userLoginButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
+    [userLoginButton setTitleColor:btnNormalColor forState:UIControlStateNormal];
+    [userLoginButton setTitleColor:btnHighlightedColor forState:UIControlStateHighlighted];
     userLoginButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
     userLoginButton.backgroundColor = [UIColor whiteColor];
     [userLoginButton addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];
@@ -116,9 +120,13 @@
 
 }
 
+#pragma mark -- 键盘return 事件
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [self userLogin];
+    
+    [_passwordTextField resignFirstResponder];
+    
     return YES;
     
 }
@@ -190,20 +198,24 @@
         
         [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
         [dic setObject:_passwordTextField.text forKey:@"password"];
+        
 //        [dic setObject:@"ios" forKey:@"device"];
 //        [dic setObject:uuid forKey:@"device_id"];
 //        [dic setObject:@"e91eabc2c2f181f4a0c3715a4ec049df" forKey:@"client_id"];
         
+        [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [Login userLogin:dic WithBlock:^(Login *login, Error *e) {
             
+            [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+
             if (e.info !=nil) {
                 
                 [APIClient showInfo:e.info title:@"提示"];
                 
-            }else if(![login.user_id isEqual: @""]){
+            }else if(![login.token isEqual: @""]){
                 
-                NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-                [userId setObject:login.user_id forKey:@"userId"];
+                NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+                [token setObject:login.token forKey:@"token"];
                 
                 NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
                 [hrPrivilege setObject:login.hr_privilege forKey:@"hrPrivilege"];

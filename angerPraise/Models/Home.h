@@ -18,6 +18,8 @@
 @property(nonatomic,strong)NSString *synthesize_grade_url; //简历综合评分的详情 URL
 @property(nonatomic,strong)NSString *hr_interview_number; // HR特权  hr对应聘者点评
 
+@property(nonatomic,strong)NSString *payUrlString; // HR特权  hr对应聘者点评
+
 
 
 //获取首页数据信息
@@ -25,5 +27,8 @@
  *home, Error *e))block;
 
 -(instancetype)initWithDic:(NSDictionary *)dic;
+
+//获取我的钱包的Url
++(NSURLSessionDataTask *)getMyPayUrlString:(NSDictionary *)parameters WithBlock:(void (^)(Home *home, Error *e))block;
 
 @end

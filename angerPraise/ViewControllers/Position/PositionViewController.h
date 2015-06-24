@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-#import "MainViewController.h"
 
-@interface PositionViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,TabBarItemSelectDelegate>
+@interface PositionViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
 @property(nonatomic,strong)UITableView *positionTableView;
 
@@ -28,4 +27,7 @@
 
 @property(nonatomic,strong)UIView *tipView;
 @property(nonatomic,strong)UILabel *recommondLabel;
+@property(nonatomic,strong)UILabel *titleBgLabel;
+
+-(void)getPositionInfo;
 @end

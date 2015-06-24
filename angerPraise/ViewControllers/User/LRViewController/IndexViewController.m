@@ -49,27 +49,31 @@
 //    [self.view addSubview:iconLabel];
     
     
-   UIButton *loginButton = [[UIButton alloc]initWithFrame:CGRectMake(20,logoImageView.frame.origin.y+logoImageView.frame.size.height+120,WIDTH-2*20,50)];
+   UIButton *loginButton = [[UIButton alloc]initWithFrame:CGRectMake(30,logoImageView.frame.origin.y+logoImageView.frame.size.height+120,WIDTH-2*30,45)];
     [loginButton.layer setMasksToBounds:YES];
-    [loginButton.layer setCornerRadius:50/2.f]; //设置矩形四个圆角半径
+    [loginButton.layer setCornerRadius:45/2.f]; //设置矩形四个圆角半径
 //    [loginButton.layer setBorderWidth:1.0]; //边框宽度
 //    loginButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
     [loginButton setTitle:@"登    入" forState:UIControlStateNormal];
     [loginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [loginButton setTitleColor:RGBACOLOR(20, 20, 20, 1.0f) forState:UIControlStateNormal];
+    [loginButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateHighlighted];
     loginButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
     loginButton.backgroundColor = [UIColor whiteColor];
     [loginButton addTarget:self action:@selector(goLogin) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
     
-    UIButton *registerButton = [[UIButton alloc]initWithFrame:CGRectMake(20,loginButton.frame.origin.y+loginButton.frame.size.height+50,WIDTH-2*20,50)];
+    UIButton *registerButton = [[UIButton alloc]initWithFrame:CGRectMake(30,loginButton.frame.origin.y+loginButton.frame.size.height+50,WIDTH-2*30,45)];
     [registerButton.layer setMasksToBounds:YES];
-    [registerButton.layer setCornerRadius:50/2.f]; //设置矩形四个圆角半径
+    [registerButton.layer setCornerRadius:45/2.f]; //设置矩形四个圆角半径
 //    [registerButton.layer setBorderWidth:1.0]; //边框宽度
 //    registerButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
     [registerButton setTitle:@"创 建 账 户" forState:UIControlStateNormal];
     [registerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     registerButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    [registerButton setTitleColor:btnNormalColor forState:UIControlStateNormal];
+    [registerButton setTitleColor:btnHighlightedColor forState:UIControlStateHighlighted];
     registerButton.backgroundColor = [UIColor whiteColor];
     [registerButton addTarget:self action:@selector(goRegister) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registerButton];

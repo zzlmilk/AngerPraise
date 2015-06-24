@@ -203,7 +203,7 @@
     
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:@"4" forKey:@"user_id"];
+    [dic setObject:@"4" forKey:@"token"];
 
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [EditPhoto uploadUserProfileImageParameters:dic WithBlock:^(EditPhoto *e) {

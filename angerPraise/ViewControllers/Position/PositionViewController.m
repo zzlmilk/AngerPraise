@@ -27,6 +27,12 @@
     // Do any additional setup after loading the view.
     
     //_page = 1;
+    self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    
+    _titleBgLabel = [[UILabel alloc]init];
+    _titleBgLabel.frame = CGRectMake(0, 0, WIDTH, 44);
+    _titleBgLabel.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_titleBgLabel];
     
     _positionTableView = [[UITableView alloc]init];
     _positionTableView.frame = CGRectMake(0,0, WIDTH,HEIGHT);
@@ -115,17 +121,6 @@
     [_searchView addGestureRecognizer:oneFingerSwipeUp];
  
 }
-
-#pragma mark TabBarItemSelectDelegate 方法
--(void)positionItemSelected{
-
-    [self getPositionInfo];
-    
-}
--(void)homeItemSelected{};
--(void)userItemSelected{};
--(void)resumeItemSelected{};
-
 
 #pragma mark -- 手势事件监听
 -(void)keyboardHide:(UITapGestureRecognizer*)tap{
@@ -238,7 +233,7 @@
         
     }
     
-    else if ((_lastPosition - currentPostion > 0) && (currentPostion  <= scrollView.contentSize.height-scrollView.bounds.size.height) )
+    if ((_lastPosition - currentPostion > 0) && (currentPostion  <= scrollView.contentSize.height-scrollView.bounds.size.height) )
     {
         _lastPosition = currentPostion;
         self.tabBarController.tabBar.hidden = NO;
@@ -270,9 +265,9 @@
     //_pageString =  [[NSString alloc] initWithFormat:@"%d",_page];
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:@"1" forKey:@"type"];
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
 
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
@@ -364,7 +359,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
-    cell.separatorInset = UIEdgeInsetsMake(-15, 0, 0, 0);//上左下右 就可以通过设置这四个参数来设置分割线了
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);//上左下右 就可以通过设置这四个参数来设置分割线了
     return cell;
 }
 
@@ -372,13 +367,14 @@
 #pragma mark -- UITableView height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return 290.f;
+    return 250.f;
 }
 
 #pragma mark -- UITableView delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
+
     Position * p = [_positionListArray objectAtIndex:indexPath.row];
     
     PositionDetailViewController *positionDetailVC = [[PositionDetailViewController alloc]init];

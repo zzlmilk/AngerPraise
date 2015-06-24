@@ -70,51 +70,14 @@
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
 
-    switch (item.tag) {
-        case 1:
-        {
-            HomeViewController *homeVC  = [[HomeViewController alloc] init];
-            self.delegate =  homeVC;
-            
-            [self.delegate homeItemSelected];
-        }
-            break;
-        case 2:
-        {
-            ResumeViewController *resumeVC  = [[ResumeViewController alloc] init];
-            self.delegate = resumeVC;
-            
-            [self.delegate resumeItemSelected];
-        }
-            break;
-        case 3:
-        {
-            PositionViewController *positionVC  = [[PositionViewController alloc] init];
-            self.delegate = positionVC;
-            
-            [self.delegate positionItemSelected];
-        }
-            break;
-        case 4:
-        {
-            UserViewController *userVC  = [[UserViewController alloc] init];
-            self.delegate = userVC;
-            
-            [self.delegate userItemSelected];
-        }
-            break;
-            
-            
-        default:
-            break;
+    if (item.tag == 2) {
+        ResumeViewController *resumeVC  = [[ResumeViewController alloc] init];
+        [resumeVC getresumeInfo];
+    }
+    if (item.tag == 3) {
+        PositionViewController *positionVC  = [[PositionViewController alloc] init];
+        [positionVC getPositionInfo];
     }
 }
-
-- (void)homeItemSelected{};
-- (void)resumeItemSelected{};
-- (void)userItemSelected{};
-- (void)positionItemSelected{};
-
-
 
 @end

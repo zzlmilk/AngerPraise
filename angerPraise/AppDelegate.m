@@ -51,15 +51,15 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     
 
-    // 判断user_id 如果存在 storyborder中 页面跳转到Home
+    // 判断token 如果存在 storyborder中 页面跳转到Home
     
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UIStoryboard *storyBoard1 = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIStoryboard *storyBoard2 = [UIStoryboard storyboardWithName:@"Index" bundle:nil];
-    if([userId objectForKey:@"userId"]){
+    if([token objectForKey:@"token"]){
         
         self.window.rootViewController = [storyBoard1 instantiateInitialViewController];
         
@@ -69,7 +69,7 @@
     }
     
 
-    [WXApi registerApp:@"wxa10386b68f005ad8"];
+    [WXApi registerApp:@"wx97dbb5b24f24c791"];
     
     return YES;
 }

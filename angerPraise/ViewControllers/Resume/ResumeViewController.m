@@ -12,8 +12,8 @@
 #import "SMS_MBProgressHUD.h"
 #import "ShareViewController.h"
 #import "ApIClient.h"
-#import "ImportResumeViewController.h"
 #import "ResumeScoreViewController.h"
+#import "ImportResumeViewController.h"
 
 @interface ResumeViewController ()
 
@@ -48,20 +48,21 @@
     [_titleMyResumeView addSubview:_workPlaceLabel];
     
     //预览简历
-    UIButton *previewResumeButton = [[UIButton alloc]init];
-    previewResumeButton.frame = CGRectMake(80,_workPlaceLabel.frame.origin.y+_workPlaceLabel.frame.size.height+40, WIDTH-2*80, 40);
-    [previewResumeButton setTitle:@"预 览 简 历" forState:UIControlStateNormal];
-    [previewResumeButton.layer setMasksToBounds:YES];
-    [previewResumeButton.layer setCornerRadius:40/2.f]; //设置矩形四个圆角半径
-    [previewResumeButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
-    previewResumeButton.layer.borderWidth = 1.0f;
-    previewResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
-    previewResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17];
-    [previewResumeButton addTarget:self action:@selector(previewResume) forControlEvents:UIControlEventTouchUpInside];
-    [_titleMyResumeView addSubview:previewResumeButton];
+    _previewResumeButton = [[UIButton alloc]init];
+    _previewResumeButton.frame = CGRectMake(80,_workPlaceLabel.frame.origin.y+_workPlaceLabel.frame.size.height+40, WIDTH-2*80, 40);
+    [_previewResumeButton setTitle:@"预 览 简 历" forState:UIControlStateNormal];
+    [_previewResumeButton setTitleColor:RGBACOLOR(20, 20, 20, 1.0f) forState:UIControlStateHighlighted];
+    [_previewResumeButton.layer setMasksToBounds:YES];
+    [_previewResumeButton.layer setCornerRadius:40/2.f]; //设置矩形四个圆角半径
+    [_previewResumeButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
+    _previewResumeButton.layer.borderWidth = 1.0f;
+    _previewResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
+    _previewResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17];
+    [_previewResumeButton addTarget:self action:@selector(previewResume) forControlEvents:UIControlEventTouchUpInside];
+    [_titleMyResumeView addSubview:_previewResumeButton];
     
     _updateTimelabel = [[UILabel alloc]init];
-    _updateTimelabel.frame = CGRectMake(0, previewResumeButton.frame.size.height+previewResumeButton.frame.origin.y, WIDTH, 25);
+    _updateTimelabel.frame = CGRectMake(0, _previewResumeButton.frame.size.height+_previewResumeButton.frame.origin.y, WIDTH, 25);
     _updateTimelabel.textAlignment = NSTextAlignmentCenter;
     _updateTimelabel.font =  [UIFont fontWithName:@"Helvetica" size:12.f];
     _updateTimelabel.backgroundColor = [UIColor clearColor];
@@ -71,45 +72,16 @@
     
     [self getresumeInfo];
     
-    //[self getRing];
 }
 
-
-//// 完善资料
-//-(void)perfectInfo{
-//    
-////    CFUUIDRef puuid = CFUUIDCreate( nil );
-////    CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
-//
-//    
-//}
-//
-////提高竞争力
-//-(void)improveCompetitiveness{
-//
-//    ShareViewController *shareVC = [[ShareViewController alloc]init];
-//    [self.navigationController pushViewController:shareVC animated:YES];
-//
-//}
-
-#pragma mark TabBarItemSelectDelegate 方法
--(void)resumeItemSelected{
-    
-    [self getresumeInfo];
-    
-}
-- (void)homeItemSelected{};
-- (void)userItemSelected{};
-- (void)positionItemSelected{};
 
 //获取简历基本信息
 -(void)getresumeInfo{
 
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
-    //[dic setObject:@"162" forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -118,7 +90,6 @@
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
         int errorCode = [e.code intValue];
-        
         if (errorCode ==40004) {
             
             [APIClient showInfo:e.info title:@"提示"];
@@ -126,7 +97,8 @@
             ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
             [self.navigationController pushViewController:importResumeVC animated:YES];
             
-        }else if(resumeScoer.user_position !=nil){
+        }
+        if(resumeScoer.user_position !=nil){
             
             //NSLog(@"%@",resumeScoer);
             _positionNameLabel.text = resumeScoer.user_position;
@@ -186,6 +158,7 @@
     
 
 }
+
 
 //预览简历
 -(void)previewResume{

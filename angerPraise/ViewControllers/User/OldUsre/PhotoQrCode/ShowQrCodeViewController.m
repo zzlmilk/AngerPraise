@@ -62,10 +62,10 @@
 // 查看我的二维码
 -(void)getMyQrCode{
     
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     

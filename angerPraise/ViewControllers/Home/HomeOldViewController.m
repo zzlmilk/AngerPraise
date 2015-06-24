@@ -77,7 +77,7 @@
 -(void)getHomeInfo{
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:@"4" forKey:@"user_id"];
+    [dic setObject:@"4" forKey:@"token"];
 
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -103,7 +103,7 @@
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:dick forKey:@"phone_book"];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[userId objectForKey:@"userId"] forKey:@"token"];
     
     [AddressBook uploadAddressBook:dic WithBlock:^(AddressBook *addressBook, Error *e) {
        

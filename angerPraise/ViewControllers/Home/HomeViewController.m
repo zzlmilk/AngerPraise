@@ -24,6 +24,10 @@
 
 #import "UIView+i7Rotate360.h"
 
+#import "IndexViewController.h"
+#import "Home.h"
+#import "WalletWebViewController.h"
+
 
 #define F2I  (*((int *)&f))
 
@@ -40,7 +44,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
     
     _isString = 0;
     _addPage = 0;
@@ -102,8 +105,8 @@
     
     _tipNumberLabel = [[UILabel alloc]init];
     _tipNumberLabel.frame = CGRectMake(0, 0, _waterView.frame.size.width, _waterView.frame.size.height);
-    _tipNumberLabel.text = @"...";
-    _tipNumberLabel.textColor = RGBACOLOR(255, 153, 51, 1.0f);
+    _tipNumberLabel.text = @"0/25";
+    _tipNumberLabel.textColor = hl_blue;
     _tipNumberLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
     _tipNumberLabel.textAlignment = NSTextAlignmentCenter;
     [_waterView addSubview:_tipNumberLabel];
@@ -143,7 +146,7 @@
     
     _scoreLabel = [[UILabel alloc]init];
     _scoreLabel.frame = CGRectMake(0, 0, _scoreImageView.frame.size.width, _scoreImageView.frame.size.height);
-    _scoreLabel.text = @"...";
+    _scoreLabel.text = @"0/25";
     _scoreLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
     _scoreLabel.textColor = [UIColor whiteColor];
     _scoreLabel.textAlignment = NSTextAlignmentCenter;
@@ -165,29 +168,81 @@
     [rolliew addSubview:scoreTipLabel];
     //综合评分 结束
     
-    //_addPage = 0; // webView 下一个/咱不点评
-
-    
-    [self getCommentFriendInfo];
-    
      if (_bridge) { return; }
     [WebViewJavascriptBridge enableLogging];
     
     _homeWebView = [[UIWebView alloc] init];
-    _homeWebView.frame = CGRectMake(0, rolliew.frame.size.height+rolliew.frame.origin.y,WIDTH, HEIGHT - rolliew.frame.size.height-rolliew.frame.origin.y-60);
+    _homeWebView.frame = CGRectMake(10, rolliew.frame.size.height+rolliew.frame.origin.y,WIDTH-2*10, HEIGHT - rolliew.frame.size.height-rolliew.frame.origin.y-60);
     _homeWebView.layer.cornerRadius = 10.f;
     [_homeWebView setClipsToBounds:YES];
     [[_homeWebView layer]setBorderColor:[UIColor blackColor].CGColor];
     [[_homeWebView layer]setBorderWidth:1.0f];
+    _homeWebView.tag = 1001;
     _homeWebView.delegate = self;
-    [_homeWebView setUserInteractionEnabled:YES];
+    _homeWebView.scrollView.delegate = self;
+//    [_homeWebView setUserInteractionEnabled:YES];
     _homeWebView.scrollView.bounces = NO;
+    [self hideScroll];
     [self.view addSubview:_homeWebView];
     
+    //webview  添加手势
+    UISwipeGestureRecognizer *recognizerRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    recognizerRight.delegate = self;
+    [recognizerRight setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [_homeWebView addGestureRecognizer:recognizerRight];
+    
+    UISwipeGestureRecognizer *recognizerLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    recognizerLeft.delegate = self;
+    [recognizerLeft setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [_homeWebView addGestureRecognizer:recognizerLeft];
+    
+    
+    
+    
+    _maskView = [[UIView alloc]init];
+    _maskView.frame = self.view.frame;
+    _maskView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+    _maskView.hidden = YES;
+    [self.view addSubview:_maskView];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMaskView)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [_maskView addGestureRecognizer:tapGestureRecognizer];
+    
+    
+    UIView *whiteBgView = [[UIView alloc]init];
+    whiteBgView.frame = CGRectMake(35, 180, WIDTH-2*35,HEIGHT*0.458);//将高度固定
+    whiteBgView.backgroundColor =[UIColor whiteColor];
+    [_maskView addSubview:whiteBgView];
+    
+    UIView *textView = [[UIView alloc]init];
+    textView.frame = CGRectMake(2,2,whiteBgView.frame.size.width-2*2,140);
+    textView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0F);
+    [whiteBgView addSubview:textView];
+    
+    _weixinButton = [[UIButton alloc]init];
+    _weixinButton.frame = CGRectMake(40, textView.frame.size.height+textView.frame.origin.y+40, 40, 40);
+    _weixinButton.backgroundColor = [UIColor clearColor];
+    [_weixinButton setImage:[UIImage imageNamed:@"0wechat3"] forState:UIControlStateNormal];
+    [whiteBgView addSubview:_weixinButton];
+    
+    _momentButton = [[UIButton alloc]init];
+    _momentButton.frame = CGRectMake(whiteBgView.frame.size.width-_weixinButton.frame.size.width-_weixinButton.frame.origin.x, textView.frame.size.height+textView.frame.origin.y+40, 40, 40);
+    [_momentButton setImage:[UIImage imageNamed:@"0moment"] forState:UIControlStateNormal];
+    _momentButton.backgroundColor = [UIColor clearColor];
+    [whiteBgView addSubview:_momentButton];
+    
+    
+    [self getCommentFriendInfo];
+    
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
-        NSLog(@"ObjC received message from JS: %@", data);
-        
-        
+        //NSLog(@"ObjC received message from JS: %@", data);
+        if ([data isEqualToString:@"pay"]) {
+            
+            [self getMyPayUrlString];
+            
+        }
         if ([data isEqualToString:@"wechat_invite"]) {
             
             [self weiXinShare:data];
@@ -210,7 +265,7 @@
         }
         if ([data isEqualToString:@"user_review_success"]){
             
-            [self revirewSuccess];// 更改接口
+            [self revirewSuccess];
             
         }
         if ([data isEqualToString:@"hr_intview_success"]){
@@ -226,18 +281,87 @@
         
     }];
     
-    
 }
 
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    
+    return YES;
+    
+}
+
+#pragma mark -  webview 手势
+-(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer{
+    if(recognizer.direction==UISwipeGestureRecognizerDirectionLeft) {
+        
+        //NSLog(@"swipe left");
+        
+        //执行程序
+        [self webViewNextOne];
+        
+    }
+    
+    if(recognizer.direction==UISwipeGestureRecognizerDirectionRight) {
+        
+        //NSLog(@"swipe right");
+        
+        //执行程序
+        [self webViewPreviousOne];
+    }
+}
+
+
+-(void)hideMaskView{
+
+    _maskView.hidden = YES;
+}
+
+#pragma mark -  隐藏webview 滚动条
+-(void)hideScroll{
+
+    for (UIView *_aView in [_homeWebView subviews])
+    {
+        if ([_aView isKindOfClass:[UIScrollView class]])
+        {
+            //右侧的滚动条
+            [(UIScrollView *)_aView setShowsVerticalScrollIndicator:NO];
+            
+            //下侧的滚动条
+            [(UIScrollView *)_aView setShowsHorizontalScrollIndicator:NO];
+            
+            for (UIView *_inScrollview in _aView.subviews)
+            {
+                if ([_inScrollview isKindOfClass:[UIImageView class]])
+                {
+                    _inScrollview.hidden = YES;  //上下滚动出边界时的黑色的图片
+                }
+            }
+        }
+    }
+    
+}
+#pragma mark -  禁止webview上下 左右滚动滚动
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGPoint point = scrollView.contentOffset;
+    if (point.x > 0) {
+        scrollView.contentOffset = CGPointMake(0, point.y);
+    }
+    
+    if(point.y>0){
+    
+        scrollView.contentOffset = CGPointMake(0, point.x);
+        
+    }
+}
 
 #pragma mark -  微信分享   提高竞争力/邀请好友
 -(void)weiXinShare:(NSString *)data{
     
     //调用接口 获取相关地址和文案
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     [dic setObject:data forKey:@"string"];
 
     [Share getShareInfo:dic
@@ -250,7 +374,6 @@
                   }else{
                       _shareTitle = share.title;
                       _shareContent = share.content;
-                      
                       
                       if ([data isEqualToString:@"wechat_invite"]) {
                           
@@ -273,33 +396,62 @@
                           
                       }
 
-                      
-                  
                   }
               }];
 
 }
 
+#pragma mark - 点击我的钱包 获取钱包的url
+
+-(void)getMyPayUrlString{
+
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    
+    [Home getMyPayUrlString:dic WithBlock:^(Home *home, Error *e) {
+        
+        if (home.payUrlString) {
+            
+            WalletWebViewController * walletWebVC = [[WalletWebViewController alloc]init];
+            walletWebVC.walletUrl = home.payUrlString;
+            
+            [self.navigationController pushViewController:walletWebVC animated:YES];
+        }
+        
+    }];
+    
+}
+
+
 #pragma mark -  点评成功后 重新获取更新金币和综合评分
 -(void)revirewSuccess{
 
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     
     [CommentFriend reviewSuccess:dic WithBlock:^(CommentFriend *commentFriend, Error *e) {
         
-        _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
-        
-        _scoreLabel.text = commentFriend.synthesize_grade;
-        _scoreUrlString = commentFriend.synthesize_grade_url;
-        //改变水位高度
-        float alreadyNumber = [commentFriend.today_receive_award floatValue];
-        float countNumber = [commentFriend.today_award_total floatValue];
-        
-        [self calWaterHeightWithalreadyNumber:alreadyNumber countNumber:countNumber];
-        
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+        }else{
+            
+            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
+            
+            _scoreLabel.text = commentFriend.synthesize_grade;
+            _scoreUrlString = commentFriend.synthesize_grade_url;
+            //改变水位高度
+            float alreadyNumber = [commentFriend.today_receive_award floatValue];
+            float countNumber = [commentFriend.today_award_total floatValue];
+            
+            [self calWaterHeightWithalreadyNumber:alreadyNumber countNumber:countNumber];
+            
+        }
         
     }];
     
@@ -334,7 +486,8 @@
         
         _hrBtn.hidden = YES;
         
-    }else if([hrStringNumber isEqualToString:@"1"]){ //是 HR
+    }
+    if([hrStringNumber isEqualToString:@"1"]){ //是 HR
         
         _singleTap.enabled = YES;
         
@@ -381,19 +534,37 @@
     
     [self isHR];
     
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:0];
+
     [CommentFriend getCommentFriendList:dic WithBlock:^(CommentFriend *commentFriend, Error *e) {
         
+        [self.view exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if (e.info !=nil) {
             
+            NSString *codeString = [NSString stringWithFormat:@"%@",e.code];
+            
+            if ([codeString isEqualToString:@"104"]) {// 服务端token不存在
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:e.info
+                                                                message:@"请重新登录"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil,nil];
+                [alert show];
+
+            }else{
+                
             [APIClient showMessage:e.info];
+                
+            }
             
         }else{
             
@@ -432,6 +603,24 @@
         }
     }];
 }
+#pragma marks -- UIAlertViewDelegate --
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex ==0) {
+        
+        NSUserDefaults *token=[NSUserDefaults standardUserDefaults];
+        [token removeObjectForKey:@"token"];
+        
+        NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
+        [hrPrivilege removeObjectForKey:@"hrPrivilege"];
+        
+        IndexViewController *indexVC= [[IndexViewController alloc]init];
+        [self.navigationController pushViewController:indexVC animated:YES];
+        
+    }
+}
+
+
 
 #pragma mark - hr 特权
 -(void)hrPrivilege{
@@ -439,10 +628,10 @@
     [_hrBtn setImage:[UIImage imageNamed:@"0homepage_hr"] forState:UIControlStateNormal];
     
     
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [CommentFriend getHrReviewInfo:dic WithBlock:^(CommentFriend *commentFriend, Error *e) {
@@ -482,22 +671,6 @@
             [self flowView:_vFlowView didScrollToPageAtIndex:0];
         }
     }];
-}
-
-
-#pragma mark - 点击 下一个(暂不点评)
--(void)webViewNextOne{
-    
-   // NSLog(@"%ld",(long)_vFlowView.currentPageIndex+1);
-    
-    //[_vFlowView scrollToPage:_vFlowView.currentPageIndex+1];
-    
-//    self flowView:(PagedFlowView *)flowView didScrollToPageAtIndex:(NSInteger)index
-
-   _addPage = _addPage+1;
-    [_vFlowView scrollToPage:_addPage];
-    [self flowView:_vFlowView didScrollToPageAtIndex:_vFlowView.currentPageIndex+_addPage];
- 
 }
 
 #pragma mark - 综合评分翻转动画
@@ -592,24 +765,58 @@
     [WXApi sendReq:req];
 }
 
-#pragma mark TabBarItemSelectDelegate 方法
-- (void)homeItemSelected{
-    
-    [self getCommentFriendInfo];
-    
-}
--(void)positionItemSelected{};
--(void)userItemSelected{};
--(void)resumeItemSelected{};
-
-
-
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
+#pragma mark - 点击 下一个(暂不点评)
+-(void)webViewNextOne{
+
+    // NSLog(@"%ld",(long)_vFlowView.currentPageIndex+1);
+    //[_vFlowView scrollToPage:_vFlowView.currentPageIndex+1];
+    //    self flowView:(PagedFlowView *)flowView didScrollToPageAtIndex:(NSInteger)index
+    
+    if (_addPage == _collectionArray.count-1) {
+        
+        [APIClient showMessage:@"已经是最后一位啦!"];
+        
+    }else{
+        
+        _addPage = _addPage+1;
+        [_vFlowView scrollToPage:_addPage];
+        
+        [self flowView:_vFlowView didScrollToPageAtIndex:_addPage];
+    }
+    
+}
+#pragma mark - 点击 上一个(暂不点评)
+-(void)webViewPreviousOne{
+    
+    // NSLog(@"%ld",(long)_vFlowView.currentPageIndex+1);
+    //[_vFlowView scrollToPage:_vFlowView.currentPageIndex+1];
+    //    self flowView:(PagedFlowView *)flowView didScrollToPageAtIndex:(NSInteger)index
+    
+    if (_addPage ==0) {
+        
+        [APIClient showMessage:@"已经是第一位啦!"];
+
+    }else{
+        
+        _addPage = _addPage-1;
+        
+        [_vFlowView scrollToPage:_addPage];
+        
+        [self flowView:_vFlowView didScrollToPageAtIndex:_addPage];
+    }
+
+
+    
+}
+
+
+
 #pragma mark -
 #pragma mark PagedFlowView Delegate
 - (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView;{
@@ -618,26 +825,29 @@
 
 - (void)flowView:(PagedFlowView *)flowView didScrollToPageAtIndex:(NSInteger)index {
     
-   NSLog(@"Scrolled to page # %ld", (long)index);
+   //NSLog(@"Scrolled to page # %ld", (long)index);
     
-    if (_commondUrlArray.count != 0){
+    _addPage = (int)index;
     
+    if (_commondUrlArray.count != 0 && _addPage <_collectionArray.count){
+        
         NSURL *url=[NSURL URLWithString:[_commondUrlArray objectAtIndex:index]];
         NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
         [_homeWebView loadRequest:request];
     }
-
 }
 
-- (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index{
-    
-    NSLog(@"Tapped on page # %ld", (long)index);
-    
-    NSURL *url=[NSURL URLWithString:[_commondUrlArray objectAtIndex:index]];
-    NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-    [_homeWebView loadRequest:request];
-    
-}
+//- (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index{
+//    
+//    index = _addPage;
+//    
+//    NSLog(@"Tapped on page # %ld", (long)index);
+//    
+//    NSURL *url=[NSURL URLWithString:[_commondUrlArray objectAtIndex:index]];
+//    NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+//    [_homeWebView loadRequest:request];
+//    
+//}
 
 #pragma mark 综合评分
 -(void)lookScore{
@@ -673,19 +883,18 @@
 }
 
 
+//网页 刚开始加载
+- (void)webViewDidStartLoad:(UIWebView  *)webView{
+        
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-////网页 刚开始加载
-//- (void)webViewDidStartLoad:(UIWebView  *)webView{
-//    
-//    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    
-//}
-//
-////网页 加载完成
-//- (void)webViewDidFinishLoad:(UIWebView  *)webView{
-//    
-//    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-//}
+}
+
+//网页 加载完成
+- (void)webViewDidFinishLoad:(UIWebView  *)webView{
+
+    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+}
 
 
 - (void)didReceiveMemoryWarning {

@@ -25,21 +25,20 @@
         CGRect rect = [[UIScreen mainScreen] bounds];
         
         UIView *cellView = [[UIView alloc]init];
-        cellView.frame = CGRectMake(15, 35, rect.size.width-2*15, [[UIScreen mainScreen] bounds].size.height*0.36);
+        cellView.frame = CGRectMake(15, 25, rect.size.width-2*15, [[UIScreen mainScreen] bounds].size.height*0.36);
         cellView.backgroundColor = RGBACOLOR(252, 254, 253, 1.0f);
         cellView.layer.masksToBounds = YES;
         cellView.layer.cornerRadius = 10;
         [self.contentView addSubview:cellView];
         
         _indexButton = [[UIButton alloc]init];
-        _indexButton.frame = CGRectMake((rect.size.width-50)/2,8, 50, 50);
+        _indexButton.frame = CGRectMake((rect.size.width-70)/2,8, 70, 40);
         [_indexButton setTitle:@"64%" forState:UIControlStateNormal];
         [_indexButton.layer setMasksToBounds:YES];
-        [_indexButton.layer setCornerRadius:25.0]; //设置矩形四个圆角半径
         [_indexButton setTitleColor:RGBACOLOR(0, 204, 252, 1.0f) forState:UIControlStateNormal];
         _indexButton.titleLabel.font = [UIFont fontWithName:hlScoreFont size:22];
-        _indexButton.layer.borderWidth = 2;
-        _indexButton.layer.cornerRadius=50/2;
+        _indexButton.layer.borderWidth = 4;
+        _indexButton.layer.cornerRadius=40/2;
         _indexButton.layer.borderColor = RGBACOLOR(58, 57, 63, 1.0f).CGColor;
         _indexButton.titleEdgeInsets = UIEdgeInsetsMake(0, 1,-5, 0);
         

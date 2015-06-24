@@ -19,6 +19,7 @@
         _password = [dic objectForKey:@"password"];
         _phone = [dic objectForKey:@"phone"];
         _user_id =[dic objectForKey:@"user_id"];
+        _token =[dic objectForKey:@"token"];
         
     }else{
     

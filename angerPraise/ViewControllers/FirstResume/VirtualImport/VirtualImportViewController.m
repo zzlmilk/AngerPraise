@@ -172,10 +172,10 @@
         NSString *lJsHtml = @"document.documentElement.innerHTML";
         NSString *resumeHtml = [_virtuaImportlWebView stringByEvaluatingJavaScriptFromString:lJsHtml];
         
-        NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
         
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
         [dic setObject:resumeHtml forKey:@"html"];
         
         [Resume importResume:dic WithBlock:^(Resume *resume, Error *e) {

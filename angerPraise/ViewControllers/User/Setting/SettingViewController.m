@@ -12,7 +12,7 @@
 #import "IndexViewController.h"
 #import "SettingWebViewController.h"
 #import "Setting.h"
-
+#import "UserViewController.h"
 
 @interface SettingViewController ()
 
@@ -66,6 +66,7 @@
     [loginOutButton.layer setMasksToBounds:YES];
     [loginOutButton.layer setCornerRadius:15.0]; //设置矩形四个圆角半径
     [loginOutButton setTitleColor:RGBACOLOR(255, 255, 255, 1.0f) forState:UIControlStateNormal];
+    [loginOutButton setTitleColor:RGBACOLOR(20, 20, 20, 1.0f) forState:UIControlStateHighlighted];
     loginOutButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
     loginOutButton.backgroundColor = RGBACOLOR(255, 87, 102, 1.0f);
     [loginOutButton addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
@@ -76,10 +77,10 @@
 
 -(void)getSettingDetailUrl{
 
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
 
     [Setting getSettingUrl:dic WithBlock:^(Setting *setting, Error *e) {
        
@@ -108,22 +109,21 @@
 //退出登录
 -(void)loginOut{
     
-    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
 
     [User userLoginOut:dic WithBlock:^(User *user, Error *e) {
        
         if ([user.res isEqualToString:@"1"]) {
             //退出成功  清空 NSUserDefaults  的值 做跳转
             
-            NSUserDefaults *userId=[NSUserDefaults standardUserDefaults];
-            [userId removeObjectForKey:@"userId"];
+            NSUserDefaults *token=[NSUserDefaults standardUserDefaults];
+            [token removeObjectForKey:@"token"];
             
             NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
             [hrPrivilege removeObjectForKey:@"hrPrivilege"];
-
             
             IndexViewController *indexVC= [[IndexViewController alloc]init];
             [self.navigationController pushViewController:indexVC animated:YES];

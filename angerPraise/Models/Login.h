@@ -14,7 +14,7 @@
 @property(nonatomic,strong)NSString *user_id;
 @property(nonatomic,strong)NSString *user_name;
 @property(nonatomic,strong)NSString *user_phone;
-
+@property(nonatomic,strong)NSString *token;
 @property(nonatomic,strong)NSString *hr_privilege;
 @property(nonatomic,strong)NSString *resume_status;
 @property(nonatomic,strong)NSString *user_status_type;
