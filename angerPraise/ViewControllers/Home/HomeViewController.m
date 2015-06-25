@@ -103,6 +103,13 @@
     [_waterView setCurrentLinePointY:30]; //min 38   max 0
     [rolliew addSubview:_waterView];
     
+    UIButton *clickMoneyButton = [[UIButton alloc]init];
+    clickMoneyButton.frame = _waterView.frame;
+    clickMoneyButton.backgroundColor = [UIColor clearColor];
+    [clickMoneyButton addTarget:self action:@selector(clickMoney) forControlEvents:UIControlEventTouchUpInside];
+    [rolliew addSubview:clickMoneyButton];
+    
+    
     _tipNumberLabel = [[UILabel alloc]init];
     _tipNumberLabel.frame = CGRectMake(0, 0, _waterView.frame.size.width, _waterView.frame.size.height);
     _tipNumberLabel.text = @"0/25";
@@ -196,9 +203,6 @@
     [recognizerLeft setDirection:(UISwipeGestureRecognizerDirectionLeft)];
     [_homeWebView addGestureRecognizer:recognizerLeft];
     
-    
-    
-    
     _maskView = [[UIView alloc]init];
     _maskView.frame = self.view.frame;
     _maskView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
@@ -283,6 +287,12 @@
     
 }
 
+#pragma mark -  跳转到钱包页面
+-(void)clickMoney{
+
+    [self getMyPayUrlString];
+    
+}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
     
@@ -539,6 +549,15 @@
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     
+//    SMS_MBProgressHUD *hud = [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.mode = MBProgressHUDModeIndeterminate;
+//    hud.labelText = @"Some message...";
+//    hud.margin = 10.f;
+//    hud.yOffset = 150.f;
+//    HUD.dimBackground = YES;  //是否有庶罩
+//    hud.removeFromSuperViewOnHide = YES;
+//    [hud hide:YES afterDelay:3];
+    
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:0];
 
@@ -553,16 +572,16 @@
             
             if ([codeString isEqualToString:@"104"]) {// 服务端token不存在
                 
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:e.info
-                                                                message:@"请重新登录"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"确定"
-                                                      otherButtonTitles:nil,nil];
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:e.info
+                    message:@"请重新登录"
+                    delegate:self
+                    cancelButtonTitle:@"确定"
+                    otherButtonTitles:nil,nil];
                 [alert show];
 
             }else{
                 
-            [APIClient showMessage:e.info];
+                [APIClient showMessage:e.info];
                 
             }
             
