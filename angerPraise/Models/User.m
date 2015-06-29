@@ -90,6 +90,9 @@
             User *u;
             block(u,error);
             
+            //用户信息 销毁
+            // token , user_id ,hr属性type  
+            
         }else{
             
             User *u = [[User alloc]initWithDic:responseObject];

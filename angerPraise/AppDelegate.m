@@ -12,6 +12,7 @@
 #import "MCCore.h"
 //#import "WXApi.h"
 
+
 #define kAppId           @"5bfTGENWJv7KSD7OXA1H42"
 #define kAppKey          @"Zp5B5XHl7w96aXTbhihdj3"
 #define kAppSecret       @"2uNJCR09ExA7rbYJjWgXj5"
@@ -37,6 +38,7 @@
 
 
 //个推 开始
+
 - (void)registerRemoteNotification
 {
 #ifdef __IPHONE_8_0
@@ -104,8 +106,10 @@
         int random = (arc4random() % 99999) + 10000;
         [userData setObject:[NSString stringWithFormat:@"006600%qu%i",(unsigned long long)([[NSDate date] timeIntervalSince1970] * 1000),random] forKey:@"cookie"];
     }
+    // 以上 美洽
+
     
-    
+    //  个推
     // [1]:使用APPID/APPKEY/APPSECRENT创建个推实例
     [self startSdkWith:kAppId appKey:kAppKey appSecret:kAppSecret];
     
@@ -153,12 +157,14 @@
     
 
     // 判断token 如果存在 storyborder中 页面跳转到Home
-    
     NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
 
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    //Main tabber 首页
     UIStoryboard *storyBoard1 = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //登陆注册首页
     UIStoryboard *storyBoard2 = [UIStoryboard storyboardWithName:@"Index" bundle:nil];
     if([token objectForKey:@"token"]){
         
@@ -170,7 +176,9 @@
     }
     
 
+    //微信 注册信息
     [WXApi registerApp:@"wx97dbb5b24f24c791"];
+    
     
 
     return YES;
@@ -294,6 +302,7 @@
     
     
     // [EXT] 重新上线
+    //个推
     [self startSdkWith:_appID appKey:_appKey appSecret:_appSecret];
     
 }

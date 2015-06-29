@@ -93,7 +93,6 @@
         if (errorCode ==40004) {
             
             [APIClient showInfo:e.info title:@"提示"];
-            
             ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
             [self.navigationController pushViewController:importResumeVC animated:YES];
             
