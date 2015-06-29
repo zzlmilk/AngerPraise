@@ -44,9 +44,6 @@
     }
     
 
-    //微信 注册信息
-    [WXApi registerApp:@"wx97dbb5b24f24c791"];
-    
     
 
     return YES;
@@ -84,23 +81,7 @@
 
 
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
-{
-    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    _deviceToken = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"deviceToken:%@", _deviceToken);
-    
-    //_deviceToken 存本地，等用户注册账号成功之后把_deviceToken和Userid全部给后台
-    
-   }
 
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
-{
-   
-    //用户不允许通知
-    NSLog(@"用户不允许通知");
-    
-}
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userinfo
 {
