@@ -11,6 +11,7 @@
 #import "RegisterViewController.h"
 #import "MainViewController.h"
 #import "NewPasswordViewController.h"
+#import "ForgetPasswordViewController.h"
 
 //#import "TKRoundedView.h"
 
@@ -85,8 +86,9 @@
     [forgetPasswordButton setTitle:@"忘 记 密 码 ？" forState:UIControlStateNormal];
     forgetPasswordButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     forgetPasswordButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
+    [forgetPasswordButton addTarget:self action:@selector(forgetPassword) forControlEvents:UIControlEventTouchUpInside];
     [forgetPasswordButton setTitleColor:RGBACOLOR(0, 199, 255, 1.0f) forState:UIControlStateNormal];
-    //[self.view addSubview:forgetPasswordButton];
+    [self.view addSubview:forgetPasswordButton];
     
     
 }
@@ -101,11 +103,16 @@
 #pragma mark -- 去注册
 -(void)goRegister{
     
-    
-    
     RegisterViewController *registerVC = [[RegisterViewController alloc]init];
     [self.navigationController pushViewController:registerVC animated:YES];
     
+}
+
+#pragma mark -- 忘记密码
+-(void)forgetPassword{
+    
+    ForgetPasswordViewController *forgetPasswordVC = [[ForgetPasswordViewController alloc]init];
+    [self.navigationController pushViewController:forgetPasswordVC animated:YES];
     
 }
 

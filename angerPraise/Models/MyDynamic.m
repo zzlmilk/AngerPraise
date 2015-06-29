@@ -29,7 +29,7 @@
             if ([responseObject objectForKey:@"error"]) {
                 Error *error = [[Error alloc]init];
                 
-                error.code =[[responseObject objectForKey:@"code"] objectForKey:@"error"];
+                error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
                 error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
                 
                 MyDynamic *m;

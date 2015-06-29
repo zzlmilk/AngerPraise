@@ -554,7 +554,7 @@
 //    hud.labelText = @"Some message...";
 //    hud.margin = 10.f;
 //    hud.yOffset = 150.f;
-//    HUD.dimBackground = YES;  //是否有庶罩
+//    //HUD.dimBackground = YES;  //是否有庶罩
 //    hud.removeFromSuperViewOnHide = YES;
 //    [hud hide:YES afterDelay:3];
     
