@@ -602,7 +602,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		190414D81B414432008E3691 /* Frameworks */ = {
+		190414DC1B414F6A008E3691 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DF1698371B0DBF4500A5E453 /* Default-568h@2x.png */,
+				DF7522BF1B0CB16B00DD485D /* Icon@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		190414DD1B414F82008E3691 /* Framesworks */ = {
 			isa = PBXGroup;
 			children = (
 				DFFA18711B40EBEA00BDEA41 /* AVFoundation.framework */,
@@ -625,16 +634,7 @@
 				DFBEB1941AB05EE5002692EF /* QuartzCore.framework */,
 				DFBEB1881AB04CD3002692EF /* SystemConfiguration.framework */,
 			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
-		190414D91B414465008E3691 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				DF1698371B0DBF4500A5E453 /* Default-568h@2x.png */,
-				DF7522BF1B0CB16B00DD485D /* Icon@2x.png */,
-			);
-			path = Images;
+			path = Framesworks;
 			sourceTree = "<group>";
 		};
 		19BD47601AAD5BA500D44A9D = {
@@ -658,7 +658,7 @@
 		19BD476B1AAD5BA600D44A9D /* angerPraise */ = {
 			isa = PBXGroup;
 			children = (
-				190414D91B414465008E3691 /* Images */,
+				190414DC1B414F6A008E3691 /* images */,
 				19BD47B11AB060CA00D44A9D /* Views */,
 				DFE2C2ED1AB02B8D00C66DF9 /* ThirdParty */,
 				DF826C951AAECCE100EAC61F /* Classes */,
@@ -680,7 +680,7 @@
 		19BD476C1AAD5BA600D44A9D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				190414D81B414432008E3691 /* Frameworks */,
+				190414DD1B414F82008E3691 /* Framesworks */,
 				19BD476D1AAD5BA600D44A9D /* Info.plist */,
 				19BD476E1AAD5BA600D44A9D /* main.m */,
 				DF2BF18A1AD4FAF600CF8BED /* lev.pch */,
