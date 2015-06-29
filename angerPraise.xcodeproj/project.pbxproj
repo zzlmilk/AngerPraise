@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		190414E11B415128008E3691 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 190414DF1B415128008E3691 /* Default-568h@2x.png */; };
 		190414E21B415128008E3691 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 190414E01B415128008E3691 /* Icon@2x.png */; };
+		190414E61B415464008E3691 /* NoozanAppdelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 190414E51B415464008E3691 /* NoozanAppdelegate.m */; };
 		19BD476F1AAD5BA600D44A9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD476E1AAD5BA600D44A9D /* main.m */; };
 		19BD47721AAD5BA600D44A9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47711AAD5BA600D44A9D /* AppDelegate.m */; };
 		19BD47751AAD5BA600D44A9D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47741AAD5BA600D44A9D /* ViewController.m */; };
@@ -212,6 +213,8 @@
 /* Begin PBXFileReference section */
 		190414DF1B415128008E3691 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		190414E01B415128008E3691 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		190414E41B415464008E3691 /* NoozanAppdelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoozanAppdelegate.h; sourceTree = "<group>"; };
+		190414E51B415464008E3691 /* NoozanAppdelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoozanAppdelegate.m; sourceTree = "<group>"; };
 		19BD47691AAD5BA600D44A9D /* angerPraise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = angerPraise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19BD476D1AAD5BA600D44A9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19BD476E1AAD5BA600D44A9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -666,6 +669,8 @@
 				19BD47951AAD685600D44A9D /* ViewControllers */,
 				19BD47701AAD5BA600D44A9D /* AppDelegate.h */,
 				19BD47711AAD5BA600D44A9D /* AppDelegate.m */,
+				190414E41B415464008E3691 /* NoozanAppdelegate.h */,
+				190414E51B415464008E3691 /* NoozanAppdelegate.m */,
 				19BD47731AAD5BA600D44A9D /* ViewController.h */,
 				19BD47741AAD5BA600D44A9D /* ViewController.m */,
 				DF1698391B0DC12800A5E453 /* LaunchScreen.xib */,
@@ -1641,6 +1646,7 @@
 				DF5F8DFA1AFA154100205B60 /* AFHTTPSessionManager.m in Sources */,
 				DF5F8DBA1AF8A1CA00205B60 /* HrPrivilege.m in Sources */,
 				19BD479C1AAD7BC600D44A9D /* User.m in Sources */,
+				190414E61B415464008E3691 /* NoozanAppdelegate.m in Sources */,
 				DFA061B91AD536DD004EEB4C /* CreatStep3ViewController.m in Sources */,
 				DF4B44931AF23B5600C94D7E /* CommentFriendWebViewController.m in Sources */,
 				DF16984D1B0EF98400A5E453 /* guideHrViewController.m in Sources */,
