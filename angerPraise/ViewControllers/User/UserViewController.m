@@ -506,6 +506,11 @@
 
 -(void)hideView{
     
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.1;
+    [_editView.layer addAnimation:animation forKey:nil];
+    
     _editView.hidden = YES;
     _backBtn.hidden = YES;
     self.tabBarController.tabBar.hidden = NO;
@@ -513,6 +518,12 @@
 
 
 -(void)showEditPersonInfoView{
+    
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.1;
+    [_editView.layer addAnimation:animation forKey:nil];
+    
     self.tabBarController.tabBar.hidden = YES;
     _backBtn.hidden = NO;
     _editView.hidden = NO;
