@@ -187,6 +187,16 @@
 		DFF2C8401B1C6716006E3CB7 /* QAResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF2C83F1B1C6716006E3CB7 /* QAResumeViewController.m */; };
 		DFF2C8441B1D9E8D006E3CB7 /* EditNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF2C8431B1D9E8D006E3CB7 /* EditNameViewController.m */; };
 		DFF2C8471B1DA3DF006E3CB7 /* EditPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF2C8461B1DA3DF006E3CB7 /* EditPasswordViewController.m */; };
+		DFF665C61B3C1232003AED4C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF665C51B3C1232003AED4C /* CFNetwork.framework */; };
+		DFF665C81B3C123E003AED4C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DFF665C71B3C123E003AED4C /* libsqlite3.dylib */; };
+		DFF665CC1B3D3811003AED4C /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF665CB1B3D3811003AED4C /* ForgetPasswordViewController.m */; };
+		DFF665CF1B3D4945003AED4C /* SetNewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFF665CE1B3D4945003AED4C /* SetNewPasswordViewController.m */; };
+		DFFA186D1B40EAF500BDEA41 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFA185F1B40EAF500BDEA41 /* libopencore-amrnb.a */; };
+		DFFA186E1B40EAF500BDEA41 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFA18601B40EAF500BDEA41 /* libopencore-amrwb.a */; };
+		DFFA186F1B40EAF500BDEA41 /* MeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFA186B1B40EAF500BDEA41 /* MeChat.a */; };
+		DFFA18701B40EAF500BDEA41 /* MeChatSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFFA186C1B40EAF500BDEA41 /* MeChatSDK.bundle */; };
+		DFFA18721B40EBEA00BDEA41 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFA18711B40EBEA00BDEA41 /* AVFoundation.framework */; };
+		DFFA18741B4111E700BDEA41 /* libGexinSdk-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFA18731B4111E700BDEA41 /* libGexinSdk-1.1.1.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -520,6 +530,34 @@
 		DFF2C8431B1D9E8D006E3CB7 /* EditNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNameViewController.m; sourceTree = "<group>"; };
 		DFF2C8451B1DA3DF006E3CB7 /* EditPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPasswordViewController.h; sourceTree = "<group>"; };
 		DFF2C8461B1DA3DF006E3CB7 /* EditPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPasswordViewController.m; sourceTree = "<group>"; };
+		DFF665C31B3C1194003AED4C /* GexinSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GexinSdk.h; sourceTree = "<group>"; };
+		DFF665C41B3C1194003AED4C /* GXSdkError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXSdkError.h; sourceTree = "<group>"; };
+		DFF665C51B3C1232003AED4C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		DFF665C71B3C123E003AED4C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		DFF665CA1B3D3811003AED4C /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		DFF665CB1B3D3811003AED4C /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		DFF665CD1B3D4945003AED4C /* SetNewPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewPasswordViewController.h; sourceTree = "<group>"; };
+		DFF665CE1B3D4945003AED4C /* SetNewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewPasswordViewController.m; sourceTree = "<group>"; };
+		DFFA185B1B40EAF500BDEA41 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
+		DFFA185C1B40EAF500BDEA41 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
+		DFFA185D1B40EAF500BDEA41 /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
+		DFFA185E1B40EAF500BDEA41 /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
+		DFFA185F1B40EAF500BDEA41 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		DFFA18601B40EAF500BDEA41 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		DFFA18611B40EAF500BDEA41 /* MCAudioMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCAudioMessage.h; sourceTree = "<group>"; };
+		DFFA18621B40EAF500BDEA41 /* MCChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCChatViewController.h; sourceTree = "<group>"; };
+		DFFA18631B40EAF500BDEA41 /* MCCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCore.h; sourceTree = "<group>"; };
+		DFFA18641B40EAF500BDEA41 /* MCDefination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDefination.h; sourceTree = "<group>"; };
+		DFFA18651B40EAF500BDEA41 /* MCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDelegate.h; sourceTree = "<group>"; };
+		DFFA18661B40EAF500BDEA41 /* MCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCEvent.h; sourceTree = "<group>"; };
+		DFFA18671B40EAF500BDEA41 /* MCImageMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCImageMessage.h; sourceTree = "<group>"; };
+		DFFA18681B40EAF500BDEA41 /* MCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMessage.h; sourceTree = "<group>"; };
+		DFFA18691B40EAF500BDEA41 /* MCService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCService.h; sourceTree = "<group>"; };
+		DFFA186A1B40EAF500BDEA41 /* MCTextMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCTextMessage.h; sourceTree = "<group>"; };
+		DFFA186B1B40EAF500BDEA41 /* MeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = MeChat.a; sourceTree = "<group>"; };
+		DFFA186C1B40EAF500BDEA41 /* MeChatSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MeChatSDK.bundle; sourceTree = "<group>"; };
+		DFFA18711B40EBEA00BDEA41 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DFFA18731B4111E700BDEA41 /* libGexinSdk-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGexinSdk-1.1.1.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -527,6 +565,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFFA18721B40EBEA00BDEA41 /* AVFoundation.framework in Frameworks */,
+				DFF665C81B3C123E003AED4C /* libsqlite3.dylib in Frameworks */,
+				DFFA18741B4111E700BDEA41 /* libGexinSdk-1.1.1.a in Frameworks */,
+				DFFA186F1B40EAF500BDEA41 /* MeChat.a in Frameworks */,
+				DFF665C61B3C1232003AED4C /* CFNetwork.framework in Frameworks */,
+				DFBEB19D1AB05F39002692EF /* Security.framework in Frameworks */,
 				DFE869B61B15CCA400901F63 /* libsqlite3.0.dylib in Frameworks */,
 				DFE869B81B16AFC700901F63 /* libWeChatSDK.a in Frameworks */,
 				DFE869B11B15C8E600901F63 /* libc++.dylib in Frameworks */,
@@ -537,12 +581,13 @@
 				DFD2740E1AE504C000BEED59 /* AddressBook.framework in Frameworks */,
 				DFD2740C1AE504B500BEED59 /* AddressBookUI.framework in Frameworks */,
 				DFBEB1951AB05EE5002692EF /* QuartzCore.framework in Frameworks */,
+				DFFA186D1B40EAF500BDEA41 /* libopencore-amrnb.a in Frameworks */,
 				DFEE77211AE09FFC00401AF0 /* CoreGraphics.framework in Frameworks */,
 				DFEE771F1AE09FF100401AF0 /* AudioToolbox.framework in Frameworks */,
-				DFBEB19D1AB05F39002692EF /* Security.framework in Frameworks */,
 				DFBEB19B1AB05F2A002692EF /* libz.1.2.5.dylib in Frameworks */,
 				DFBEB1991AB05F13002692EF /* libicucore.dylib in Frameworks */,
 				DFBEB1971AB05EFB002692EF /* CoreTelephony.framework in Frameworks */,
+				DFFA186E1B40EAF500BDEA41 /* libopencore-amrwb.a in Frameworks */,
 				DFBEB1891AB04CD3002692EF /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,6 +605,9 @@
 		19BD47601AAD5BA500D44A9D = {
 			isa = PBXGroup;
 			children = (
+				DFFA18711B40EBEA00BDEA41 /* AVFoundation.framework */,
+				DFF665C71B3C123E003AED4C /* libsqlite3.dylib */,
+				DFF665C51B3C1232003AED4C /* CFNetwork.framework */,
 				DFE869B21B15C8FB00901F63 /* libsqlite3.0.dylib */,
 				DFE869B01B15C8E600901F63 /* libc++.dylib */,
 				DF1698371B0DBF4500A5E453 /* Default-568h@2x.png */,
@@ -822,6 +870,7 @@
 		DF360C601AAD7E3D0090FF51 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				DFF665C91B3D37ED003AED4C /* ForgetPassword */,
 				DFF2C8411B1D9E77006E3CB7 /* EditUser */,
 				DFA34C931B0EFB7B003722BC /* Wallet */,
 				DFA34C8F1B0EFA4C003722BC /* Collect */,
@@ -1224,6 +1273,8 @@
 		DFE2C2ED1AB02B8D00C66DF9 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				DFFA18591B40EAF500BDEA41 /* MeChatSDK */,
+				DFF665C21B3C1194003AED4C /* include */,
 				DF137FE31B20290A008D0F82 /* rotation360 */,
 				DFE869B91B182E2200901F63 /* WebViewJavascriptBridge */,
 				DFE869A91B15C81600901F63 /* WeChatSDK_1.5 */,
@@ -1364,6 +1415,60 @@
 			path = EditUser;
 			sourceTree = "<group>";
 		};
+		DFF665C21B3C1194003AED4C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				DFFA18731B4111E700BDEA41 /* libGexinSdk-1.1.1.a */,
+				DFF665C31B3C1194003AED4C /* GexinSdk.h */,
+				DFF665C41B3C1194003AED4C /* GXSdkError.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		DFF665C91B3D37ED003AED4C /* ForgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				DFF665CA1B3D3811003AED4C /* ForgetPasswordViewController.h */,
+				DFF665CB1B3D3811003AED4C /* ForgetPasswordViewController.m */,
+				DFF665CD1B3D4945003AED4C /* SetNewPasswordViewController.h */,
+				DFF665CE1B3D4945003AED4C /* SetNewPasswordViewController.m */,
+			);
+			path = ForgetPassword;
+			sourceTree = "<group>";
+		};
+		DFFA18591B40EAF500BDEA41 /* MeChatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				DFFA185A1B40EAF500BDEA41 /* libopencore */,
+				DFFA18611B40EAF500BDEA41 /* MCAudioMessage.h */,
+				DFFA18621B40EAF500BDEA41 /* MCChatViewController.h */,
+				DFFA18631B40EAF500BDEA41 /* MCCore.h */,
+				DFFA18641B40EAF500BDEA41 /* MCDefination.h */,
+				DFFA18651B40EAF500BDEA41 /* MCDelegate.h */,
+				DFFA18661B40EAF500BDEA41 /* MCEvent.h */,
+				DFFA18671B40EAF500BDEA41 /* MCImageMessage.h */,
+				DFFA18681B40EAF500BDEA41 /* MCMessage.h */,
+				DFFA18691B40EAF500BDEA41 /* MCService.h */,
+				DFFA186A1B40EAF500BDEA41 /* MCTextMessage.h */,
+				DFFA186B1B40EAF500BDEA41 /* MeChat.a */,
+				DFFA186C1B40EAF500BDEA41 /* MeChatSDK.bundle */,
+			);
+			path = MeChatSDK;
+			sourceTree = "<group>";
+		};
+		DFFA185A1B40EAF500BDEA41 /* libopencore */ = {
+			isa = PBXGroup;
+			children = (
+				DFFA185B1B40EAF500BDEA41 /* dec_if.h */,
+				DFFA185C1B40EAF500BDEA41 /* if_rom.h */,
+				DFFA185D1B40EAF500BDEA41 /* interf_dec.h */,
+				DFFA185E1B40EAF500BDEA41 /* interf_enc.h */,
+				DFFA185F1B40EAF500BDEA41 /* libopencore-amrnb.a */,
+				DFFA18601B40EAF500BDEA41 /* libopencore-amrwb.a */,
+			);
+			path = libopencore;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1408,7 +1513,7 @@
 		19BD47611AAD5BA500D44A9D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Rex;
 				TargetAttributes = {
 					19BD47681AAD5BA600D44A9D = {
@@ -1458,6 +1563,7 @@
 				DFB32FC31B048D8F0049D9F2 /* s1_5.png in Resources */,
 				DF0B924D1AB14D4400A1698E /* evaluateList.html in Resources */,
 				DF5F8DCB1AF9C07C00205B60 /* radar.html in Resources */,
+				DFFA18701B40EAF500BDEA41 /* MeChatSDK.bundle in Resources */,
 				DFEE77161AE09F5D00401AF0 /* graph_year@2x.png in Resources */,
 				DFEE770D1AE09F5D00401AF0 /* circle_outline.png in Resources */,
 				DFEE77131AE09F5D00401AF0 /* graph_week.png in Resources */,
@@ -1528,6 +1634,7 @@
 				DFA34C991B0EFBA1003722BC /* CollectWebViewController.m in Sources */,
 				DF5F8DB31AF8956700205B60 /* SMS_MBProgressHUD.m in Sources */,
 				DFD274231AE7776400BEED59 /* NZAlertView.m in Sources */,
+				DFF665CC1B3D3811003AED4C /* ForgetPasswordViewController.m in Sources */,
 				DFD274431AE784E800BEED59 /* BaseViewController.m in Sources */,
 				DFA34C961B0EFB8C003722BC /* WalletWebViewController.m in Sources */,
 				DFA061B31AD53527004EEB4C /* VirtualImportViewController.m in Sources */,
@@ -1586,6 +1693,7 @@
 				DF5B3EF01ADCCB0E0004EF2F /* Position.m in Sources */,
 				DF0B924B1AB14C9000A1698E /* EvaluateListViewController.m in Sources */,
 				DFD2744A1AE7852C00BEED59 /* RegisterViewController.m in Sources */,
+				DFF665CF1B3D4945003AED4C /* SetNewPasswordViewController.m in Sources */,
 				DFA061B21AD53527004EEB4C /* ImportResumeViewController.m in Sources */,
 				DF5B3EED1ADCCA490004EF2F /* PositionListCell.m in Sources */,
 				DF5F8DAE1AF88BF000205B60 /* InviteFriend.m in Sources */,
@@ -1700,7 +1808,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1735,7 +1843,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1745,38 +1853,52 @@
 		19BD478D1AAD5BA600D44A9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/angerPraise/lev.pch";
 				INFOPLIST_FILE = angerPraise/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/angerPraise/ThirdParty/WeChatSDK_1.5",
+					"$(PROJECT_DIR)/angerPraise/ThirdParty/MeChatSDK/libopencore",
+					"$(PROJECT_DIR)/angerPraise/ThirdParty/MeChatSDK",
+					"$(PROJECT_DIR)/angerPraise/ThirdParty/include",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
 		19BD478E1AAD5BA600D44A9D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/angerPraise/lev.pch";
 				INFOPLIST_FILE = angerPraise/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/angerPraise/ThirdParty/WeChatSDK_1.5",
+					"$(PROJECT_DIR)/angerPraise/ThirdParty/MeChatSDK/libopencore",
+					"$(PROJECT_DIR)/angerPraise/ThirdParty/MeChatSDK",
+					"$(PROJECT_DIR)/angerPraise/ThirdParty/include",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};

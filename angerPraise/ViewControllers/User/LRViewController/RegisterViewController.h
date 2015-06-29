@@ -24,4 +24,5 @@
 @property(nonatomic,strong)UIImageView *userRegisterImage;
 
 @property(nonatomic,strong) UIButton *userRegisterButton;
+
 @end

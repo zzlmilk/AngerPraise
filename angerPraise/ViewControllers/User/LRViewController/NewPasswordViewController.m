@@ -200,7 +200,7 @@
     NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"userId"] forKey:@"token"];
+    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
     [dic setObject:_newsPasswordTextField.text forKey:@"password"];
     [dic setObject:_userNameTextField.text forKey:@"name"];
     

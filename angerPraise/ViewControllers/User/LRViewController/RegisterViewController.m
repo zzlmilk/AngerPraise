@@ -263,8 +263,8 @@
             }else{
                 
                 [APIClient showMessage:@"怒赞码已发射成功～"];
-                NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-                [userId setObject:initPassword.user_id forKey:@"userId"];
+                NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+                [token setObject:initPassword.token forKey:@"token"];
             
             }
             
@@ -277,7 +277,6 @@
 //验证初始密码
 -(void)isInitPassword{
     
-        
             NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
             [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
             [dic setObject:_captchaTextField.text forKey:@"password"];

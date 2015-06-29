@@ -11,7 +11,12 @@
 
 @interface SettingViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property(nonatomic,weak) UITextField* textField;
+
 @property(nonatomic,strong)UITableView *settingTableView;
+
+@property(nonatomic,strong)UIView *titleView;
+
 
 @property NSArray *settingListArray;
 @property(nonatomic,strong)NSString *takeUrlString;
