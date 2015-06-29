@@ -44,9 +44,6 @@
     }
     
 
-    //微信 注册信息
-    [WXApi registerApp:@"wx97dbb5b24f24c791"];
-    
     
 
     return YES;
@@ -83,5 +80,21 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userinfo
+{
+    //处理推送消息
+}
+
+
+
+
+
+
+
+>>>>>>> 9e6c8d023b4ae6662159e10f561be71f06d4dcb7
 
 @end

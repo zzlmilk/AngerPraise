@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
+#import "WXApi.h"
 
-@interface NoozanAppdelegate : AppDelegate
+
+
+@interface NoozanAppdelegate : AppDelegate<WXApiDelegate>
 
 @end
