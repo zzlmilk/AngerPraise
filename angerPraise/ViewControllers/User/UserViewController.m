@@ -27,6 +27,7 @@
 #import "MyFriendWebViewController.h"
 #import "CollectWebViewController.h"
 #import "HrWebViewController.h"
+#import "HrWebViewController.h"
 #import "PositionViewController.h"
 #import "MainViewController.h"
 #import "WalletWebViewController.h"

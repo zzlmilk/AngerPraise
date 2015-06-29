@@ -10,9 +10,9 @@
 #import "ResumeViewController.h"
 #import "UserViewController.h"
 #import "PositionViewController.h"
-#import "HomeOldViewController.h"
+#import "HomeOldViewController.h" //废弃
 #import "HomeViewController.h"
-#import "DSNavigationBar.h"
+#import "DSNavigationBar.h" //没有用到
 
 
 @implementation MainViewController
@@ -44,6 +44,7 @@
     posotionVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
     posotionVC.tabBarItem.tag = 3;
     
+    
     UserViewController *userVC = [[UserViewController alloc]init];
 //    userVC.title = @"我的";
     userVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar4"];
@@ -69,7 +70,11 @@
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-
+    //我先判断用户有没有简历
+    //怎么判断 根据用户的token 
+    
+    
+    
     if (item.tag == 2) {
         ResumeViewController *resumeVC  = [[ResumeViewController alloc] init];
         [resumeVC getresumeInfo];

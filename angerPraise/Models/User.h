@@ -32,10 +32,11 @@
 //获取剩余任务数
 +(NSURLSessionDataTask *)getUserMissionNumber:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
 
-@property(nonatomic,strong)NSString *hirelib_code;
-@property(nonatomic,strong)NSString *photo_url;
-@property(nonatomic,strong)NSString *hr_url;
-@property(nonatomic,strong)NSString *pay_url;
+@property(nonatomic,strong)NSString *hirelib_code; //id
+@property(nonatomic,strong)NSString *photo_url; //用户头像url地址
+
+@property(nonatomic,strong)NSString *hr_url;   //hr特权的URL地址
+@property(nonatomic,strong)NSString *pay_url;  //钱包地址
 @property(nonatomic,strong)NSString *user_apply_url;
 @property(nonatomic,strong)NSString *user_friend_url;
 @property(nonatomic,strong)NSString *position_number;
