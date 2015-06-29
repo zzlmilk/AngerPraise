@@ -292,7 +292,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    
     // [EXT] 重新上线
     [self startSdkWith:_appID appKey:_appKey appSecret:_appSecret];
     
@@ -335,6 +334,9 @@
     // [4-EXT]:处理APN
     NSString *payloadMsg = [userinfo objectForKey:@"payload"];
     NSString *record = [NSString stringWithFormat:@"[APN]%@, %@", [NSDate date], payloadMsg];
+    if (record) {
+        
+    }
     //[_viewController logMsg:record];
 }
 
@@ -342,7 +344,7 @@
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
-    // [4-EXT]:处理APN
+    // [4-EXT]:处理APN   //获取 server段返回字段 进行挑战
     NSString *payloadMsg = [userInfo objectForKey:@"payload"];
     
     NSDictionary *aps = [userInfo objectForKey:@"aps"];
@@ -350,6 +352,9 @@
     
     NSString *record = [NSString stringWithFormat:@"[APN]%@, %@, [content-available: %@]", [NSDate date], payloadMsg, contentAvailable];
     //[_viewController logMsg:record];
+    if (record) {
+        
+    }
     
      completionHandler(UIBackgroundFetchResultNewData);
 }
@@ -491,13 +496,14 @@
                                               length:payload.length
                                             encoding:NSUTF8StringEncoding];
     }
-    NSString *record = [NSString stringWithFormat:@"%d, %@, %@", ++_lastPaylodIndex, [NSDate date], payloadMsg];
+    //NSString *record = [NSString stringWithFormat:@"%d, %@, %@", ++_lastPaylodIndex, [NSDate date], payloadMsg];
     //[_viewController logMsg:record];
+    
 }
 
 - (void)GexinSdkDidSendMessage:(NSString *)messageId result:(int)result {
     // [4-EXT]:发送上行消息结果反馈
-    NSString *record = [NSString stringWithFormat:@"Received sendmessage:%@ result:%d", messageId, result];
+    //NSString *record = [NSString stringWithFormat:@"Received sendmessage:%@ result:%d", messageId, result];
     //[_viewController logMsg:record];
 }
 
