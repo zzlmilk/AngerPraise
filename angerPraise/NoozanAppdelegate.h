@@ -25,6 +25,7 @@
 -(void) clearUserInfo;
 
 +(NoozanAppdelegate*)getAppDelegate;
+-(void)getMainVC;
 
 
 @end

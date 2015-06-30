@@ -56,6 +56,18 @@
     return YES;
 }
 
+-(void)getMainVC{
+    
+    if (!_mainNav) {
+        MainViewController *manVC = [[MainViewController alloc]init];
+        _mainNav = [[UINavigationController alloc]initWithRootViewController:manVC];
+    }
+    
+    [self.window setRootViewController:_mainNav];
+}
+
+
+
 -(void)clearUserInfo{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ID];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_TOKEN];
@@ -109,10 +121,12 @@
 {
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
    NSString* _deviceToken = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"deviceToken:%@", _deviceToken);
+    if (NZ_DugSet) {
+        NSLog(@"deviceToken:%@", _deviceToken);
+    }
     
     NSUserDefaults *deviceTokenUserDefaults = [NSUserDefaults standardUserDefaults];
-    [deviceTokenUserDefaults setObject:_deviceToken forKey:@"deviceToken"];
+    [deviceTokenUserDefaults setObject:_deviceToken forKey:USER_DEVIECTOKEN];
 
     
     //_deviceToken 存本地，等用户注册账号成功之后把_deviceToken和Userid全部给后台

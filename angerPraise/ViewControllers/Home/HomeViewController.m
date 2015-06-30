@@ -228,7 +228,7 @@
     [whiteBgView addSubview:_momentButton];
     
     
-    [self getCommentFriendInfo];
+   // [self getCommentFriendInfo];
     
     
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
@@ -544,6 +544,7 @@
     if (token!=nil) {
         [dic setObject:token forKey:@"token"];
     }
+    
     [dic setObject:@"b3ad057d6b507f643ce81279d2cdd226" forKey:@"token"];
     
    

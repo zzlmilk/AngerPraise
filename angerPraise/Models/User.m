@@ -317,7 +317,9 @@
         //NSLog(@"%@",responseObject);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        if (NZ_DugSet) {
+            NSLog(@"%@",error);
+        }
         
     }];
 

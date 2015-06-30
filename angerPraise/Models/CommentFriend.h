@@ -10,7 +10,7 @@
 #import "Error.h"
 #import "Review.h"
 
-
+//点评好友模型
 @interface CommentFriend : NSObject
 
 @property(nonatomic,strong)NSString *friend_number;  //可点评好友数

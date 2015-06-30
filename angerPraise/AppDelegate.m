@@ -21,28 +21,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-       
-    
-    /*
-    // 判断token 如果存在 storyborder中 页面跳转到Home
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-
-    //Main tabber 首页    
-    UIStoryboard *storyBoard1 = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    //登陆注册首页
-    UIStoryboard *storyBoard2 = [UIStoryboard storyboardWithName:@"Index" bundle:nil];
-    if([token objectForKey:@"token"]){
-        
-        self.window.rootViewController = [storyBoard1 instantiateInitialViewController];
-        
-    }else{
-        
-        self.window.rootViewController = [storyBoard2 instantiateInitialViewController];
-    }
-    */
-
-    
-
     return YES;
     
 }

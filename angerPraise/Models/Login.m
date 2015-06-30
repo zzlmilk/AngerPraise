@@ -9,11 +9,14 @@
 #import "Login.h"
 #import "ApIClient.h"
 
+
 @implementation Login
 
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
     
+    
+    /*
     _token = [dic objectForKey:@"token"];
     _user_id = [dic objectForKey:@"user_id"];
     _user_name = [dic objectForKey:@"user_name"];
@@ -22,7 +25,9 @@
     _hr_privilege =[dic objectForKey:@"hr_privilege"];
     _resume_status =[dic objectForKey:@"resume_status"];
     _user_status_type =[dic objectForKey:@"user_status_type"];
-
+     */
+    
+    
     
     return self;
     

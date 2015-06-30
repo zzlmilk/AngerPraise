@@ -176,73 +176,67 @@
 }
 
 
+-(void)loadUserLogindata:(NSMutableDictionary *)dicData{
+    
+    
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Login userLogin:dicData WithBlock:^(Login *login, Error *e) {
+        
+        
+        
+    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (e.info !=nil) {
+            [APIClient showInfo:e.info title:@"提示"];
+        }
+        else {
+    
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:login.token forKey:USER_TOKEN];
+            [userDefaults setObject:login.user_id forKey:USER_ID];
+        
+           // [APIClient showSuccess:@"登录成功" title:@"成功"];
+            //注册成功发送设备
+           // [self sendDeviceInfo];
+            
+            
+            [[NoozanAppdelegate getAppDelegate] getMainVC];
+            
+//            MainViewController *mainVC = [[MainViewController alloc]init];
+//            [self.navigationController pushViewController:mainVC animated:YES];
+            
+            
+        }
+    }];
+    
+
+}
+
 #pragma mark -- 用户登录
 -(void)userLogin{
     
      NSUInteger pLength = 11;
-    
     if (_phoneNumberTextField.text.length !=pLength) {
-        
         [APIClient showMessage:@"手机号码格式不正确"];
-        
     }else if (_passwordTextField.text == nil){
-        
         [APIClient showMessage:@"密码不能为空"];
-        
     }else{
-
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
         [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
         [dic setObject:_passwordTextField.text forKey:@"password"];
-
-        [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
-        [Login userLogin:dic WithBlock:^(Login *login, Error *e) {
-            
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-
-            if (e.info !=nil) {
-                
-                [APIClient showInfo:e.info title:@"提示"];
-                
-            }else if(![login.token isEqual: @""]){
-                
-                NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-                [token setObject:login.token forKey:@"token"];
-                
-                NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
-                [hrPrivilege setObject:login.hr_privilege forKey:@"hrPrivilege"];
-        
-                
-                [self sendDeviceInfo];
-                [APIClient showSuccess:@"登录成功" title:@"成功"];
-                
-                
-
-                MainViewController *mainVC = [[MainViewController alloc]init];
-                [self.navigationController pushViewController:mainVC animated:YES];
-                
-                
-            }
-        }];
-        
-    }
+        [self  loadUserLogindata:dic];
+        }
 }
 
 #pragma mark -- 发送 token 和 deviceToken 及设备信息
 -(void)sendDeviceInfo{
     
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-    NSUserDefaults *deviceTokenUserDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaultsen = [NSUserDefaults standardUserDefaults];
     
-    NSString *deviceTokenString = [deviceTokenUserDefaults objectForKey:@"deviceToken"];
+    NSString *deviceTokenString = [userDefaultsen objectForKey:USER_DEVIECTOKEN];
     
-    if ([token objectForKey:@"token"]) {
-        
         NSString* deviceName = [[UIDevice currentDevice] systemName];
-        
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        [dic setObject:[userDefaultsen objectForKey:USER_TOKEN] forKey:@"token"];
         [dic setObject:@"1" forKey:@"dict_device_id"];
         [dic setObject:deviceName forKey:@"device_name"];
         
@@ -257,10 +251,10 @@
         }
         
         [User sendDeviceInfo:dic WithBlock:^(User *user, Error *e) {
-        
+            
         }];
         
-    }
+    
     
 }
 

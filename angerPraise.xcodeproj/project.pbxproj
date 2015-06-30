@@ -87,7 +87,6 @@
 		DFA061B31AD53527004EEB4C /* VirtualImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA061B11AD53527004EEB4C /* VirtualImportViewController.m */; };
 		DFA061B61AD536C2004EEB4C /* CreatStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA061B51AD536C2004EEB4C /* CreatStep2ViewController.m */; };
 		DFA061B91AD536DD004EEB4C /* CreatStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA061B81AD536DD004EEB4C /* CreatStep3ViewController.m */; };
-		DFA316961B18A40B009C3F5E /* Index.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA316951B18A40B009C3F5E /* Index.storyboard */; };
 		DFA34C961B0EFB8C003722BC /* WalletWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA34C951B0EFB8C003722BC /* WalletWebViewController.m */; };
 		DFA34C991B0EFBA1003722BC /* CollectWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA34C981B0EFBA1003722BC /* CollectWebViewController.m */; };
 		DFA34C9C1B0EFBB6003722BC /* MyFriendWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA34C9B1B0EFBB6003722BC /* MyFriendWebViewController.m */; };
@@ -355,7 +354,6 @@
 		DFA061B51AD536C2004EEB4C /* CreatStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatStep2ViewController.m; sourceTree = "<group>"; };
 		DFA061B71AD536DD004EEB4C /* CreatStep3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatStep3ViewController.h; sourceTree = "<group>"; };
 		DFA061B81AD536DD004EEB4C /* CreatStep3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatStep3ViewController.m; sourceTree = "<group>"; };
-		DFA316951B18A40B009C3F5E /* Index.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Index.storyboard; sourceTree = "<group>"; };
 		DFA34C941B0EFB8C003722BC /* WalletWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletWebViewController.h; sourceTree = "<group>"; };
 		DFA34C951B0EFB8C003722BC /* WalletWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletWebViewController.m; sourceTree = "<group>"; };
 		DFA34C971B0EFBA1003722BC /* CollectWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectWebViewController.h; sourceTree = "<group>"; };
@@ -645,7 +643,6 @@
 				19BD47741AAD5BA600D44A9D /* ViewController.m */,
 				DF1698391B0DC12800A5E453 /* LaunchScreen.xib */,
 				19BD47761AAD5BA600D44A9D /* Main.storyboard */,
-				DFA316951B18A40B009C3F5E /* Index.storyboard */,
 				19BD47791AAD5BA600D44A9D /* Images.xcassets */,
 				19BD476C1AAD5BA600D44A9D /* Supporting Files */,
 			);
@@ -1505,7 +1502,6 @@
 				DF1698511B0EF98400A5E453 /* smssdk.bundle in Resources */,
 				DFEE77151AE09F5D00401AF0 /* graph_year.png in Resources */,
 				DFEE77121AE09F5D00401AF0 /* circle_thumb@2x.png in Resources */,
-				DFA316961B18A40B009C3F5E /* Index.storyboard in Resources */,
 				19BD477A1AAD5BA600D44A9D /* Images.xcassets in Resources */,
 				DFEE770E1AE09F5D00401AF0 /* circle_outline@2x.png in Resources */,
 			);
