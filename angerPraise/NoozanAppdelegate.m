@@ -47,6 +47,7 @@
     else{
         IndexViewController *indexVC = [[IndexViewController alloc]init];
         _loginNav = [[UINavigationController alloc]initWithRootViewController:indexVC];
+        
         [self.window setRootViewController:_loginNav];
         
     }

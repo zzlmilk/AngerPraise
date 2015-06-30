@@ -12,13 +12,19 @@
 
 #import "ApIClient.h"
 #import "SMS_MBProgressHUD.h"
+<<<<<<< HEAD
 #import "User.h"
+=======
+#import "MainViewController.h"
+>>>>>>> 72ff8779fd4058ce7f546f0d943a4d7a734da0a6
 
 
 
 @interface LoginViewController ()
 
 @end
+
+
 
 @implementation LoginViewController
 
@@ -185,14 +191,23 @@
         
     }else{
         
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 72ff8779fd4058ce7f546f0d943a4d7a734da0a6
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
         [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
         [dic setObject:_passwordTextField.text forKey:@"password"];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 72ff8779fd4058ce7f546f0d943a4d7a734da0a6
         
         [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         [Login userLogin:dic WithBlock:^(Login *login, Error *e) {
             
-            [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
 
             if (e.info !=nil) {
                 
@@ -205,12 +220,15 @@
                 
                 NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
                 [hrPrivilege setObject:login.hr_privilege forKey:@"hrPrivilege"];
+        
                 
                 [self sendDeviceInfo];
                 [APIClient showSuccess:@"登录成功" title:@"成功"];
                 
-//                MainViewController *mainVC = [[MainViewController alloc]init];
-//                [self.navigationController pushViewController:mainVC animated:YES];
+                
+                
+                MainViewController *mainVC = [[MainViewController alloc]init];
+                [self.navigationController pushViewController:mainVC animated:YES];
                 
                 
             }
