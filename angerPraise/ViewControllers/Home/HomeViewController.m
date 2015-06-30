@@ -9,19 +9,15 @@
 #import "HomeViewController.h"
 #import "InfiniteScrollPicker.h"
 #import "SMS_MBProgressHUD.h"
-
 #import "CommentFriendCell.h"
 #import "CommentFriend.h"
 #import "UIImageView+AFNetworking.h"
 #import "ApIClient.h"
 #import "VWWWaterView.h"
 #import "Review.h"
-
 #import "WXApi.h"
-
 #import "WebViewJavascriptBridge.h"
 #import "Share.h"
-
 #import "UIView+i7Rotate360.h"
 
 #import "IndexViewController.h"
@@ -44,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     _isString = 0;
     _addPage = 0;
     
@@ -509,7 +505,7 @@
 #pragma mark -  hr接口和 普通用户进行切换调用
 -(void)isUserType{
     
-    //如果 hr剩余任务 大于0 则可以点击 hr按钮 进入hr特权 嗲用switch 否则 提示 暂时没有HR任务
+    //如果 hr剩余任务 大于0 则可以点击 hr按钮 进入hr特权 用switch 否则 提示 暂时没有HR任务
     
     if (_intInterviewNumber >0) {
         

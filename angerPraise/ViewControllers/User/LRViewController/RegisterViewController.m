@@ -9,9 +9,8 @@
 #import "RegisterViewController.h"
 #import "InitPassword.h"
 #import "ApIClient.h"
-
+#import "LoginViewController.h"
 #import "NewPasswordViewController.h"
-//#import "TKRoundedView.h"
 
 @interface RegisterViewController ()
 
@@ -128,6 +127,7 @@
     _userRegisterButton.backgroundColor = RGBACOLOR(255, 255, 255, 0.6f);
     [_userRegisterButton addTarget:self action:@selector(isInitPassword) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_userRegisterButton];
+ 
     
 }
 
@@ -265,6 +265,9 @@
                 [APIClient showMessage:@"怒赞码已发射成功～"];
                 NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
                 [token setObject:initPassword.token forKey:@"token"];
+                
+                LoginViewController *loginVC = [[LoginViewController alloc]init];
+                [loginVC sendDeviceInfo];
             
             }
             
@@ -273,6 +276,9 @@
         
     }
 }
+
+
+
 
 //验证初始密码
 -(void)isInitPassword{
@@ -302,6 +308,7 @@
 
     
 }
+
 
 
 - (void)didReceiveMemoryWarning {

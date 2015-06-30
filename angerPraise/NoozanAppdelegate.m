@@ -65,8 +65,6 @@
         [userData setObject:[NSString stringWithFormat:@"006600%qu%i",(unsigned long long)([[NSDate date] timeIntervalSince1970] * 1000),random] forKey:@"cookie"];
     }
     
-    
-    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
@@ -75,7 +73,22 @@
    NSString* _deviceToken = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"deviceToken:%@", _deviceToken);
     
+    NSUserDefaults *deviceTokenUserDefaults = [NSUserDefaults standardUserDefaults];
+    [deviceTokenUserDefaults setObject:_deviceToken forKey:@"deviceToken"];
+
+    
     //_deviceToken 存本地，等用户注册账号成功之后把_deviceToken和Userid全部给后台
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userinfo
+{
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    //处理APN
+    NSString *payloadMsg = [userinfo objectForKey:@"payload"];
+    // 获取 server 返回值 进行页面跳转
     
 }
 
@@ -86,10 +99,6 @@
     NSLog(@"用户不允许通知");
     
 }
-
-
-
-
 
 
 #pragma mark --- WeiXin

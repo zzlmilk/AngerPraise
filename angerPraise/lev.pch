@@ -37,8 +37,8 @@
 #define HEIGHT [[UIScreen mainScreen] bounds].size.height
 
 
-
-
+//debug 1开启 0关闭
+#define nsDugSet 1
 
 
 #endif

@@ -7,35 +7,18 @@
 //
 
 #import "UserViewController.h"
-#import "RKCardView.h"
-#import "CheckQuestionViewController.h"
-
-#import "ScanViewController.h"
-#import "IsOrNoHrViewController.h"
 #import "SettingViewController.h"
-#import "EditPhotoViewController.h"
-#import "InterviewPayViewController.h"
-#import "ShowQrCodeViewController.h"
-
 #import "EditPhoto.h"
 #import "ApIClient.h"
 #import "SMS_MBProgressHUD.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
-
 #import "WalletWebViewController.h"
 #import "MyFriendWebViewController.h"
 #import "CollectWebViewController.h"
 #import "HrWebViewController.h"
-#import "HrWebViewController.h"
-#import "PositionViewController.h"
 #import "MainViewController.h"
-#import "WalletWebViewController.h"
-
-#import "SMS_MBProgressHUD.h"
-#import "EditNameViewController.h"
 #import "EditPasswordViewController.h"
-
 
 #define BUFFERX 5 //distance from side to the card (higher makes thinner card)
 #define BUFFERY 10 //distance from top to the card (higher makes shorter card)
@@ -74,7 +57,6 @@
     [_userNameButton addTarget:self action:@selector(showEditPersonInfoView) forControlEvents:UIControlEventTouchUpInside];
     [_cardView addSubview:_userNameButton];
 
-    
     _hirelibNumberLabel = [[UILabel alloc]init];
     _hirelibNumberLabel.frame = CGRectMake(0, _userNameButton.frame.size.height+_userNameButton.frame.origin.y-5, WIDTH, 20);
     _hirelibNumberLabel.backgroundColor = [UIColor clearColor];
@@ -83,8 +65,6 @@
     [_hirelibNumberLabel setFont:[UIFont fontWithName:@"Helvetica" size:14.f]];
     _hirelibNumberLabel.textColor = RGBACOLOR(82, 82, 82, 1.0f);
     [_cardView addSubview:_hirelibNumberLabel];
-    
-    
     
     _matchPositionLabel = [[UILabel alloc]init];
     _matchPositionLabel.frame = CGRectMake(55, _hirelibNumberLabel.frame.origin.y+_hirelibNumberLabel.frame.size.height+12, WIDTH-2*50-10, 35);
@@ -101,27 +81,6 @@
     matchPositionTitleLabel.text= @"剩余任务";
     matchPositionTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
     [_cardView addSubview:matchPositionTitleLabel];
-    
-    
-//    _synthesisScoreLabel = [[UILabel alloc]init];
-//    _synthesisScoreLabel.frame =_matchPositionLabel.frame;
-//    _synthesisScoreLabel.backgroundColor = [UIColor clearColor];
-//    _synthesisScoreLabel.textColor = RGBACOLOR(0,204,252,1.0f);
-//    _synthesisScoreLabel.text= @"65";
-//    _synthesisScoreLabel.textAlignment = NSTextAlignmentCenter;
-//    _synthesisScoreLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
-//    [cardView addSubview:_synthesisScoreLabel];
-//    
-//    UILabel *synthesisScoreTitleLabel = [[UILabel alloc]init];
-//    synthesisScoreTitleLabel.frame = matchPositionTitleLabel.frame;
-//    synthesisScoreTitleLabel.backgroundColor = [UIColor clearColor];
-//    synthesisScoreTitleLabel.textColor = RGBACOLOR(100,100,100,1.0f);
-//    synthesisScoreTitleLabel.text= @"剩余任务";
-//    synthesisScoreTitleLabel.textAlignment = NSTextAlignmentCenter;
-//    synthesisScoreTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
-//    [cardView addSubview:synthesisScoreTitleLabel];
-    
-    
     
     _taskLabel = [[UILabel alloc]init];
     _taskLabel.frame =_matchPositionLabel.frame;
@@ -140,7 +99,6 @@
     taskNumberTitleLabel.textAlignment = NSTextAlignmentRight;
     taskNumberTitleLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
     [_cardView addSubview:taskNumberTitleLabel];
-    
     
     _taskButton = [[UIButton alloc]init];
     _taskButton.frame =CGRectMake(10, _matchPositionLabel.frame.origin.y, WIDTH/2-20, 100);
@@ -197,27 +155,7 @@
     [_backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
     [_backBtn addTarget:self action:@selector(hideView)forControlEvents:UIControlEventTouchUpInside];
     [_editView addSubview:_backBtn];
-    
-//    
-//    _waitPhotoImageView = [[UIImageView alloc]init];
-////    _waitPhotoImageView.frame = CGRectMake(_userPhotoImageView.frame.origin.x, _userPhotoImageView.frame.origin.y+30, _userPhotoImageView.frame.size.width, _userPhotoImageView.frame.size.height);
-//    _waitPhotoImageView.frame = _userPhotoImageView.frame;
-//    _waitPhotoImageView.layer.masksToBounds = YES;
-//    _waitPhotoImageView.layer.cornerRadius = 50;
-//    [_editView addSubview:_waitPhotoImageView];
-//
-//    
-//    UIButton *editPhotoButton = [[UIButton alloc]init];
-//    editPhotoButton.frame =CGRectMake(0, _waitPhotoImageView.frame.size.height+_waitPhotoImageView.frame.origin.y+30, WIDTH, 60);
-//    [editPhotoButton setTitle:@"修改头像" forState:UIControlStateNormal];
-//    [editPhotoButton setTitleColor:RGBACOLOR(252, 254, 253, 1.0f)forState:UIControlStateNormal];
-//    [editPhotoButton setTitleColor:btnHighlightedColor forState:UIControlStateHighlighted];
-//    [editPhotoButton setBackgroundImage:[UIImage imageNamed:@"0cell_bg"] forState:UIControlStateHighlighted];
-//    editPhotoButton.contentEdgeInsets = UIEdgeInsetsMake(0,20, 0, 0);
-//    editPhotoButton.titleLabel.font = [UIFont systemFontOfSize: 15.0];
-//    [editPhotoButton addTarget:self action:@selector(onClickImageView) forControlEvents:UIControlEventTouchUpInside];
-//    editPhotoButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//    [_editView addSubview:editPhotoButton];
+
     
     UIButton *editNameButton = [[UIButton alloc]init];
     editNameButton.frame =CGRectMake(0, _backBtn.frame.size.height+_backBtn.frame.origin.y+65, WIDTH, 60);
@@ -294,6 +232,8 @@
     
     [self getUserInfo];
     [self timer];
+    [self getRecommendPosition];
+    [self getWalletNumber];
 }
 
 #pragma mark -- 键盘 return
@@ -374,10 +314,6 @@
 #pragma mark 修改昵称
 -(void)editNameAction{
 
-//    EditNameViewController *editName = [[EditNameViewController alloc]init];
-//    editName.editNameString = _userNameLabel.text;
-//    [self.navigationController pushViewController:editName animated:YES];
-    
     _editNameView.hidden = NO;
     [_editNameTextField becomeFirstResponder];
 
@@ -399,11 +335,12 @@
 
 }
 
+
 #pragma mark  获取 user 模块的用户基本信息
 -(void)getUserInfo{
     
         NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-    
+
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
         [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
         
@@ -420,23 +357,23 @@
             }else{
                 
                 [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+                _waitUsernameLabel.text = user.user_name;
                 
-                [_waitPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url]];
                 _editNameTextField.text = user.user_name;
                 [_userNameButton setTitle:user.user_name forState:UIControlStateNormal];
                 _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
                 
-                NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
-                _taskLabel.text = user.position_number;//匹配职位
-                _matchPositionLabel.text = stringInt;//剩余任务
                 
-                _walletNumberLabel.text = user.user_intergral;
-                _waitUsernameLabel.text = user.user_name;
+//                [_waitPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url]];
+//                NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
+//                _taskLabel.text = user.position_number;//匹配职位
+//                _matchPositionLabel.text = stringInt;//剩余任务
+//                _walletNumberLabel.text = user.user_intergral;
                 
-                _hr_url = user.hr_url;
-                _pay_url = user.pay_url;
-                _user_apply_url = user.user_apply_url;
-                _user_friend_url = user.user_friend_url;
+//                _hr_url = user.hr_url;
+//                _pay_url = user.pay_url;
+//                _user_apply_url = user.user_apply_url;
+//                _user_friend_url = user.user_friend_url;
                 
             }
             
@@ -445,13 +382,13 @@
 
 #pragma mark 使用计时器 更新剩余任务数
 -(void)timer{
-
-    __block int timeout=12*3600; //倒计时时间
+    
+    _timeout=12*3600; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),2.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),3.0*NSEC_PER_SEC, 0); //每秒执行
     dispatch_source_set_event_handler(_timer, ^{
-        if(timeout<=0){ //倒计时结束，关闭
+        if(_timeout<=0){ //倒计时结束，关闭
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
@@ -464,15 +401,22 @@
                 //NSLog(@"____%@",strTime);
                 
                 [self getUserMissionNumber];
+                [self getWalletNumber];
                 
             });
-            timeout--;
+            _timeout--;
             
         }
     });
     dispatch_resume(_timer);
-    
 }
+
+#pragma mark 停止计时器
+-(void)closeTimer{
+    
+    _timeout = 0;
+}
+
 
 #pragma mark  获取 user 剩余任务数
 -(void)getUserMissionNumber{
@@ -492,13 +436,67 @@
                 
             }else{
                 
-                NSString *stringInt = [NSString stringWithFormat:@"%@",user.missionNumber];
+                NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
                 _matchPositionLabel.text = stringInt;//剩余任务
                 
             }
             
         }];
 
+    }
+    
+}
+
+#pragma mark  获取 推荐职位数
+-(void)getRecommendPosition{
+    
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    
+    if (![token objectForKey:@"token"]) {
+        
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        
+        [User getRecommendPositionNumber:dic WithBlock:^(User *user, Error *e) {
+            
+            if (e.info !=nil) {
+                
+            }else{
+                
+                NSString *stringInt = [NSString stringWithFormat:@"%@",user.position_number];
+                _taskLabel.text = stringInt;// 匹配职位
+                
+            }
+        }];
+        
+    }
+
+}
+
+
+#pragma mark  获取 钱包赏银数量
+-(void)getWalletNumber{
+    
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    
+    if ([token objectForKey:@"token"]) {
+        
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        
+        [User getWalletNumber:dic WithBlock:^(User *user, Error *e) {
+            
+            if (e.info !=nil) {
+                
+                [APIClient showInfo:e.info title:@"提示"];
+
+            }else{
+
+                _walletNumberLabel.text = user.user_intergral;
+                
+            }
+        }];
+        
     }
     
 }
@@ -875,8 +873,6 @@
                 HrWebViewController *hrWebVC = [[HrWebViewController alloc]init];
                 hrWebVC.hrUrl = _hr_url;
                 [self.navigationController pushViewController:hrWebVC animated:YES];
-                //                IsOrNoHrViewController *isOrNoHrVC = [[IsOrNoHrViewController alloc]init];
-                //                [self.navigationController pushViewController:isOrNoHrVC animated:YES];
             }
                 break;
             case 4: //设置

@@ -46,8 +46,10 @@
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             
-            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
-
+            if (nsDugSet) {
+                
+                [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+            }
         }];
 
     

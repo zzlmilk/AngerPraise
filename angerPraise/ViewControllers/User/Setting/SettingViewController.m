@@ -131,20 +131,16 @@ static NSUserDefaults* userData;
         if ([user.res isEqualToString:@"1"]) {
             //退出成功  清空 NSUserDefaults  的值 做跳转
             
-            NSUserDefaults *token=[NSUserDefaults standardUserDefaults];
-            [token removeObjectForKey:@"token"];
-            
-            NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
-            [hrPrivilege removeObjectForKey:@"hrPrivilege"];
+            UserViewController *userVC = [[UserViewController alloc]init];
+            [userVC closeTimer];
             
             IndexViewController *indexVC= [[IndexViewController alloc]init];
             [self.navigationController pushViewController:indexVC animated:YES];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults removeObjectForKey:@"hrPrivilege"];
+            NSUserDefaults *token=[NSUserDefaults standardUserDefaults];
+            [token removeObjectForKey:@"token"];
             
-        }else if (e != nil){
-            //退出失败
-            
-            [APIClient showMessage:e.info title:@"提示"];
-        
         }
         
     }];
