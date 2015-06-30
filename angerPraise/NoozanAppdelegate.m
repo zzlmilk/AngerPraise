@@ -38,6 +38,7 @@
     NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
     NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
     
+    
     if (user_id && user_token) {
         MainViewController *manVC = [[MainViewController alloc]init];
         _mainNav = [[UINavigationController alloc]initWithRootViewController:manVC];
@@ -47,13 +48,10 @@
     else{
         IndexViewController *indexVC = [[IndexViewController alloc]init];
         _loginNav = [[UINavigationController alloc]initWithRootViewController:indexVC];
-        
         [self.window setRootViewController:_loginNav];
-        
     }
     
    
-    
     
     return YES;
 }

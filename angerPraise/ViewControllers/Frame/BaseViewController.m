@@ -61,6 +61,7 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.view.backgroundColor = RGBACOLOR(255, 255, 255, 1.0f);
+    
     self.navigationController.navigationBar.hidden = YES;
        
 //    [self setExtendedLayoutIncludesOpaqueBars:YES];

@@ -13,6 +13,7 @@
 #import "ApIClient.h"
 #import "SMS_MBProgressHUD.h"
 #import "MainViewController.h"
+#import "NoozanAppdelegate.h"
 
 
 
@@ -220,7 +221,7 @@
                 [APIClient showSuccess:@"登录成功" title:@"成功"];
                 
                 
-                
+
                 MainViewController *mainVC = [[MainViewController alloc]init];
                 [self.navigationController pushViewController:mainVC animated:YES];
                 
