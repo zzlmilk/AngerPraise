@@ -14,8 +14,12 @@
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
     
+<<<<<<< HEAD
     if ([dic objectForKey:@"hirelib_code"]) { // userinfo
         
+=======
+    if ([dic objectForKey:@"res"] == nil) {
+>>>>>>> 3029c53fe6a14750fb13615fc55abc46f3b2a847
         _hirelib_code =[dic objectForKey:@"hirelib_code"];
         _user_name =[dic objectForKey:@"user_name"];
         _photo_url =[dic objectForKey:@"photo_url"];

@@ -9,19 +9,22 @@
 #import "NoozanAppdelegate.h"
 #import "MCCore.h"
 
+#import "MainViewController.h"
+#import "IndexViewController.h"
+
+
 
 
 @implementation NoozanAppdelegate
 
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     [super application:application didFinishLaunchingWithOptions:launchOptions];
     
-    
+   // [[UIApplication sharedApplication] setStatusBarHidden:YES];
+
     //注册mechat
     [self mechatRegister];
-    
     
     //注册通知
     [self registerRemoteNotification];
@@ -29,10 +32,47 @@
     //微信 注册信息
     [WXApi registerApp:@"wx97dbb5b24f24c791"];
     
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    
+    NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
+    NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
+    
+    if (user_id && user_token) {
+        MainViewController *manVC = [[MainViewController alloc]init];
+        _mainNav = [[UINavigationController alloc]initWithRootViewController:manVC];
+        [self.window setRootViewController:_mainNav];
+
+    }
+    else{
+        IndexViewController *indexVC = [[IndexViewController alloc]init];
+        _loginNav = [[UINavigationController alloc]initWithRootViewController:indexVC];
+        [self.window setRootViewController:_loginNav];
+        
+    }
+    
+   
     
     
     return YES;
 }
+
+-(void)clearUserInfo{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ID];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_TOKEN];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ACCOUNT];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+
+
++(NoozanAppdelegate*)getAppDelegate{
+    return  (NoozanAppdelegate *)[UIApplication sharedApplication].delegate;
+}
+
+
+
 
 
 #pragma mark Notification
@@ -40,7 +80,6 @@
 {
 #ifdef __IPHONE_8_0
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        
         UIUserNotificationSettings *uns = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound) categories:nil];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
         [[UIApplication sharedApplication] registerUserNotificationSettings:uns];

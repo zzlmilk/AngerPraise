@@ -21,9 +21,11 @@
 #import "UIView+i7Rotate360.h"
 
 #import "IndexViewController.h"
-#import "Home.h"
+
 #import "WalletWebViewController.h"
 
+//model
+#import "Home.h"
 
 #define F2I  (*((int *)&f))
 
@@ -40,56 +42,49 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+<<<<<<< HEAD
+=======
+    self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    
+
+>>>>>>> 3029c53fe6a14750fb13615fc55abc46f3b2a847
 
     _isString = 0;
     _addPage = 0;
     
-    self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    homeTitleView = [[HomeTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    homeTitleView.backgroundColor = [UIColor redColor];
     
-    _titleView = [[UIView alloc]init];
-    _titleView.frame =CGRectMake(0, 0, WIDTH, 50);
-    _titleView.backgroundColor = RGBACOLOR(40, 40, 40, 1.0f);
-    [self.view addSubview:_titleView];
+    //self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
     
+    
+    
+    //hr特权标示
     _hrBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _hrBtn.frame = CGRectMake((WIDTH-44), 0, 44, 44);
     [_hrBtn setImage:[UIImage imageNamed:@"0homepage_hr"] forState:UIControlStateNormal];
     _hrBtn.backgroundColor = [UIColor clearColor];
     [_hrBtn addTarget:self action:@selector(isUserType)forControlEvents:UIControlEventTouchUpInside];
-    [_titleView addSubview:_hrBtn];
-
+    [homeTitleView addSubview:_hrBtn];
     
+    [self.view addSubview:homeTitleView];
+    
+
+  
+       
+    //手势 为什么增加再导航栏 ？
     _singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     _singleTap.cancelsTouchesInView = NO;
     _singleTap.enabled = NO;
     [self.navigationController.navigationBar addGestureRecognizer:_singleTap];
 
-    UIButton *titleButton= [[UIButton alloc]init];
-    titleButton.frame = CGRectMake((WIDTH-118/2)/2, 15, 118/2, 38/2);
-    [titleButton setTitle:@"怒         赞" forState:UIControlStateNormal];
-    [titleButton setTitleColor:RGBACOLOR(255, 255, 255, 1.0f) forState:UIControlStateNormal];
-    titleButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
-    [titleButton setTitleColor:RGBACOLOR(177, 179, 180, 1.0f) forState:UIControlStateNormal];
-    titleButton.backgroundColor = [UIColor clearColor];
-    [_titleView addSubview:titleButton];
-    
-    UIImageView *titleLogoImageView = [[UIImageView alloc]init];
-    titleLogoImageView.frame =titleButton.frame;
-    titleLogoImageView.image = [UIImage imageNamed:@"0logoathomepage"];
-    titleLogoImageView.backgroundColor = [UIColor clearColor];
-    [_titleView addSubview:titleLogoImageView];
-    
     
     UIView *rolliew = [[UIView alloc]init];
-    rolliew.frame = CGRectMake(0, _titleView.frame.size.height+_titleView.frame.origin.y, WIDTH, 80);
+    rolliew.frame = CGRectMake(0, homeTitleView.frame.size.height+homeTitleView.frame.origin.y, WIDTH, 80);
     rolliew.backgroundColor = [UIColor clearColor];
     [self.view addSubview:rolliew];
     
-    //点评赏银 开始
-//    UIImageView *tipImageView = [[UIImageView alloc]init];
-//    tipImageView.frame = CGRectMake(5, 15, 45, 45);
-//    [tipImageView setImage:[UIImage imageNamed:@"0bonus1"]];
-//    [rolliew addSubview:tipImageView];
+
     
     _waterView = [[VWWWaterView alloc]init];
     _waterView.backgroundColor = [UIColor whiteColor];
@@ -98,6 +93,7 @@
     [_waterView setClipsToBounds:YES];
     [_waterView setCurrentLinePointY:30]; //min 38   max 0
     [rolliew addSubview:_waterView];
+    
     
     UIButton *clickMoneyButton = [[UIButton alloc]init];
     clickMoneyButton.frame = _waterView.frame;
@@ -236,8 +232,8 @@
     
     [self getCommentFriendInfo];
     
+    
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
-        //NSLog(@"ObjC received message from JS: %@", data);
         if ([data isEqualToString:@"pay"]) {
             
             [self getMyPayUrlString];
@@ -535,15 +531,24 @@
     
 }
 
-#pragma mark - 调用接口 获取 首页接口数据 普通用户
+#pragma mark - 调用接口首页接口数据普通用户
 -(void)getCommentFriendInfo{
     
     [self isHR];
     
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    
+    //不健康的程序如果token为空 崩溃
+    NSString *token  =[ userDefaults objectForKey:@"token"];
+    if (token!=nil) {
+        [dic setObject:token forKey:@"token"];
+    }
+    [dic setObject:@"b3ad057d6b507f643ce81279d2cdd226" forKey:@"token"];
+    
+   
     
 //    SMS_MBProgressHUD *hud = [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    hud.mode = MBProgressHUDModeIndeterminate;

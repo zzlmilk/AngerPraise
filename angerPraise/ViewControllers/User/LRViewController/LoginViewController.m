@@ -7,16 +7,14 @@
 //
 
 #import "LoginViewController.h"
-#import "RegisterViewController.h"
-#import "ImportResumeViewController.h"
-#import "NeedDataViewController.h"
-#import "ShareViewController.h"
+
 #import "Login.h"
+
 #import "ApIClient.h"
-#import "MainViewController.h"
-#import "TKRoundedView.h"
 #import "SMS_MBProgressHUD.h"
 #import "User.h"
+
+
 
 @interface LoginViewController ()
 
@@ -211,8 +209,8 @@
                 [self sendDeviceInfo];
                 [APIClient showSuccess:@"登录成功" title:@"成功"];
                 
-                MainViewController *mainVC = [[MainViewController alloc]init];
-                [self.navigationController pushViewController:mainVC animated:YES];
+//                MainViewController *mainVC = [[MainViewController alloc]init];
+//                [self.navigationController pushViewController:mainVC animated:YES];
                 
                 
             }

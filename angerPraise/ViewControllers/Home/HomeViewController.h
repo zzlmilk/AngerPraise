@@ -13,11 +13,16 @@
 #import "SMS_MBProgressHUD.h"
 #import "VWWWaterView.h"
 
+#import "HomeTitleView.h"
+
+
 @interface HomeViewController : BaseViewController<UIWebViewDelegate,PagedFlowViewDataSource,PagedFlowViewDelegate,MBProgressHUDDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate>
 {
-NSMutableArray *imageArray;
+    NSMutableArray *imageArray;
+    
+    HomeTitleView *homeTitleView;
 
-enum WXScene _scene;
+    enum WXScene _scene;
 }
 
 - (void) changeScene:(NSInteger)scene;
@@ -66,8 +71,12 @@ enum WXScene _scene;
 @property(nonatomic,strong)NSString *shareTitle;
 @property(nonatomic,strong)NSString *shareContent;
 
--(void)getCommentFriendInfo;
 
 @property(nonatomic,strong)NSString *payUrlString;
+
+
+//获取点可评用户信息
+-(void)getCommentFriendInfo;
+
 
 @end

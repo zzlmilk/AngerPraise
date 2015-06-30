@@ -12,6 +12,19 @@
 
 
 
+
 @interface NoozanAppdelegate : AppDelegate<WXApiDelegate>
+{
+    
+}
+
+@property(nonatomic,strong) UINavigationController *mainNav;
+@property (nonatomic,strong)UINavigationController *loginNav;
+
+//清楚NSUsersDefault里面保存的用户信息
+-(void) clearUserInfo;
+
++(NoozanAppdelegate*)getAppDelegate;
+
 
 @end
