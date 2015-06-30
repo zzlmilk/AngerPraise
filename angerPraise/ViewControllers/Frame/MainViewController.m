@@ -29,11 +29,8 @@
     homeVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
     homeVC.tabBarItem.tag = 1;
 
-<<<<<<< HEAD
-=======
+
     
-    
->>>>>>> 3029c53fe6a14750fb13615fc55abc46f3b2a847
     ResumeViewController *resumeVC = [[ResumeViewController alloc]init];
     resumeVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar2"];
     resumeVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
@@ -48,20 +45,13 @@
     userVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar4"];
     userVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
     userVC.tabBarItem.tag = 4;
-<<<<<<< HEAD
     
     NSArray *viewControllers = [NSArray arrayWithObjects:homeVC,resumeVC,posotionVC,userVC, nil];
     
     self.viewControllers =viewControllers;
     
-=======
 
-    
-    NSArray *viewControllers = [NSArray arrayWithObjects:homeVC,resumeVC,posotionVC,userVC, nil];
-    
-    
-    self.viewControllers =viewControllers;
->>>>>>> 3029c53fe6a14750fb13615fc55abc46f3b2a847
+ 
 //    self.delegate = self;
     self.tabBar.translucent = NO;
     self.tabBar.alpha = 1.0f;

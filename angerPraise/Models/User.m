@@ -14,57 +14,57 @@
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
     
-<<<<<<< HEAD
     if ([dic objectForKey:@"hirelib_code"]) { // userinfo
         
-=======
-    if ([dic objectForKey:@"res"] == nil) {
->>>>>>> 3029c53fe6a14750fb13615fc55abc46f3b2a847
-        _hirelib_code =[dic objectForKey:@"hirelib_code"];
-        _user_name =[dic objectForKey:@"user_name"];
-        _photo_url =[dic objectForKey:@"photo_url"];
-        _user_id =[dic objectForKey:@"user_id"];
-
+  
+        if ([dic objectForKey:@"res"] == nil) {
+            _hirelib_code =[dic objectForKey:@"hirelib_code"];
+            _user_name =[dic objectForKey:@"user_name"];
+            _photo_url =[dic objectForKey:@"photo_url"];
+            _user_id =[dic objectForKey:@"user_id"];
+            
+            
+            //        _hr_url =[dic objectForKey:@"hr_url"];
+            //        _pay_url =[dic objectForKey:@"pay_url"];
+            //        _position_number =[dic objectForKey:@"position_number"];
+            //        _user_apply_url =[dic objectForKey:@"user_apply_url"];
+            //        _user_friend_url =[dic objectForKey:@"user_friend_url"];
+            //        _user_intergral =[dic objectForKey:@"user_intergral"];
+            //        _user_resume_synthesize_grade = [dic objectForKeyedSubscript:@"user_resume_synthesize_grade"];
+            //        _mission_number =[dic objectForKeyedSubscript:@"mission_number"];
+            
+        }
         
-//        _hr_url =[dic objectForKey:@"hr_url"];
-//        _pay_url =[dic objectForKey:@"pay_url"];
-//        _position_number =[dic objectForKey:@"position_number"];
-//        _user_apply_url =[dic objectForKey:@"user_apply_url"];
-//        _user_friend_url =[dic objectForKey:@"user_friend_url"];
-//        _user_intergral =[dic objectForKey:@"user_intergral"];
-//        _user_resume_synthesize_grade = [dic objectForKeyedSubscript:@"user_resume_synthesize_grade"];
-//        _mission_number =[dic objectForKeyedSubscript:@"mission_number"];
+        if ([dic objectForKey:@"res"]) { // 退出登录
+            
+            _res = [dic objectForKey:@"res"];
+            
+        }
+        if ([dic objectForKey:@"mission_number"]) { // 剩余任务
+            
+            _mission_number = [dic objectForKey:@"mission_number"];
+        }
         
+        if ([dic objectForKey:@"position_number"]) {// 推荐职位
+            
+            _position_number = [dic objectForKey:@"position_number"];
+            
+        }
+        
+        if ([dic objectForKey:@"user_intergral"]) {// 推荐职位
+            
+            _user_intergral = [dic objectForKey:@"user_intergral"];
+            
+        }
     }
-    
-    if ([dic objectForKey:@"res"]) { // 退出登录
-        
-        _res = [dic objectForKey:@"res"];
-        
-    }
-    if ([dic objectForKey:@"mission_number"]) { // 剩余任务
-        
-        _mission_number = [dic objectForKey:@"mission_number"];
-    }
-
-    if ([dic objectForKey:@"position_number"]) {// 推荐职位
-        
-        _position_number = [dic objectForKey:@"position_number"];
-
-    }
-    
-    if ([dic objectForKey:@"user_intergral"]) {// 推荐职位
-        
-        _user_intergral = [dic objectForKey:@"user_intergral"];
-        
-    }
-    
     
     return self;
     
 }
 
 //获取 我的模块 信息
+
+    
 +(NSURLSessionDataTask *)getUserInfoData:(NSDictionary *)parameters WithBlock:(void (^)(User *, Error *))block{
 
     return [[APIClient sharedClient]GET:@"user/info" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -90,7 +90,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        if (nsDugSet) {
+        if (NZ_DugSet) {
             
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         }
@@ -130,7 +130,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        if (nsDugSet) {
+        if (NZ_DugSet) {
             
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         }
@@ -165,7 +165,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        if (nsDugSet) {
+        if (NZ_DugSet) {
             
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         }
@@ -200,7 +200,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        if (nsDugSet) {
+        if (NZ_DugSet) {
             
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         }
@@ -233,7 +233,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        if (nsDugSet) {
+        if (NZ_DugSet) {
             
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         }
@@ -267,7 +267,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        if (nsDugSet) {
+        if (NZ_DugSet) {
             
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         }
@@ -300,7 +300,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        if (nsDugSet) {
+        if (NZ_DugSet) {
             
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         }

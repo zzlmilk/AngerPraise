@@ -42,12 +42,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-<<<<<<< HEAD
-=======
+
     self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     
 
->>>>>>> 3029c53fe6a14750fb13615fc55abc46f3b2a847
 
     _isString = 0;
     _addPage = 0;
