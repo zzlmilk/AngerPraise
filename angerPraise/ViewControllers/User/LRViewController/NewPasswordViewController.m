@@ -204,10 +204,6 @@
     [dic setObject:_newsPasswordTextField.text forKey:@"password"];
     [dic setObject:_userNameTextField.text forKey:@"name"];
     
-    //        [dic setObject:@"ios" forKey:@"device"];
-    //        [dic setObject:uuid forKey:@"device_id"];
-    //        [dic setObject:@"e91eabc2c2f181f4a0c3715a4ec049df" forKey:@"client_id"];
-    
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Register userRegister:dic WithBlock:^(Register *reg, Error *e) {
         
@@ -231,7 +227,6 @@
     
     
 }
-
 
 
 #pragma mark -- 隐藏键盘事件

@@ -19,6 +19,8 @@
 
 @property NSArray *modelListArray;
 
+@property __block int timeout;
+
 @property(nonatomic,strong)UIButton *userNameButton;
 @property(nonatomic,strong)UILabel *hirelibNumberLabel;
 
@@ -31,7 +33,6 @@
 @property(nonatomic,strong)UIButton *backBtn;
 @property(nonatomic,strong)UILabel *waitUsernameLabel;
 
-
 @property(nonatomic,strong)UILabel *matchPositionLabel;
 @property(nonatomic,strong)UILabel *taskLabel;
 @property(nonatomic,strong)UILabel *walletNumberLabel;
@@ -41,11 +42,10 @@
 @property(nonatomic,strong)NSString *user_apply_url;
 @property(nonatomic,strong)NSString *user_friend_url;
 
-
 //修改名称
 @property(nonatomic, strong)UIView *editNameView;
 
-
 @property(nonatomic,strong)UITextField *editNameTextField;
 
+-(void)closeTimer;
 @end

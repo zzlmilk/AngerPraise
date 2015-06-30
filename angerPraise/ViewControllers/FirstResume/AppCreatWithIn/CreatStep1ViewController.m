@@ -7,7 +7,6 @@
 //
 
 #import "CreatStep1ViewController.h"
-#import "ShareViewController.h"
 #import "ApIClient.h"
 #import "CreatStep2ViewController.h"
 

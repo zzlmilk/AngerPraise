@@ -12,8 +12,11 @@
 
 #import "ApIClient.h"
 #import "SMS_MBProgressHUD.h"
+#import "User.h"
 #import "MainViewController.h"
 #import "NoozanAppdelegate.h"
+
+
 
 
 
@@ -74,10 +77,7 @@
     _phonePlaceholderLabel.textColor = [UIColor grayColor];
     _phonePlaceholderLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:_phonePlaceholderLabel];
-    
-    
-    
-    
+
     _passwordTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, _phoneNumberTextField.frame.origin.y+_phoneNumberTextField.frame.size.height+30, WIDTH-2*20, 40)];
     _passwordTextField.secureTextEntry = YES;
     _passwordTextField.keyboardType = UIKeyboardTypeDefault;
@@ -103,8 +103,6 @@
     _passwordPlaceholderLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:_passwordPlaceholderLabel];
     
-    
-
     UIButton *userLoginButton= [[UIButton alloc]initWithFrame:CGRectMake(30,_passwordTextField.frame.origin.y+_passwordTextField.frame.size.height+50,WIDTH-2*30,45)];
     [userLoginButton.layer setMasksToBounds:YES];
     [userLoginButton.layer setCornerRadius:45/2.f]; //设置矩形四个圆角半径
@@ -116,10 +114,11 @@
     userLoginButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
     userLoginButton.backgroundColor = [UIColor whiteColor];
     [userLoginButton addTarget:self action:@selector(userLogin) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:userLoginButton];
-
+    [self.view addSubview:userLoginButton];    
 
 }
+
+
 
 #pragma mark -- 键盘return 事件
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -191,14 +190,11 @@
         [APIClient showMessage:@"密码不能为空"];
         
     }else{
-        
-        
+
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        
         [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
         [dic setObject:_passwordTextField.text forKey:@"password"];
 
-        
         [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         [Login userLogin:dic WithBlock:^(Login *login, Error *e) {
@@ -218,6 +214,7 @@
                 [hrPrivilege setObject:login.hr_privilege forKey:@"hrPrivilege"];
         
                 
+                [self sendDeviceInfo];
                 [APIClient showSuccess:@"登录成功" title:@"成功"];
                 
                 
@@ -229,9 +226,42 @@
             }
         }];
         
+    }
+}
+
+#pragma mark -- 发送 token 和 deviceToken 及设备信息
+-(void)sendDeviceInfo{
+    
+    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *deviceTokenUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *deviceTokenString = [deviceTokenUserDefaults objectForKey:@"deviceToken"];
+    
+    if ([token objectForKey:@"token"]) {
         
+        NSString* deviceName = [[UIDevice currentDevice] systemName];
+        
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        [dic setObject:@"1" forKey:@"dict_device_id"];
+        [dic setObject:deviceName forKey:@"device_name"];
+        
+        if (deviceTokenString!=nil) {
+            
+            [dic setObject:deviceTokenString forKey:@"device_id"];
+            
+        }else{
+        
+            [dic setObject:@"0" forKey:@"device_id"];
+
+        }
+        
+        [User sendDeviceInfo:dic WithBlock:^(User *user, Error *e) {
+        
+        }];
         
     }
+    
 }
 
 

@@ -10,7 +10,6 @@
 #import "ResumeScore.h"
 #import "PreviewResumeViewController.h"
 #import "SMS_MBProgressHUD.h"
-#import "ShareViewController.h"
 #import "ApIClient.h"
 #import "ResumeScoreViewController.h"
 #import "ImportResumeViewController.h"

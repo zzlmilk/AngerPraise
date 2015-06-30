@@ -7,7 +7,6 @@
 //
 
 #import "InviteFriendCell.h"
-#import "InviteFriendViewController.h"
 
 @implementation InviteFriendCell
 

@@ -18,7 +18,6 @@
 @implementation AppDelegate
 
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
@@ -70,7 +69,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -78,19 +76,9 @@
 }
 
 
-
-
-
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userinfo
 {
     //处理推送消息
 }
-
-
-
-
-
-
-
 
 @end

@@ -14,7 +14,6 @@
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
 
-    
     _about_url = [dic objectForKey:@"about_url"];
     _privacy_url = [dic objectForKey:@"privacy_url"];
     _review_app_url = [dic objectForKey:@"review_app_url"];
@@ -49,7 +48,10 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        if (NZ_DugSet) {
+            
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
     }];
     
 }
