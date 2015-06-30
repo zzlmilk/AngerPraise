@@ -15,7 +15,6 @@
     self =[super init];
     
     if ([dic objectForKey:@"res"] == nil) {
-        
         _hirelib_code =[dic objectForKey:@"hirelib_code"];
         _hr_url =[dic objectForKey:@"hr_url"];
         _pay_url =[dic objectForKey:@"pay_url"];

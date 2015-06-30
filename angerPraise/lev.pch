@@ -33,10 +33,15 @@
 #define hlTextFont @"兰亭黑"  //分数字体
 
 
+
 #define WIDTH [[UIScreen mainScreen] bounds].size.width
 #define HEIGHT [[UIScreen mainScreen] bounds].size.height
 
 
+//保存在NSUserDefaults里面的信息
+#define USER_ID @"NZ_userId"
+#define USER_ACCOUNT @"NZ_account"  //手机号码就是账号
+#define USER_TOKEN @"NZ_accessToken"
 
 
 

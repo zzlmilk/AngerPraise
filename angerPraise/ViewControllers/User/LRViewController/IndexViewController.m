@@ -25,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.navigationBar.translucent = YES;
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 44, 44);
@@ -99,6 +101,7 @@
     LoginViewController *loginVC = [[LoginViewController alloc]init];
     [self.navigationController pushViewController:loginVC animated:YES];
 }
+
 
 #pragma mark -- 去注册
 -(void)goRegister{
