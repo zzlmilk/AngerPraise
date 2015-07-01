@@ -74,9 +74,12 @@
 - (void) sendLinkContentByWeiXin;
 
 - (void) sendLinkContentByMoment;
+<<<<<<< HEAD
 
 //获取点可评用户信息
 -(void)loadData;
+=======
+>>>>>>> fb355a05155cb252cba839456a27c53eef26b911
 
 
 

@@ -28,12 +28,8 @@
     _scoreLabel.textAlignment = NSTextAlignmentCenter;
     
     [primaryView addSubview:_scoreLabel];
-
-    // self.touchBlock();
-    
     
     [self setSecondaryView: profileView];
-    
     //3.5秒旋转
     [self beginSpinTime:3.5];
 
