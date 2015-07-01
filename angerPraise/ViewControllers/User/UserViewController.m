@@ -231,9 +231,9 @@
     
     
     [self getUserInfo];
-    [self timer];
-    [self getRecommendPosition];
-    [self getWalletNumber];
+//    [self timer];
+//    [self getRecommendPosition];
+//    [self getWalletNumber];
 }
 
 #pragma mark -- 键盘 return
@@ -259,9 +259,9 @@
     }else{
         
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
-        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
         [dic setObject:_editNameTextField.text forKey:@"nickname"];
         
         [User userUpdateNickname:dic WithBlock:^(User *user, Error *e) {
@@ -339,10 +339,10 @@
 #pragma mark  获取 user 模块的用户基本信息
 -(void)getUserInfo{
     
-        NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
         
         [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -400,8 +400,8 @@
                 //设置界面的按钮显示 根据自己需求设置
                 //NSLog(@"____%@",strTime);
                 
-                [self getUserMissionNumber];
-                [self getWalletNumber];
+//                [self getUserMissionNumber];
+//                [self getWalletNumber];
                 
             });
             _timeout--;
@@ -421,12 +421,10 @@
 #pragma mark  获取 user 剩余任务数
 -(void)getUserMissionNumber{
     
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    if ([token objectForKey:@"token"] !=nil) {
-        
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
         
         [User getUserMissionNumber:dic WithBlock:^(User *user, Error *e) {
             
@@ -443,19 +441,16 @@
             
         }];
 
-    }
     
 }
 
 #pragma mark  获取 推荐职位数
 -(void)getRecommendPosition{
     
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-    
-    if (![token objectForKey:@"token"]) {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
         
         [User getRecommendPositionNumber:dic WithBlock:^(User *user, Error *e) {
             
@@ -468,8 +463,7 @@
                 
             }
         }];
-        
-    }
+    
 
 }
 

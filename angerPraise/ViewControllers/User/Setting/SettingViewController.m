@@ -15,6 +15,7 @@
 #import "UserViewController.h"
 #import "MCCore.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "NoozanAppdelegate.h"
 
 static NSUserDefaults* userData;
 
@@ -89,10 +90,10 @@ static NSUserDefaults* userData;
 
 -(void)getSettingDetailUrl{
 
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
 
     [Setting getSettingUrl:dic WithBlock:^(Setting *setting, Error *e) {
        
@@ -121,25 +122,28 @@ static NSUserDefaults* userData;
 //退出登录
 -(void)loginOut{
     
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
 
     [User userLoginOut:dic WithBlock:^(User *user, Error *e) {
        
         if ([user.res isEqualToString:@"1"]) {
             //退出成功  清空 NSUserDefaults  的值 做跳转
             
-            UserViewController *userVC = [[UserViewController alloc]init];
-            [userVC closeTimer];
+            [[NoozanAppdelegate getAppDelegate] getIndexVC];
+            [[NoozanAppdelegate getAppDelegate] clearUserInfo];
             
-            IndexViewController *indexVC= [[IndexViewController alloc]init];
-            [self.navigationController pushViewController:indexVC animated:YES];
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults removeObjectForKey:@"hrPrivilege"];
-            NSUserDefaults *token=[NSUserDefaults standardUserDefaults];
-            [token removeObjectForKey:@"token"];
+//            UserViewController *userVC = [[UserViewController alloc]init];
+//            [userVC closeTimer];
+//            
+//            IndexViewController *indexVC= [[IndexViewController alloc]init];
+//            [self.navigationController pushViewController:indexVC animated:YES];
+//            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//            [userDefaults removeObjectForKey:@"hrPrivilege"];
+//            NSUserDefaults *token=[NSUserDefaults standardUserDefaults];
+//            [token removeObjectForKey:@"token"];
             
         }
         

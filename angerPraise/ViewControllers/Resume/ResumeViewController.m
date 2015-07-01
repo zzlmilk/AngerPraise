@@ -77,10 +77,10 @@
 //获取简历基本信息
 -(void)getresumeInfo{
 
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     

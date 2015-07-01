@@ -19,11 +19,9 @@
 #import "WebViewJavascriptBridge.h"
 #import "Share.h"
 #import "UIView+i7Rotate360.h"
-
 #import "IndexViewController.h"
-
 #import "WalletWebViewController.h"
-
+#import "JSONKit.h"
 //model
 #import "Home.h"
 
@@ -45,17 +43,11 @@
 
     self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     
-
-
     _isString = 0;
     _addPage = 0;
     
     homeTitleView = [[HomeTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     homeTitleView.backgroundColor = [UIColor redColor];
-    
-    //self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
-    
-    
     
     //hr特权标示
     _hrBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -68,8 +60,6 @@
     [self.view addSubview:homeTitleView];
     
 
-  
-       
     //手势 为什么增加再导航栏 ？
     _singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     _singleTap.cancelsTouchesInView = NO;
@@ -96,7 +86,7 @@
     UIButton *clickMoneyButton = [[UIButton alloc]init];
     clickMoneyButton.frame = _waterView.frame;
     clickMoneyButton.backgroundColor = [UIColor clearColor];
-    [clickMoneyButton addTarget:self action:@selector(clickMoney) forControlEvents:UIControlEventTouchUpInside];
+    [clickMoneyButton addTarget:self action:@selector(enterMyPay) forControlEvents:UIControlEventTouchUpInside];
     [rolliew addSubview:clickMoneyButton];
     
     
@@ -116,8 +106,6 @@
     tipTextLabel.font = [UIFont fontWithName:@"Helvetica" size:10.f];
     [rolliew addSubview:tipTextLabel];
     //点评赏银 结束
-
-//    imageArray = [[NSMutableArray alloc] initWithObjects:@"exampleCover",@"exampleCover",nil];
     
     _vFlowView = [[PagedFlowView alloc]init];
     _vFlowView.frame = CGRectMake(tipTextLabel.frame.size.width+tipTextLabel.frame.origin.x,0, WIDTH-45-20-45-20, rolliew.frame.size.height);
@@ -229,48 +217,67 @@
     
     
    // [self getCommentFriendInfo];
-    
+    [self loadHomeData];
     
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
-        if ([data isEqualToString:@"pay"]) {
-            
-            [self getMyPayUrlString];
-            
-        }
-        if ([data isEqualToString:@"wechat_invite"]) {
-            
-            [self weiXinShare:data];
-            
-        }
-        if([data isEqualToString:@"pengyouquan_invite"]){
-            
-            [self weiXinShare:data];
-            
-        }
-        if([data isEqualToString:@"wechat_competitiveness"]){
-            
-            [self weiXinShare:data];
-            
-        }
-        if ([data isEqualToString:@"pengyouquan_competitiveness"]){
-            
-            [self weiXinShare:data];
-            
-        }
-        if ([data isEqualToString:@"user_review_success"]){
-            
-            [self revirewSuccess];
-            
-        }
-        if ([data isEqualToString:@"hr_intview_success"]){
+
+        //以下为 webview中微信分享事件处理
+//        if ([data isEqualToString:@"wechat_invite"]) {
+//            
+//            [self weiXinShare:data];
+//            
+//        }
+//        if([data isEqualToString:@"pengyouquan_invite"]){
+//            
+//            [self weiXinShare:data];
+//            
+//        }
+//        if([data isEqualToString:@"wechat_competitiveness"]){
+//            
+//            [self weiXinShare:data];
+//            
+//        }
+//        if ([data isEqualToString:@"pengyouquan_competitiveness"]){
+//            
+//            [self weiXinShare:data];
+//            
+//        }
+//
+        NSMutableDictionary *resultsDic = [data objectFromJSONString];
+        //以下为 获取webview点击事件处理
+        
+        // hr 点评成功 － 暂未修改
+        if ([[resultsDic objectForKey:@"string"] isEqualToString:@"hr_intview_success"]){
             
             [self hrPrivilege];
             
         }
-        if ([data isEqualToString:@"next_user_review"]){
+        // 进入我的钱包
+        if ([resultsDic objectForKey:@"pay_url"]) {
+            
+            _payUrlString = [resultsDic objectForKey:@"pay_url"];
+            [self enterMyPay];
+            
+        }
+        // 下一个
+        if ([[resultsDic objectForKey:@"string"] isEqualToString:@"next_user_review"]){
             
             [self webViewNextOne];
             
+        }
+        
+        //点评成功 改变水位高度 赏银数量 和综合评分
+        if ([resultsDic objectForKey:@"today_award_total"]) {
+        
+            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",[resultsDic objectForKey:@"today_receive_award"],[resultsDic objectForKey:@"today_award_total"]];
+
+            _scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
+            
+            //改变水位高度
+            float alreadyNumber = [[resultsDic objectForKey:@"today_receive_award"] floatValue];
+            float countNumber = [[resultsDic objectForKey:@"today_award_total"] floatValue];
+            
+            [self calWaterHeightWithalreadyNumber:alreadyNumber countNumber:countNumber];
         }
         
     }];
@@ -278,10 +285,16 @@
 }
 
 #pragma mark -  跳转到钱包页面
--(void)clickMoney{
-
-    [self getMyPayUrlString];
+-(void)enterMyPay{
     
+    if (_payUrlString) {
+        
+        WalletWebViewController * walletWebVC = [[WalletWebViewController alloc]init];
+        walletWebVC.walletUrl = _payUrlString;
+        
+        [self.navigationController pushViewController:walletWebVC animated:YES];
+        
+    }
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
@@ -401,64 +414,6 @@
 
 }
 
-#pragma mark - 点击我的钱包 获取钱包的url
-
--(void)getMyPayUrlString{
-
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-    
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
-    
-    [Home getMyPayUrlString:dic WithBlock:^(Home *home, Error *e) {
-        
-        if (home.payUrlString) {
-            
-            WalletWebViewController * walletWebVC = [[WalletWebViewController alloc]init];
-            walletWebVC.walletUrl = home.payUrlString;
-            
-            [self.navigationController pushViewController:walletWebVC animated:YES];
-        }
-        
-    }];
-    
-}
-
-
-#pragma mark -  点评成功后 重新获取更新金币和综合评分
--(void)revirewSuccess{
-
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-    
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
-    
-    [CommentFriend reviewSuccess:dic WithBlock:^(CommentFriend *commentFriend, Error *e) {
-        
-        if (e.info !=nil) {
-            
-            [APIClient showMessage:e.info];
-            
-        }else{
-            
-            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
-            
-            _scoreLabel.text = commentFriend.synthesize_grade;
-            _scoreUrlString = commentFriend.synthesize_grade_url;
-            //改变水位高度
-            float alreadyNumber = [commentFriend.today_receive_award floatValue];
-            float countNumber = [commentFriend.today_award_total floatValue];
-            
-            [self calWaterHeightWithalreadyNumber:alreadyNumber countNumber:countNumber];
-            
-        }
-        
-    }];
-    
-    
-}
-
-
 #pragma mark - 调用Hr特权接口
 -(void)handleSingleTap:(UITapGestureRecognizer *)sender
 
@@ -479,8 +434,8 @@
 #pragma mark - 判断用户属性
 -(void)isHR{
     
-    NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
-    NSString *hrStringNumber = [NSString stringWithFormat:@"%@",[hrPrivilege objectForKey:@"hrPrivilege"]];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *hrStringNumber = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"user_type"]];
     
     if ([hrStringNumber isEqualToString:@"0"]) { //不是hr
         
@@ -529,83 +484,58 @@
     
 }
 
-#pragma mark - 调用接口首页接口数据普通用户
--(void)getCommentFriendInfo{
+#pragma mark - 调用接口获取首页数据
+// 此接口为登录借口返回值， 将会进行调整
+-(void)loadHomeData{
     
     [self isHR];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    
+
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    
-    //不健康的程序如果token为空 崩溃
-    NSString *token  =[ userDefaults objectForKey:@"token"];
-    if (token!=nil) {
-        [dic setObject:token forKey:@"token"];
-    }
-    
-    [dic setObject:@"b3ad057d6b507f643ce81279d2cdd226" forKey:@"token"];
-    
-   
-    
-//    SMS_MBProgressHUD *hud = [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.mode = MBProgressHUDModeIndeterminate;
-//    hud.labelText = @"Some message...";
-//    hud.margin = 10.f;
-//    hud.yOffset = 150.f;
-//    //HUD.dimBackground = YES;  //是否有庶罩
-//    hud.removeFromSuperViewOnHide = YES;
-//    [hud hide:YES afterDelay:3];
+
+    dic = [userDefaults objectForKey:@"loginDic"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:0];
-
-    [CommentFriend getCommentFriendList:dic WithBlock:^(CommentFriend *commentFriend, Error *e) {
+    
+    [User userLogin:dic WithBlock:^(User *user, Error *e) {
         
         [self.view exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
-        if (e.info !=nil) {
+        
+        if (e.info != nil) {
             
-            NSString *codeString = [NSString stringWithFormat:@"%@",e.code];
-            
-            if ([codeString isEqualToString:@"104"]) {// 服务端token不存在
-                
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:e.info
-                    message:@"请重新登录"
-                    delegate:self
-                    cancelButtonTitle:@"确定"
-                    otherButtonTitles:nil,nil];
-                [alert show];
-
-            }else{
-                
-                [APIClient showMessage:e.info];
-                
-            }
+            [APIClient showMessage:@"服务器忙，请稍后再试～"];
             
         }else{
             
-            _intInterviewNumber = [commentFriend.interview_number intValue];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:user.user_token forKey:USER_TOKEN];
+
+            _intInterviewNumber = [user.hr_interview_number intValue];
             
             if (_intInterviewNumber > 0) { // hr 有未读状态
                 
                 [_hrBtn setImage:[UIImage imageNamed:@"0homepage_hr2"] forState:UIControlStateNormal];
             }
-            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
+            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",user.today_receive_award,user.today_award_total];
             
-            _scoreLabel.text = commentFriend.synthesize_grade;
-            _scoreUrlString = commentFriend.synthesize_grade_url;
+            _scoreLabel.text = user.synthesize_grade;
+            _scoreUrlString = user.synthesize_grade_url;
             
-            _collectionArray = commentFriend.commentFriendArray;
+            _collectionArray = user.commentFriendArray;
             
             imageArray = [[NSMutableArray alloc]init];
+            //默认无网络状态下 依然有默认好友头像
+            //imageArray = [[NSMutableArray alloc] initWithObjects:@"exampleCover",@"exampleCover",nil];
+            
             _commondUrlArray = [[NSMutableArray alloc]init];
             
             //改变水位高度
-            float alreadyNumber = [commentFriend.today_receive_award floatValue];
-            float countNumber = [commentFriend.today_award_total floatValue];
+            float alreadyNumber = [user.today_receive_award floatValue];
+            float countNumber = [user.today_award_total floatValue];
             
             [self calWaterHeightWithalreadyNumber:alreadyNumber countNumber:countNumber];
             
@@ -619,9 +549,13 @@
             
             [_vFlowView reloadData];
             [self flowView:_vFlowView didScrollToPageAtIndex:0];
+        
         }
+        
     }];
+   
 }
+
 #pragma marks -- UIAlertViewDelegate --
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -647,10 +581,10 @@
     [_hrBtn setImage:[UIImage imageNamed:@"0homepage_hr"] forState:UIControlStateNormal];
     
     
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [CommentFriend getHrReviewInfo:dic WithBlock:^(CommentFriend *commentFriend, Error *e) {

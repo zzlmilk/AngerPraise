@@ -9,10 +9,10 @@
 #import "NZAlertView.h"
 #import "APIClient.h"
 
-static NSString * const AFAppDotNetAPIBaseURLString = @"http://61.174.13.143/AngerPraises/v1/";
+static NSString * const AFAppDotNetAPIBaseURLString = @"http://app.hirelib.com/AngerPraises/v1/";
 
 //other  备用
-static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://61.174.13.143/website/";
+static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://app.hirelib.com/website/";
 
 @implementation APIClient
 

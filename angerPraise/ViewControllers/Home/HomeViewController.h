@@ -12,9 +12,8 @@
 #import "WXApiObject.h"
 #import "SMS_MBProgressHUD.h"
 #import "VWWWaterView.h"
-
 #import "HomeTitleView.h"
-
+#import "User.h"
 
 @interface HomeViewController : BaseViewController<UIWebViewDelegate,PagedFlowViewDataSource,PagedFlowViewDelegate,MBProgressHUDDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate>
 {
@@ -25,10 +24,7 @@
     enum WXScene _scene;
 }
 
-- (void) changeScene:(NSInteger)scene;
-- (void) sendLinkContentByWeiXin;
-
-- (void) sendLinkContentByMoment;
+@property (nonatomic, strong) User *user;
 
 @property (nonatomic, strong) PagedFlowView *vFlowView;
 @property (nonatomic, strong) UIPageControl *hPageControl;
@@ -71,12 +67,15 @@
 @property(nonatomic,strong)NSString *shareTitle;
 @property(nonatomic,strong)NSString *shareContent;
 
-
 @property(nonatomic,strong)NSString *payUrlString;
 
+- (void) changeScene:(NSInteger)scene;
+- (void) sendLinkContentByWeiXin;
 
+- (void) sendLinkContentByMoment;
 //获取点可评用户信息
 -(void)getCommentFriendInfo;
+
 
 
 @end
