@@ -43,6 +43,10 @@
 
 }
 
+-(void)loadData{
+    // 子类重写
+}
+
 
 -(void)_back{
     [self.navigationController popViewControllerAnimated:YES];

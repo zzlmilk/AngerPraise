@@ -25,6 +25,10 @@
 //model
 #import "Home.h"
 
+// view
+#import "SynthesizeView.h"
+
+
 #define F2I  (*((int *)&f))
 
 @interface HomeViewController ()
@@ -46,9 +50,9 @@
     _isString = 0;
     _addPage = 0;
     
+    
     homeTitleView = [[HomeTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     homeTitleView.backgroundColor = [UIColor redColor];
-    
     //hr特权标示
     _hrBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _hrBtn.frame = CGRectMake((WIDTH-44), 0, 44, 44);
@@ -56,7 +60,6 @@
     _hrBtn.backgroundColor = [UIColor clearColor];
     [_hrBtn addTarget:self action:@selector(isUserType)forControlEvents:UIControlEventTouchUpInside];
     [homeTitleView addSubview:_hrBtn];
-    
     [self.view addSubview:homeTitleView];
     
 
@@ -73,7 +76,7 @@
     [self.view addSubview:rolliew];
     
 
-    
+    //金币布局
     _waterView = [[VWWWaterView alloc]init];
     _waterView.backgroundColor = [UIColor whiteColor];
     _waterView.frame = CGRectMake(20, 20, 38, 38);
@@ -81,7 +84,6 @@
     [_waterView setClipsToBounds:YES];
     [_waterView setCurrentLinePointY:30]; //min 38   max 0
     [rolliew addSubview:_waterView];
-    
     
     UIButton *clickMoneyButton = [[UIButton alloc]init];
     clickMoneyButton.frame = _waterView.frame;
@@ -106,6 +108,9 @@
     tipTextLabel.font = [UIFont fontWithName:@"Helvetica" size:10.f];
     [rolliew addSubview:tipTextLabel];
     //点评赏银 结束
+    //end 金币布局
+    
+    
     
     _vFlowView = [[PagedFlowView alloc]init];
     _vFlowView.frame = CGRectMake(tipTextLabel.frame.size.width+tipTextLabel.frame.origin.x,0, WIDTH-45-20-45-20, rolliew.frame.size.height);
@@ -120,12 +125,36 @@
     [rolliew addSubview:_vFlowView];
     
     
+    
+    
+    //综合评分
+    SynthesizeView *synthesizeView = [[SynthesizeView alloc]initWithFrame:CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38)];
+    
+    
+    synthesizeView.touchBlock = ^(){
+        
+        
+        [self  lookScore];
+    };
+    
+    [rolliew addSubview:synthesizeView];
+    
+    UILabel *scoreTipLabel= [[UILabel alloc]init];
+    scoreTipLabel.frame = CGRectMake(synthesizeView.frame.origin.x, synthesizeView.frame.size.height+synthesizeView.frame.origin.y, synthesizeView.frame.size.width+5, 20);
+    scoreTipLabel.textAlignment = NSTextAlignmentCenter;
+    scoreTipLabel.text = @"综合评分";
+    scoreTipLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
+    scoreTipLabel.font = [UIFont fontWithName:@"Helvetica" size:10.f];
+    [rolliew addSubview:scoreTipLabel];
+
+    
+    
     //综合评分 开始
+    /*
     _scoreImageView = [[UIImageView alloc]init];
     _scoreImageView.frame = CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38);
     _scoreImageView.layer.cornerRadius = 38/2.f;
     [_scoreImageView setClipsToBounds:YES];
-//    scoreImageView.backgroundColor = RGBACOLOR(0, 199, 255, 1.0f);
     [_scoreImageView setImage:[UIImage imageNamed:@"0blue_circle"]];
     [rolliew addSubview:_scoreImageView];
     
@@ -152,7 +181,7 @@
     scoreTipLabel.font = [UIFont fontWithName:@"Helvetica" size:10.f];
     [rolliew addSubview:scoreTipLabel];
     //综合评分 结束
-    
+    */
      if (_bridge) { return; }
     [WebViewJavascriptBridge enableLogging];
     
@@ -216,8 +245,8 @@
     [whiteBgView addSubview:_momentButton];
     
     
-   // [self getCommentFriendInfo];
-    [self loadHomeData];
+    
+    [self loadData];
     
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
 
@@ -467,7 +496,7 @@
                 break;
             case 1:
             {
-                [self getCommentFriendInfo];
+                [self loadData];
                 _isString = 0;
             }
                 break;
@@ -486,7 +515,7 @@
 
 #pragma mark - 调用接口获取首页数据
 // 此接口为登录借口返回值， 将会进行调整
--(void)loadHomeData{
+-(void)loadData{
     
     [self isHR];
     
@@ -804,12 +833,14 @@
 
 #pragma mark 综合评分
 -(void)lookScore{
-    
     NSURL *url=[NSURL URLWithString:_scoreUrlString];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [_homeWebView loadRequest:request];
     
 }
+
+
+#pragma mark ----SynthesDisSelcet;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -

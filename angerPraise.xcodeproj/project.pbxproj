@@ -18,6 +18,8 @@
 		19BD477A1AAD5BA600D44A9D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19BD47791AAD5BA600D44A9D /* Images.xcassets */; };
 		19BD47891AAD5BA600D44A9D /* angerPraiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47881AAD5BA600D44A9D /* angerPraiseTests.m */; };
 		19BD479C1AAD7BC600D44A9D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD479B1AAD7BC600D44A9D /* User.m */; };
+		19E327B61B43DBD80063354D /* SynthesizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327B51B43DBD80063354D /* SynthesizeView.m */; };
+		19E327BA1B43DF470063354D /* NZCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327B91B43DF470063354D /* NZCoinView.m */; };
 		DF0B92481AB1463900A1698E /* CheckQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */; };
 		DF0B924B1AB14C9000A1698E /* EvaluateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */; };
 		DF137FE61B20290B008D0F82 /* UIView+i7Rotate360.m in Sources */ = {isa = PBXBuildFile; fileRef = DF137FE51B20290A008D0F82 /* UIView+i7Rotate360.m */; };
@@ -215,6 +217,10 @@
 		19BD47881AAD5BA600D44A9D /* angerPraiseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = angerPraiseTests.m; sourceTree = "<group>"; };
 		19BD479A1AAD7BC600D44A9D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		19BD479B1AAD7BC600D44A9D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		19E327B41B43DBD80063354D /* SynthesizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeView.h; sourceTree = "<group>"; };
+		19E327B51B43DBD80063354D /* SynthesizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthesizeView.m; sourceTree = "<group>"; };
+		19E327B81B43DF470063354D /* NZCoinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZCoinView.h; sourceTree = "<group>"; };
+		19E327B91B43DF470063354D /* NZCoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZCoinView.m; sourceTree = "<group>"; };
 		DF0B92461AB1463900A1698E /* CheckQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckQuestionViewController.h; sourceTree = "<group>"; };
 		DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckQuestionViewController.m; sourceTree = "<group>"; };
 		DF0B92491AB14C9000A1698E /* EvaluateListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateListViewController.h; sourceTree = "<group>"; };
@@ -732,6 +738,7 @@
 		19BD47B11AB060CA00D44A9D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				19E327B71B43DF2D0063354D /* NZCoinView */,
 				DF5B3EEB1ADCCA490004EF2F /* PositionListCell.h */,
 				DF5B3EEC1ADCCA490004EF2F /* PositionListCell.m */,
 				DF5F8D9F1AF781FD00205B60 /* CommentFriendCell.h */,
@@ -742,8 +749,19 @@
 				DF5F8DB61AF8A1B300205B60 /* HrPrivilegeCell.m */,
 				190414E71B42503A008E3691 /* HomeTitleView.h */,
 				190414E81B42503A008E3691 /* HomeTitleView.m */,
+				19E327B41B43DBD80063354D /* SynthesizeView.h */,
+				19E327B51B43DBD80063354D /* SynthesizeView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		19E327B71B43DF2D0063354D /* NZCoinView */ = {
+			isa = PBXGroup;
+			children = (
+				19E327B81B43DF470063354D /* NZCoinView.h */,
+				19E327B91B43DF470063354D /* NZCoinView.m */,
+			);
+			path = NZCoinView;
 			sourceTree = "<group>";
 		};
 		DF137FE31B20290A008D0F82 /* rotation360 */ = {
@@ -1552,6 +1570,7 @@
 				DFB5F7B51B1574CD000A66D7 /* Review.m in Sources */,
 				DFB32FDA1B04A7180049D9F2 /* HomeViewController.m in Sources */,
 				DF2BF17A1AD4CF2100CF8BED /* PositionViewController.m in Sources */,
+				19E327BA1B43DF470063354D /* NZCoinView.m in Sources */,
 				DF2BF1881AD4D0D600CF8BED /* ResumeViewController.m in Sources */,
 				DF5F8E011AFA154100205B60 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				DF5F8E051AFA154100205B60 /* UIImageView+AFNetworking.m in Sources */,
@@ -1617,6 +1636,7 @@
 				DF5F8DC31AF8D92A00205B60 /* MyDynamic.m in Sources */,
 				DF5F8DFF1AFA154100205B60 /* AFURLResponseSerialization.m in Sources */,
 				190414E91B42503A008E3691 /* HomeTitleView.m in Sources */,
+				19E327B61B43DBD80063354D /* SynthesizeView.m in Sources */,
 				DFB32FD61B04A4500049D9F2 /* InfiniteScrollPicker.m in Sources */,
 				DFD2744D1AE7871B00BEED59 /* IndexViewController.m in Sources */,
 				DF137FEC1B2031F1008D0F82 /* SettingWebViewController.m in Sources */,

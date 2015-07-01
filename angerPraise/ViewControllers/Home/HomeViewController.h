@@ -15,6 +15,7 @@
 #import "HomeTitleView.h"
 #import "User.h"
 
+
 @interface HomeViewController : BaseViewController<UIWebViewDelegate,PagedFlowViewDataSource,PagedFlowViewDelegate,MBProgressHUDDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate>
 {
     NSMutableArray *imageArray;
@@ -73,8 +74,9 @@
 - (void) sendLinkContentByWeiXin;
 
 - (void) sendLinkContentByMoment;
+
 //获取点可评用户信息
--(void)getCommentFriendInfo;
+-(void)loadData;
 
 
 

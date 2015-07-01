@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>25C2EF0E-A005-4B1E-BA83-6582FF7DDFE0</string>
 	<key>IDESourceControlProjectName</key>
-	<string>angerPraise</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>2094F5E5C9B43954F11122D39418F228D25832F9</key>
 		<string>https://github.com/zzlmilk/AngerPraise.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>angerPraise.xcodeproj</string>
+	<string>angerPraise.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>2094F5E5C9B43954F11122D39418F228D25832F9</key>
