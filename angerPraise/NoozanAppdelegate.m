@@ -68,6 +68,8 @@
 
 
 
+
+
 -(void)clearUserInfo{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ID];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_TOKEN];
