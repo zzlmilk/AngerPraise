@@ -27,13 +27,13 @@
 @property Review *review;
 
 //获取首页接口信息
-+(NSURLSessionDataTask *)getCommentFriendList:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block;
+//+(NSURLSessionDataTask *)getCommentFriendList:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block;
 
 //HR接口
 +(NSURLSessionDataTask *)getHrReviewInfo:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block;
 
-//点评成功后 重新获取 金币和 综合评分
-+(NSURLSessionDataTask *)reviewSuccess:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block;
+////点评成功后 重新获取 金币和 综合评分
+//+(NSURLSessionDataTask *)reviewSuccess:(NSDictionary *)parameters WithBlock:(void (^)(CommentFriend *commentFriend, Error *e))block;
 
 -(instancetype)initWithDic:(NSDictionary *)dic;
 

@@ -26,6 +26,6 @@
 
 +(NoozanAppdelegate*)getAppDelegate;
 -(void)getMainVC;
-
+-(void)getIndexVC;
 
 @end

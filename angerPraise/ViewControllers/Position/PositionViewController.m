@@ -265,9 +265,9 @@
     //_pageString =  [[NSString alloc] initWithFormat:@"%d",_page];
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:@"1" forKey:@"type"];
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
 

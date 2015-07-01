@@ -14,15 +14,53 @@
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
     
-    if ([dic objectForKey:@"hirelib_code"]) { // userinfo
+    if ([dic objectForKey:@"user"]) {
         
-  
-        if ([dic objectForKey:@"res"] == nil) {
-            _hirelib_code =[dic objectForKey:@"hirelib_code"];
-            _user_name =[dic objectForKey:@"user_name"];
-            _photo_url =[dic objectForKey:@"photo_url"];
-            _user_id =[dic objectForKey:@"user_id"];
+        NSDictionary *userDic =[dic objectForKey:@"user"];
+        
+        _hirelib_code =[userDic objectForKey:@"hirelib_code"];
+        _hr_privilege = [userDic objectForKey:@"hr_privilege"];
+        _mission_number = [userDic objectForKey:@"mission_number"];
+        _photo_url =[userDic objectForKey:@"photo_url"];
+        _resume_status =[userDic objectForKey:@"resume_status"];
+        _synthesize_grade =[userDic objectForKey: @"synthesize_grade"];
+        _synthesize_grade_url =[userDic objectForKey: @"synthesize_grade_url"];
+        _user_name =[userDic objectForKey:@"user_name"];
+        _user_id =[userDic objectForKey:@"user_id"];
+        _user_intergral = [userDic objectForKey:@"user_intergral"];
+
+        
+        _res = [userDic objectForKey:@"res"];
+        _position_number = [userDic objectForKey:@"position_number"];
+        _hr_interview_number =[userDic objectForKey: @"hr_interview_number"];
+
+    }
+    
+    _user_token = [dic objectForKey:@"token"];
+    _today_award_total =[dic objectForKey: @"today_award_total"];
+    _today_receive_award =[dic objectForKey: @"today_receive_award"];
+
+    _res =[dic objectForKey: @"res"];
+
+    
+    //friend_list
+    if ([dic objectForKey:@"review_friend_list"]) {
+        NSArray *friend_listArray =[dic objectForKey:@"review_friend_list"];
+
+        _commentFriendArray = [NSMutableArray array];
+        for (int i =0; i<friend_listArray.count; i++) {
             
+            Review *r =[[Review alloc]init];
+            r.friend_evluation_status = [[friend_listArray objectAtIndex:i] objectForKey:@"friend_evluation_status"];
+            r.friend_evluation_url = [[friend_listArray objectAtIndex:i] objectForKey:@"friend_evluation_url"];
+            r.photo_url = [[friend_listArray objectAtIndex:i] objectForKey:@"photo_url"];
+            r.user_name = [[friend_listArray objectAtIndex:i] objectForKey:@"user_name"];
+            
+            [_commentFriendArray addObject:r];
+        }
+        
+    }
+
             
             //        _hr_url =[dic objectForKey:@"hr_url"];
             //        _pay_url =[dic objectForKey:@"pay_url"];
@@ -32,39 +70,48 @@
             //        _user_intergral =[dic objectForKey:@"user_intergral"];
             //        _user_resume_synthesize_grade = [dic objectForKeyedSubscript:@"user_resume_synthesize_grade"];
             //        _mission_number =[dic objectForKeyedSubscript:@"mission_number"];
-            
-        }
-        
-        if ([dic objectForKey:@"res"]) { // 退出登录
-            
-            _res = [dic objectForKey:@"res"];
-            
-        }
-        if ([dic objectForKey:@"mission_number"]) { // 剩余任务
-            
-            _mission_number = [dic objectForKey:@"mission_number"];
-        }
-        
-        if ([dic objectForKey:@"position_number"]) {// 推荐职位
-            
-            _position_number = [dic objectForKey:@"position_number"];
-            
-        }
-        
-        if ([dic objectForKey:@"user_intergral"]) {// 推荐职位
-            
-            _user_intergral = [dic objectForKey:@"user_intergral"];
-            
-        }
-    }
-    
+
     return self;
     
 }
 
-//获取 我的模块 信息
-
++(NSURLSessionDataTask *)userLogin:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
     
+    return [[APIClient sharedClient]GET:@"user/login" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        // NSLog(@"%@",responseObject);
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            User *l;
+            
+            block(l,error);
+            
+        }else{
+            
+            User *l = [[User alloc]initWithDic:responseObject];
+            
+            block(l,nil);
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        if (NZ_DugSet) {
+            
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+    }];
+    
+    
+}
+
+
+//获取 我的模块 信息
 +(NSURLSessionDataTask *)getUserInfoData:(NSDictionary *)parameters WithBlock:(void (^)(User *, Error *))block{
 
     return [[APIClient sharedClient]GET:@"user/info" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {

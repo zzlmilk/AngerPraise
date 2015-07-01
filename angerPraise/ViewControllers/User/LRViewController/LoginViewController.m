@@ -7,18 +7,12 @@
 //
 
 #import "LoginViewController.h"
-
-#import "Login.h"
-
 #import "ApIClient.h"
 #import "SMS_MBProgressHUD.h"
 #import "User.h"
 #import "MainViewController.h"
 #import "NoozanAppdelegate.h"
-
-
-
-
+#import "HomeViewController.h"
 
 @interface LoginViewController ()
 
@@ -176,13 +170,15 @@
 }
 
 
--(void)loadUserLogindata:(NSMutableDictionary *)dicData{
+-(void)loadUserLoginData:(NSMutableDictionary *)dicData{
     
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:dicData forKey:@"loginDic"];
+    //home 中需要调用登录获取相关信息
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Login userLogin:dicData WithBlock:^(Login *login, Error *e) {
-        
-        
+    
+    [User userLogin:dicData WithBlock:^(User *user, Error *e) {
         
     [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         if (e.info !=nil) {
@@ -191,19 +187,15 @@
         else {
     
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:login.token forKey:USER_TOKEN];
-            [userDefaults setObject:login.user_id forKey:USER_ID];
+            // 首页时候 会再次调用登录接口获取数据 避免两次token值不一致 所以 在 首页 存 token
+            //[userDefaults setObject:user.user_token forKey:USER_TOKEN];
+            [userDefaults setObject:user.user_id forKey:USER_ID];
+            //[userDefaults setObject:user.hr_privilege forKey:@"user_type"];
         
-           // [APIClient showSuccess:@"登录成功" title:@"成功"];
             //注册成功发送设备
-           // [self sendDeviceInfo];
-            
-            
+            //[self sendDeviceInfo];
+        
             [[NoozanAppdelegate getAppDelegate] getMainVC];
-            
-//            MainViewController *mainVC = [[MainViewController alloc]init];
-//            [self.navigationController pushViewController:mainVC animated:YES];
-            
             
         }
     }];
@@ -223,20 +215,20 @@
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
         [dic setObject:_phoneNumberTextField.text forKey:@"phone"];
         [dic setObject:_passwordTextField.text forKey:@"password"];
-        [self  loadUserLogindata:dic];
+        [self loadUserLoginData:dic];
         }
 }
 
 #pragma mark -- 发送 token 和 deviceToken 及设备信息
 -(void)sendDeviceInfo{
     
-    NSUserDefaults *userDefaultsen = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    NSString *deviceTokenString = [userDefaultsen objectForKey:USER_DEVIECTOKEN];
+    NSString *deviceTokenString = [userDefaults objectForKey:USER_DEVIECTOKEN];
     
         NSString* deviceName = [[UIDevice currentDevice] systemName];
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[userDefaultsen objectForKey:USER_TOKEN] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
         [dic setObject:@"1" forKey:@"dict_device_id"];
         [dic setObject:deviceName forKey:@"device_name"];
         

@@ -77,7 +77,6 @@
 		DF5F8E111AFB3C0D00205B60 /* PersonInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E101AFB3C0D00205B60 /* PersonInfoViewController.m */; };
 		DF5F8E141AFB3C3F00205B60 /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E131AFB3C3F00205B60 /* NewPasswordViewController.m */; };
 		DF5F8E171AFB482F00205B60 /* Register.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E161AFB482F00205B60 /* Register.m */; };
-		DF5F8E1A1AFB72EB00205B60 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E191AFB72EB00205B60 /* Login.m */; };
 		DF5F8E1E1AFC8B1000205B60 /* ZCAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E1D1AFC8B1000205B60 /* ZCAddressBook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DF5F8E211AFC8BF100205B60 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8E201AFC8BF100205B60 /* pinyin.c */; };
 		DF69C1C81B130EB300D2FAC8 /* VWWWaterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF69C1C71B130EB300D2FAC8 /* VWWWaterView.m */; };
@@ -182,7 +181,7 @@
 		DFFA186F1B40EAF500BDEA41 /* MeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFA186B1B40EAF500BDEA41 /* MeChat.a */; };
 		DFFA18701B40EAF500BDEA41 /* MeChatSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFFA186C1B40EAF500BDEA41 /* MeChatSDK.bundle */; };
 		DFFA18721B40EBEA00BDEA41 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFA18711B40EBEA00BDEA41 /* AVFoundation.framework */; };
-		DFFA18741B4111E700BDEA41 /* libGexinSdk-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFFA18731B4111E700BDEA41 /* libGexinSdk-1.1.1.a */; };
+		DFFA187C1B43945000BDEA41 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFA187B1B43945000BDEA41 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -334,8 +333,6 @@
 		DF5F8E131AFB3C3F00205B60 /* NewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewPasswordViewController.m; path = angerPraise/ViewControllers/User/LRViewController/NewPasswordViewController.m; sourceTree = SOURCE_ROOT; };
 		DF5F8E151AFB482F00205B60 /* Register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register.h; sourceTree = "<group>"; };
 		DF5F8E161AFB482F00205B60 /* Register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register.m; sourceTree = "<group>"; };
-		DF5F8E181AFB72EB00205B60 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
-		DF5F8E191AFB72EB00205B60 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		DF5F8E1C1AFC8B1000205B60 /* ZCAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAddressBook.h; sourceTree = "<group>"; };
 		DF5F8E1D1AFC8B1000205B60 /* ZCAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAddressBook.m; sourceTree = "<group>"; };
 		DF5F8E1F1AFC8BD900205B60 /* pinyin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
@@ -493,8 +490,6 @@
 		DFF2C8431B1D9E8D006E3CB7 /* EditNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNameViewController.m; sourceTree = "<group>"; };
 		DFF2C8451B1DA3DF006E3CB7 /* EditPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPasswordViewController.h; sourceTree = "<group>"; };
 		DFF2C8461B1DA3DF006E3CB7 /* EditPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPasswordViewController.m; sourceTree = "<group>"; };
-		DFF665C31B3C1194003AED4C /* GexinSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GexinSdk.h; sourceTree = "<group>"; };
-		DFF665C41B3C1194003AED4C /* GXSdkError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXSdkError.h; sourceTree = "<group>"; };
 		DFF665C51B3C1232003AED4C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DFF665C71B3C123E003AED4C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		DFF665CA1B3D3811003AED4C /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
@@ -520,7 +515,8 @@
 		DFFA186B1B40EAF500BDEA41 /* MeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = MeChat.a; sourceTree = "<group>"; };
 		DFFA186C1B40EAF500BDEA41 /* MeChatSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MeChatSDK.bundle; sourceTree = "<group>"; };
 		DFFA18711B40EBEA00BDEA41 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		DFFA18731B4111E700BDEA41 /* libGexinSdk-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGexinSdk-1.1.1.a"; sourceTree = "<group>"; };
+		DFFA187A1B43945000BDEA41 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		DFFA187B1B43945000BDEA41 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -530,7 +526,6 @@
 			files = (
 				DFFA18721B40EBEA00BDEA41 /* AVFoundation.framework in Frameworks */,
 				DFF665C81B3C123E003AED4C /* libsqlite3.dylib in Frameworks */,
-				DFFA18741B4111E700BDEA41 /* libGexinSdk-1.1.1.a in Frameworks */,
 				DFFA186F1B40EAF500BDEA41 /* MeChat.a in Frameworks */,
 				DFF665C61B3C1232003AED4C /* CFNetwork.framework in Frameworks */,
 				DFBEB19D1AB05F39002692EF /* Security.framework in Frameworks */,
@@ -706,8 +701,6 @@
 				DF5F8E0A1AFA1CFB00205B60 /* InitPassword.m */,
 				DF5F8E151AFB482F00205B60 /* Register.h */,
 				DF5F8E161AFB482F00205B60 /* Register.m */,
-				DF5F8E181AFB72EB00205B60 /* Login.h */,
-				DF5F8E191AFB72EB00205B60 /* Login.m */,
 				DFDF87BD1B01A519005E65B5 /* AddressBook.h */,
 				DFDF87BE1B01A51A005E65B5 /* AddressBook.m */,
 				DFB32F6B1B031C9F0049D9F2 /* Sweep.h */,
@@ -1197,8 +1190,8 @@
 		DFE2C2ED1AB02B8D00C66DF9 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				DFFA18791B43944500BDEA41 /* JsonKit */,
 				DFFA18591B40EAF500BDEA41 /* MeChatSDK */,
-				DFF665C21B3C1194003AED4C /* include */,
 				DF137FE31B20290A008D0F82 /* rotation360 */,
 				DFE869B91B182E2200901F63 /* WebViewJavascriptBridge */,
 				DFE869A91B15C81600901F63 /* WeChatSDK_1.5 */,
@@ -1339,16 +1332,6 @@
 			path = EditUser;
 			sourceTree = "<group>";
 		};
-		DFF665C21B3C1194003AED4C /* include */ = {
-			isa = PBXGroup;
-			children = (
-				DFFA18731B4111E700BDEA41 /* libGexinSdk-1.1.1.a */,
-				DFF665C31B3C1194003AED4C /* GexinSdk.h */,
-				DFF665C41B3C1194003AED4C /* GXSdkError.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		DFF665C91B3D37ED003AED4C /* ForgetPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -1391,6 +1374,15 @@
 				DFFA18601B40EAF500BDEA41 /* libopencore-amrwb.a */,
 			);
 			path = libopencore;
+			sourceTree = "<group>";
+		};
+		DFFA18791B43944500BDEA41 /* JsonKit */ = {
+			isa = PBXGroup;
+			children = (
+				DFFA187A1B43945000BDEA41 /* JSONKit.h */,
+				DFFA187B1B43945000BDEA41 /* JSONKit.m */,
+			);
+			path = JsonKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1583,13 +1575,13 @@
 				DF5B3EF31ADE4CB00004EF2F /* PositionDetailViewController.m in Sources */,
 				DF5F8E061AFA154100205B60 /* UIProgressView+AFNetworking.m in Sources */,
 				DFF2C8441B1D9E8D006E3CB7 /* EditNameViewController.m in Sources */,
+				DFFA187C1B43945000BDEA41 /* JSONKit.m in Sources */,
 				DF9A612D1B12D21000FB8A2B /* PagedFlowView.m in Sources */,
 				DFEE77311AE0DCE800401AF0 /* UIWindow+AHKAdditions.m in Sources */,
 				DF5F8DFC1AFA154100205B60 /* AFSecurityPolicy.m in Sources */,
 				DF5F8DB71AF8A1B300205B60 /* HrPrivilegeCell.m in Sources */,
 				DFA061B61AD536C2004EEB4C /* CreatStep2ViewController.m in Sources */,
 				DF5F8DA41AF7825C00205B60 /* CommentFriend.m in Sources */,
-				DF5F8E1A1AFB72EB00205B60 /* Login.m in Sources */,
 				DF137FE61B20290B008D0F82 /* UIView+i7Rotate360.m in Sources */,
 				DFE2C2E91AB0132C00C66DF9 /* NeedDataViewController.m in Sources */,
 				DF4B44771AF229B700C94D7E /* ResumeScoreViewController.m in Sources */,

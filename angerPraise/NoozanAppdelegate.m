@@ -13,8 +13,6 @@
 #import "IndexViewController.h"
 
 
-
-
 @implementation NoozanAppdelegate
 
 
@@ -34,10 +32,8 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    
     NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
     NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
-    
     
     if (user_id && user_token) {
         MainViewController *manVC = [[MainViewController alloc]init];
@@ -66,12 +62,22 @@
     [self.window setRootViewController:_mainNav];
 }
 
+-(void)getIndexVC{
+    
+    if (!_loginNav) {
+        IndexViewController *indexVC = [[IndexViewController alloc]init];
+        _loginNav = [[UINavigationController alloc]initWithRootViewController:indexVC];
+    }
+    [self.window setRootViewController:_loginNav];
+}
+
 
 
 -(void)clearUserInfo{
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ID];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_TOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ACCOUNT];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"loginDic"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
