@@ -73,8 +73,6 @@
 - (void) sendLinkContentByWeiXin;
 
 - (void) sendLinkContentByMoment;
-//获取点可评用户信息
--(void)getCommentFriendInfo;
 
 
 

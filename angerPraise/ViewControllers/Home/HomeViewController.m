@@ -47,7 +47,7 @@
     _addPage = 0;
     
     homeTitleView = [[HomeTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-    homeTitleView.backgroundColor = [UIColor redColor];
+    //homeTitleView.backgroundColor = [UIColor redColor];
     
     //hr特权标示
     _hrBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -221,29 +221,24 @@
     
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
 
-        //以下为 webview中微信分享事件处理
-//        if ([data isEqualToString:@"wechat_invite"]) {
-//            
-//            [self weiXinShare:data];
-//            
-//        }
-//        if([data isEqualToString:@"pengyouquan_invite"]){
-//            
-//            [self weiXinShare:data];
-//            
-//        }
-//        if([data isEqualToString:@"wechat_competitiveness"]){
-//            
-//            [self weiXinShare:data];
-//            
-//        }
-//        if ([data isEqualToString:@"pengyouquan_competitiveness"]){
-//            
-//            [self weiXinShare:data];
-//            
-//        }
-//
         NSMutableDictionary *resultsDic = [data objectFromJSONString];
+
+        //以下为 webview中微信分享事件处理
+        if ([[resultsDic objectForKey:@"type"] isEqualToString:@"wechat"]){
+            
+            _shareTitle =[resultsDic objectForKey:@"title"];
+            _shareContent =[resultsDic objectForKey:@"content"];
+            [self sendLinkContentByWeiXin];
+            
+        }
+        if ([[resultsDic objectForKey:@"type"] isEqualToString:@"pengyouquan"]){
+            
+            _shareTitle =[resultsDic objectForKey:@"title"];
+            _shareContent =[resultsDic objectForKey:@"content"];
+            [self sendLinkContentByMoment];
+            
+        }
+        
         //以下为 获取webview点击事件处理
         
         // hr 点评成功 － 暂未修改
@@ -368,52 +363,6 @@
     }
 }
 
-#pragma mark -  微信分享   提高竞争力/邀请好友
--(void)weiXinShare:(NSString *)data{
-    
-    //调用接口 获取相关地址和文案
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
-    [dic setObject:data forKey:@"string"];
-
-    [Share getShareInfo:dic
-              WithBlock:^(Share *share, Error *e) {
-                  
-                  if (e.info !=nil) {
-                      
-                      [APIClient showMessage:e.info];
-                      
-                  }else{
-                      _shareTitle = share.title;
-                      _shareContent = share.content;
-                      
-                      if ([data isEqualToString:@"wechat_invite"]) {
-                          
-                          [self sendLinkContentByWeiXin];
-                          
-                      }
-                      if([data isEqualToString:@"pengyouquan_invite"]){
-                          
-                          [self sendLinkContentByMoment];
-                          
-                      }
-                      if([data isEqualToString:@"wechat_competitiveness"]){
-                          
-                          [self sendLinkContentByWeiXin];
-                          
-                      }
-                      if ([data isEqualToString:@"pengyouquan_competitiveness"]){
-                          
-                          [self sendLinkContentByMoment];
-                          
-                      }
-
-                  }
-              }];
-
-}
-
 #pragma mark - 调用Hr特权接口
 -(void)handleSingleTap:(UITapGestureRecognizer *)sender
 
@@ -446,7 +395,6 @@
         
         _singleTap.enabled = YES;
         
-        
     }
     
 }
@@ -467,7 +415,7 @@
                 break;
             case 1:
             {
-                [self getCommentFriendInfo];
+                [self loadHomeData];
                 _isString = 0;
             }
                 break;

@@ -61,7 +61,6 @@
         
     }
 
-            
             //        _hr_url =[dic objectForKey:@"hr_url"];
             //        _pay_url =[dic objectForKey:@"pay_url"];
             //        _position_number =[dic objectForKey:@"position_number"];

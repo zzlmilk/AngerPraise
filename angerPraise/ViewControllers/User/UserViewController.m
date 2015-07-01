@@ -114,9 +114,8 @@
     [positionButton addTarget:self action:@selector(lookPosition) forControlEvents:UIControlEventTouchUpInside];
     [_cardView addSubview:positionButton];
 
-    
-    NSUserDefaults *hrPrivilege = [NSUserDefaults standardUserDefaults];
-    _user_type = [NSString stringWithFormat:@"%@",[hrPrivilege objectForKey:@"hrPrivilege"]];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _user_type = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"user_type"]];
     
     
     if ([_user_type isEqualToString:@"0"]) {  // 不是hr

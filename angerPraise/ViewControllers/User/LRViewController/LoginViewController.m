@@ -190,12 +190,14 @@
             // 首页时候 会再次调用登录接口获取数据 避免两次token值不一致 所以 在 首页 存 token
             //[userDefaults setObject:user.user_token forKey:USER_TOKEN];
             [userDefaults setObject:user.user_id forKey:USER_ID];
-            //[userDefaults setObject:user.hr_privilege forKey:@"user_type"];
+            [userDefaults setObject:user.hr_privilege forKey:@"user_type"];
         
             //注册成功发送设备
             //[self sendDeviceInfo];
-        
-            [[NoozanAppdelegate getAppDelegate] getMainVC];
+            
+            MainViewController *mainVC = [[MainViewController alloc]init];
+            [self.navigationController pushViewController:mainVC animated:YES];
+            //[[NoozanAppdelegate getAppDelegate] getMainVC];
             
         }
     }];

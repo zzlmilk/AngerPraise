@@ -64,10 +64,9 @@
 
 -(void)getIndexVC{
     
-    if (!_loginNav) {
-        IndexViewController *indexVC = [[IndexViewController alloc]init];
-        _loginNav = [[UINavigationController alloc]initWithRootViewController:indexVC];
-    }
+    IndexViewController *indexVC = [[IndexViewController alloc]init];
+    _loginNav = [[UINavigationController alloc]initWithRootViewController:indexVC];
+    
     [self.window setRootViewController:_loginNav];
 }
 
@@ -78,6 +77,8 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_TOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ACCOUNT];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"loginDic"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_type"];
+
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
