@@ -33,7 +33,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    //[self clearUserInfo];
+    [self clearUserInfo];
     
     NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
     NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
