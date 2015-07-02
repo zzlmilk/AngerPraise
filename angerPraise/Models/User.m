@@ -121,8 +121,6 @@
         // NSLog(@"%@",responseObject);
         if ([responseObject objectForKey:@"error"]) {
             
-
-            
             
             //block(l,error);
             

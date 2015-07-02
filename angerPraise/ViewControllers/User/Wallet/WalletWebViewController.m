@@ -23,7 +23,7 @@
     
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
-    _walletWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT+65)];
+    _walletWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
     _walletWebView.delegate = self;
 
     NSURL *url=[NSURL URLWithString:_walletUrl];

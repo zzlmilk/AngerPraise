@@ -27,6 +27,7 @@
 #define BUFFERY 10 //distance from top to the card (higher makes shorter card)
 @implementation UserViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -230,18 +231,46 @@
     //隐藏多余分割线 函数调用
     [self setExtraCellLineHidden:_userTableView];
     [self.view addSubview:_userTableView];
+    
+    _walletNumberLabel = [[UILabel alloc]init];
 
     
     
-    [self getUserInfo];
-    [self getWalletNumber];
+//    [self getUserInfo];
+//    [self getWalletNumber];
+    
 }
 
 
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
+    if (user) {
+        [_userNameButton setTitle:user.user_name forState:UIControlStateNormal];
+        
+        _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
+               
+        if (![user.photo_url isEqualToString:@"<null>"]) {
+            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:nil];
+
+        }
+        
+        
+        
+        NSString *mission_number = [NSString stringWithFormat:@"%@",user.mission_number];
+        _matchPositionLabel.text =mission_number;// user.position_number;
+        
+        
+          NSString *_task_number = [NSString stringWithFormat:@"%@",user.position_number];
+        _taskLabel.text = _task_number;
+        
+        _walletNumberLabel.text = user.user_intergral;
+       
+        
+    }
+    
+    
     
 }
 
@@ -249,8 +278,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [_editNameTextField resignFirstResponder];
-
-    
     [self userUpdateNickname];
     return YES;
     
@@ -367,10 +394,9 @@
                 [APIClient showInfo:e.info title:@"提示"];
                 
             }else{
+               
                 
                 [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
-                
-                
                 
                 
                 _waitUsernameLabel.text = user.user_name;
@@ -622,8 +648,8 @@
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+   
+
     [dic setObject:imageData forKey:@"imageData"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -689,9 +715,9 @@
             cell.imageView.image = [UIImage imageNamed:@"0userwallet1"];
             cell.imageView.highlightedImage = [UIImage imageNamed:@"0userwallet2"];
             
-            _walletNumberLabel = [[UILabel alloc]init];
+          
             _walletNumberLabel.frame = CGRectMake(WIDTH-50-20, 10, 50, 30);
-            _walletNumberLabel.text = @"1000";
+           // _walletNumberLabel.text = @"1000";
             _walletNumberLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
             _walletNumberLabel.backgroundColor = [UIColor clearColor];
             _walletNumberLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
@@ -728,9 +754,9 @@
             cell.imageView.image = [UIImage imageNamed:@"0userwallet1"];
             cell.imageView.highlightedImage = [UIImage imageNamed:@"0userwallet2"];
             
-            _walletNumberLabel = [[UILabel alloc]init];
+        
             _walletNumberLabel.frame = CGRectMake(WIDTH-50-20, 10, 50, 30);
-            _walletNumberLabel.text = @"1000";
+           // _walletNumberLabel.text = @"1000";
             _walletNumberLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
             _walletNumberLabel.backgroundColor = [UIColor clearColor];
             _walletNumberLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
@@ -872,6 +898,7 @@
 }
 
 
+
 //隐藏多余分割线
 -(void)setExtraCellLineHidden: (UITableView *)tableView
 {
@@ -879,6 +906,20 @@
     view.backgroundColor = [UIColor clearColor];
     [tableView setTableFooterView:view];
 }
+
+#pragma mark --- HomeViewDelegate
+-(void)userInfoValueShouldChange:(User *)u{
+    
+    if (!u) {
+        return;
+    }
+    
+    user = u;
+    
+    
+}
+
+
 
 
 

@@ -49,6 +49,9 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     
+    //self.delegate = [[self.tabBarController viewControllers]objectAtIndex:3];
+    
+    
     _isString = 0;
     _addPage = 0;
     
@@ -221,66 +224,10 @@
     
     [self loadData];
     
-    _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
-
-        NSMutableDictionary *resultsDic = [data objectFromJSONString];
-
-        //以下为 webview中微信分享事件处理
-        if ([[resultsDic objectForKey:@"type"] isEqualToString:@"wechat"]){
-            
-            _shareTitle =[resultsDic objectForKey:@"title"];
-            _shareContent =[resultsDic objectForKey:@"content"];
-            [self sendLinkContentByWeiXin];
-            
-        }
-        if ([[resultsDic objectForKey:@"type"] isEqualToString:@"pengyouquan"]){
-            
-            _shareTitle =[resultsDic objectForKey:@"title"];
-            _shareContent =[resultsDic objectForKey:@"content"];
-            [self sendLinkContentByMoment];
-            
-        }
-        
-        //以下为 获取webview点击事件处理
-        
-        // hr 点评成功 － 暂未修改
-        if ([[resultsDic objectForKey:@"string"] isEqualToString:@"hr_intview_success"]){
-            
-            [self hrPrivilege];
-            
-        }
-        // 进入我的钱包
-        if ([resultsDic objectForKey:@"pay_url"]) {
-            
-            _payUrlString = [resultsDic objectForKey:@"pay_url"];
-            [self enterMyPay];
-            
-        }
-        // 下一个
-        if ([[resultsDic objectForKey:@"string"] isEqualToString:@"next_user_review"]){
-            
-            [self webViewNextOne];
-            
-        }
-        
-        //点评成功 改变水位高度 赏银数量 和综合评分
-        if ([resultsDic objectForKey:@"today_award_total"]) {
-        
-            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",[resultsDic objectForKey:@"today_receive_award"],[resultsDic objectForKey:@"today_award_total"]];
-
-            synthesizeView.scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
-            //_scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
-            
-
-            
-            //改变水位高度
-            float alreadyNumber = [[resultsDic objectForKey:@"today_receive_award"] floatValue];
-            float countNumber = [[resultsDic objectForKey:@"today_award_total"] floatValue];
-            
-            [self calWaterHeightWithalreadyNumber:alreadyNumber countNumber:countNumber];
-        }
-        
-    }];
+    [self webViewBlock];
+    
+    
+    
     
 }
 
@@ -439,6 +386,26 @@
 }
 
 #pragma mark - 调用接口获取首页数据
+
+-(void)loadEndReviewData{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    //[dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
+    [User getHomeData:dic WithBlock:^(User *user, Error *e) {
+        
+        if (!user) {
+            return ;
+        }
+        
+        //最好开个子线程来实现代理
+        [self.delegate userInfoValueShouldChange:user];
+
+    }];
+}
+
 -(void)loadData{
     
     [self isHR];
@@ -454,10 +421,16 @@
     
     [User getHomeData:dic WithBlock:^(User *user, Error *e) {
         
+        if (!user) {
+            return ;
+        }
+        
+        //最好开个子线程来实现代理
+        [self.delegate userInfoValueShouldChange:user];
+        
         [self.view exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        
+
         if (e.info != nil) {
             
             [APIClient showMessage:@"现在登陆人数超载啦，小工们正在努力中请稍后再试～"];
@@ -474,7 +447,6 @@
             
             synthesizeView.scoreLabel.text = user.synthesize_grade;
             
-
             _scoreUrlString = user.synthesize_grade_url;
             
             _collectionArray = user.commentFriendArray;
@@ -789,6 +761,84 @@
 
     [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
 }
+
+
+#pragma mark ----WebView 点评完成回调
+-(void)webViewBlock{
+    
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:_homeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
+        
+    
+        
+        
+        NSMutableDictionary *resultsDic = [data objectFromJSONString];
+        
+        //以下为 webview中微信分享事件处理
+        if ([[resultsDic objectForKey:@"type"] isEqualToString:@"wechat"]){
+            
+            _shareTitle =[resultsDic objectForKey:@"title"];
+            _shareContent =[resultsDic objectForKey:@"content"];
+            [self sendLinkContentByWeiXin];
+            
+        }
+        if ([[resultsDic objectForKey:@"type"] isEqualToString:@"pengyouquan"]){
+            
+            _shareTitle =[resultsDic objectForKey:@"title"];
+            _shareContent =[resultsDic objectForKey:@"content"];
+            [self sendLinkContentByMoment];
+            
+        }
+        
+        //以下为 获取webview点击事件处理
+        
+        // hr 点评成功 － 暂未修改
+        if ([[resultsDic objectForKey:@"string"] isEqualToString:@"hr_intview_success"]){
+            
+            [self hrPrivilege];
+            
+        }
+        // 进入我的钱包
+        if ([resultsDic objectForKey:@"pay_url"]) {
+            
+            _payUrlString = [resultsDic objectForKey:@"pay_url"];
+            [self enterMyPay];
+            
+        }
+        // 下一个
+        if ([[resultsDic objectForKey:@"string"] isEqualToString:@"next_user_review"]){
+            
+            [self webViewNextOne];
+            
+        }
+        
+        //点评成功 改变水位高度 赏银数量 和综合评分
+        if ([resultsDic objectForKey:@"today_award_total"]) {
+            
+            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",[resultsDic objectForKey:@"today_receive_award"],[resultsDic objectForKey:@"today_award_total"]];
+            
+            synthesizeView.scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
+            //_scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
+            
+            
+            
+            //改变水位高度
+            float alreadyNumber = [[resultsDic objectForKey:@"today_receive_award"] floatValue];
+            float countNumber = [[resultsDic objectForKey:@"today_award_total"] floatValue];
+        
+            
+            [self calWaterHeightWithalreadyNumber:alreadyNumber countNumber:countNumber];
+            
+            
+            [self loadEndReviewData];
+            
+        }
+        
+    }];
+
+}
+
+#pragma mark ----为userViewController 赋值
+
 
 
 - (void)didReceiveMemoryWarning {

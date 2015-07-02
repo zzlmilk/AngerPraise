@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "EditPhotoViewController.h"
+#import "HomeViewController.h"
 
-@interface UserViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
+@interface UserViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,HomeViewControllerDelegate>
+{
+    User *user;
+}
+
+
+
+
 @property(nonatomic,strong)UIView *cardView;
 
 @property(nonatomic,strong)UIButton *taskButton;
