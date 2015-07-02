@@ -131,8 +131,10 @@
      synthesizeView = [[SynthesizeView alloc]initWithFrame:CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38)];
     
     
-    __weak HomeViewController *  weakSelf;
+    __weak HomeViewController *  weakSelf = self;
     synthesizeView.touchBlock = ^(){
+        
+        
         [weakSelf  lookScore];
     };
     
@@ -142,7 +144,7 @@
 
     
     UILabel *scoreTipLabel= [[UILabel alloc]init];
-    scoreTipLabel.frame = CGRectMake(_synthesizeView.frame.origin.x, _synthesizeView.frame.size.height+_synthesizeView.frame.origin.y, _synthesizeView.frame.size.width+5, 20);
+    scoreTipLabel.frame = CGRectMake(synthesizeView.frame.origin.x, synthesizeView.frame.size.height+synthesizeView.frame.origin.y, synthesizeView.frame.size.width+5, 20);
     scoreTipLabel.textAlignment = NSTextAlignmentCenter;
     scoreTipLabel.text = @"综合评分";
     scoreTipLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
@@ -456,7 +458,7 @@
         
         if (e.info != nil) {
             
-            [APIClient showMessage:@"服务器忙，请稍后再试～"];
+            [APIClient showMessage:@"现在登陆人数超载啦，小工们正在努力中请稍后再试～"];
             
         }else{
 
@@ -550,7 +552,7 @@
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
             
             
-            _synthesizeView.scoreLabel.text= commentFriend.synthesize_grade;
+            synthesizeView.scoreLabel.text= commentFriend.synthesize_grade;
             
             //_synthesizeView.scoreLabel.text =[NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
             
@@ -741,8 +743,9 @@
     NSURL *url=[NSURL URLWithString:_scoreUrlString];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [_homeWebView loadRequest:request];
-    
 }
+
+
 
 
 #pragma mark ----SynthesDisSelcet;

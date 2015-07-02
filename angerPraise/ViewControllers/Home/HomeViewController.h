@@ -29,7 +29,6 @@
     SynthesizeView *synthesizeView;
 }
 
-@property (nonatomic, strong)SynthesizeView *synthesizeView;
 
 @property (nonatomic, strong) User *user;
 
