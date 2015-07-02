@@ -39,6 +39,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+
     [self.navigationController setNavigationBarHidden:YES];
     
 }
@@ -46,7 +47,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
     self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     
     _isString = 0;
@@ -54,7 +54,6 @@
     
     
     homeTitleView = [[HomeTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-    //homeTitleView.backgroundColor = [UIColor redColor];
 
     //hr特权标示
     _hrBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -129,18 +128,24 @@
     
     
     //综合评分
-    _synthesizeView = [[SynthesizeView alloc]initWithFrame:CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38)];
+    
+     synthesizeView = [[SynthesizeView alloc]initWithFrame:CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38)];
     
     
-    __block HomeViewController *homeVC = self;
-    _synthesizeView.touchBlock = ^(){
+    __weak HomeViewController *  weakSelf = self;
+    synthesizeView.touchBlock = ^(){
         
-        [homeVC  lookScore];
+        
+        [weakSelf  lookScore];
     };
-    [rolliew addSubview:_synthesizeView];
+    
+    
+    
+    [rolliew addSubview:synthesizeView];
+
     
     UILabel *scoreTipLabel= [[UILabel alloc]init];
-    scoreTipLabel.frame = CGRectMake(_synthesizeView.frame.origin.x, _synthesizeView.frame.size.height+_synthesizeView.frame.origin.y, _synthesizeView.frame.size.width+5, 20);
+    scoreTipLabel.frame = CGRectMake(synthesizeView.frame.origin.x, synthesizeView.frame.size.height+synthesizeView.frame.origin.y, synthesizeView.frame.size.width+5, 20);
     scoreTipLabel.textAlignment = NSTextAlignmentCenter;
     scoreTipLabel.text = @"综合评分";
     scoreTipLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
@@ -149,40 +154,7 @@
 
     
     
-    //综合评分 开始
-    /*
-    _scoreImageView = [[UIImageView alloc]init];
-    _scoreImageView.frame = CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38);
-    _scoreImageView.layer.cornerRadius = 38/2.f;
-    [_scoreImageView setClipsToBounds:YES];
-    [_scoreImageView setImage:[UIImage imageNamed:@"0blue_circle"]];
-    [rolliew addSubview:_scoreImageView];
-    
-    _scoreLabel = [[UILabel alloc]init];
-    _scoreLabel.frame = CGRectMake(0, 0, _scoreImageView.frame.size.width, _scoreImageView.frame.size.height);
-    _scoreLabel.text = @"0/25";
-    _scoreLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
-    _scoreLabel.textColor = [UIColor whiteColor];
-    _scoreLabel.textAlignment = NSTextAlignmentCenter;
-    [_scoreImageView addSubview:_scoreLabel];
-    
-    UIButton *lookScoreButton = [[UIButton alloc]init];
-    lookScoreButton.frame = _scoreImageView.frame;
-    [lookScoreButton addTarget:self action:@selector(lookScore) forControlEvents:UIControlEventTouchUpInside];
-    lookScoreButton.backgroundColor = [UIColor clearColor];
-    [rolliew addSubview:lookScoreButton];
-    
-    
-    UILabel *scoreTipLabel= [[UILabel alloc]init];
-    scoreTipLabel.frame = CGRectMake(_scoreImageView.frame.origin.x, _scoreImageView.frame.size.height+_scoreImageView.frame.origin.y, _scoreImageView.frame.size.width+5, 20);
-    scoreTipLabel.textAlignment = NSTextAlignmentCenter;
-    scoreTipLabel.text = @"综合评分";
-    scoreTipLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
-    scoreTipLabel.font = [UIFont fontWithName:@"Helvetica" size:10.f];
-    [rolliew addSubview:scoreTipLabel];
-    //综合评分 结束
-    */
-     if (_bridge) { return; }
+    if (_bridge) { return; }
     [WebViewJavascriptBridge enableLogging];
     
     _homeWebView = [[UIWebView alloc] init];
@@ -295,9 +267,9 @@
         
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",[resultsDic objectForKey:@"today_receive_award"],[resultsDic objectForKey:@"today_award_total"]];
 
+            synthesizeView.scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
             //_scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
             
-            _synthesizeView.scoreLabel.text =[NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
 
             
             //改变水位高度
@@ -448,6 +420,7 @@
             case 1:
             {
                 [self loadData];
+
                 _isString = 0;
             }
                 break;
@@ -486,7 +459,7 @@
         
         if (e.info != nil) {
             
-            [APIClient showMessage:@"服务器忙，请稍后再试～"];
+            [APIClient showMessage:@"现在登陆人数超载啦，小工们正在努力中请稍后再试～"];
             
         }else{
 
@@ -498,7 +471,9 @@
             }
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",user.today_receive_award,user.today_award_total];
             
-            _synthesizeView.scoreLabel.text =user.synthesize_grade;
+            synthesizeView.scoreLabel.text = user.synthesize_grade;
+            
+
             _scoreUrlString = user.synthesize_grade_url;
             
             _collectionArray = user.commentFriendArray;
@@ -577,9 +552,8 @@
             
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
             
-            //_scoreLabel.text = commentFriend.synthesize_grade;
             
-            _synthesizeView.scoreLabel.text= commentFriend.synthesize_grade;
+            synthesizeView.scoreLabel.text= commentFriend.synthesize_grade;
             
             //_synthesizeView.scoreLabel.text =[NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
             
@@ -770,8 +744,9 @@
     NSURL *url=[NSURL URLWithString:_scoreUrlString];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [_homeWebView loadRequest:request];
-    
 }
+
+
 
 
 #pragma mark ----SynthesDisSelcet;

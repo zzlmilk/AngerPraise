@@ -210,8 +210,11 @@
             
             //NSLog(@"%@",resumeScoer);
             _positionNameLabel.text = resumeScoer.user_position;
-            _hopeMoneyNameLabel.text = resumeScoer.objective_functions;
+            
+           // _hopeMoneyNameLabel.text = resumeScoer.objective_functions;
+            
             _hopeMoneyNameLabel.text = resumeScoer.compensation_name;
+            
             _updateTimelabel.text = [@"更新时间: " stringByAppendingString:resumeScoer.resume_update_time];
             _user_resume_synthesize_grade = resumeScoer.user_resume_synthesize_grade;
             

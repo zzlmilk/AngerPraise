@@ -15,6 +15,7 @@
 #import "HomeTitleView.h"
 #import "User.h"
 
+
 // view
 #import "SynthesizeView.h"
 
@@ -25,9 +26,9 @@
     HomeTitleView *homeTitleView;
 
     enum WXScene _scene;
+    SynthesizeView *synthesizeView;
 }
 
-@property (nonatomic, strong)SynthesizeView *synthesizeView;
 
 @property (nonatomic, strong) User *user;
 
@@ -64,6 +65,7 @@
 @property(nonatomic,strong)UILabel *inviteLabel2;
 @property(nonatomic,strong)UIButton *weixinButton;
 @property(nonatomic,strong)UIButton *momentButton;
+
 
 @property  int isString;
 
