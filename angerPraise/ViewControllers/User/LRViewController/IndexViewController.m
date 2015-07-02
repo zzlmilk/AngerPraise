@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:YES];
-    self.navigationController.navigationBar.translucent = YES;
+   
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 44, 44);

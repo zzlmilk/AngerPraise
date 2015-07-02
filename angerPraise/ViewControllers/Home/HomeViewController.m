@@ -41,10 +41,15 @@
 
 @implementation HomeViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+     [self.navigationController setNavigationBarHidden:YES];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
     self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     
     _isString = 0;
@@ -52,12 +57,9 @@
     
     
     homeTitleView = [[HomeTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-<<<<<<< HEAD
-    homeTitleView.backgroundColor = [UIColor redColor];
-=======
-    //homeTitleView.backgroundColor = [UIColor redColor];
+   // homeTitleView.backgroundColor = [UIColor redColor];
     
->>>>>>> fb355a05155cb252cba839456a27c53eef26b911
+    
     //hr特权标示
     _hrBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _hrBtn.frame = CGRectMake((WIDTH-44), 0, 44, 44);
@@ -133,14 +135,16 @@
     
     
     //综合评分
-    SynthesizeView *synthesizeView = [[SynthesizeView alloc]initWithFrame:CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38)];
+    
+     synthesizeView = [[SynthesizeView alloc]initWithFrame:CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38)];
     
     
+    __weak HomeViewController *  weakSelf;
     synthesizeView.touchBlock = ^(){
-        
-        
-        [self  lookScore];
+        [weakSelf  lookScore];
     };
+    
+    
     
     [rolliew addSubview:synthesizeView];
     
@@ -154,40 +158,7 @@
 
     
     
-    //综合评分 开始
-    /*
-    _scoreImageView = [[UIImageView alloc]init];
-    _scoreImageView.frame = CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38);
-    _scoreImageView.layer.cornerRadius = 38/2.f;
-    [_scoreImageView setClipsToBounds:YES];
-    [_scoreImageView setImage:[UIImage imageNamed:@"0blue_circle"]];
-    [rolliew addSubview:_scoreImageView];
-    
-    _scoreLabel = [[UILabel alloc]init];
-    _scoreLabel.frame = CGRectMake(0, 0, _scoreImageView.frame.size.width, _scoreImageView.frame.size.height);
-    _scoreLabel.text = @"0/25";
-    _scoreLabel.font = [UIFont fontWithName:@"Helvetica" size:13.f];
-    _scoreLabel.textColor = [UIColor whiteColor];
-    _scoreLabel.textAlignment = NSTextAlignmentCenter;
-    [_scoreImageView addSubview:_scoreLabel];
-    
-    UIButton *lookScoreButton = [[UIButton alloc]init];
-    lookScoreButton.frame = _scoreImageView.frame;
-    [lookScoreButton addTarget:self action:@selector(lookScore) forControlEvents:UIControlEventTouchUpInside];
-    lookScoreButton.backgroundColor = [UIColor clearColor];
-    [rolliew addSubview:lookScoreButton];
-    
-    
-    UILabel *scoreTipLabel= [[UILabel alloc]init];
-    scoreTipLabel.frame = CGRectMake(_scoreImageView.frame.origin.x, _scoreImageView.frame.size.height+_scoreImageView.frame.origin.y, _scoreImageView.frame.size.width+5, 20);
-    scoreTipLabel.textAlignment = NSTextAlignmentCenter;
-    scoreTipLabel.text = @"综合评分";
-    scoreTipLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
-    scoreTipLabel.font = [UIFont fontWithName:@"Helvetica" size:10.f];
-    [rolliew addSubview:scoreTipLabel];
-    //综合评分 结束
-    */
-     if (_bridge) { return; }
+    if (_bridge) { return; }
     [WebViewJavascriptBridge enableLogging];
     
     _homeWebView = [[UIWebView alloc] init];
@@ -300,7 +271,7 @@
         
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",[resultsDic objectForKey:@"today_receive_award"],[resultsDic objectForKey:@"today_award_total"]];
 
-            _scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
+            synthesizeView.scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
             
             //改变水位高度
             float alreadyNumber = [[resultsDic objectForKey:@"today_receive_award"] floatValue];
@@ -449,11 +420,8 @@
                 break;
             case 1:
             {
-<<<<<<< HEAD
                 [self loadData];
-=======
-                [self loadHomeData];
->>>>>>> fb355a05155cb252cba839456a27c53eef26b911
+
                 _isString = 0;
             }
                 break;
@@ -508,7 +476,8 @@
             }
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",user.today_receive_award,user.today_award_total];
             
-            _scoreLabel.text = user.synthesize_grade;
+            synthesizeView.scoreLabel.text = user.synthesize_grade;
+            
             _scoreUrlString = user.synthesize_grade_url;
             
             _collectionArray = user.commentFriendArray;
@@ -585,7 +554,7 @@
             
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
             
-            _scoreLabel.text = commentFriend.synthesize_grade;
+           synthesizeView.scoreLabel.text = commentFriend.synthesize_grade;
             _scoreUrlString = commentFriend.synthesize_grade_url;
             _collectionArray = commentFriend.commentFriendArray;
             

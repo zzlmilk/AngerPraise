@@ -15,6 +15,7 @@
 #import "HomeTitleView.h"
 #import "User.h"
 
+@class SynthesizeView;
 
 @interface HomeViewController : BaseViewController<UIWebViewDelegate,PagedFlowViewDataSource,PagedFlowViewDelegate,MBProgressHUDDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate>
 {
@@ -23,6 +24,7 @@
     HomeTitleView *homeTitleView;
 
     enum WXScene _scene;
+    SynthesizeView *synthesizeView;
 }
 
 @property (nonatomic, strong) User *user;
@@ -61,6 +63,7 @@
 @property(nonatomic,strong)UIButton *weixinButton;
 @property(nonatomic,strong)UIButton *momentButton;
 
+
 @property  int isString;
 
 @property int intInterviewNumber;
@@ -74,12 +77,9 @@
 - (void) sendLinkContentByWeiXin;
 
 - (void) sendLinkContentByMoment;
-<<<<<<< HEAD
 
 //获取点可评用户信息
 -(void)loadData;
-=======
->>>>>>> fb355a05155cb252cba839456a27c53eef26b911
 
 
 

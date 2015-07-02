@@ -45,10 +45,10 @@
         
         self.touchBlock();
     }
-  
+    
+    
     
 }
-
 
 
 -(void)beginSpinTime:(float)spantime{

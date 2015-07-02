@@ -12,11 +12,14 @@
 
 typedef void (^TouchBlock)();
 
+
 @interface SynthesizeView : NZCoinView
 
 @property(nonatomic,strong) UILabel *scoreLabel;
 
 @property (nonatomic,copy)TouchBlock touchBlock;
+
+
 
 //自定义
 
