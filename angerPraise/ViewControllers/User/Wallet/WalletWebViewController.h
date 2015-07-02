@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface WalletWebViewController : UIViewController<UIWebViewDelegate>
+@interface WalletWebViewController : BaseViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *walletWebView;
 

@@ -33,12 +33,12 @@
     [_walletWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_walletWebView];
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    backBtn.backgroundColor = [UIColor clearColor];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
+//    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    backBtn.frame = CGRectMake(0, 0, 44, 44);
+//    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+//    backBtn.backgroundColor = [UIColor clearColor];
+//    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:backBtn];
     
     [self loadDataUrl];
 }

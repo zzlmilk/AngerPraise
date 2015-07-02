@@ -30,7 +30,7 @@
     
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
-    _collectWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+65)];
+    _collectWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT+65)];
     _collectWebView.delegate = self;
     _collectWebView.scrollView.bounces = NO;
 
