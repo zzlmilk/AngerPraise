@@ -10,7 +10,7 @@
 #import "SMS_MBProgressHUD.h"
 #import "ApIClient.h"
 #import "Sweep.h"
-#import "UIImageView+AFNetworking.h"
+#import "UIImageView+SYJImageCache.h"
 
 @interface ShowQrCodeViewController ()
 

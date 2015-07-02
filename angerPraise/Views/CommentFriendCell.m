@@ -7,7 +7,7 @@
 //
 
 #import "CommentFriendCell.h"
-#import "UIImageView+AFNetworking.h"
+#import "UIImageView+SYJImageCache.h"
 #import "CommentFriend.h"
 
 @implementation CommentFriendCell

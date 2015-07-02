@@ -12,13 +12,16 @@
 #import "ApIClient.h"
 #import "SMS_MBProgressHUD.h"
 #import "User.h"
-#import "UIImageView+AFNetworking.h"
+#import "UIImageView+SYJImageCache.h"
+
 #import "WalletWebViewController.h"
 #import "MyFriendWebViewController.h"
 #import "CollectWebViewController.h"
 #import "HrWebViewController.h"
 #import "MainViewController.h"
 #import "EditPasswordViewController.h"
+
+
 
 #define BUFFERX 5 //distance from side to the card (higher makes thinner card)
 #define BUFFERY 10 //distance from top to the card (higher makes shorter card)
@@ -230,8 +233,6 @@
     
     
     [self getUserInfo];
-//    [self timer];
-//    [self getRecommendPosition];
     [self getWalletNumber];
 }
 
@@ -339,12 +340,12 @@
 
 #pragma mark  获取 user 模块的用户基本信息
 -(void)getUserInfo{
-    
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    
         [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
-    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+        [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
         [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -359,6 +360,10 @@
             }else{
                 
                 [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+                
+                
+                
+                
                 _waitUsernameLabel.text = user.user_name;
                 
                 _editNameTextField.text = user.user_name;

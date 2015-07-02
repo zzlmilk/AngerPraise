@@ -20,6 +20,8 @@
 		19BD479C1AAD7BC600D44A9D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD479B1AAD7BC600D44A9D /* User.m */; };
 		19E327B61B43DBD80063354D /* SynthesizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327B51B43DBD80063354D /* SynthesizeView.m */; };
 		19E327BA1B43DF470063354D /* NZCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327B91B43DF470063354D /* NZCoinView.m */; };
+		19E327CC1B44F91A0063354D /* SYJImageChache.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327C91B44F91A0063354D /* SYJImageChache.m */; };
+		19E327CD1B44F91A0063354D /* UIImageView+SYJImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327CB1B44F91A0063354D /* UIImageView+SYJImageCache.m */; };
 		DF02EDCD1B4412FF00795954 /* PerfectResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF02EDCC1B4412FF00795954 /* PerfectResumeViewController.m */; };
 		DF0B92481AB1463900A1698E /* CheckQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */; };
 		DF0B924B1AB14C9000A1698E /* EvaluateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */; };
@@ -221,6 +223,10 @@
 		19E327B51B43DBD80063354D /* SynthesizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthesizeView.m; sourceTree = "<group>"; };
 		19E327B81B43DF470063354D /* NZCoinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZCoinView.h; sourceTree = "<group>"; };
 		19E327B91B43DF470063354D /* NZCoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZCoinView.m; sourceTree = "<group>"; };
+		19E327C81B44F91A0063354D /* SYJImageChache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYJImageChache.h; sourceTree = "<group>"; };
+		19E327C91B44F91A0063354D /* SYJImageChache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYJImageChache.m; sourceTree = "<group>"; };
+		19E327CA1B44F91A0063354D /* UIImageView+SYJImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SYJImageCache.h"; sourceTree = "<group>"; };
+		19E327CB1B44F91A0063354D /* UIImageView+SYJImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SYJImageCache.m"; sourceTree = "<group>"; };
 		DF02EDCB1B4412FF00795954 /* PerfectResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectResumeViewController.h; sourceTree = "<group>"; };
 		DF02EDCC1B4412FF00795954 /* PerfectResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectResumeViewController.m; sourceTree = "<group>"; };
 		DF0B92461AB1463900A1698E /* CheckQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckQuestionViewController.h; sourceTree = "<group>"; };
@@ -764,6 +770,17 @@
 			path = NZCoinView;
 			sourceTree = "<group>";
 		};
+		19E327C11B44F6AB0063354D /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				19E327C81B44F91A0063354D /* SYJImageChache.h */,
+				19E327C91B44F91A0063354D /* SYJImageChache.m */,
+				19E327CA1B44F91A0063354D /* UIImageView+SYJImageCache.h */,
+				19E327CB1B44F91A0063354D /* UIImageView+SYJImageCache.m */,
+			);
+			path = ImageCache;
+			sourceTree = "<group>";
+		};
 		DF16983C1B0EF95400A5E453 /* OldUsre */ = {
 			isa = PBXGroup;
 			children = (
@@ -992,6 +1009,7 @@
 		DF826C951AAECCE100EAC61F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				19E327C11B44F6AB0063354D /* ImageCache */,
 				DFE2C2EA1AB02AD700C66DF9 /* ApIClient.h */,
 				DFE2C2EB1AB02AD700C66DF9 /* ApIClient.m */,
 			);
@@ -1619,6 +1637,7 @@
 				DFB32FD71B04A4500049D9F2 /* UIView+viewController.m in Sources */,
 				DF69C1C81B130EB300D2FAC8 /* VWWWaterView.m in Sources */,
 				DFEE77241AE0B92300401AF0 /* PreviewResumeViewController.m in Sources */,
+				19E327CD1B44F91A0063354D /* UIImageView+SYJImageCache.m in Sources */,
 				DF5F8E111AFB3C0D00205B60 /* PersonInfoViewController.m in Sources */,
 				DFA34C9F1B0EFBCA003722BC /* HrWebViewController.m in Sources */,
 				DFE869BE1B182E2200901F63 /* WebViewJavascriptBridge.m in Sources */,
@@ -1631,6 +1650,7 @@
 				19E327B61B43DBD80063354D /* SynthesizeView.m in Sources */,
 				DFB32FD61B04A4500049D9F2 /* InfiniteScrollPicker.m in Sources */,
 				DFD2744D1AE7871B00BEED59 /* IndexViewController.m in Sources */,
+				19E327CC1B44F91A0063354D /* SYJImageChache.m in Sources */,
 				DF137FEC1B2031F1008D0F82 /* SettingWebViewController.m in Sources */,
 				DFD274301AE778A700BEED59 /* UIImage+ImageWithColor.m in Sources */,
 				DFF2C8471B1DA3DF006E3CB7 /* EditPasswordViewController.m in Sources */,

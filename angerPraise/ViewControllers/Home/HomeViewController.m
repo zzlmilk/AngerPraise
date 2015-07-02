@@ -11,7 +11,7 @@
 #import "SMS_MBProgressHUD.h"
 #import "CommentFriendCell.h"
 #import "CommentFriend.h"
-#import "UIImageView+AFNetworking.h"
+#import "UIImageView+SYJImageCache.h"
 #import "ApIClient.h"
 #import "VWWWaterView.h"
 #import "Review.h"
@@ -86,6 +86,7 @@
     [_waterView setClipsToBounds:YES];
     [_waterView setCurrentLinePointY:30]; //min 38   max 0
     [rolliew addSubview:_waterView];
+    
     
     UIButton *clickMoneyButton = [[UIButton alloc]init];
     clickMoneyButton.frame = _waterView.frame;
@@ -445,7 +446,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    //[dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];

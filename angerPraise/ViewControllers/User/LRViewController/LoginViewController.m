@@ -127,7 +127,6 @@
 
 #pragma mark -- 返回
 -(void)doBack{
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -140,7 +139,6 @@
     if ([_phoneNumberTextField.text isEqual: @""]) {
         
         _phonePlaceholderLabel.text = @"手 机 号 码";
-        
     }
     if ([_passwordTextField.text isEqual: @""]){
     
