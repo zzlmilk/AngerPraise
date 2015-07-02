@@ -9,7 +9,8 @@
 #import "PreviewResumeViewController.h"
 #import "SMS_MBProgressHUD.h"
 #import "WXApi.h"
-
+#import "Resume.h"
+#import "ApIClient.h"
 
 @interface PreviewResumeViewController ()
 
@@ -40,9 +41,6 @@
     _previewResumeWebView.delegate = self;
     _previewResumeWebView.scrollView.bounces = NO;
     
-    NSURL *url =[NSURL URLWithString:_resumePreviewUrl];
-    NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-    [_previewResumeWebView loadRequest:request];
     [_previewResumeWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_previewResumeWebView];
     
@@ -94,7 +92,7 @@
     [tapGestureRecognizer setDelegate:self];
     [_previewResumeWebView.scrollView addGestureRecognizer:tapGestureRecognizer];
     
-    
+    [self getPreviewResumeUrl];
 }
 
 -(void) changeScene:(NSInteger)scene
@@ -194,6 +192,36 @@
     }
 }
 
+-(void)getPreviewResumeUrl{
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
+    [Resume previewResume:dic WithBlock:^(Resume *resume, Error *e) {
+        
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+        }else{
+            
+            _resumePreviewUrl = resume.resume_preview_url;
+            
+            NSURL *url =[NSURL URLWithString:_resumePreviewUrl];
+            NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+            [_previewResumeWebView loadRequest:request];
+
+            
+        }
+        
+    }];
+    
+}
+
+
 //网页 刚开始加载
 - (void)webViewDidStartLoad:(UIWebView  *)webView{
     
@@ -210,6 +238,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation

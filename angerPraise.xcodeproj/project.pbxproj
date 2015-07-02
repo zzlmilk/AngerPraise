@@ -20,9 +20,9 @@
 		19BD479C1AAD7BC600D44A9D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD479B1AAD7BC600D44A9D /* User.m */; };
 		19E327B61B43DBD80063354D /* SynthesizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327B51B43DBD80063354D /* SynthesizeView.m */; };
 		19E327BA1B43DF470063354D /* NZCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327B91B43DF470063354D /* NZCoinView.m */; };
+		DF02EDCD1B4412FF00795954 /* PerfectResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF02EDCC1B4412FF00795954 /* PerfectResumeViewController.m */; };
 		DF0B92481AB1463900A1698E /* CheckQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */; };
 		DF0B924B1AB14C9000A1698E /* EvaluateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */; };
-		DF137FE61B20290B008D0F82 /* UIView+i7Rotate360.m in Sources */ = {isa = PBXBuildFile; fileRef = DF137FE51B20290A008D0F82 /* UIView+i7Rotate360.m */; };
 		DF137FE91B20304A008D0F82 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = DF137FE81B20304A008D0F82 /* Setting.m */; };
 		DF137FEC1B2031F1008D0F82 /* SettingWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF137FEB1B2031F1008D0F82 /* SettingWebViewController.m */; };
 		DF16983B1B0DC12800A5E453 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF1698391B0DC12800A5E453 /* LaunchScreen.xib */; };
@@ -221,12 +221,12 @@
 		19E327B51B43DBD80063354D /* SynthesizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynthesizeView.m; sourceTree = "<group>"; };
 		19E327B81B43DF470063354D /* NZCoinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZCoinView.h; sourceTree = "<group>"; };
 		19E327B91B43DF470063354D /* NZCoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZCoinView.m; sourceTree = "<group>"; };
+		DF02EDCB1B4412FF00795954 /* PerfectResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectResumeViewController.h; sourceTree = "<group>"; };
+		DF02EDCC1B4412FF00795954 /* PerfectResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectResumeViewController.m; sourceTree = "<group>"; };
 		DF0B92461AB1463900A1698E /* CheckQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckQuestionViewController.h; sourceTree = "<group>"; };
 		DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckQuestionViewController.m; sourceTree = "<group>"; };
 		DF0B92491AB14C9000A1698E /* EvaluateListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateListViewController.h; sourceTree = "<group>"; };
 		DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateListViewController.m; sourceTree = "<group>"; };
-		DF137FE41B20290A008D0F82 /* UIView+i7Rotate360.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+i7Rotate360.h"; sourceTree = "<group>"; };
-		DF137FE51B20290A008D0F82 /* UIView+i7Rotate360.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+i7Rotate360.m"; sourceTree = "<group>"; };
 		DF137FE71B20304A008D0F82 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		DF137FE81B20304A008D0F82 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
 		DF137FEA1B2031F1008D0F82 /* SettingWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingWebViewController.h; sourceTree = "<group>"; };
@@ -490,8 +490,8 @@
 		DFEE772B1AE0DCE800401AF0 /* UIImage+AHKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AHKAdditions.m"; sourceTree = "<group>"; };
 		DFEE772C1AE0DCE800401AF0 /* UIWindow+AHKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+AHKAdditions.h"; sourceTree = "<group>"; };
 		DFEE772D1AE0DCE800401AF0 /* UIWindow+AHKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+AHKAdditions.m"; sourceTree = "<group>"; };
-		DFF2C83E1B1C6716006E3CB7 /* QAResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAResumeViewController.h; sourceTree = "<group>"; };
-		DFF2C83F1B1C6716006E3CB7 /* QAResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAResumeViewController.m; sourceTree = "<group>"; };
+		DFF2C83E1B1C6716006E3CB7 /* QAResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QAResumeViewController.h; path = ../FirstResume/VirtualImport/QAResumeViewController.h; sourceTree = "<group>"; };
+		DFF2C83F1B1C6716006E3CB7 /* QAResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QAResumeViewController.m; path = ../FirstResume/VirtualImport/QAResumeViewController.m; sourceTree = "<group>"; };
 		DFF2C8421B1D9E8D006E3CB7 /* EditNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNameViewController.h; sourceTree = "<group>"; };
 		DFF2C8431B1D9E8D006E3CB7 /* EditNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNameViewController.m; sourceTree = "<group>"; };
 		DFF2C8451B1DA3DF006E3CB7 /* EditPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPasswordViewController.h; sourceTree = "<group>"; };
@@ -764,15 +764,6 @@
 			path = NZCoinView;
 			sourceTree = "<group>";
 		};
-		DF137FE31B20290A008D0F82 /* rotation360 */ = {
-			isa = PBXGroup;
-			children = (
-				DF137FE41B20290A008D0F82 /* UIView+i7Rotate360.h */,
-				DF137FE51B20290A008D0F82 /* UIView+i7Rotate360.m */,
-			);
-			path = rotation360;
-			sourceTree = "<group>";
-		};
 		DF16983C1B0EF95400A5E453 /* OldUsre */ = {
 			isa = PBXGroup;
 			children = (
@@ -854,12 +845,16 @@
 		DF2BF1851AD4D0AC00CF8BED /* Resume */ = {
 			isa = PBXGroup;
 			children = (
+				DFF2C83E1B1C6716006E3CB7 /* QAResumeViewController.h */,
+				DFF2C83F1B1C6716006E3CB7 /* QAResumeViewController.m */,
 				DF4B44751AF229B700C94D7E /* ResumeScoreViewController.h */,
 				DF4B44761AF229B700C94D7E /* ResumeScoreViewController.m */,
 				DF2BF1861AD4D0D600CF8BED /* ResumeViewController.h */,
 				DF2BF1871AD4D0D600CF8BED /* ResumeViewController.m */,
 				DFEE77221AE0B92300401AF0 /* PreviewResumeViewController.h */,
 				DFEE77231AE0B92300401AF0 /* PreviewResumeViewController.m */,
+				DF02EDCB1B4412FF00795954 /* PerfectResumeViewController.h */,
+				DF02EDCC1B4412FF00795954 /* PerfectResumeViewController.m */,
 			);
 			path = Resume;
 			sourceTree = "<group>";
@@ -1034,8 +1029,6 @@
 				DFA061B11AD53527004EEB4C /* VirtualImportViewController.m */,
 				DF4D97A01AD7790D00F65140 /* GuideViewController.h */,
 				DF4D97A11AD7790D00F65140 /* GuideViewController.m */,
-				DFF2C83E1B1C6716006E3CB7 /* QAResumeViewController.h */,
-				DFF2C83F1B1C6716006E3CB7 /* QAResumeViewController.m */,
 			);
 			path = VirtualImport;
 			sourceTree = "<group>";
@@ -1210,7 +1203,6 @@
 			children = (
 				DFFA18791B43944500BDEA41 /* JsonKit */,
 				DFFA18591B40EAF500BDEA41 /* MeChatSDK */,
-				DF137FE31B20290A008D0F82 /* rotation360 */,
 				DFE869B91B182E2200901F63 /* WebViewJavascriptBridge */,
 				DFE869A91B15C81600901F63 /* WeChatSDK_1.5 */,
 				DF69C1C51B130EA300D2FAC8 /* VWWWaterView */,
@@ -1556,6 +1548,7 @@
 				19BD479C1AAD7BC600D44A9D /* User.m in Sources */,
 				190414E61B415464008E3691 /* NoozanAppdelegate.m in Sources */,
 				DFA061B91AD536DD004EEB4C /* CreatStep3ViewController.m in Sources */,
+				DF02EDCD1B4412FF00795954 /* PerfectResumeViewController.m in Sources */,
 				DF16984D1B0EF98400A5E453 /* guideHrViewController.m in Sources */,
 				DF5F8DF81AFA154100205B60 /* AFHTTPRequestOperation.m in Sources */,
 				DF5F8DFD1AFA154100205B60 /* AFURLConnectionOperation.m in Sources */,
@@ -1601,7 +1594,6 @@
 				DF5F8DB71AF8A1B300205B60 /* HrPrivilegeCell.m in Sources */,
 				DFA061B61AD536C2004EEB4C /* CreatStep2ViewController.m in Sources */,
 				DF5F8DA41AF7825C00205B60 /* CommentFriend.m in Sources */,
-				DF137FE61B20290B008D0F82 /* UIView+i7Rotate360.m in Sources */,
 				DFE2C2E91AB0132C00C66DF9 /* NeedDataViewController.m in Sources */,
 				DF4B44771AF229B700C94D7E /* ResumeScoreViewController.m in Sources */,
 				DFEE76F51ADF9E6A00401AF0 /* MJRefreshHeader.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "MyFriendWebViewController.h"
 #import "SMS_MBProgressHUD.h"
+#import "User.h"
+#import "ApIClient.h"
 
 @interface MyFriendWebViewController ()
 
@@ -39,9 +41,35 @@
     [_myfriendWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_myfriendWebView];
     
-    
+    [self loadDataUrl];
 }
 
+// 获取 收藏Url
+-(void)loadDataUrl{
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
+    [User getFriendUrl:dic WithBlock:^(User *user, Error *e) {
+        
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+        }else{
+            
+            _myFriendUrl = user.user_friend_url;
+            
+            NSURL *url=[NSURL URLWithString:_myFriendUrl];
+            NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+            [_myfriendWebView loadRequest:request];
+            
+        }
+    }];
+}
 
 -(void)doBack{
     

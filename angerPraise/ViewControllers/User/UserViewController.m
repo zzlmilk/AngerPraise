@@ -232,7 +232,7 @@
     [self getUserInfo];
 //    [self timer];
 //    [self getRecommendPosition];
-//    [self getWalletNumber];
+    [self getWalletNumber];
 }
 
 #pragma mark -- 键盘 return
@@ -261,6 +261,8 @@
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
         [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
         [dic setObject:_editNameTextField.text forKey:@"nickname"];
         
         [User userUpdateNickname:dic WithBlock:^(User *user, Error *e) {
@@ -342,7 +344,8 @@
 
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
         [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
-        
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
         [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
         [User getUserInfoData:dic WithBlock:^(User *user, Error *e) {
@@ -424,7 +427,8 @@
     
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
         [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
-        
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
         [User getUserMissionNumber:dic WithBlock:^(User *user, Error *e) {
             
             if (e.info !=nil) {
@@ -450,7 +454,8 @@
         
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
         [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
-        
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
         [User getRecommendPositionNumber:dic WithBlock:^(User *user, Error *e) {
             
             if (e.info !=nil) {
@@ -470,13 +475,13 @@
 #pragma mark  获取 钱包赏银数量
 -(void)getWalletNumber{
     
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    if ([token objectForKey:@"token"]) {
         
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
-        
+        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
         [User getWalletNumber:dic WithBlock:^(User *user, Error *e) {
             
             if (e.info !=nil) {
@@ -489,8 +494,6 @@
                 
             }
         }];
-        
-    }
     
 }
 
@@ -807,21 +810,21 @@
             case 0://钱包
             {
                 WalletWebViewController *walletWebVC = [[WalletWebViewController alloc]init];
-                walletWebVC.walletUrl = _pay_url;
+//                walletWebVC.walletUrl = _pay_url;
                 [self.navigationController pushViewController:walletWebVC animated:YES];
             }
                 break;
             case 1://投递记录 收藏
             {
                 CollectWebViewController *collectWebVC = [[CollectWebViewController alloc]init];
-                collectWebVC.collectUrl = _user_apply_url;
+//                collectWebVC.collectUrl = _user_apply_url;
                 [self.navigationController pushViewController:collectWebVC animated:YES];
             }
                 break;
             case 2: //我的好友
             {
                 MyFriendWebViewController *myFriendWebVC = [[MyFriendWebViewController alloc]init];
-                myFriendWebVC.myFriendUrl = _user_friend_url;
+//                myFriendWebVC.myFriendUrl = _user_friend_url;
                 [self.navigationController pushViewController:myFriendWebVC animated:YES];
             }
                 break;
@@ -843,28 +846,28 @@
             case 0://钱包
             {
                 WalletWebViewController *walletWebVC = [[WalletWebViewController alloc]init];
-                walletWebVC.walletUrl = _pay_url;
+//                walletWebVC.walletUrl = _pay_url;
                 [self.navigationController pushViewController:walletWebVC animated:YES];
             }
                 break;
             case 1://投递记录 收藏
             {
                 CollectWebViewController *collectWebVC = [[CollectWebViewController alloc]init];
-                collectWebVC.collectUrl = _user_apply_url;
+//                collectWebVC.collectUrl = _user_apply_url;
                 [self.navigationController pushViewController:collectWebVC animated:YES];
             }
                 break;
             case 2: //我的好友
             {
                 MyFriendWebViewController *myFriendWebVC = [[MyFriendWebViewController alloc]init];
-                myFriendWebVC.myFriendUrl = _user_friend_url;
+//                myFriendWebVC.myFriendUrl = _user_friend_url;
                 [self.navigationController pushViewController:myFriendWebVC animated:YES];
             }
                 break;
             case 3://HR特权
             {
                 HrWebViewController *hrWebVC = [[HrWebViewController alloc]init];
-                hrWebVC.hrUrl = _hr_url;
+//                hrWebVC.hrUrl = _hr_url;
                 [self.navigationController pushViewController:hrWebVC animated:YES];
             }
                 break;

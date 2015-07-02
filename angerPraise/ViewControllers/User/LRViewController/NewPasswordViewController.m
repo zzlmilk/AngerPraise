@@ -10,9 +10,10 @@
 #import "NewPasswordViewController.h"
 #import "PersonInfoViewController.h"
 #import "ApIClient.h"
-#import "Register.h"
+#import "User.h"
 #import "MainViewController.h"
 #import "SMS_MBProgressHUD.h"
+#import "LoginViewController.h"
 
 @interface NewPasswordViewController ()
 
@@ -180,7 +181,7 @@
         
         if ([_newsPasswordTextField.text isEqualToString:_reNewsPasswordTextField.text]) {
             
-            [self sendDateForServer];
+            [self userRegisterSendData];
             
         }else{
         
@@ -193,9 +194,7 @@
 
 
 #pragma mark -- 注册 提交 调用接口
--(void)sendDateForServer{
-    
-    //        NSString * uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+-(void)userRegisterSendData{
     
     NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
@@ -205,7 +204,7 @@
     [dic setObject:_userNameTextField.text forKey:@"name"];
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [Register userRegister:dic WithBlock:^(Register *reg, Error *e) {
+    [User userRegister:dic WithBlock:^(User *user, Error *e) {
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -214,9 +213,18 @@
             [APIClient showInfo:e.info title:@"提示"];
             
         }
-        if(![reg.user_id isEqual: @""]){
+        if(![user.user_id isEqual: @""]){
             
             [APIClient showSuccess:@"注册成功" title:@"成功"];
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:user.user_token forKey:USER_TOKEN];
+            [userDefaults setObject:user.user_id forKey:USER_ID];
+            [userDefaults setObject:user.hr_privilege forKey:@"user_type"];
+            
+            
+            LoginViewController *loginVC = [[LoginViewController alloc]init];
+            [loginVC sendDeviceInfo];// 发送设备信息
             
             MainViewController *mainVC = [[MainViewController alloc]init];
             [self.navigationController pushViewController:mainVC animated:YES];

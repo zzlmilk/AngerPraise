@@ -13,6 +13,9 @@
 #import "ApIClient.h"
 #import "ResumeScoreViewController.h"
 #import "ImportResumeViewController.h"
+#import "QAResumeViewController.h"
+#import "PerfectResumeViewController.h"
+#import "WXApi.h"
 
 @interface ResumeViewController ()
 
@@ -27,152 +30,306 @@
     self.view.backgroundColor =RGBACOLOR(20, 20, 20, 1.0f);
     
     _titleMyResumeView = [[UIView alloc]init];
-    _titleMyResumeView.frame = CGRectMake(0, 0, WIDTH, HEIGHT*0.4);
+    _titleMyResumeView.frame = CGRectMake(0, 0, WIDTH, HEIGHT*0.45);
     _titleMyResumeView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_titleMyResumeView];
     
-    _positionNameLabel = [[UILabel alloc]init];
-    _positionNameLabel.frame = CGRectMake(0, 30, WIDTH, 40);
-    _positionNameLabel.backgroundColor = [UIColor clearColor];
-    _positionNameLabel.font =  [UIFont fontWithName:@"Helvetica-BoldOblique" size:18.f];
-    _positionNameLabel.textAlignment = NSTextAlignmentCenter;
-    [_titleMyResumeView addSubview:_positionNameLabel];
+    // 有简历的View
+    _resumeView = [[UIView alloc]init];
+    _resumeView.frame = CGRectMake(0, _titleMyResumeView.frame.size.height, WIDTH, HEIGHT-_titleMyResumeView.frame.size.height);
+    _resumeView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    [self.view addSubview:_resumeView];
     
-    _workPlaceLabel = [[UILabel alloc]init];
-    _workPlaceLabel.font =  [UIFont fontWithName:@"Helvetica" size:12.f];
-    _workPlaceLabel.frame = CGRectMake(0, _positionNameLabel.frame.size.height+_positionNameLabel.frame.origin.y-5, WIDTH, 25);
-    _workPlaceLabel.textAlignment = NSTextAlignmentCenter;
-    _workPlaceLabel.textColor = RGBACOLOR(177, 179, 180, 1.0f);
-    _workPlaceLabel.backgroundColor = [UIColor clearColor];
-    [_titleMyResumeView addSubview:_workPlaceLabel];
+    //没有简历的View
+    _noResumeView = [[UIView alloc]init];
+    _noResumeView.frame = CGRectMake(0, _titleMyResumeView.frame.size.height, WIDTH, HEIGHT-_titleMyResumeView.frame.size.height);
+    _noResumeView.backgroundColor = RGBACOLOR(20, 20, 20, 20);
+    _noResumeView.hidden = YES;
+    [self.view addSubview:_noResumeView];
+    
+    
+    UILabel *positionTitleLabel = [[UILabel alloc]init];
+    positionTitleLabel.frame = CGRectMake(10, 20, WIDTH*0.55, 15);
+    positionTitleLabel.text = @"职位信息";
+    positionTitleLabel.textColor = hl_gary;
+    positionTitleLabel.font =[UIFont fontWithName:@"Helvetica" size:11.f];
+    positionTitleLabel.backgroundColor = [UIColor clearColor];
+    [_resumeView addSubview:positionTitleLabel];
+    
+    _positionNameLabel = [[UILabel alloc]init];
+    _positionNameLabel.frame = CGRectMake(10, positionTitleLabel.frame.size.height+positionTitleLabel.frame.origin.y-2, positionTitleLabel.frame.size.width, 20);
+    _positionNameLabel.backgroundColor = [UIColor clearColor];
+    _positionNameLabel.font =  [UIFont fontWithName:@"Helvetica-BoldOblique" size:16.f];
+    _positionNameLabel.textColor = [UIColor whiteColor];
+    _positionNameLabel.text = @"软件工程师";
+    [_resumeView addSubview:_positionNameLabel];
+    
+    
+    UILabel *hopePositionTitleLabel = [[UILabel alloc]init];
+    hopePositionTitleLabel.frame = CGRectMake(10, _positionNameLabel.frame.size.height+_positionNameLabel.frame.origin.y+15, WIDTH*0.55, 15);
+    hopePositionTitleLabel.text = @"目标职位";
+    hopePositionTitleLabel.textColor = hl_gary;
+    hopePositionTitleLabel.font =[UIFont fontWithName:@"Helvetica" size:11.f];
+    hopePositionTitleLabel.backgroundColor = [UIColor clearColor];
+    [_resumeView addSubview:hopePositionTitleLabel];
+    
+    _hopePositionNameLabel = [[UILabel alloc]init];
+    _hopePositionNameLabel.frame = CGRectMake(10, hopePositionTitleLabel.frame.size.height+hopePositionTitleLabel.frame.origin.y-2, hopePositionTitleLabel.frame.size.width, 20);
+    _hopePositionNameLabel.backgroundColor = [UIColor clearColor];
+    _hopePositionNameLabel.font =  [UIFont fontWithName:@"Helvetica" size:16.f];
+    _hopePositionNameLabel.textColor = [UIColor whiteColor];
+    _hopePositionNameLabel.text = @"软件工程师";
+    [_resumeView addSubview:_hopePositionNameLabel];
+    
+    
+    UILabel *hopeMoneyTitleLabel = [[UILabel alloc]init];
+    hopeMoneyTitleLabel.frame = CGRectMake(10, _hopePositionNameLabel.frame.size.height+_hopePositionNameLabel.frame.origin.y+15, WIDTH*0.55, 15);
+    hopeMoneyTitleLabel.text = @"期望薪资";
+    hopeMoneyTitleLabel.textColor = hl_gary;
+    hopeMoneyTitleLabel.font =[UIFont fontWithName:@"Helvetica" size:11.f];
+    hopeMoneyTitleLabel.backgroundColor = [UIColor clearColor];
+    [_resumeView addSubview:hopeMoneyTitleLabel];
+    
+    _hopeMoneyNameLabel = [[UILabel alloc]init];
+    _hopeMoneyNameLabel.frame = CGRectMake(10, hopeMoneyTitleLabel.frame.size.height+hopeMoneyTitleLabel.frame.origin.y-2, hopeMoneyTitleLabel.frame.size.width, 25);
+    _hopeMoneyNameLabel.backgroundColor = [UIColor clearColor];
+    _hopeMoneyNameLabel.font =  [UIFont fontWithName:@"Helvetica" size:16.f];
+    _hopeMoneyNameLabel.text = @"1000K/年";
+    _hopeMoneyNameLabel.textColor = [UIColor whiteColor];
+    [_resumeView addSubview:_hopeMoneyNameLabel];
+    
+    
+    _updateTimelabel = [[UILabel alloc]init];
+    _updateTimelabel.frame = CGRectMake(10, _hopeMoneyNameLabel.frame.size.height+_hopeMoneyNameLabel.frame.origin.y+35, _hopeMoneyNameLabel.frame.size.width, 15);
+    _updateTimelabel.textColor = hl_gary;
+    _updateTimelabel.font =  [UIFont fontWithName:@"Helvetica" size:11.f];
+    _updateTimelabel.text = @" 更新时间 2015-7-6";
+    [_resumeView addSubview:_updateTimelabel];
+    
+    
+    //完善简历
+    _perfectResumeButton = [[UIButton alloc]init];
+    _perfectResumeButton.frame = CGRectMake(_positionNameLabel.frame.size.width+_positionNameLabel.frame.origin.x,positionTitleLabel.frame.origin.y, WIDTH-_positionNameLabel.frame.size.width-_positionNameLabel.frame.origin.x-10, 35);
+    [_perfectResumeButton.layer setMasksToBounds:YES];
+    [_perfectResumeButton.layer setCornerRadius:35/2.f]; //设置矩形四个圆角半径
+    [_perfectResumeButton.layer setBorderWidth:1.0]; //边框宽度
+    _perfectResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
+    [_perfectResumeButton setTitle:@"  完善简历" forState:UIControlStateNormal];
+    [_perfectResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
+    [_perfectResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
+    [_perfectResumeButton setTitleColor:hl_gary forState:UIControlStateHighlighted];
+    _perfectResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+    _perfectResumeButton.backgroundColor = [UIColor clearColor];
+    [_perfectResumeButton addTarget:self action:@selector(perfectResume) forControlEvents:UIControlEventTouchUpInside];
+    [_resumeView addSubview:_perfectResumeButton];
+    
     
     //预览简历
     _previewResumeButton = [[UIButton alloc]init];
-    _previewResumeButton.frame = CGRectMake(80,_workPlaceLabel.frame.origin.y+_workPlaceLabel.frame.size.height+40, WIDTH-2*80, 40);
-    [_previewResumeButton setTitle:@"预 览 简 历" forState:UIControlStateNormal];
-    [_previewResumeButton setTitleColor:RGBACOLOR(20, 20, 20, 1.0f) forState:UIControlStateHighlighted];
+    _previewResumeButton.frame = CGRectMake(_perfectResumeButton.frame.origin.x,_perfectResumeButton.frame.origin.y+_perfectResumeButton.frame.size.height+50, _perfectResumeButton.frame.size.width, 35);
     [_previewResumeButton.layer setMasksToBounds:YES];
-    [_previewResumeButton.layer setCornerRadius:40/2.f]; //设置矩形四个圆角半径
-    [_previewResumeButton setTitleColor:RGBACOLOR(0, 203, 251, 1.0f) forState:UIControlStateNormal];
-    _previewResumeButton.layer.borderWidth = 1.0f;
+    [_previewResumeButton.layer setCornerRadius:35/2.f]; //设置矩形四个圆角半径
+    [_previewResumeButton.layer setBorderWidth:1.0]; //边框宽度
     _previewResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
-    _previewResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:17];
+    [_previewResumeButton setTitle:@"  预览简历" forState:UIControlStateNormal];
+    [_previewResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
+    [_previewResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
+    [_previewResumeButton setTitleColor:hl_gary forState:UIControlStateHighlighted];
+    _previewResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+    _previewResumeButton.backgroundColor = [UIColor clearColor];
     [_previewResumeButton addTarget:self action:@selector(previewResume) forControlEvents:UIControlEventTouchUpInside];
-    [_titleMyResumeView addSubview:_previewResumeButton];
-    
-    _updateTimelabel = [[UILabel alloc]init];
-    _updateTimelabel.frame = CGRectMake(0, _previewResumeButton.frame.size.height+_previewResumeButton.frame.origin.y, WIDTH, 25);
-    _updateTimelabel.textAlignment = NSTextAlignmentCenter;
-    _updateTimelabel.font =  [UIFont fontWithName:@"Helvetica" size:12.f];
-    _updateTimelabel.backgroundColor = [UIColor clearColor];
-    _updateTimelabel.textColor = RGBACOLOR(177, 179, 180, 1.0f);
-    [_titleMyResumeView addSubview:_updateTimelabel];
+    [_resumeView addSubview:_previewResumeButton];
     
     
-    [self getresumeInfo];
+    //没有简历的View
+    UILabel *describeLabel1= [[UILabel alloc]init];
+    describeLabel1.frame = CGRectMake(0, 30, WIDTH, 15);
+    describeLabel1.text = @"您目前还没有简历哦,";
+    describeLabel1.textColor = hl_gary;
+    describeLabel1.font =[UIFont fontWithName:@"Helvetica" size:11.f];
+    describeLabel1.textAlignment = NSTextAlignmentCenter;
+    [_noResumeView addSubview:describeLabel1];
+    
+    UILabel *describeLabel2= [[UILabel alloc]init];
+    describeLabel2.frame = CGRectMake(0, describeLabel1.frame.size.height+describeLabel1.frame.origin.y, WIDTH, 15);
+    describeLabel2.text = @"快快创建个人简历吧!";
+    describeLabel2.textColor = hl_gary;
+    describeLabel2.font =[UIFont fontWithName:@"Helvetica" size:11.f];
+    describeLabel2.textAlignment = NSTextAlignmentCenter;
+    [_noResumeView addSubview:describeLabel2];
+    
+    UILabel *describeLabel3= [[UILabel alloc]init];
+    describeLabel3.frame = CGRectMake(0, describeLabel2.frame.size.height+describeLabel2.frame.origin.y, WIDTH, 15);
+    describeLabel3.text = @"您将获得更好的职位!";
+    describeLabel3.textColor = hl_gary;
+    describeLabel3.font =[UIFont fontWithName:@"Helvetica" size:11.f];
+    describeLabel3.textAlignment = NSTextAlignmentCenter;
+    [_noResumeView addSubview:describeLabel3];
+    
+    UIButton *creatResumeButton= [[UIButton alloc]initWithFrame:CGRectMake(60,describeLabel3.frame.origin.y+describeLabel3.frame.size.height+38,WIDTH-2*60,38)];
+    [creatResumeButton.layer setMasksToBounds:YES];
+    [creatResumeButton.layer setCornerRadius:38/2.f]; //设置矩形四个圆角半径
+    [creatResumeButton.layer setBorderWidth:1.0]; //边框宽度
+    creatResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
+    [creatResumeButton setTitle:@"   创 建 简 历" forState:UIControlStateNormal];
+    [creatResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
+    [creatResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
+    [creatResumeButton setTitleColor:btnNormalColor forState:UIControlStateHighlighted];
+    creatResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+    creatResumeButton.backgroundColor = [UIColor clearColor];
+    [creatResumeButton addTarget:self action:@selector(creatResume) forControlEvents:UIControlEventTouchUpInside];
+    [_noResumeView addSubview:creatResumeButton];
+    
+        [self loadData];
     
 }
 
 
 //获取简历基本信息
--(void)getresumeInfo{
+-(void)loadData{
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
-    
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [ResumeScore getResumeScoer:dic WithBlock:^(ResumeScore *resumeScoer, Error *e) {
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        int errorCode = [e.code intValue];
-        if (errorCode ==40004) {
+
+        if (e.info!=nil) {
             
             [APIClient showInfo:e.info title:@"提示"];
-            ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
-            [self.navigationController pushViewController:importResumeVC animated:YES];
             
         }
+        
         if(resumeScoer.user_position !=nil){
             
             //NSLog(@"%@",resumeScoer);
             _positionNameLabel.text = resumeScoer.user_position;
-            //        _competitionNumberLabel.text =[[NSString alloc] initWithFormat:@"竞争力: %@",resumeScoer.user_resume_competitiveness];
-            
-            _workPlaceLabel.text =[@"工作地点: " stringByAppendingString:resumeScoer.live];
-            
-            _updateTimelabel.text =[@"更新时间: " stringByAppendingString:resumeScoer.resume_update_time];
+            _hopeMoneyNameLabel.text = resumeScoer.objective_functions;
+            _hopeMoneyNameLabel.text = resumeScoer.compensation_name;
+            _updateTimelabel.text = [@"更新时间: " stringByAppendingString:resumeScoer.resume_update_time];
             _user_resume_synthesize_grade = resumeScoer.user_resume_synthesize_grade;
             
-            _resume_preview_url = resumeScoer.resume_preview_url;
-            
-            [self getRing];
-
         }
+        
+        if (resumeScoer.resume_status !=nil) {
+         
+            NSString *resumeStatusString = [NSString stringWithFormat:@"%@",resumeScoer.resume_status];
             
+            if ([resumeStatusString isEqualToString:@"0"]) {// 没有简历
+                
+                _noResumeView.hidden = NO;
+                _resumeView.hidden = YES;
+                
+            }
+        }
+        
+        [self getRing];
+        
     }];
 }
 
 // 加载圆环 以及其他按钮样式
 -(void)getRing{
 
-    CGRect goalBarFrame = CGRectMake((WIDTH-418/2)/2, _titleMyResumeView.frame.origin.y+_titleMyResumeView.frame.size.height+35, 418/2+1, 418/2);
+    CGRect goalBarFrame = CGRectMake((WIDTH-350/2)/2, 10, 350/2+1, 350/2);
     KDGoalBar *gb = [[KDGoalBar alloc] initWithFrame:goalBarFrame];
     percentGoalBar = gb;
     [gb setBarColor:RGBACOLOR(0, 203, 251, 1.0f)];
-    gb.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"0score_bg"]];
+    gb.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"0score_bg1"]];
     [percentGoalBar setAllowDragging:YES];
     [percentGoalBar setAllowSwitching:NO];
     int myInt = [_user_resume_synthesize_grade intValue];
-    [percentGoalBar setPercent:myInt
-                      animated:YES];
-    
-    //percentGoalBar.customText =@"www";
+    [percentGoalBar setPercent:myInt animated:YES];
     
     [self.view addSubview:percentGoalBar];
-    
+    //给综合评分添加按钮事件
     UIButton *resumeScoreButton = [[UIButton alloc]init];
     resumeScoreButton.frame = goalBarFrame;
-    //resumeScoreButton.backgroundColor = [UIColor yellowColor];
-   // [resumeScoreButton addTarget:self action:@selector(lookResumeScore) forControlEvents:UIControlEventTouchUpInside];
+    resumeScoreButton.backgroundColor = [UIColor clearColor];
+    [resumeScoreButton addTarget:self action:@selector(lookResumeScore) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:resumeScoreButton];
     
-//    //完善资料
-//    UIButton *perfectInfoButton = [[UIButton alloc]initWithFrame:CGRectMake(30,resumeScoreButton.frame.origin.y+resumeScoreButton.frame.size.height+10, 50, 60)];
-//    perfectInfoButton.backgroundColor = [UIColor clearColor];
-//    [perfectInfoButton setImage:[UIImage imageNamed:@"modifycv"] forState:UIControlStateNormal];
-//    [perfectInfoButton addTarget:self action:@selector(perfectInfo) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:perfectInfoButton];
-//    
-//    //提高竞争力
-//    UIButton *improveCompetitivenessButton = [[UIButton alloc]initWithFrame:CGRectMake(WIDTH-2*50+20, perfectInfoButton.frame.origin.y, 50, 60)];
-//    improveCompetitivenessButton.backgroundColor = [UIColor clearColor];
-//    [improveCompetitivenessButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
-//    [improveCompetitivenessButton addTarget:self action:@selector(improveCompetitiveness) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:improveCompetitivenessButton];
     
+    UIButton *shareResumeButton= [[UIButton alloc]initWithFrame:CGRectMake(60,goalBarFrame.origin.y+goalBarFrame.size.height+25,WIDTH-2*60,38)];
+    [shareResumeButton.layer setMasksToBounds:YES];
+    [shareResumeButton.layer setCornerRadius:38/2.f]; //设置矩形四个圆角半径
+    [shareResumeButton.layer setBorderWidth:1.0]; //边框宽度
+    shareResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
+    [shareResumeButton setTitle:@"   分 享 简 历" forState:UIControlStateNormal];
+    [shareResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
+    [shareResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
+    [shareResumeButton setTitleColor:btnNormalColor forState:UIControlStateHighlighted];
+    shareResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+    shareResumeButton.backgroundColor = [UIColor clearColor];
+    [shareResumeButton addTarget:self action:@selector(shareResume) forControlEvents:UIControlEventTouchUpInside];
+    [_titleMyResumeView addSubview:shareResumeButton];
+    
+}
+
+//完善简历
+-(void)perfectResume{
+    
+    PerfectResumeViewController *perfectResumeVC = [[PerfectResumeViewController alloc]init];
+    [self.navigationController pushViewController:perfectResumeVC animated:YES];
 
 }
 
+//创建简历
+-(void)creatResume{
+    
+    QAResumeViewController *qAResumeVC = [[QAResumeViewController alloc]init];
+    [self.navigationController pushViewController:qAResumeVC animated:YES];
+}
+
+#pragma mark - 改变发送通道 微信 or 朋友圈
+-(void) changeScene:(NSInteger)scene
+{
+    _scene = scene;
+}
+
+//分享简历
+#pragma mark - 通过 微信 发送链接
+-(void)shareResume{
+    
+        [self changeScene:WXSceneSession];
+        WXMediaMessage *message = [WXMediaMessage message];
+        message.title = @"怒赞简历";
+        message.description = nil;
+        [message setThumbImage:[UIImage imageNamed:@"Icon"]];
+        
+        WXWebpageObject *ext = [WXWebpageObject object];
+        ext.webpageUrl = @"";
+        
+        message.mediaObject = ext;
+        message.mediaTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
+        
+        SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+        req.bText = NO;
+        req.message = message;
+        req.scene = _scene;
+        [WXApi sendReq:req];
+    
+}
+
+//提示用户 分享View
+-(void)lookResumeScore{
+
+}
 
 //预览简历
 -(void)previewResume{
-    
+
     PreviewResumeViewController *previewResumeVC = [[PreviewResumeViewController alloc]init];
-    previewResumeVC.resumePreviewUrl = _resume_preview_url;
     [self.navigationController pushViewController:previewResumeVC animated:YES];
 }
 
-// 查看简历综合评分
-//-(void)lookResumeScore{
-//
-//    ResumeScoreViewController *resumeScoreVC = [[ResumeScoreViewController alloc]init];
-//    [self.navigationController pushViewController:resumeScoreVC animated:YES];
-//    
-//}
+
 
 
 - (void)didReceiveMemoryWarning {

@@ -1,21 +1,21 @@
 //
-//  HRWebViewController.m
+//  PerfectViewController.m
 //  angerPraise
 //
-//  Created by 单好坤 on 15/5/22.
+//  Created by 单好坤 on 15/7/1.
 //  Copyright (c) 2015年 Rex. All rights reserved.
 //
 
-#import "HrWebViewController.h"
+#import "PerfectResumeViewController.h"
 #import "SMS_MBProgressHUD.h"
-#import "User.h"
+#import "Resume.h"
 #import "ApIClient.h"
 
-@interface HrWebViewController ()
+@interface PerfectResumeViewController ()
 
 @end
 
-@implementation HrWebViewController
+@implementation PerfectResumeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,25 +28,34 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = backItem;
     
-    
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
-    _hrWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+65)];
-    _hrWebView.delegate = self;
-    _hrWebView.scrollView.bounces = NO;
-
-    NSURL *url=[NSURL URLWithString:_hrUrl];
-    NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-    [_hrWebView loadRequest:request];
-    [_hrWebView setUserInteractionEnabled:YES];
-    [self.view addSubview:_hrWebView];
+    
+    _perfectResumeWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+70)];
+    _perfectResumeWebView.scrollView.bounces = NO;
+    _perfectResumeWebView.delegate = self;
+    [_perfectResumeWebView setUserInteractionEnabled:YES];
+    [self.view addSubview:_perfectResumeWebView];
     
     
-    [self loadDataUrl];
+    [self getQaCreatResumeUrl];
 }
 
-// 获取 收藏Url
--(void)loadDataUrl{
+-(void)doBack{
+    
+    if(_perfectResumeWebView.canGoBack)
+    {
+        [_perfectResumeWebView goBack];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
+
+// 获取 创建简历的 url
+-(void)getQaCreatResumeUrl{
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -54,7 +63,7 @@
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
-    [User getHrUrl:dic WithBlock:^(User *user, Error *e) {
+    [Resume perfectResume:dic WithBlock:^(Resume *resume, Error *e) {
         
         if (e.info !=nil) {
             
@@ -62,42 +71,31 @@
             
         }else{
             
-            _hrUrl = user.hr_url;
+            _perfectResumeUrl = resume.resume_perfect_url;
             
-            NSURL *url=[NSURL URLWithString:_hrUrl];
+            NSURL *url=[NSURL URLWithString:_perfectResumeUrl];
             NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-            [_hrWebView loadRequest:request];
+            [_perfectResumeWebView loadRequest:request];
             
         }
+        
     }];
-}
-
--(void)doBack{
     
-    if (_hrWebView.canGoBack)
-    {
-        [_hrWebView goBack];
-        
-    }else{
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }
 }
 
 
 //网页 刚开始加载
-- (void)webViewDidStartLoad:(UIWebView  *)webView{
+- (void )webViewDidStartLoad:(UIWebView  *)webView{
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
 }
 
 //网页 加载完成
-- (void)webViewDidFinishLoad:(UIWebView  *)webView{
+- (void )webViewDidFinishLoad:(UIWebView  *)webView{
     
-    [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
+    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
 }
-
-    
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

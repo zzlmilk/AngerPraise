@@ -15,6 +15,8 @@
 #import "HomeTitleView.h"
 #import "User.h"
 
+// view
+#import "SynthesizeView.h"
 
 @interface HomeViewController : BaseViewController<UIWebViewDelegate,PagedFlowViewDataSource,PagedFlowViewDelegate,MBProgressHUDDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate>
 {
@@ -24,6 +26,8 @@
 
     enum WXScene _scene;
 }
+
+@property (nonatomic, strong)SynthesizeView *synthesizeView;
 
 @property (nonatomic, strong) User *user;
 
@@ -74,13 +78,9 @@
 - (void) sendLinkContentByWeiXin;
 
 - (void) sendLinkContentByMoment;
-<<<<<<< HEAD
 
 //获取点可评用户信息
 -(void)loadData;
-=======
->>>>>>> fb355a05155cb252cba839456a27c53eef26b911
-
 
 
 @end

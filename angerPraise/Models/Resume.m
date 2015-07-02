@@ -14,9 +14,13 @@
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
     
-    if ([dic objectForKey:@"create_resume_url"]) {
+
+    if ([dic objectForKey:@"resume"]) {
         
-        _create_resume_url = [dic objectForKey:@"create_resume_url"];
+        NSDictionary *resumeDic =[dic objectForKey:@"resume"];
+        _create_resume_url = [resumeDic objectForKey:@"create_resume_url"];
+        _resume_perfect_url =[resumeDic objectForKey:@"resume_perfect_url"];
+        _resume_preview_url =[resumeDic objectForKey:@"resume_preview_url"];
 
         
     }else{
@@ -27,6 +31,7 @@
     
     return self;
 }
+
 
 //问答式创建简历
 +(NSURLSessionDataTask *)qACreatedResume:(NSDictionary *)parameters WithBlock:(void (^)(Resume *resume, Error *e))block{
@@ -58,9 +63,79 @@
         }
         
     }];
-        
-    
 }
+
+
+//预览简历
++(NSURLSessionDataTask *)previewResume:(NSDictionary *)parameters WithBlock:(void (^)(Resume *resume, Error *e))block{
+    
+    return [[APIClient sharedClient]GET:@"user/get_resume_perview_url" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        if ([responseObject objectForKeyedSubscript:@"error"]) {
+            
+            Error *error = [[Error alloc]init];
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"error"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"error_status"];
+            
+            Resume *r;
+            
+            block(r,error);
+            
+        }else{
+            
+            Resume *r = [[Resume alloc]initWithDic:responseObject];
+            
+            block(r,nil);
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        if (NZ_DugSet) {
+            
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+        
+    }];
+}
+
+
+
+//完善简历
++(NSURLSessionDataTask *)perfectResume:(NSDictionary *)parameters WithBlock:(void (^)(Resume *resume, Error *e))block{
+    
+    return [[APIClient sharedClient]GET:@"user/get_resume_perfect_url" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        if ([responseObject objectForKeyedSubscript:@"error"]) {
+            
+            Error *error = [[Error alloc]init];
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"error"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"error_status"];
+            
+            Resume *r;
+            
+            block(r,error);
+            
+        }else{
+            
+            Resume *r = [[Resume alloc]initWithDic:responseObject];
+            
+            block(r,nil);
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        if (NZ_DugSet) {
+            
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+        
+    }];
+}
+
+
+
 
 //从51 导入
 +(NSURLSessionDataTask *)importResume:(NSDictionary *)parameters WithBlock:(void (^)(Resume *, Error *))block{

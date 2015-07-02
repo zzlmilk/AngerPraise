@@ -20,8 +20,6 @@
 
 @property(nonatomic,strong)NSString *res;
 
-//用户注册 并 提交基本信息
-+(NSURLSessionDataTask *)userRegister:(NSDictionary *)parameters WithBlock:(void (^)(Register *reg, Error *e))block;
 
 -(instancetype)initWithDic:(NSDictionary *)dic;
 

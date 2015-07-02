@@ -18,15 +18,11 @@
 #import "WXApi.h"
 #import "WebViewJavascriptBridge.h"
 #import "Share.h"
-#import "UIView+i7Rotate360.h"
 #import "IndexViewController.h"
 #import "WalletWebViewController.h"
 #import "JSONKit.h"
 //model
 #import "Home.h"
-
-// view
-#import "SynthesizeView.h"
 
 
 #define F2I  (*((int *)&f))
@@ -52,12 +48,8 @@
     
     
     homeTitleView = [[HomeTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-<<<<<<< HEAD
-    homeTitleView.backgroundColor = [UIColor redColor];
-=======
     //homeTitleView.backgroundColor = [UIColor redColor];
-    
->>>>>>> fb355a05155cb252cba839456a27c53eef26b911
+
     //hr特权标示
     _hrBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _hrBtn.frame = CGRectMake((WIDTH-44), 0, 44, 44);
@@ -130,22 +122,19 @@
     [rolliew addSubview:_vFlowView];
     
     
-    
-    
     //综合评分
-    SynthesizeView *synthesizeView = [[SynthesizeView alloc]initWithFrame:CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38)];
+    _synthesizeView = [[SynthesizeView alloc]initWithFrame:CGRectMake(_vFlowView.frame.size.width+_vFlowView.frame.origin.x+5, 20, 38, 38)];
     
     
-    synthesizeView.touchBlock = ^(){
+    __block HomeViewController *homeVC = self;
+    _synthesizeView.touchBlock = ^(){
         
-        
-        [self  lookScore];
+        [homeVC  lookScore];
     };
-    
-    [rolliew addSubview:synthesizeView];
+    [rolliew addSubview:_synthesizeView];
     
     UILabel *scoreTipLabel= [[UILabel alloc]init];
-    scoreTipLabel.frame = CGRectMake(synthesizeView.frame.origin.x, synthesizeView.frame.size.height+synthesizeView.frame.origin.y, synthesizeView.frame.size.width+5, 20);
+    scoreTipLabel.frame = CGRectMake(_synthesizeView.frame.origin.x, _synthesizeView.frame.size.height+_synthesizeView.frame.origin.y, _synthesizeView.frame.size.width+5, 20);
     scoreTipLabel.textAlignment = NSTextAlignmentCenter;
     scoreTipLabel.text = @"综合评分";
     scoreTipLabel.textColor = RGBACOLOR(200, 200, 200, 1.0f);
@@ -300,7 +289,10 @@
         
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",[resultsDic objectForKey:@"today_receive_award"],[resultsDic objectForKey:@"today_award_total"]];
 
-            _scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
+            //_scoreLabel.text = [NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
+            
+            _synthesizeView.scoreLabel.text =[NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
+
             
             //改变水位高度
             float alreadyNumber = [[resultsDic objectForKey:@"today_receive_award"] floatValue];
@@ -449,11 +441,7 @@
                 break;
             case 1:
             {
-<<<<<<< HEAD
                 [self loadData];
-=======
-                [self loadHomeData];
->>>>>>> fb355a05155cb252cba839456a27c53eef26b911
                 _isString = 0;
             }
                 break;
@@ -471,7 +459,6 @@
 }
 
 #pragma mark - 调用接口获取首页数据
-// 此接口为登录借口返回值， 将会进行调整
 -(void)loadData{
     
     [self isHR];
@@ -479,13 +466,13 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
-    dic = [userDefaults objectForKey:@"loginDic"];
-    
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:0];
     
-    [User userLogin:dic WithBlock:^(User *user, Error *e) {
+    [User getHomeData:dic WithBlock:^(User *user, Error *e) {
         
         [self.view exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -496,9 +483,6 @@
             [APIClient showMessage:@"服务器忙，请稍后再试～"];
             
         }else{
-            
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:user.user_token forKey:USER_TOKEN];
 
             _intInterviewNumber = [user.hr_interview_number intValue];
             
@@ -508,7 +492,7 @@
             }
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",user.today_receive_award,user.today_award_total];
             
-            _scoreLabel.text = user.synthesize_grade;
+            _synthesizeView.scoreLabel.text =user.synthesize_grade;
             _scoreUrlString = user.synthesize_grade_url;
             
             _collectionArray = user.commentFriendArray;
@@ -571,6 +555,8 @@
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [CommentFriend getHrReviewInfo:dic WithBlock:^(CommentFriend *commentFriend, Error *e) {
@@ -585,7 +571,12 @@
             
             _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
             
-            _scoreLabel.text = commentFriend.synthesize_grade;
+            //_scoreLabel.text = commentFriend.synthesize_grade;
+            
+            _synthesizeView.scoreLabel.text= commentFriend.synthesize_grade;
+            
+            //_synthesizeView.scoreLabel.text =[NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
+            
             _scoreUrlString = commentFriend.synthesize_grade_url;
             _collectionArray = commentFriend.commentFriendArray;
             
@@ -610,26 +601,6 @@
             [self flowView:_vFlowView didScrollToPageAtIndex:0];
         }
     }];
-}
-
-#pragma mark - 综合评分翻转动画
-- (void)actionRotation
-{
-    [self performSelector:@selector(headPhotoAnimation) withObject:nil afterDelay:0.7];
-    
-}
-
-#pragma mark - 综合评分翻转动画
-- (void)headPhotoAnimation
-{
-    [_scoreImageView rotate360WithDuration:2.0 repeatCount:1 timingMode:i7Rotate360TimingModeLinear];
-    _scoreImageView.animationDuration = 2.0;
-    _scoreImageView.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"0blue_circle"],
-                                      [UIImage imageNamed:@"0blue_add"],[UIImage imageNamed:@"0blue_add"],
-                                      [UIImage imageNamed:@"0blue_add"],[UIImage imageNamed:@"0blue_add"],
-                                      [UIImage imageNamed:@"0blue_circle"], nil];
-    _scoreImageView.animationRepeatCount = 1;
-    [_scoreImageView startAnimating];
 }
 
 

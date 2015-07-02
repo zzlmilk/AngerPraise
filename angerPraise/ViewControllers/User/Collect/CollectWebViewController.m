@@ -8,6 +8,8 @@
 
 #import "CollectWebViewController.h"
 #import "SMS_MBProgressHUD.h"
+#import "User.h"
+#import "ApIClient.h"
 
 @interface CollectWebViewController ()
 
@@ -40,7 +42,34 @@
     [_collectWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_collectWebView];
     
+    [self loadDataUrl];
+}
+
+// 获取 收藏Url
+-(void)loadDataUrl{
     
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
+    [User getCollectUrl:dic WithBlock:^(User *user, Error *e) {
+        
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+        }else{
+            
+            _collectUrl = user.user_apply_url;
+            
+            NSURL *url=[NSURL URLWithString:_collectUrl];
+            NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+            [_collectWebView loadRequest:request];
+            
+        }
+    }];
 }
 
 

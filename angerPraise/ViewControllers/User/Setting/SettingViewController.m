@@ -94,6 +94,7 @@ static NSUserDefaults* userData;
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
     [Setting getSettingUrl:dic WithBlock:^(Setting *setting, Error *e) {
        
@@ -126,6 +127,7 @@ static NSUserDefaults* userData;
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
     [User userLoginOut:dic WithBlock:^(User *user, Error *e) {
        

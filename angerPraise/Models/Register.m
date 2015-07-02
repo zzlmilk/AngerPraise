@@ -32,40 +32,40 @@
 }
 
 #pragma mark -- 用户注册
-+(NSURLSessionDataTask *)userRegister:(NSDictionary *)parameters WithBlock:(void (^)(Register *, Error *))block{
-
-    return [[APIClient sharedClient]GET:@"user/register" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-      //  NSLog(@"%@",responseObject);
-        
-        if ([responseObject objectForKey:@"error"]) {
-            Error *error = [[Error alloc]init];
-            
-            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
-            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
-            
-            Register *r;
-            block(r,error);
-            
-        }else{
-            
-            Register *r = [[Register alloc]initWithDic:responseObject];
-            
-            block(r,nil);
-            
-        }
-
-        
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        if (NZ_DugSet) {
-            
-            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
-        }
-    }];
-
-}
+//+(NSURLSessionDataTask *)userRegister:(NSDictionary *)parameters WithBlock:(void (^)(Register *, Error *))block{
+//
+//    return [[APIClient sharedClient]GET:@"user/register" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//        
+//      //  NSLog(@"%@",responseObject);
+//        
+//        if ([responseObject objectForKey:@"error"]) {
+//            Error *error = [[Error alloc]init];
+//            
+//            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+//            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+//            
+//            Register *r;
+//            block(r,error);
+//            
+//        }else{
+//            
+//            Register *r = [[Register alloc]initWithDic:responseObject];
+//            
+//            block(r,nil);
+//            
+//        }
+//
+//        
+//        
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        
+//        if (NZ_DugSet) {
+//            
+//            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+//        }
+//    }];
+//
+//}
 
 #pragma mark -- 忘记密码  获取验证码
 +(NSURLSessionDataTask *)getCaptcha:(NSDictionary *)parameters WithBlock:(void (^)(Register *reg, Error *e))block{

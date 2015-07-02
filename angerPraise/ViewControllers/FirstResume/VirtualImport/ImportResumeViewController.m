@@ -111,7 +111,6 @@
 
 -(void)getQaCreatResumeUrl{
 
-
     NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];

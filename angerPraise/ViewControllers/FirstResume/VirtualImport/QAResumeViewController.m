@@ -9,7 +9,8 @@
 #import "QAResumeViewController.h"
 #import "SMS_MBProgressHUD.h"
 #import "WebViewJavascriptBridge.h"
-
+#import "Resume.h"
+#import "ApIClient.h"
 
 @interface QAResumeViewController ()
 
@@ -37,9 +38,7 @@
     _qaResumeWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+70)];
     _qaResumeWebView.scrollView.bounces = NO;
     _qaResumeWebView.delegate = self;
-    NSURL *url=[NSURL URLWithString:_qaResumeUrl];
-    NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
-    [_qaResumeWebView loadRequest:request];
+
     [_qaResumeWebView setUserInteractionEnabled:YES];
     [self.view addSubview:_qaResumeWebView];
     
@@ -48,9 +47,8 @@
         NSLog(@"ObjC received message from JS: %@", data);
         
     }];
-
     
-    
+    [self getQaCreatResumeUrl];
 }
 
 -(void)doBack{
@@ -65,6 +63,36 @@
     }
 
 }
+
+// 获取 创建简历的 url
+-(void)getQaCreatResumeUrl{
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
+    [Resume qACreatedResume:dic WithBlock:^(Resume *resume, Error *e) {
+        
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+        }else{
+            
+            _qaResumeUrl = resume.create_resume_url;
+            
+            NSURL *url=[NSURL URLWithString:_qaResumeUrl];
+            NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+            [_qaResumeWebView loadRequest:request];
+            
+        }
+        
+    }];
+    
+}
+
 
 //网页 刚开始加载
 - (void )webViewDidStartLoad:(UIWebView  *)webView{

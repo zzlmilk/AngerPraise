@@ -40,7 +40,6 @@
 -(void)flipTouched:(id)sender{
     //重写
     
-    
     if (self.touchBlock) {
         
         self.touchBlock();

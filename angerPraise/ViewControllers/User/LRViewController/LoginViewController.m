@@ -172,8 +172,6 @@
 
 -(void)loadUserLoginData:(NSMutableDictionary *)dicData{
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:dicData forKey:@"loginDic"];
     //home 中需要调用登录获取相关信息
     
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -187,13 +185,12 @@
         else {
     
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            // 首页时候 会再次调用登录接口获取数据 避免两次token值不一致 所以 在 首页 存 token
-            //[userDefaults setObject:user.user_token forKey:USER_TOKEN];
+            [userDefaults setObject:user.user_token forKey:USER_TOKEN];
             [userDefaults setObject:user.user_id forKey:USER_ID];
             [userDefaults setObject:user.hr_privilege forKey:@"user_type"];
         
             //注册成功发送设备
-            //[self sendDeviceInfo];
+            [self sendDeviceInfo];
             
             MainViewController *mainVC = [[MainViewController alloc]init];
             [self.navigationController pushViewController:mainVC animated:YES];
@@ -230,7 +227,10 @@
     
         NSString* deviceName = [[UIDevice currentDevice] systemName];
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_TOKEN]
+                forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
         [dic setObject:@"1" forKey:@"dict_device_id"];
         [dic setObject:deviceName forKey:@"device_name"];
         

@@ -71,7 +71,7 @@
     
     if (item.tag == 2) {
         ResumeViewController *resumeVC  = [[ResumeViewController alloc] init];
-        [resumeVC getresumeInfo];
+        [resumeVC loadData];
     }
     if (item.tag == 3) {
         PositionViewController *positionVC  = [[PositionViewController alloc] init];
