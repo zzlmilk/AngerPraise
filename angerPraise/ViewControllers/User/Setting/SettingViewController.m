@@ -41,8 +41,7 @@ static NSUserDefaults* userData;
     backBtn.frame = CGRectMake(0, 0, 44, 44);
     [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.leftBarButtonItem = backItem;
+    [self.view addSubview:backBtn];
     
     _settingListArray = [[NSArray alloc]initWithObjects:
                        @"",@"     隐私",@"     版本",@"     关于我们",@"     我要评价",@"     联系客服",nil];

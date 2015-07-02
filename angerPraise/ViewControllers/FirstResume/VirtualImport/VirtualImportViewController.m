@@ -34,8 +34,7 @@
     backBtn.frame = CGRectMake(0, 0, 44, 44);
     [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.leftBarButtonItem = backItem;
+    [self.view addSubview:backBtn];
     
     
     _virtuaImportlWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0,-44, WIDTH, HEIGHT-70)];

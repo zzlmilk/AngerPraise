@@ -32,8 +32,7 @@
     backBtn.frame = CGRectMake(0, 0, 44, 44);
     [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.leftBarButtonItem = backItem;
+    [self.view addSubview:backBtn];
     
     UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:CGRectMake((WIDTH-162/2)/2, 50, 162/2, 207/2)];
     [logoImageView setImage:[UIImage imageNamed:@"0index_logo"]];

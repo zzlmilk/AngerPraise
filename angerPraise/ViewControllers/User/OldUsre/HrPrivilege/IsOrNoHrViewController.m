@@ -23,8 +23,7 @@
     backBtn.frame = CGRectMake(0, 0, 44, 44);
     [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.leftBarButtonItem = backItem;
+    [self.view addSubview:backBtn];
     
     UIButton *amHrButton = [[UIButton alloc]init];
     amHrButton.frame = CGRectMake(100,350, WIDTH-2*100, 35);

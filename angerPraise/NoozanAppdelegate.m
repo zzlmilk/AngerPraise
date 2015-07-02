@@ -13,6 +13,7 @@
 #import "IndexViewController.h"
 
 
+
 @implementation NoozanAppdelegate
 
 
@@ -32,8 +33,10 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    
     NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
     NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
+    
     
     if (user_id && user_token) {
         MainViewController *manVC = [[MainViewController alloc]init];

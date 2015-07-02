@@ -22,12 +22,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [_backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [_backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
-    self.navigationItem.leftBarButtonItem = backItem;
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(0, 0, 44, 44);
+    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
     
     _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _shareBtn.frame = CGRectMake(WIDTH-44, 0, 44, 44);
@@ -37,7 +36,7 @@
     self.navigationItem.rightBarButtonItem = shareItem;
     
     self.edgesForExtendedLayout = UIRectEdgeTop;
-    _previewResumeWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+65)];
+    _previewResumeWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT+65)];
     _previewResumeWebView.delegate = self;
     _previewResumeWebView.scrollView.bounces = NO;
     
