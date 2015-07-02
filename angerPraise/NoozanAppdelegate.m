@@ -32,7 +32,7 @@
     [WXApi registerApp:@"wx97dbb5b24f24c791"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    self.window.backgroundColor = [UIColor whiteColor];
    // [self clearUserInfo];
     
     

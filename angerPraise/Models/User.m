@@ -12,7 +12,7 @@
 @implementation User
 
 -(instancetype)initWithDic:(NSDictionary *)dic{
-    self =[super init];
+    self =[super initWithDic:dic];
     
     if ([dic objectForKey:@"user"]) {
         
@@ -114,19 +114,17 @@
 +(NSURLSessionDataTask *)getHomeData:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
     
     
-    
     return [[APIClient sharedClient]GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+       
         
         // NSLog(@"%@",responseObject);
         if ([responseObject objectForKey:@"error"]) {
-            Error *error = [[Error alloc]init];
             
-            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
-            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+
             
-            User *l;
             
-            block(l,error);
+            //block(l,error);
             
         }else{
             

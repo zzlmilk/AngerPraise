@@ -27,7 +27,6 @@
 #define BUFFERY 10 //distance from top to the card (higher makes shorter card)
 @implementation UserViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -48,6 +47,8 @@
     _userPhotoImageView.layer.cornerRadius = 50;
     [_userPhotoImageView addGestureRecognizer:singleTap];
     [_cardView addSubview:_userPhotoImageView];
+    
+    
     
     _userNameButton = [[UIButton alloc]init];
     _userNameButton.frame =CGRectMake(100, _userPhotoImageView.frame.size.height+_userPhotoImageView.frame.origin.y+5, WIDTH-2*100, 35);
@@ -116,33 +117,7 @@
     positionButton.backgroundColor = [UIColor clearColor];
     [positionButton addTarget:self action:@selector(lookPosition) forControlEvents:UIControlEventTouchUpInside];
     [_cardView addSubview:positionButton];
-
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _user_type = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"user_type"]];
     
-    
-    if ([_user_type isEqualToString:@"0"]) {  // 不是hr
-
-        _modelListArray = [[NSArray alloc]initWithObjects:
-                           @"钱包",@"投递记录和收藏",@"我的好友",@"设置",nil];
-        
-    }else{
-        
-        _modelListArray = [[NSArray alloc]initWithObjects:
-                           @"钱包",@"投递记录和收藏",@"我的好友",@"激活HR特权？",@"设置",nil];
-    }
-
-    _userTableView = [[UITableView alloc]init];
-    _userTableView.frame = CGRectMake(0,_cardView.frame.size.height+_cardView.frame.origin.y, WIDTH,HEIGHT);
-    _userTableView.delegate = self;
-    _userTableView.dataSource = self;
-    _userTableView.scrollEnabled = NO;
-    _userTableView.backgroundColor = RGBACOLOR(48, 47, 53, 1.0f);
-    _userTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //隐藏多余分割线 函数调用
-    [self setExtraCellLineHidden:_userTableView];
-    [self.view addSubview:_userTableView];
-
     
     _editView = [[UIView alloc]init];
     _editView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
@@ -157,7 +132,7 @@
     [_backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
     [_backBtn addTarget:self action:@selector(hideView)forControlEvents:UIControlEventTouchUpInside];
     [_editView addSubview:_backBtn];
-
+    
     
     UIButton *editNameButton = [[UIButton alloc]init];
     editNameButton.frame =CGRectMake(0, _backBtn.frame.size.height+_backBtn.frame.origin.y+65, WIDTH, 60);
@@ -199,7 +174,7 @@
     _editNameView.hidden = YES;
     [_editView addSubview:_editNameView];
     
-   UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(10, 25, 44, 44);
     backBtn.backgroundColor = [UIColor clearColor];
     [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
@@ -217,7 +192,7 @@
     _editNameTextField = [[UITextField alloc]initWithFrame:CGRectMake(editNameTipLabel.frame.origin.x, editNameTipLabel.frame.size.height+editNameTipLabel.frame.origin.y+10,editNameTipLabel.frame.size.width, 40)];
     [_editNameTextField setBorderStyle:UITextBorderStyleLine];
     //    _editNameTextField.placeholder = @"";
-//    _editNameTextField.text = _userNameLabel.text;
+    //    _editNameTextField.text = _userNameLabel.text;
     _editNameTextField.delegate = self;
     _editNameTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
     _editNameTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
@@ -232,8 +207,42 @@
     [_editNameView addSubview:_editNameTextField];
     
     
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _user_type = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"user_type"]];
+    if ([_user_type isEqualToString:@"0"]) {  // 不是hr
+
+        _modelListArray = [[NSArray alloc]initWithObjects:
+                           @"钱包",@"投递记录和收藏",@"我的好友",@"设置",nil];
+    }else{
+        
+        _modelListArray = [[NSArray alloc]initWithObjects:
+                           @"钱包",@"投递记录和收藏",@"我的好友",@"激活HR特权？",@"设置",nil];
+    }
+
+    _userTableView = [[UITableView alloc]init];
+    _userTableView.frame = CGRectMake(0,_cardView.frame.size.height+_cardView.frame.origin.y, WIDTH,HEIGHT);
+    _userTableView.delegate = self;
+    _userTableView.dataSource = self;
+    _userTableView.scrollEnabled = NO;
+    _userTableView.backgroundColor = RGBACOLOR(48, 47, 53, 1.0f);
+    _userTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //隐藏多余分割线 函数调用
+    [self setExtraCellLineHidden:_userTableView];
+    [self.view addSubview:_userTableView];
+
+    
+    
     [self getUserInfo];
     [self getWalletNumber];
+}
+
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
 }
 
 #pragma mark -- 键盘 return
@@ -385,43 +394,6 @@
             }
             
         }];
-}
-
-#pragma mark 使用计时器 更新剩余任务数
--(void)timer{
-    
-    _timeout=12*3600; //倒计时时间
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),3.0*NSEC_PER_SEC, 0); //每秒执行
-    dispatch_source_set_event_handler(_timer, ^{
-        if(_timeout<=0){ //倒计时结束，关闭
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //设置界面的按钮显示 根据自己需求设置
-                
-            });
-        }else{
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //设置界面的按钮显示 根据自己需求设置
-                //NSLog(@"____%@",strTime);
-                
-//                [self getUserMissionNumber];
-//                [self getWalletNumber];
-                
-            });
-            _timeout--;
-            
-        }
-    });
-    dispatch_resume(_timer);
-}
-
-#pragma mark 停止计时器
--(void)closeTimer{
-    
-    _timeout = 0;
 }
 
 
@@ -731,6 +703,7 @@
             cell.imageView.image = [UIImage imageNamed:@"0usermap1"];
             cell.imageView.highlightedImage = [UIImage imageNamed:@"0usermap2"];
             
+            
         }else if(indexPath.row == 2){
             
             cell.imageView.image = [UIImage imageNamed:@"0userfriend1"];
@@ -740,8 +713,11 @@
             
             cell.imageView.image = [UIImage imageNamed:@"0usersetting1"];
             cell.imageView.highlightedImage = [UIImage imageNamed:@"0usersetting2"];
+
+            
             
         }
+        
 
         
     }else{ // 是HR
@@ -798,6 +774,10 @@
 //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.backgroundColor= RGBACOLOR(48, 47, 53, 1.0f);
     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);//上左下右 就可以通过设置这四个参数来设置分割线了
+    
+    
+    
+    
     return cell;
 }
 
@@ -805,9 +785,6 @@
 #pragma mark -- UITableView delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [_userTableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
     
     if ([_user_type isEqualToString:@"0"]) { //  不是hr
         
@@ -889,6 +866,8 @@
     
     
     }
+    
+   [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 

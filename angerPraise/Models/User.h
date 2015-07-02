@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Error.h"
 #import "Review.h"
+#import "NZBase.h"
 
-@interface User : NSObject
-
+@interface User : NZBase
 
 @property Review *review;
 

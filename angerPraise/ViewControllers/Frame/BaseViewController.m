@@ -97,6 +97,7 @@
         
     }
     
+    
    
 }
 
@@ -127,12 +128,10 @@
         
         contentView = [self.tabBarController.view.subviews objectAtIndex:0];
     
-    [UIView animateWithDuration:2 animations:^{
         contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
         
 
-    }];
-    self.tabBarController.tabBar.hidden = NO;
+        self.tabBarController.tabBar.hidden = NO;
 }
 
 

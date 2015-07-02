@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface HrWebViewController : UIViewController<UIWebViewDelegate>
+@interface HrWebViewController : BaseViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *hrWebView;
 
