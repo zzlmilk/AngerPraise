@@ -51,15 +51,12 @@
 @property(nonatomic,strong)NSString *position_number;
 
 
-
 @property(nonatomic,strong)NSMutableArray *commentFriendArray;
 
-//即将舍弃
 @property(nonatomic,strong)NSString *hr_url;   //hr特权的URL地址
 @property(nonatomic,strong)NSString *pay_url;  //钱包地址
-@property(nonatomic,strong)NSString *user_apply_url;
-@property(nonatomic,strong)NSString *user_friend_url;
-@property(nonatomic,strong)NSString *user_resume_synthesize_grade;
+@property(nonatomic,strong)NSString *user_apply_url;//收藏
+@property(nonatomic,strong)NSString *user_friend_url;//我的好友
 
 
 
@@ -67,6 +64,13 @@
 
 
 //用户注册 并 提交基本信息
++(NSURLSessionDataTask *)userRegister:(NSDictionary *)parameters WithBlock:(void (^)(User *reg, Error *e))block;
+
+
+//获取首页数据
++(NSURLSessionDataTask *)getHomeData:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
+
+//用户登录
 +(NSURLSessionDataTask *)userLogin:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
 
 //退出登录
@@ -92,6 +96,18 @@
 
 //发送用户设备信息
 +(NSURLSessionDataTask *)sendDeviceInfo:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
+
+//获取钱包 url
++(NSURLSessionDataTask *)getWalletUrl:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
+
+//获取投递纪录和收藏 url
++(NSURLSessionDataTask *)getCollectUrl:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
+
+//我的好与 url
++(NSURLSessionDataTask *)getFriendUrl:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
+
+//hr特权 url
++(NSURLSessionDataTask *)getHrUrl:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
 
 
 

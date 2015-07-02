@@ -78,7 +78,6 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ID];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_TOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ACCOUNT];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"loginDic"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_type"];
 
     [[NSUserDefaults standardUserDefaults] synchronize];

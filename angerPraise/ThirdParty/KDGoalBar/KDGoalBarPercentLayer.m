@@ -19,9 +19,9 @@
     CGPoint center = CGPointMake(self.frame.size.width / (2), self.frame.size.height / (2));
 
     CGFloat delta = toRadians(360 * percent);
-    
-    CGFloat innerRadius = 62.5+16+16+2;
-    CGFloat outerRadius = 87.5+16;
+    //设置半径
+    CGFloat innerRadius = 62.5+16+2;
+    CGFloat outerRadius = 87.5;
     
     if (color) {
         CGContextSetFillColorWithColor(ctx, color.CGColor);

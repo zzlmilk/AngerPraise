@@ -40,6 +40,12 @@
     _today_award_total =[dic objectForKey: @"today_award_total"];
     _today_receive_award =[dic objectForKey: @"today_receive_award"];
 
+    
+    _hr_url =[dic objectForKey:@"hr_url"];
+    _pay_url =[dic objectForKey:@"pay_url"];
+    _user_apply_url =[dic objectForKey:@"user_apply_url"];
+    _user_friend_url =[dic objectForKey:@"user_friend_url"];
+    
     _res =[dic objectForKey: @"res"];
 
     
@@ -60,12 +66,8 @@
         }
         
     }
-
-            //        _hr_url =[dic objectForKey:@"hr_url"];
-            //        _pay_url =[dic objectForKey:@"pay_url"];
+    
             //        _position_number =[dic objectForKey:@"position_number"];
-            //        _user_apply_url =[dic objectForKey:@"user_apply_url"];
-            //        _user_friend_url =[dic objectForKey:@"user_friend_url"];
             //        _user_intergral =[dic objectForKey:@"user_intergral"];
             //        _user_resume_synthesize_grade = [dic objectForKeyedSubscript:@"user_resume_synthesize_grade"];
             //        _mission_number =[dic objectForKeyedSubscript:@"mission_number"];
@@ -74,9 +76,44 @@
     
 }
 
-+(NSURLSessionDataTask *)userLogin:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
+// 用户注册
++(NSURLSessionDataTask *)userRegister:(NSDictionary *)parameters WithBlock:(void (^)(User *reg, Error *e))block{
+
+    return [[APIClient sharedClient]GET:@"user/register" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        // NSLog(@"%@",responseObject);
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            User *l;
+            
+            block(l,error);
+            
+        }else{
+            
+            User *l = [[User alloc]initWithDic:responseObject];
+            
+            block(l,nil);
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        if (NZ_DugSet) {
+            
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+    }];
     
-    return [[APIClient sharedClient]GET:@"user/login" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+}
+
+//获取首页数据
++(NSURLSessionDataTask *)getHomeData:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
+    
+    return [[APIClient sharedClient]GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
         // NSLog(@"%@",responseObject);
         if ([responseObject objectForKey:@"error"]) {
@@ -105,8 +142,39 @@
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         }
     }];
+}
+
+//用户登录
++(NSURLSessionDataTask *)userLogin:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
     
-    
+    return [[APIClient sharedClient]GET:@"user/login" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        // NSLog(@"%@",responseObject);
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            User *l;
+            
+            block(l,error);
+            
+        }else{
+            
+            User *l = [[User alloc]initWithDic:responseObject];
+            
+            block(l,nil);
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        if (NZ_DugSet) {
+            
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+    }];
 }
 
 
@@ -371,5 +439,112 @@
 
 }
 
+#pragma mark -- 获取钱包 url
++(NSURLSessionDataTask *)getWalletUrl:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
+    
+    return [[APIClient sharedClient]GET:@"user/pay_url" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        //NSLog(@"%@",responseObject);
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            User *u;
+            block(u,error);
+            
+        }else{
+        
+            User *u = [[User alloc]initWithDic:responseObject];
+            block(u,nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (NZ_DugSet) {
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+    }];
+}
+
+#pragma mark -- 获取投递记录和收藏 url
++(NSURLSessionDataTask *)getCollectUrl:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
+    
+    return [[APIClient sharedClient]GET:@"user/user_apply_url" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        //NSLog(@"%@",responseObject);
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            User *u;
+            block(u,error);
+            
+        }else{
+            
+            User *u = [[User alloc]initWithDic:responseObject];
+            block(u,nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (NZ_DugSet) {
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+    }];
+}
+
+#pragma mark -- 我的好友 url
++(NSURLSessionDataTask *)getFriendUrl:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
+    
+    return [[APIClient sharedClient]GET:@"user/user_friend_url" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        //NSLog(@"%@",responseObject);
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            User *u;
+            block(u,error);
+            
+        }else{
+            
+            User *u = [[User alloc]initWithDic:responseObject];
+            block(u,nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (NZ_DugSet) {
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+    }];
+}
+
+#pragma mark -- hr特权 url
++(NSURLSessionDataTask *)getHrUrl:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
+    
+    return [[APIClient sharedClient]GET:@"user/user_hr_url" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        //NSLog(@"%@",responseObject);
+        if ([responseObject objectForKey:@"error"]) {
+            Error *error = [[Error alloc]init];
+            
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            User *u;
+            block(u,error);
+            
+        }else{
+            
+            User *u = [[User alloc]initWithDic:responseObject];
+            block(u,nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (NZ_DugSet) {
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+    }];
+}
 
 @end

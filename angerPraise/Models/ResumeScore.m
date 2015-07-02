@@ -13,22 +13,26 @@
 
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
-    _resume_perfect_url = [dic objectForKey: @"resume_perfect_url"];
-    _resume_preview_url = [dic objectForKey: @"resume_preview_url"];
-    _user_dynamic_number = [dic objectForKey: @"user_dynamic_number"];
-    _resume_update_time = [dic objectForKey: @"resume_update_time"];
-    _live = [dic objectForKey: @"live"];
-    _user_photo_url = [dic objectForKey: @"user_photo_url"];
-    _user_position = [dic objectForKey: @"user_position"];
-    _user_resume_competitiveness = [dic objectForKey: @"user_resume_competitiveness"];
-    _user_resume_perfect = [dic objectForKey: @"user_resume_perfect"];
-    _user_resume_synthesize_grade = [dic objectForKey: @"user_resume_synthesize_grade"];
+    
+    if ([dic objectForKey:@"resume"]) {
+        
+        NSDictionary *resumeDic =[dic objectForKey:@"resume"];
+        
+        _compensation_name = [resumeDic objectForKey: @"compensation_name"];
+        _objective_functions = [resumeDic objectForKey: @"objective_functions"];
+        _user_dynamic_number = [resumeDic objectForKey: @"user_dynamic_number"];
+        _resume_update_time = [resumeDic objectForKey: @"resume_update_time"];
+        _user_position = [resumeDic objectForKey: @"user_position"];
+        _user_resume_synthesize_grade = [resumeDic objectForKey: @"user_resume_synthesize_grade"];
+        _resume_status = [resumeDic objectForKey: @"resume_status"];
+    }
+
     return self;
     
 }
 
 
-//从简历中获取用户昵称和简历完善度 竞争力以及综合评分评分
+//获取简历信息
 +(NSURLSessionDataTask *)getResumeScoer:(NSDictionary *)parameters WithBlock:(void (^)(ResumeScore *resumeScore, Error *))block{
 
     return [[APIClient sharedClient]GET:@"user/resume" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {

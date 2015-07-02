@@ -286,25 +286,25 @@
     //        [dic setObject:uuid forKey:@"device_id"];
     //        [dic setObject:@"e91eabc2c2f181f4a0c3715a4ec049df" forKey:@"client_id"];
     
-    [Register userRegister:dic WithBlock:^(Register *reg, Error *e) {
-        
-        if (e.info !=nil) {
-            
-            [APIClient showInfo:e.info title:@"提示"];
-            
-        }else if(![reg.user_id isEqual: @""]){
-            
-            NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-            [userId setObject:reg.user_id forKey:@"userId"];
-            
-            [APIClient showSuccess:@"注册成功" title:@"成功"];
-            
-            ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
-            [self.navigationController pushViewController:importResumeVC animated:YES];
-            
-        }
-        
-    }];
+//    [Register userRegister:dic WithBlock:^(Register *reg, Error *e) {
+//        
+//        if (e.info !=nil) {
+//            
+//            [APIClient showInfo:e.info title:@"提示"];
+//            
+//        }else if(![reg.user_id isEqual: @""]){
+//            
+//            NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
+//            [userId setObject:reg.user_id forKey:@"userId"];
+//            
+//            [APIClient showSuccess:@"注册成功" title:@"成功"];
+//            
+//            ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
+//            [self.navigationController pushViewController:importResumeVC animated:YES];
+//            
+//        }
+//        
+//    }];
     
 
 }

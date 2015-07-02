@@ -268,7 +268,8 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
-    
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     [Position getPositionList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
