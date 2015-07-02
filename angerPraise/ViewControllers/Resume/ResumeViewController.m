@@ -180,9 +180,14 @@
     [creatResumeButton addTarget:self action:@selector(creatResume) forControlEvents:UIControlEventTouchUpInside];
     [_noResumeView addSubview:creatResumeButton];
     
+    [self getRing];
+   
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self loadData];
-    
 }
 
 
@@ -192,10 +197,9 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
-
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     
     [ResumeScore getResumeScoer:dic WithBlock:^(ResumeScore *resumeScoer, Error *e) {
         
@@ -209,12 +213,12 @@
         
         if(resumeScoer.user_position !=nil){
             
-            //NSLog(@"%@",resumeScoer);
+            
             _positionNameLabel.text = resumeScoer.user_position;
             
-           // _hopeMoneyNameLabel.text = resumeScoer.objective_functions;
-            
             _hopeMoneyNameLabel.text = resumeScoer.compensation_name;
+            
+            _hopePositionNameLabel.text = resumeScoer.objective_functions;
             
             _updateTimelabel.text = [@"更新时间: " stringByAppendingString:resumeScoer.resume_update_time];
             _user_resume_synthesize_grade = resumeScoer.user_resume_synthesize_grade;
@@ -231,9 +235,16 @@
                 _resumeView.hidden = YES;
                 
             }
+            else{
+                _noResumeView.hidden = YES;
+                _resumeView.hidden= NO;
+            }
         }
         
-        [self getRing];
+        int myInt = [_user_resume_synthesize_grade intValue];
+        [percentGoalBar setPercent:myInt animated:YES];
+        
+       
         
     }];
 }

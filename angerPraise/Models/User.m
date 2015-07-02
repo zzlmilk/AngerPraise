@@ -117,20 +117,10 @@
     return [[APIClient sharedClient]GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
        
+        User *l = [[User alloc]initWithDic:responseObject];
         
-        // NSLog(@"%@",responseObject);
-        if ([responseObject objectForKey:@"error"]) {
-            
-            
-            //block(l,error);
-            
-        }else{
-            
-            User *l = [[User alloc]initWithDic:responseObject];
-            
-            block(l,nil);
-            
-        }
+        block(l,nil);
+
         
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

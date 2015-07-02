@@ -23,6 +23,7 @@
         _user_dynamic_number = [resumeDic objectForKey: @"user_dynamic_number"];
         _resume_update_time = [resumeDic objectForKey: @"resume_update_time"];
         _user_position = [resumeDic objectForKey: @"user_position"];
+
         _user_resume_synthesize_grade = [resumeDic objectForKey: @"user_resume_synthesize_grade"];
         _resume_status = [resumeDic objectForKey: @"resume_status"];
     }
@@ -37,7 +38,7 @@
 
     return [[APIClient sharedClient]GET:@"user/resume" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        //NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
         if ([responseObject objectForKey:@"error"]) {
             Error *error = [[Error alloc]init];
             
@@ -58,7 +59,7 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         if (NZ_DugSet) {
-            
+            NSLog(@"%@",error);
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
         }
         

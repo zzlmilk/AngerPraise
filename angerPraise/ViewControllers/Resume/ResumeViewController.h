@@ -13,7 +13,9 @@
 #import "MainViewController.h"
 #import "WXApiObject.h"
 
-@interface ResumeViewController :UIViewController<TabBarItemSelectDelegate>{
+#import "BaseViewController.h"
+
+@interface ResumeViewController :BaseViewController<TabBarItemSelectDelegate>{
     KDGoalBar *percentGoalBar;
     
     enum WXScene _scene;

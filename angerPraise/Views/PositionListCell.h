@@ -39,7 +39,7 @@
 
 //@property(nonatomic,strong)UIButton *applyPositionButton;
 
-@property (nonatomic,strong)Position *positionList;
+@property (nonatomic,strong)Position *p;
 
 
 @end

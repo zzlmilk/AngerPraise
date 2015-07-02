@@ -643,7 +643,8 @@
     
     if (_addPage == _collectionArray.count-1) {
         
-        [APIClient showMessage:@"已经是最后一位啦!"];
+     //   [APIClient showMessage:@"已经是最后一位啦!"];
+            
         
     }else{
         
@@ -657,13 +658,12 @@
 #pragma mark - 点击 上一个(暂不点评)
 -(void)webViewPreviousOne{
     
-    // NSLog(@"%ld",(long)_vFlowView.currentPageIndex+1);
-    //[_vFlowView scrollToPage:_vFlowView.currentPageIndex+1];
-    //    self flowView:(PagedFlowView *)flowView didScrollToPageAtIndex:(NSInteger)index
+
     
     if (_addPage ==0) {
         
-        [APIClient showMessage:@"已经是第一位啦!"];
+        //[APIClient showMessage:@"已经是第一位啦!"];
+        
 
     }else{
         

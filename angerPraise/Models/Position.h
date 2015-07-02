@@ -23,12 +23,12 @@
 @property(nonatomic,strong)NSString *type; // 1精确推荐 2关联推荐 3特长推荐
 @property(nonatomic,strong)NSString *creatTime;//发布时间
 @property(nonatomic,strong)NSString *webUrl; //职位详情url
-@property(nonatomic,strong)NSString *subsidiesInterview;//是否有面试补贴 1有 0 没有
-@property(nonatomic,strong)NSString *hot_job_status; // 是否有热门职位 0 否，1 是
-@property(nonatomic,strong)NSString *now_hiring_status; // 是否急招 0 否，1 是
-@property(nonatomic,strong)NSString *high_salary_status; // 是否高薪 0 否，1 是
-@property(nonatomic,strong)NSString *company_map_status; //是否有地图 0 否，1 是
-@property(nonatomic,strong)NSString *company_video_status; //是否有视频 0 否，1 是
+@property(nonatomic)BOOL subsidiesInterview;//是否有面试补贴 1有 0 没有
+@property(nonatomic)BOOL hot_job_status; // 是否有热门职位 0 否，1 是
+@property(nonatomic)BOOL now_hiring_status; // 是否急招 0 否，1 是
+@property(nonatomic)BOOL high_salary_status; // 是否高薪 0 否，1 是
+@property(nonatomic)BOOL company_map_status; //是否有地图 0 否，1 是
+@property(nonatomic)BOOL company_video_status; //是否有视频 0 否，1 是
 @property(nonatomic,strong)NSMutableArray *hot_words; //热词
 
 

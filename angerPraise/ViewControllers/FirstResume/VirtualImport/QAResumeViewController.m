@@ -8,9 +8,12 @@
 
 #import "QAResumeViewController.h"
 #import "SMS_MBProgressHUD.h"
-#import "WebViewJavascriptBridge.h"
+
 #import "Resume.h"
 #import "ApIClient.h"
+#import "JSONKit.h"
+#import "WebViewJavascriptBridge.h"
+
 
 @interface QAResumeViewController ()
 
@@ -23,13 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
     
-    self.edgesForExtendedLayout = UIRectEdgeTop;
+    
     
     if (_bridge) { return; }
     [WebViewJavascriptBridge enableLogging];
@@ -43,8 +41,18 @@
     
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_qaResumeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
         
-        NSLog(@"ObjC received message from JS: %@", data);
+        if (NZ_DugSet) {
+                NSLog(@"ObjC received message from JS: %@", data);
+        }
+      
         
+        NSMutableDictionary *resultsDic = [data objectFromJSONString];
+        
+         if ([[resultsDic objectForKey:@"string"] isEqualToString:@"create_resume_success"]) {
+             
+             [self.navigationController popToRootViewControllerAnimated:YES];
+             
+         }
     }];
     
     [self getQaCreatResumeUrl];

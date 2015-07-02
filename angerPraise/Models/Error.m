@@ -98,6 +98,7 @@
             
             [alert showWithCompletion:^{
                  [[NoozanAppdelegate getAppDelegate]getIndexVC];
+                 [[NoozanAppdelegate getAppDelegate]clearUserInfo];
 
             }];
 

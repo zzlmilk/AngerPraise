@@ -656,13 +656,14 @@
     [EditPhoto uploadUserProfileImageParameters:dic WithBlock:^(EditPhoto *e) {
         
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
-        // NSLog(@"%@",e);
+         NSLog(@"%@",e);
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if ([e.res isEqualToString:@"1"]) {
             
             [APIClient showSuccess:@"头像上传成功" title:@"成功"];
+            
         }
         
     }];

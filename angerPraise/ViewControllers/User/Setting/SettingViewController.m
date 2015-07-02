@@ -243,6 +243,8 @@ static NSUserDefaults* userData;
 //调用美洽
 -(void)meiChartAction{
 
+    
+    
     if ([self.textField.text isEqualToString:@""]) {
         [userData setObject:[userData objectForKey:@"cookie"] forKey:@"userName"];
     }else{
@@ -292,6 +294,11 @@ static NSUserDefaults* userData;
     
     MCChatViewController* viewController = [MCCore createChatViewController];
     //    MCChatViewController* viewController = [[MCChatViewController alloc] init];  //这种方法也可以
+   // viewController.view.frame = CGRectMake(0, 0, <#CGFloat width#>, <#CGFloat height#>)
+    
+    
+    //viewController.putFrame = CGRectMake(0,0,0,44);
+    
     
     //修改footerBar的backgroundColor
     viewController.footerBar.backgroundColor = [UIColor colorWithWhite:.8 alpha:1];
@@ -332,6 +339,9 @@ static NSUserDefaults* userData;
     viewController.navigationItem.leftBarButtonItem = backItem;
     viewController.navigationBarTintColor =[UIColor whiteColor];
     viewController.title = @"留言";
+    
+    
+    
     
     //替换自定义TitleView
     //viewController.titleView = _titleView;

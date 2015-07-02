@@ -29,12 +29,16 @@
         _type = [dic objectForKey: @"type"];
         _creatTime = [dic objectForKey:@"create_time"];
         _webUrl = [dic objectForKey:@"web_url"];
-        _subsidiesInterview = [dic objectForKey:@"subsidies_interview_status"];
-        _hot_job_status = [dic objectForKey:@"hot_job_status"];
-        _now_hiring_status = [dic objectForKey:@"now_hiring_status"];
-        _high_salary_status = [dic objectForKey:@"high_salary_status"];
-        _company_map_status = [dic objectForKey:@"company_map_status"];
-        _company_video_status = [dic objectForKey:@"company_video_status"];
+        _subsidiesInterview = [[dic objectForKey:@"subsidies_interview_status"]boolValue];
+        
+        _hot_job_status = [[dic objectForKey:@"hot_job_status"]boolValue] ;
+        
+        
+        
+        _now_hiring_status = [[dic objectForKey:@"now_hiring_status"]boolValue];
+        _high_salary_status = [[dic objectForKey:@"high_salary_status"]boolValue];
+        _company_map_status = [[dic objectForKey:@"company_map_status"]boolValue];
+        _company_video_status = [[dic objectForKey:@"company_video_status"]boolValue];
         _hot_words =[[NSMutableArray alloc]initWithArray:[dic objectForKey:@"hot_word"]];
 
         

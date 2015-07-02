@@ -23,11 +23,8 @@
 
 @implementation PositionViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+-(id)init{
+    self= [super init];
     
     
     _payRangeArray = [[NSArray alloc]initWithObjects:
@@ -38,22 +35,19 @@
     _experienceArray = [[NSArray alloc]initWithObjects:
                         @"应届生",@"0-2年",@"3-5年",@"6-8年",@"10年以上",@"不限",nil];
     
-     _placeArray = [[NSArray alloc]initWithObjects:
-                        @"上海",@"北京",@"深圳",nil];
+    _placeArray = [[NSArray alloc]initWithObjects:
+                   @"上海",@"北京",@"深圳",nil];
     
     
-    _titleBgLabel = [[UILabel alloc]init];
-    _titleBgLabel.frame = CGRectMake(0, 0, WIDTH, 44);
-    _titleBgLabel.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:_titleBgLabel];
+
     
-    _positionTableView = [[UITableView alloc]init];
-    _positionTableView.frame = CGRectMake(0,0, WIDTH,HEIGHT);
-    _positionTableView.delegate = self;
-    _positionTableView.dataSource = self;
-    _positionTableView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
-    _positionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:_positionTableView];
+    return self;
+    
+    
+}
+
+
+-(void)creatAdvanceView{
     
     UIButton *advancedSearchButton = [[UIButton alloc]init];
     advancedSearchButton.frame = CGRectMake(WIDTH-60, 0.8*HEIGHT, 60, 30);
@@ -132,7 +126,7 @@
     _workPlaceDataButton.tag = 201;
     _workPlaceDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
     [_searchView addSubview:_workPlaceDataButton];
-
+    
     
     UILabel *lineTwoLabel = [[UILabel alloc]init];
     lineTwoLabel.frame = CGRectMake(_searchPositionTextField.frame.origin.x, workPlacelabel.frame.size.height+workPlacelabel.frame.origin.y+24, _searchPositionTextField.frame.size.width, 1);
@@ -159,7 +153,7 @@
     lineThreeLabel.frame = CGRectMake(_searchPositionTextField.frame.origin.x, workAgeLabel.frame.size.height+workAgeLabel.frame.origin.y+24, _searchPositionTextField.frame.size.width, 1);
     lineThreeLabel.backgroundColor = RGBACOLOR(230, 230, 230, 1.0f);
     [_searchView addSubview:lineThreeLabel];
-
+    
     UILabel *monthlyLabel = [[UILabel alloc]init];
     monthlyLabel.frame = CGRectMake(70, lineThreeLabel.frame.origin.y+20, 90, 30);
     monthlyLabel.text = @"月薪范围";
@@ -201,12 +195,47 @@
     advancedSearchStarButton.backgroundColor = [UIColor clearColor];
     [advancedSearchStarButton addTarget:self action:@selector(advancedSearchStar) forControlEvents:UIControlEventTouchUpInside];
     [_searchView addSubview:advancedSearchStarButton];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    
+    
+
+    //高级搜索UI
+    [self creatAdvanceView];
+   
+    
+    
+    
+    //推荐职位
+    _titleBgLabel = [[UILabel alloc]init];
+    _titleBgLabel.frame = CGRectMake(0, 0, WIDTH, 44);
+    _titleBgLabel.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:_titleBgLabel];
+    
+    
+    
+    //列表
+    _positionTableView = [[UITableView alloc]init];
+    _positionTableView.frame = CGRectMake(0,0, WIDTH,HEIGHT);
+    _positionTableView.delegate = self;
+    _positionTableView.dataSource = self;
+    _positionTableView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    _positionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_positionTableView];
+    
+
     
     
     [self getPositionInfo];
 
     
-    // 向上滑动
+    
+    // 向上滑动 隐藏键盘
     UISwipeGestureRecognizer *oneFingerSwipeUp =
     [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeUp:)];
     [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
@@ -310,7 +339,6 @@
 #pragma mark -- 手势向上滑动
 - (void)oneFingerSwipeUp:(UISwipeGestureRecognizer *)recognizer
 {
-    
     [self keyboardHide:nil];
 }
 
@@ -413,7 +441,7 @@
    
     if (![_searchPositionTextField.text isEqualToString:@""]) {
         
-      //  NSLog(@"%@",_searchPositionTextField.text);
+   
         
     }else{
     
@@ -427,12 +455,15 @@
 
 //获取推荐职位列表
 -(void)getPositionInfo{
-
+   
+    
+    
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:@"1" forKey:@"type"];
+    
+    [dic setObject:@"1" forKey:@"type"];//type 1 表示用户开启的推荐职位类型
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-
-    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -450,14 +481,8 @@
             [self.navigationController pushViewController:importResumeVC animated:YES];
             
         }
-        if(positionArray.count >0){
-            
-//            NSUserDefaults *recommendPosition= [[NSUserDefaults alloc]init];
-//            NSString *recommendPositionString = [NSString stringWithFormat:@"%@",[recommendPosition objectForKey:@"recommendPosition"]];
-//            _recommondLabel.text = [@"今日为你推荐" stringByAppendingFormat : @"%@%@",recommendPositionString,@"个职位信息"];
-//            //清空 recommendPosition 数据
-//            [recommendPosition removeObjectForKey:@"recommendPosition"];
-            
+        
+        if(positionArray.count >0){                        
             _positionListArray = positionArray;
             [_positionTableView reloadData];
             
@@ -480,19 +505,22 @@
     
     PositionListCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
-    Position *p = [_positionListArray objectAtIndex:indexPath.row];
-    
-    cell.positionList = p;
-    
     if (cell == nil)
     {
         cell = [[PositionListCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:cellId];
     }
+    
+    
+    Position *p = [_positionListArray objectAtIndex:indexPath.row];
+    cell.p = p;
+    
+
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    
     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);//上左下右 就可以通过设置这四个参数来设置分割线了
     return cell;
 }
@@ -500,7 +528,7 @@
 
 #pragma mark -- UITableView height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     return 250.f;
 }
 

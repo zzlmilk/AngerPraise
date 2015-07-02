@@ -31,18 +31,7 @@
     
 }
 
--(void)doBack{
-    
-    if (_settingWebView.canGoBack)
-    {
-        [_settingWebView goBack];
-        
-    }else{
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    
-}
+
 
 //网页 刚开始加载
 - (void )webViewDidStartLoad:(UIWebView  *)webView{

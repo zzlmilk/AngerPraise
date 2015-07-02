@@ -74,14 +74,11 @@
     //我先判断用户有没有简历
     //怎么判断 根据用户的token 
     
-    if (item.tag == 2) {
-        ResumeViewController *resumeVC  = [[ResumeViewController alloc] init];
-        [resumeVC loadData];
-    }
-    if (item.tag == 3) {
-        PositionViewController *positionVC  = [[PositionViewController alloc] init];
-        [positionVC getPositionInfo];
-    }
+//    if (item.tag == 3) {
+//        PositionViewController *positionVC  = [[PositionViewController alloc] init];
+//        [positionVC getPositionInfo];
+//    }
+    
     
 }
 

@@ -88,18 +88,21 @@
         [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:backBtn];
        
+      
+        
         [self hideTabBar];
     }
     else{
         //隐藏bar栏
+
+        
         [self showTabBar];
        
-        
     }
     
     
-   
 }
+
 
 
 

@@ -11,7 +11,11 @@
 #import "Resume.h"
 #import "ApIClient.h"
 
+#import "JSONKit.h"
+#import "WebViewJavascriptBridge.h"
+
 @interface PerfectResumeViewController ()
+@property WebViewJavascriptBridge* bridge;
 
 @end
 
@@ -21,13 +25,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
-    
-    self.edgesForExtendedLayout = UIRectEdgeTop;
     
     
     _perfectResumeWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+70)];
@@ -37,21 +34,29 @@
     [self.view addSubview:_perfectResumeWebView];
     
     
+    if (_bridge) { return; }
+    [WebViewJavascriptBridge enableLogging];
+    
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:_perfectResumeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
+        
+        if (NZ_DugSet) {
+            NSLog(@"ObjC received message from JS: %@", data);
+        }
+        
+        
+        NSMutableDictionary *resultsDic = [data objectFromJSONString];
+        
+        if ([[resultsDic objectForKey:@"string"] isEqualToString:@"perfect_resume_success"]) {
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }
+    }];
+    
+    
     [self getQaCreatResumeUrl];
 }
 
--(void)doBack{
-    
-    if(_perfectResumeWebView.canGoBack)
-    {
-        [_perfectResumeWebView goBack];
-        
-    }else{
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    
-}
 
 // 获取 创建简历的 url
 -(void)getQaCreatResumeUrl{
@@ -59,7 +64,6 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
     [Resume perfectResume:dic WithBlock:^(Resume *resume, Error *e) {

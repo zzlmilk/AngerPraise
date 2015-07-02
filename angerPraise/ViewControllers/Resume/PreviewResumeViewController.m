@@ -12,7 +12,12 @@
 #import "Resume.h"
 #import "ApIClient.h"
 
+#import "JSONKit.h"
+#import "WebViewJavascriptBridge.h"
+
+
 @interface PreviewResumeViewController ()
+@property WebViewJavascriptBridge* bridge;
 
 @end
 
@@ -22,11 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
+   
     
     _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _shareBtn.frame = CGRectMake(WIDTH-44, 0, 44, 44);
@@ -90,6 +91,26 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
     [tapGestureRecognizer setDelegate:self];
     [_previewResumeWebView.scrollView addGestureRecognizer:tapGestureRecognizer];
+    
+    if (_bridge) { return; }
+    [WebViewJavascriptBridge enableLogging];
+    
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:_previewResumeWebView webViewDelegate:self handler:^(NSString *data, WVJBResponseCallback responseCallback) {
+        
+        if (NZ_DugSet) {
+            NSLog(@"ObjC received message from JS: %@", data);
+        }
+        
+        
+        NSMutableDictionary *resultsDic = [data objectFromJSONString];
+        
+        if ([[resultsDic objectForKey:@"string"] isEqualToString:@"preview_resume_success"]) {
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }
+    }];
+
     
     [self getPreviewResumeUrl];
 }
@@ -196,7 +217,6 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
     [Resume previewResume:dic WithBlock:^(Resume *resume, Error *e) {
