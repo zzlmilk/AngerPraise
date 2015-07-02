@@ -10,7 +10,6 @@
 
 @interface BaseViewController : UIViewController
 
-
 -(void)loadData;
 
 @end

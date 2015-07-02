@@ -21,16 +21,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
-    
     
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
-    _myfriendWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+65)];
+    _myfriendWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
     _myfriendWebView.delegate = self;
     
     NSURL *url=[NSURL URLWithString:_myFriendUrl];
@@ -70,17 +64,6 @@
     }];
 }
 
--(void)doBack{
-    
-    if (_myfriendWebView.canGoBack)
-    {
-        [_myfriendWebView goBack];
-        
-    }else{
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 
 //网页 刚开始加载

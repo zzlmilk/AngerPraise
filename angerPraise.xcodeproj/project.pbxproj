@@ -22,6 +22,7 @@
 		19E327BA1B43DF470063354D /* NZCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327B91B43DF470063354D /* NZCoinView.m */; };
 		19E327CC1B44F91A0063354D /* SYJImageChache.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327C91B44F91A0063354D /* SYJImageChache.m */; };
 		19E327CD1B44F91A0063354D /* UIImageView+SYJImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327CB1B44F91A0063354D /* UIImageView+SYJImageCache.m */; };
+		19E327D01B45257D0063354D /* NZBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E327CF1B45257D0063354D /* NZBase.m */; };
 		DF02EDCD1B4412FF00795954 /* PerfectResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF02EDCC1B4412FF00795954 /* PerfectResumeViewController.m */; };
 		DF0B92481AB1463900A1698E /* CheckQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B92471AB1463900A1698E /* CheckQuestionViewController.m */; };
 		DF0B924B1AB14C9000A1698E /* EvaluateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B924A1AB14C9000A1698E /* EvaluateListViewController.m */; };
@@ -227,6 +228,8 @@
 		19E327C91B44F91A0063354D /* SYJImageChache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYJImageChache.m; sourceTree = "<group>"; };
 		19E327CA1B44F91A0063354D /* UIImageView+SYJImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SYJImageCache.h"; sourceTree = "<group>"; };
 		19E327CB1B44F91A0063354D /* UIImageView+SYJImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SYJImageCache.m"; sourceTree = "<group>"; };
+		19E327CE1B45257D0063354D /* NZBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZBase.h; sourceTree = "<group>"; };
+		19E327CF1B45257D0063354D /* NZBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZBase.m; sourceTree = "<group>"; };
 		DF02EDCB1B4412FF00795954 /* PerfectResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfectResumeViewController.h; sourceTree = "<group>"; };
 		DF02EDCC1B4412FF00795954 /* PerfectResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfectResumeViewController.m; sourceTree = "<group>"; };
 		DF0B92461AB1463900A1698E /* CheckQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckQuestionViewController.h; sourceTree = "<group>"; };
@@ -723,6 +726,8 @@
 				DFE61ACC1B1C374A009FAFF4 /* Share.m */,
 				DF137FE71B20304A008D0F82 /* Setting.h */,
 				DF137FE81B20304A008D0F82 /* Setting.m */,
+				19E327CE1B45257D0063354D /* NZBase.h */,
+				19E327CF1B45257D0063354D /* NZBase.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1542,6 +1547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF5F8E211AFC8BF100205B60 /* pinyin.c in Sources */,
+				19E327D01B45257D0063354D /* NZBase.m in Sources */,
 				DFEE77301AE0DCE800401AF0 /* UIImage+AHKAdditions.m in Sources */,
 				DF137FE91B20304A008D0F82 /* Setting.m in Sources */,
 				DF5F8E1E1AFC8B1000205B60 /* ZCAddressBook.m in Sources */,

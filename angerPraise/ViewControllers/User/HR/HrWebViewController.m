@@ -21,16 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
     
-    
-    self.edgesForExtendedLayout = UIRectEdgeTop;
-    
-    _hrWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+65)];
+    _hrWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
     _hrWebView.delegate = self;
     _hrWebView.scrollView.bounces = NO;
 
@@ -71,17 +63,6 @@
     }];
 }
 
--(void)doBack{
-    
-    if (_hrWebView.canGoBack)
-    {
-        [_hrWebView goBack];
-        
-    }else{
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 
 //网页 刚开始加载
@@ -95,6 +76,7 @@
     
     [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
 }
+
 
     
 

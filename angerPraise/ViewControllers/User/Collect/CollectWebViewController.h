@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CollectWebViewController : UIViewController<UIWebViewDelegate>
+#import "BaseViewController.h"
+@interface CollectWebViewController : BaseViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *collectWebView;
 

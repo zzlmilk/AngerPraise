@@ -125,27 +125,14 @@ static NSUserDefaults* userData;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
     [User userLoginOut:dic WithBlock:^(User *user, Error *e) {
        
         if ([user.res isEqualToString:@"1"]) {
             //退出成功  清空 NSUserDefaults  的值 做跳转
-            
-            [[NoozanAppdelegate getAppDelegate] getIndexVC];
             [[NoozanAppdelegate getAppDelegate] clearUserInfo];
-            
-//            UserViewController *userVC = [[UserViewController alloc]init];
-//            [userVC closeTimer];
-//            
-//            IndexViewController *indexVC= [[IndexViewController alloc]init];
-//            [self.navigationController pushViewController:indexVC animated:YES];
-//            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//            [userDefaults removeObjectForKey:@"hrPrivilege"];
-//            NSUserDefaults *token=[NSUserDefaults standardUserDefaults];
-//            [token removeObjectForKey:@"token"];
-            
+            [[NoozanAppdelegate getAppDelegate] getIndexVC];
         }
         
     }];
@@ -237,6 +224,7 @@ static NSUserDefaults* userData;
         //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
         //    Position * p = [_positionListArray objectAtIndex:indexPath.row];
         //
+        
         SettingWebViewController *settingWebVC = [[SettingWebViewController alloc]init];
         settingWebVC.settingDetailUrl =_takeUrlString;
         [self.navigationController pushViewController:settingWebVC animated:YES];

@@ -19,6 +19,13 @@
 // view
 #import "SynthesizeView.h"
 
+
+@protocol HomeViewControllerDelegate <NSObject>
+- (void)userInfoValueShouldChange:(User *)u;
+@end
+
+
+
 @interface HomeViewController : BaseViewController<UIWebViewDelegate,PagedFlowViewDataSource,PagedFlowViewDelegate,MBProgressHUDDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate,UIAlertViewDelegate>
 {
     NSMutableArray *imageArray;
@@ -27,10 +34,13 @@
 
     enum WXScene _scene;
     SynthesizeView *synthesizeView;
+    
 }
 
 
-@property (nonatomic, strong) User *user;
+
+@property (nonatomic, unsafe_unretained) id<HomeViewControllerDelegate> delegate;
+
 
 @property (nonatomic, strong) PagedFlowView *vFlowView;
 @property (nonatomic, strong) UIPageControl *hPageControl;

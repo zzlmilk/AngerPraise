@@ -29,8 +29,9 @@
 //    NSData *imageData = UIImagePNGRepresentation(image);
     
     NSData *imageData = [parameters objectForKey:@"imageData"];
+    NSString *  AFAppDotNetAPIBaseURLString = @"http://app.hirelib.com/noozan_api/v1/";
+    NSString* URLTmp = [NSString stringWithFormat:@"%@/user/update_photo",AFAppDotNetAPIBaseURLString];
     
-    NSString *URLTmp = @"http://61.174.13.143/AngerPraises/v1/user/update_photo";
     NSString *URLTmps = [URLTmp stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableURLRequest *request =  [[AFHTTPRequestSerializer serializer]multipartFormRequestWithMethod:@"POST" URLString:URLTmps parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

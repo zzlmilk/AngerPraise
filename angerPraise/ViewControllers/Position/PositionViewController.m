@@ -304,6 +304,23 @@
     
     int currentPostion = scrollView.contentOffset.y;
     
+    if (currentPostion < -44) {
+    
+        CATransition *animation = [CATransition animation];
+        animation.type = kCATransitionFade;
+        animation.duration = 0.4;
+        [_searchView.layer addAnimation:animation forKey:nil];
+        [_searchPositionTextField.layer addAnimation:animation forKey:nil];
+        
+        //显示searchView 及其附属元素
+        _searchView.hidden = NO;
+        _searchPositionTextField.hidden = NO;
+        [_searchPositionTextField becomeFirstResponder];
+        _searchPositionPlaceholderlabel.hidden= NO;
+        _searchPositionTextField.text = @"";
+        
+    }
+    
     if (currentPostion - _lastPosition > 0  && currentPostion > 0) {
         _lastPosition = currentPostion;
         self.tabBarController.tabBar.hidden = YES;

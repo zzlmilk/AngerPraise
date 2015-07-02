@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NZAlertView.h"
 
 @interface Error : NSObject
 
 @property(nonatomic,strong)NSString *code;
 @property(nonatomic,strong)NSString *info;
 
+-(id)initWith:(NSString *)error_code;
+-(NSString*)errorString:(NSString *)error_code;
 @end

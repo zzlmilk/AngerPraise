@@ -83,6 +83,7 @@
 // 调用相机
 -(void)onClickImageView{
     
+    
     UIActionSheet *sheet;
     
     // 判断是否支持相机

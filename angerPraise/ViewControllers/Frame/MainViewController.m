@@ -49,6 +49,9 @@
     userNav.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
     userNav.tabBarItem.tag = 4;
     
+    
+    homeVC.delegate = userVC;
+    
     NSArray *viewControllers = [NSArray arrayWithObjects:homeNav,resumeNav,posotionNav,userNav, nil];
     
     self.viewControllers =viewControllers;
