@@ -42,16 +42,11 @@
     _positionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_positionTableView];
     
-    [self getPositionInfo];
-
-//    __block PositionViewController *controller = self;
-//    [_positionTableView addLegendFooterWithRefreshingBlock:^{
-//        // 进入刷新状态后会自动调用这个block
-//
-//        [controller getMorePositionInfo];
-//
-//    }];
-    
+    UIButton *advancedSearchButton = [[UIButton alloc]init];
+    advancedSearchButton.frame = CGRectMake(WIDTH-60, 0.8*HEIGHT, 60, 30);
+    advancedSearchButton.backgroundColor = [UIColor grayColor];
+    [advancedSearchButton addTarget:self action:@selector(advancedSearch) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:advancedSearchButton];
     
     _tipView = [[UIView alloc]init];
     _tipView.frame = CGRectMake((WIDTH-235)/2, 0, 235, 59);
@@ -67,6 +62,7 @@
     _recommondLabel.font = [UIFont fontWithName:hlTextFont size:16.f];
     [_tipView addSubview:_recommondLabel];
     
+    //以下 布局 高级搜索
     
     _searchView = [[UIView alloc]init];
     _searchView.frame = self.view.frame;
@@ -78,7 +74,7 @@
     _searchPositionTextField.returnKeyType = UITextBorderStyleBezel;
     [_searchPositionTextField setBorderStyle:UITextBorderStyleLine];
     _searchPositionTextField.delegate =self;
-    _searchPositionTextField.layer.borderColor=[RGBACOLOR(0, 199, 255, 1.0f)CGColor];
+    _searchPositionTextField.layer.borderColor=[RGBACOLOR(159, 159, 159, 1.0f)CGColor];
     [_searchPositionTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     _searchPositionTextField.hidden = YES;
     _searchPositionTextField.textColor = [UIColor whiteColor];
@@ -95,18 +91,93 @@
     
     UIButton *advSearchButton = [[UIButton alloc]init];
     advSearchButton.frame = CGRectMake(0, _searchPositionTextField.frame.size.height+_searchPositionTextField.frame.origin.y+5, _searchView.frame.size.width, 30);
-    advSearchButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
-    [advSearchButton setTitleColor:RGBACOLOR(0, 199, 255, 1.0f)forState:UIControlStateNormal];
+    advSearchButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    [advSearchButton setTitleColor:RGBACOLOR(200, 200, 200, 1.0f)forState:UIControlStateNormal];
     advSearchButton.backgroundColor = [UIColor clearColor];
     [advSearchButton setTitle:@"高级搜索" forState:UIControlStateNormal];
     [_searchView addSubview:advSearchButton];
     
     
-//    UIImageView *searchIcon = [[UIImageView alloc]init];
-//    searchIcon.frame = CGRectMake(100, 2, 30, 38);
-//    searchIcon.image = [UIImage imageNamed:@"0search"];
-//    searchIcon.backgroundColor = [UIColor yellowColor];
-//    [_searchPositionTextField addSubview:searchIcon];
+    UILabel *lineOneLabel = [[UILabel alloc]init];
+    lineOneLabel.frame = CGRectMake(_searchPositionTextField.frame.origin.x, advSearchButton.frame.size.height+advancedSearchButton.frame.origin.y-24, _searchPositionTextField.frame.size.width, 2);
+    lineOneLabel.backgroundColor = RGBACOLOR(250, 250, 250, 1.0f);
+    [_searchView addSubview:lineOneLabel];
+    
+    UILabel *workPlacelabel = [[UILabel alloc]init];
+    workPlacelabel.frame = CGRectMake(70, lineOneLabel.frame.origin.y+20, 90, 30);
+    workPlacelabel.text = @"工作所在地";
+    workPlacelabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.f];
+    workPlacelabel.textColor = RGBACOLOR(230, 230, 230, 1.0f);
+    workPlacelabel.backgroundColor = [UIColor clearColor];
+    [_searchView addSubview:workPlacelabel];
+    
+    _workPlaceDataButton = [[UIButton alloc]init];
+    _workPlaceDataButton.frame = CGRectMake(workPlacelabel.frame.origin.x+workPlacelabel.frame.size.width, workPlacelabel.frame.origin.y+5, 50, 20);
+    [_workPlaceDataButton setTitle:@"上海" forState:UIControlStateNormal];
+    _workPlaceDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+    [_searchView addSubview:_workPlaceDataButton];
+
+    
+    UILabel *lineTwoLabel = [[UILabel alloc]init];
+    lineTwoLabel.frame = CGRectMake(_searchPositionTextField.frame.origin.x, workPlacelabel.frame.size.height+workPlacelabel.frame.origin.y+24, _searchPositionTextField.frame.size.width, 1);
+    lineTwoLabel.backgroundColor = RGBACOLOR(230, 230, 230, 1.0f);
+    [_searchView addSubview:lineTwoLabel];
+    
+    UILabel *workAgeLabel = [[UILabel alloc]init];
+    workAgeLabel.frame = CGRectMake(70, lineTwoLabel.frame.origin.y+20, 90, 30);
+    workAgeLabel.text = @"工作年限";
+    workAgeLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.f];
+    workAgeLabel.textColor = RGBACOLOR(230, 230, 230, 1.0f);
+    workAgeLabel.backgroundColor = [UIColor clearColor];
+    [_searchView addSubview:workAgeLabel];
+    
+    _workAgeDataButton = [[UIButton alloc]init];
+    _workAgeDataButton.frame = CGRectMake(workAgeLabel.frame.origin.x+workAgeLabel.frame.size.width, workAgeLabel.frame.origin.y+5, 50, 20);
+    [_workAgeDataButton setTitle:@"三年" forState:UIControlStateNormal];
+    _workAgeDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+    [_searchView addSubview:_workAgeDataButton];
+    
+    UILabel *lineThreeLabel = [[UILabel alloc]init];
+    lineThreeLabel.frame = CGRectMake(_searchPositionTextField.frame.origin.x, workAgeLabel.frame.size.height+workAgeLabel.frame.origin.y+24, _searchPositionTextField.frame.size.width, 1);
+    lineThreeLabel.backgroundColor = RGBACOLOR(230, 230, 230, 1.0f);
+    [_searchView addSubview:lineThreeLabel];
+
+    UILabel *monthlyLabel = [[UILabel alloc]init];
+    monthlyLabel.frame = CGRectMake(70, lineThreeLabel.frame.origin.y+20, 90, 30);
+    monthlyLabel.text = @"月薪范围";
+    monthlyLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.f];
+    monthlyLabel.textColor = RGBACOLOR(230, 230, 230, 1.0f);
+    monthlyLabel.backgroundColor = [UIColor clearColor];
+    [_searchView addSubview:monthlyLabel];
+    
+    _monthlyDataButton = [[UIButton alloc]init];
+    _monthlyDataButton.frame = CGRectMake(monthlyLabel.frame.origin.x+monthlyLabel.frame.size.width, monthlyLabel.frame.origin.y+5, 90, 20);
+    [_monthlyDataButton setTitle:@"5000-8000" forState:UIControlStateNormal];
+    _monthlyDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
+    [_searchView addSubview:_monthlyDataButton];
+    
+    UILabel *lineFourLabel = [[UILabel alloc]init];
+    lineFourLabel.frame = CGRectMake(_searchPositionTextField.frame.origin.x, monthlyLabel.frame.size.height+monthlyLabel.frame.origin.y+24, _searchPositionTextField.frame.size.width, 2);
+    lineFourLabel.backgroundColor = RGBACOLOR(250, 250, 250, 1.0f);
+    [_searchView addSubview:lineFourLabel];
+    
+    
+    UIButton *advancedSearchStarButton = [[UIButton alloc]init];
+    advancedSearchStarButton.frame = CGRectMake((WIDTH-130)/2,lineFourLabel.frame.origin.y+90, 130, 35);
+    [advancedSearchStarButton.layer setMasksToBounds:YES];
+    [advancedSearchStarButton.layer setCornerRadius:35/2.f]; //设置矩形四个圆角半径
+    [advancedSearchStarButton.layer setBorderWidth:1.0]; //边框宽度
+    advancedSearchStarButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
+    [advancedSearchStarButton setTitle:@"启   用" forState:UIControlStateNormal];
+    [advancedSearchStarButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
+    [advancedSearchStarButton setTitleColor:hl_gary forState:UIControlStateHighlighted];
+    advancedSearchStarButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+    advancedSearchStarButton.backgroundColor = [UIColor clearColor];
+    [advancedSearchStarButton addTarget:self action:@selector(advancedSearchStar) forControlEvents:UIControlEventTouchUpInside];
+    [_searchView addSubview:advancedSearchStarButton];
+    
+    
+    
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
@@ -120,6 +191,32 @@
     [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
     [_searchView addGestureRecognizer:oneFingerSwipeUp];
  
+    [self getPositionInfo];
+
+}
+
+#pragma mark -- 高级搜索 调用接口数据
+-(void)advancedSearchStar{
+
+
+    
+}
+
+#pragma mark -- 使用高级搜索
+-(void)advancedSearch{
+
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.4;
+    [_searchView.layer addAnimation:animation forKey:nil];
+    [_searchPositionTextField.layer addAnimation:animation forKey:nil];
+    
+    //显示searchView 及其附属元素
+    _searchView.hidden = NO;
+    _searchPositionTextField.hidden = NO;
+    [_searchPositionTextField becomeFirstResponder];
+    _searchPositionPlaceholderlabel.hidden= NO;
+    _searchPositionTextField.text = @"";
 }
 
 #pragma mark -- 手势事件监听
@@ -167,7 +264,6 @@
 
 // 使用计时器 隐藏动画
 -(void)hideTipAnimation{
-
     __block int timeout=2; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -187,9 +283,7 @@
                 
             });
         }else{
-            //            int minutes = timeout / 60;
-            //int seconds = timeout % 60;
-            //NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 //NSLog(@"____%@",strTime);
@@ -203,29 +297,12 @@
 }
 
 
-
+#pragma mark -- 控制 上下滑动 底部栏 出现或隐藏
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     //CGFloat yOffset  = scrollView.contentOffset.y;
     
     int currentPostion = scrollView.contentOffset.y;
-    
-    if (currentPostion < -44) {
-    
-        CATransition *animation = [CATransition animation];
-        animation.type = kCATransitionFade;
-        animation.duration = 0.4;
-        [_searchView.layer addAnimation:animation forKey:nil];
-        [_searchPositionTextField.layer addAnimation:animation forKey:nil];
-        
-        //显示searchView 及其附属元素
-        _searchView.hidden = NO;
-        _searchPositionTextField.hidden = NO;
-        [_searchPositionTextField becomeFirstResponder];
-        _searchPositionPlaceholderlabel.hidden= NO;
-        _searchPositionTextField.text = @"";
-        
-    }
     
     if (currentPostion - _lastPosition > 0  && currentPostion > 0) {
         _lastPosition = currentPostion;
@@ -262,7 +339,6 @@
 //获取推荐职位列表
 -(void)getPositionInfo{
 
-    //_pageString =  [[NSString alloc] initWithFormat:@"%d",_page];
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:@"1" forKey:@"type"];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -277,7 +353,6 @@
         [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
 
         int errorCode = [e.code intValue];
-        
         if (errorCode ==40004) {
             
             [APIClient showInfo:e.info title:@"提示"];
@@ -285,15 +360,14 @@
             ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
             [self.navigationController pushViewController:importResumeVC animated:YES];
             
-        }else if(positionArray.count >0){
+        }
+        if(positionArray.count >0){
             
-            NSUserDefaults *recommendPosition= [[NSUserDefaults alloc]init];
-        
-            NSString *recommendPositionString = [NSString stringWithFormat:@"%@",[recommendPosition objectForKey:@"recommendPosition"]];
-
-            _recommondLabel.text = [@"今日为你推荐" stringByAppendingFormat : @"%@%@",recommendPositionString,@"个职位信息"];
-            //清空 recommendPosition 数据
-            [recommendPosition removeObjectForKey:@"recommendPosition"];
+//            NSUserDefaults *recommendPosition= [[NSUserDefaults alloc]init];
+//            NSString *recommendPositionString = [NSString stringWithFormat:@"%@",[recommendPosition objectForKey:@"recommendPosition"]];
+//            _recommondLabel.text = [@"今日为你推荐" stringByAppendingFormat : @"%@%@",recommendPositionString,@"个职位信息"];
+//            //清空 recommendPosition 数据
+//            [recommendPosition removeObjectForKey:@"recommendPosition"];
             
             _positionListArray = positionArray;
             [_positionTableView reloadData];
@@ -301,38 +375,8 @@
             [self tipAnimation];//显示推荐职位数量
         }
     }];
-    
-    //_page++;
 
 }
-
-////职位列表 上提 加载更多
-//-(void)getMorePositionInfo{
-//    
-//    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-//    
-//    _pageString =  [[NSString alloc] initWithFormat:@"%d",_page];
-//    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-//    [dic setObject:@"PHP" forKey:@"keyword"];
-//    [dic setObject:_pageString forKey:@"page"];
-//    [dic setObject:@"1" forKey:@"type"];
-//    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
-//    
-//     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    
-//    [Position getPositionList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
-//        
-//        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
-//        
-//        [_positionListArray addObjectsFromArray:positionArray];
-//        
-//        [_positionTableView reloadData];
-//        
-//    }];
-//    
-//    _page++;
-//    
-//}
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

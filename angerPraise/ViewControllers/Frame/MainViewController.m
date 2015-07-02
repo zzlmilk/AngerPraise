@@ -25,32 +25,34 @@
     [self.navigationItem setHidesBackButton:YES];
     
     HomeViewController *homeVC = [[HomeViewController alloc]init];
-    homeVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar1"];
-    homeVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
-    homeVC.tabBarItem.tag = 1;
-
+    UINavigationController *homeNav = [[UINavigationController alloc]initWithRootViewController:homeVC];
+    homeNav.tabBarItem.image = [UIImage imageNamed:@"0tabbar1"];
+    homeNav.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
+    homeNav.tabBarItem.tag = 1;
 
     
     ResumeViewController *resumeVC = [[ResumeViewController alloc]init];
-    resumeVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar2"];
-    resumeVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
-    resumeVC.tabBarItem.tag = 2;
+    UINavigationController *resumeNav = [[UINavigationController alloc]initWithRootViewController:resumeVC];
+    resumeNav.tabBarItem.image = [UIImage imageNamed:@"0tabbar2"];
+    resumeNav.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
+    resumeNav.tabBarItem.tag = 2;
     
     PositionViewController *posotionVC = [[PositionViewController alloc]init];
-    posotionVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar3"];
-    posotionVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
-    posotionVC.tabBarItem.tag = 3;
+     UINavigationController *posotionNav = [[UINavigationController alloc]initWithRootViewController:posotionVC];
+    posotionNav.tabBarItem.image = [UIImage imageNamed:@"0tabbar3"];
+    posotionNav.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
+    posotionNav.tabBarItem.tag = 3;
     
     UserViewController *userVC = [[UserViewController alloc]init];
-    userVC.tabBarItem.image = [UIImage imageNamed:@"0tabbar4"];
-    userVC.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
-    userVC.tabBarItem.tag = 4;
+    UINavigationController *userNav = [[UINavigationController alloc]initWithRootViewController:userVC];
+    userNav.tabBarItem.image = [UIImage imageNamed:@"0tabbar4"];
+    userNav.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
+    userNav.tabBarItem.tag = 4;
     
-    NSArray *viewControllers = [NSArray arrayWithObjects:homeVC,resumeVC,posotionVC,userVC, nil];
+    NSArray *viewControllers = [NSArray arrayWithObjects:homeNav,resumeNav,posotionNav,userNav, nil];
     
     self.viewControllers =viewControllers;
     
-
  
 //    self.delegate = self;
     self.tabBar.translucent = NO;

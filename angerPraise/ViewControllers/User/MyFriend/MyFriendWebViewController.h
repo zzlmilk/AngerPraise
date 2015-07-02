@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface MyFriendWebViewController : UIViewController<UIWebViewDelegate>
+@interface MyFriendWebViewController : BaseViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *myfriendWebView;
 

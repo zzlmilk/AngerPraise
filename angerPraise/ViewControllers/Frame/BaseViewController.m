@@ -71,22 +71,33 @@
 //    self.navigationController.navigationBar.backgroundColor = RGBACOLOR(1, 0, 0, 1);
     self.navigationController.navigationBar.translucent = NO;
     
-//    [self setExtendedLayoutIncludesOpaqueBars:YES];
-//    self.tabBarController.tabBar.hidden = YES;
-    
-    
-    
+
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    backBtn.backgroundColor = [UIColor clearColor];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
+    //隐藏导航栏
+    self.navigationController.navigationBarHidden = YES;
+    
+    if (![self isEqual:[self.navigationController.viewControllers objectAtIndex:0]] && self.navigationController!=nil) {
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        backBtn.frame = CGRectMake(0, 0, 44, 44);
+        [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+        backBtn.backgroundColor = [UIColor clearColor];
+        [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:backBtn];
+       
+        NSLog(@"%@",self.tabBarController);
+        
+    }
+    else{
+        
+       
+        
+    }
+    
+   
 }
 
 

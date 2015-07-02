@@ -7,7 +7,7 @@
 //
 
 #import "HrPrivilegeCell.h"
-#import "UIImageView+AFNetworking.h"
+#import "UIImageView+SYJImageCache.h"
 
 
 @implementation HrPrivilegeCell

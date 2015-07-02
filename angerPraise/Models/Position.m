@@ -14,22 +14,43 @@
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
     
-    //获取 推荐的 职位列表
-    _positionName = [dic objectForKey: @"name"];
-    _competitionNumber = [dic objectForKey: @"competition_number"];
-    _education = [dic objectForKey: @"education"];
-    _matchNumber = [dic objectForKey: @"match_number"];
-    _position_id = [dic objectForKey: @"position_id"];
-    _rank = [dic objectForKey: @"rank"];
-    _workPlace = [dic objectForKey: @"work_place"];
-    _companyName = [dic objectForKey: @"company_name"];
-    _type = [dic objectForKey: @"type"];
-    _subsidiesInterview = [dic objectForKey:@"subsidies_interview"];
-    _webUrl = [dic objectForKey:@"web_url"];
-    _creatTime = [dic objectForKey:@"create_time"];
+    if ([dic objectForKey:@"position_name"]) {
+        
+        NSDictionary *positionDic =[dic objectForKey:@"position"];
+        //获取 推荐的 职位列表
+        _position_id = [positionDic objectForKey: @"position_id"];
+        _positionName = [positionDic objectForKey: @"name"];
+        _workPlace = [positionDic objectForKey: @"work_place"];
+        _companyName = [positionDic objectForKey: @"company_name"];
+        _education = [positionDic objectForKey: @"education"];
+        _matchNumber = [positionDic objectForKey: @"match_number"];
+        _rank = [positionDic objectForKey: @"rank"];
+        _competitionNumber = [positionDic objectForKey:@"competition_number"];
+        _type = [positionDic objectForKey: @"type"];
+        _creatTime = [positionDic objectForKey:@"create_time"];
+        _webUrl = [positionDic objectForKey:@"web_url"];
+        _subsidiesInterview = [positionDic objectForKey:@"subsidies_interview_status"];
+        _hot_job_status = [positionDic objectForKey:@"hot_job_status"];
+        _now_hiring_status = [positionDic objectForKey:@"now_hiring_status"];
+        _high_salary_status = [positionDic objectForKey:@"high_salary_status"];
+        _company_map_status = [positionDic objectForKey:@"company_map_status"];
+        _company_video_status = [positionDic objectForKey:@"company_video_status"];
+        _hot_words =[[NSMutableArray alloc]initWithArray:[positionDic objectForKey:@"hot_word"]];
+
+        
+    }
+    if ([dic objectForKey:@"recommended_number"]) {
+        
+        _recommended_number = [dic objectForKey:@"recommended_number"];
+
+    }
     
     //申请职位
-    _res =[dic objectForKey:@"res"];
+    if ([dic objectForKey:@"res"]) {
+        
+        _res =[dic objectForKey:@"res"];
+
+    }
     
     return self;
     
@@ -42,10 +63,10 @@
         
         //NSLog(@"%@",responseObject);
         
-        NSUserDefaults *recommendPosition= [[NSUserDefaults alloc]init];
-        [recommendPosition setObject:[responseObject objectForKey:@"recommended_number"] forKey:@"recommendPosition"];
+//        NSUserDefaults *recommendPosition= [[NSUserDefaults alloc]init];
+//        [recommendPosition setObject:[responseObject objectForKey:@"recommended_number"] forKey:@"recommendPosition"];
         
-        if ([responseObject objectForKeyedSubscript:@"error"]) {
+        if ([responseObject objectForKey:@"error"]) {
             
             Error *error = [[Error alloc]init];
             error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
@@ -57,8 +78,7 @@
             
         }else{
 
-            
-            NSMutableArray *positionArray = [responseObject objectForKey:@"position_object"];
+            NSMutableArray *positionArray = [responseObject objectForKey:@"position"];
             
             NSMutableArray *positionList = [NSMutableArray array];
             

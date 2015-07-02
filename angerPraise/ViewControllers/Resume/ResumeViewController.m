@@ -30,7 +30,7 @@
     self.view.backgroundColor =RGBACOLOR(20, 20, 20, 1.0f);
     
     _titleMyResumeView = [[UIView alloc]init];
-    _titleMyResumeView.frame = CGRectMake(0, 0, WIDTH, HEIGHT*0.45);
+    _titleMyResumeView.frame = CGRectMake(0, 0, WIDTH, HEIGHT*0.5);
     _titleMyResumeView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_titleMyResumeView];
     
@@ -49,7 +49,7 @@
     
     
     UILabel *positionTitleLabel = [[UILabel alloc]init];
-    positionTitleLabel.frame = CGRectMake(10, 20, WIDTH*0.55, 15);
+    positionTitleLabel.frame = CGRectMake(10, 25, WIDTH*0.55, 15);
     positionTitleLabel.text = @"职位信息";
     positionTitleLabel.textColor = hl_gary;
     positionTitleLabel.font =[UIFont fontWithName:@"Helvetica" size:11.f];
@@ -66,7 +66,7 @@
     
     
     UILabel *hopePositionTitleLabel = [[UILabel alloc]init];
-    hopePositionTitleLabel.frame = CGRectMake(10, _positionNameLabel.frame.size.height+_positionNameLabel.frame.origin.y+15, WIDTH*0.55, 15);
+    hopePositionTitleLabel.frame = CGRectMake(10, _positionNameLabel.frame.size.height+_positionNameLabel.frame.origin.y+20, WIDTH*0.55, 15);
     hopePositionTitleLabel.text = @"目标职位";
     hopePositionTitleLabel.textColor = hl_gary;
     hopePositionTitleLabel.font =[UIFont fontWithName:@"Helvetica" size:11.f];
@@ -83,7 +83,7 @@
     
     
     UILabel *hopeMoneyTitleLabel = [[UILabel alloc]init];
-    hopeMoneyTitleLabel.frame = CGRectMake(10, _hopePositionNameLabel.frame.size.height+_hopePositionNameLabel.frame.origin.y+15, WIDTH*0.55, 15);
+    hopeMoneyTitleLabel.frame = CGRectMake(10, _hopePositionNameLabel.frame.size.height+_hopePositionNameLabel.frame.origin.y+20, WIDTH*0.55, 15);
     hopeMoneyTitleLabel.text = @"期望薪资";
     hopeMoneyTitleLabel.textColor = hl_gary;
     hopeMoneyTitleLabel.font =[UIFont fontWithName:@"Helvetica" size:11.f];
@@ -180,7 +180,8 @@
     [creatResumeButton addTarget:self action:@selector(creatResume) forControlEvents:UIControlEventTouchUpInside];
     [_noResumeView addSubview:creatResumeButton];
     
-        [self loadData];
+    
+    [self loadData];
     
 }
 
@@ -240,7 +241,7 @@
 // 加载圆环 以及其他按钮样式
 -(void)getRing{
 
-    CGRect goalBarFrame = CGRectMake((WIDTH-350/2)/2, 10, 350/2+1, 350/2);
+    CGRect goalBarFrame = CGRectMake((WIDTH-310/2)/2, 30, 310/2+1, 310/2);
     KDGoalBar *gb = [[KDGoalBar alloc] initWithFrame:goalBarFrame];
     percentGoalBar = gb;
     [gb setBarColor:RGBACOLOR(0, 203, 251, 1.0f)];
@@ -259,9 +260,9 @@
     [self.view addSubview:resumeScoreButton];
     
     
-    UIButton *shareResumeButton= [[UIButton alloc]initWithFrame:CGRectMake(60,goalBarFrame.origin.y+goalBarFrame.size.height+25,WIDTH-2*60,38)];
+    UIButton *shareResumeButton= [[UIButton alloc]initWithFrame:CGRectMake(60,goalBarFrame.origin.y+goalBarFrame.size.height+28,WIDTH-2*60,35)];
     [shareResumeButton.layer setMasksToBounds:YES];
-    [shareResumeButton.layer setCornerRadius:38/2.f]; //设置矩形四个圆角半径
+    [shareResumeButton.layer setCornerRadius:35/2.f]; //设置矩形四个圆角半径
     [shareResumeButton.layer setBorderWidth:1.0]; //边框宽度
     shareResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
     [shareResumeButton setTitle:@"   分 享 简 历" forState:UIControlStateNormal];
@@ -280,7 +281,13 @@
     
     PerfectResumeViewController *perfectResumeVC = [[PerfectResumeViewController alloc]init];
     [self.navigationController pushViewController:perfectResumeVC animated:YES];
+}
 
+//预览简历
+-(void)previewResume{
+    
+    PreviewResumeViewController *previewResumeVC = [[PreviewResumeViewController alloc]init];
+    [self.navigationController pushViewController:previewResumeVC animated:YES];
 }
 
 //创建简历
@@ -324,16 +331,6 @@
 -(void)lookResumeScore{
 
 }
-
-//预览简历
--(void)previewResume{
-
-    PreviewResumeViewController *previewResumeVC = [[PreviewResumeViewController alloc]init];
-    [self.navigationController pushViewController:previewResumeVC animated:YES];
-}
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

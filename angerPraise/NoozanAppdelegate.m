@@ -33,17 +33,16 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    [self clearUserInfo];
+
+    //[self clearUserInfo];
     
     NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
     NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
     
     
     if (user_id && user_token) {
-        MainViewController *manVC = [[MainViewController alloc]init];
-        _mainNav = [[UINavigationController alloc]initWithRootViewController:manVC];
-        [self.window setRootViewController:_mainNav];
-
+         _mainVC = [[MainViewController alloc]init];
+        [self.window setRootViewController:_mainVC];
     }
     else{
         IndexViewController *indexVC = [[IndexViewController alloc]init];
@@ -52,18 +51,17 @@
     }
     
    
-    
     return YES;
 }
 
 -(void)getMainVC{
     
-    if (!_mainNav) {
+    if (!_mainVC) {
         MainViewController *manVC = [[MainViewController alloc]init];
-        _mainNav = [[UINavigationController alloc]initWithRootViewController:manVC];
+        _mainVC = manVC;
     }
     
-    [self.window setRootViewController:_mainNav];
+    [self.window setRootViewController:_mainVC];
 }
 
 -(void)getIndexVC{
@@ -73,9 +71,6 @@
     
     [self.window setRootViewController:_loginNav];
 }
-
-
-
 
 
 -(void)clearUserInfo{
@@ -151,7 +146,7 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
     //处理APN
-    NSString *payloadMsg = [userinfo objectForKey:@"payload"];
+    //NSString *payloadMsg = [userinfo objectForKey:@"payload"];
     // 获取 server 返回值 进行页面跳转
     
 }
@@ -160,7 +155,10 @@
 {
     
     //用户不允许通知
-    NSLog(@"用户不允许通知");
+    if (NZ_DugSet) {
+        NSLog(@"用户不允许通知");
+    }
+
     
 }
 

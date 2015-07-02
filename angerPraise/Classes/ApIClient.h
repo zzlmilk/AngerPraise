@@ -13,6 +13,10 @@
 
 + (instancetype)sharedClient;
 
++(NSString*)sharedBaseURL;
+
+
+
 + (instancetype)sharedOtherClient;
 
 

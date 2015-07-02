@@ -20,8 +20,8 @@
 
     CGFloat delta = toRadians(360 * percent);
     //设置半径
-    CGFloat innerRadius = 62.5+16+2;
-    CGFloat outerRadius = 87.5;
+    CGFloat innerRadius = 62.5+16+2-10;
+    CGFloat outerRadius = 87.5-10;
     
     if (color) {
         CGContextSetFillColorWithColor(ctx, color.CGColor);

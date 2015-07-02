@@ -29,5 +29,12 @@
 @property(nonatomic,strong)UILabel *recommondLabel;
 @property(nonatomic,strong)UILabel *titleBgLabel;
 
+@property(nonatomic,strong)UIButton *workPlaceDataButton;
+@property(nonatomic,strong)UIButton *workAgeDataButton;
+@property(nonatomic,strong)UIButton *monthlyDataButton;
+
+
+
+
 -(void)getPositionInfo;
 @end

@@ -11,6 +11,10 @@
 
 static NSString * const AFAppDotNetAPIBaseURLString = @"http://app.hirelib.com/noozan_api/v1/";
 
+//static NSString * const AFAppDotNetAPIBaseURLString = @"http://192.168.0.110:3000/v1/";
+
+//
+
 //other  备用
 static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://app.hirelib.com/website/";
 
@@ -24,8 +28,33 @@ static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://app.hirelib.
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     });
     
+    
+    
+ 
+    
     return _sharedClient;
 }
+
+
++(NSString *)sharedBaseURL{
+    return AFAppDotNetAPIBaseURLString;
+}
+
+-(id)initWithBaseURL:(NSURL *)url{
+    self = [super initWithBaseURL:url];
+    // [self setDefaultHeader:@"Accept" value:@"application/json"];
+    
+ //   NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
+    NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
+    
+    
+    if (user_token != nil) {
+        [[self requestSerializer] setValue:user_token forHTTPHeaderField:@"Authorization"];
+    }
+   
+    return self;
+}
+
 
 + (instancetype)sharedOtherClient{
     static APIClient *_sharedOther = nil;

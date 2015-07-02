@@ -12,14 +12,14 @@
 
 
 
-
+@class MainViewController;
 @interface NoozanAppdelegate : AppDelegate<WXApiDelegate>
 {
     
 }
 
 
-@property(nonatomic,strong) UINavigationController *mainNav;
+@property(nonatomic,strong) MainViewController *mainVC;
 @property (nonatomic,strong)UINavigationController *loginNav;
 
 //清楚NSUsersDefault里面保存的用户信息

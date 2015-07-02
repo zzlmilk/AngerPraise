@@ -13,7 +13,7 @@
 #import "MainViewController.h"
 #import "WXApiObject.h"
 
-@interface ResumeViewController :BaseViewController<TabBarItemSelectDelegate>{
+@interface ResumeViewController :UIViewController<TabBarItemSelectDelegate>{
     KDGoalBar *percentGoalBar;
     
     enum WXScene _scene;
@@ -21,9 +21,8 @@
 }
 
 @property(nonatomic,strong)UIView *titleMyResumeView;
-
-@property(nonatomic,strong)UIView *noResumeView;
 @property(nonatomic,strong)UIView *resumeView;
+@property(nonatomic,strong)UIView *noResumeView;
 
 
 @property(nonatomic,strong)UILabel *positionNameLabel;
@@ -32,7 +31,9 @@
 @property(nonatomic,strong)UILabel *updateTimelabel;
 @property(nonatomic,strong)UIButton *previewResumeButton;
 @property(nonatomic,strong)UIButton *perfectResumeButton;
+
 @property(nonatomic,strong)NSString *user_resume_synthesize_grade;
+
 
 
 //以下即将废弃
@@ -46,4 +47,6 @@
 // 综合评分
 
 -(void)loadData;
+
+
 @end
