@@ -33,7 +33,9 @@
 @property(nonatomic,strong)UIButton *workAgeDataButton;
 @property(nonatomic,strong)UIButton *monthlyDataButton;
 
-
+@property(nonatomic,strong)NSArray *payRangeArray; // 薪资范围
+@property(nonatomic,strong)NSArray *experienceArray;// 工作年限
+@property(nonatomic,strong)NSArray *placeArray;// 目标地点
 
 
 -(void)getPositionInfo;

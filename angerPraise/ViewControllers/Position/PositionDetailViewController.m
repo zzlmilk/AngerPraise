@@ -28,7 +28,7 @@
     
     self.edgesForExtendedLayout = UIRectEdgeTop;
     
-    _positionDetailWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, -42, WIDTH, HEIGHT+70)];
+    _positionDetailWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT+70)];
     _positionDetailWebView.scrollView.bounces = NO;
     _positionDetailWebView.delegate = self;
     NSURL *url=[NSURL URLWithString:_positionDetailUrl];

@@ -40,12 +40,11 @@
                       @"3000以下",@"3000-4999",@"5000-7999",
                       @"8000-9999",@"10000-14999",@"15000-19999",
                       @"20000以上",nil];
+    _experienceArray = [[NSArray alloc]initWithObjects:
+                        @"应届毕业生",@"0-2年",@"3-5年",@"6-8年",@"10年以上",@"不限",nil];
     
     _educationArray = [[NSArray alloc]initWithObjects:
                    @"中专/职高/技校及以上",@"大专及以上",@"本科及以上",@"硕士及以上",@"博士及以上",nil];
-    
-    _experienceArray = [[NSArray alloc]initWithObjects:
-                       @"应届毕业生",@"0-2年",@"3-5年",@"6-8年",@"10年以上",@"不限",nil];
     
     
     UILabel *nameTipLabel = [[UILabel alloc]init];

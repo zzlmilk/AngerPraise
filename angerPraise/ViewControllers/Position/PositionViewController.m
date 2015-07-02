@@ -14,6 +14,7 @@
 #import "MJRefresh.h"
 #import "ApIClient.h"
 #import "ImportResumeViewController.h"
+#import "AHKActionSheet.h"
 
 
 @interface PositionViewController ()
@@ -26,8 +27,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //_page = 1;
     self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    
+    
+    _payRangeArray = [[NSArray alloc]initWithObjects:
+                      @"3000以下",@"3000-4999",@"5000-7999",
+                      @"8000-9999",@"10000-14999",@"15000-19999",
+                      @"20000以上",nil];
+    
+    _experienceArray = [[NSArray alloc]initWithObjects:
+                        @"应届生",@"0-2年",@"3-5年",@"6-8年",@"10年以上",@"不限",nil];
+    
+     _placeArray = [[NSArray alloc]initWithObjects:
+                        @"上海",@"北京",@"深圳",nil];
+    
     
     _titleBgLabel = [[UILabel alloc]init];
     _titleBgLabel.frame = CGRectMake(0, 0, WIDTH, 44);
@@ -66,7 +79,7 @@
     
     _searchView = [[UIView alloc]init];
     _searchView.frame = self.view.frame;
-    _searchView.backgroundColor = RGBACOLOR(0, 0, 0, 0.7);
+    _searchView.backgroundColor = RGBACOLOR(0, 0, 0, 0.8);
     _searchView.hidden = YES;
     [self.view addSubview:_searchView];
     
@@ -79,8 +92,9 @@
     _searchPositionTextField.hidden = YES;
     _searchPositionTextField.textColor = [UIColor whiteColor];
     _searchPositionTextField.layer.borderWidth = 1.0f;
-//    [self.navigationController.navigationBar addSubview:_searchPositionTextField];
+    _searchPositionTextField.backgroundColor = [UIColor clearColor];
     [_searchView addSubview:_searchPositionTextField];
+    
     _searchPositionPlaceholderlabel = [[UILabel alloc]init];
     _searchPositionPlaceholderlabel.frame = CGRectMake(10, 0, _searchPositionTextField.frame.size.width, 40);
     _searchPositionPlaceholderlabel.text = @"请输入职位关键字";
@@ -99,7 +113,7 @@
     
     
     UILabel *lineOneLabel = [[UILabel alloc]init];
-    lineOneLabel.frame = CGRectMake(_searchPositionTextField.frame.origin.x, advSearchButton.frame.size.height+advancedSearchButton.frame.origin.y-24, _searchPositionTextField.frame.size.width, 2);
+    lineOneLabel.frame = CGRectMake(_searchPositionTextField.frame.origin.x, advSearchButton.frame.size.height+advSearchButton.frame.origin.y, _searchPositionTextField.frame.size.width, 2);
     lineOneLabel.backgroundColor = RGBACOLOR(250, 250, 250, 1.0f);
     [_searchView addSubview:lineOneLabel];
     
@@ -114,6 +128,8 @@
     _workPlaceDataButton = [[UIButton alloc]init];
     _workPlaceDataButton.frame = CGRectMake(workPlacelabel.frame.origin.x+workPlacelabel.frame.size.width, workPlacelabel.frame.origin.y+5, 50, 20);
     [_workPlaceDataButton setTitle:@"上海" forState:UIControlStateNormal];
+    [_workPlaceDataButton addTarget:self action:@selector(chooseList:) forControlEvents:UIControlEventTouchUpInside];
+    _workPlaceDataButton.tag = 201;
     _workPlaceDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
     [_searchView addSubview:_workPlaceDataButton];
 
@@ -134,6 +150,8 @@
     _workAgeDataButton = [[UIButton alloc]init];
     _workAgeDataButton.frame = CGRectMake(workAgeLabel.frame.origin.x+workAgeLabel.frame.size.width, workAgeLabel.frame.origin.y+5, 50, 20);
     [_workAgeDataButton setTitle:@"三年" forState:UIControlStateNormal];
+    [_workAgeDataButton addTarget:self action:@selector(chooseList:) forControlEvents:UIControlEventTouchUpInside];
+    _workAgeDataButton.tag = 202;
     _workAgeDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
     [_searchView addSubview:_workAgeDataButton];
     
@@ -153,6 +171,8 @@
     _monthlyDataButton = [[UIButton alloc]init];
     _monthlyDataButton.frame = CGRectMake(monthlyLabel.frame.origin.x+monthlyLabel.frame.size.width, monthlyLabel.frame.origin.y+5, 90, 20);
     [_monthlyDataButton setTitle:@"5000-8000" forState:UIControlStateNormal];
+    [_monthlyDataButton addTarget:self action:@selector(chooseList:) forControlEvents:UIControlEventTouchUpInside];
+    _monthlyDataButton.tag = 203;
     _monthlyDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
     [_searchView addSubview:_monthlyDataButton];
     
@@ -160,6 +180,12 @@
     lineFourLabel.frame = CGRectMake(_searchPositionTextField.frame.origin.x, monthlyLabel.frame.size.height+monthlyLabel.frame.origin.y+24, _searchPositionTextField.frame.size.width, 2);
     lineFourLabel.backgroundColor = RGBACOLOR(250, 250, 250, 1.0f);
     [_searchView addSubview:lineFourLabel];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [_searchView addGestureRecognizer:tapGestureRecognizer];
     
     
     UIButton *advancedSearchStarButton = [[UIButton alloc]init];
@@ -177,28 +203,74 @@
     [_searchView addSubview:advancedSearchStarButton];
     
     
-    
-    
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
-    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    //将触摸事件添加到当前view
-    [_searchView addGestureRecognizer:tapGestureRecognizer];
+    [self getPositionInfo];
+
     
     // 向上滑动
     UISwipeGestureRecognizer *oneFingerSwipeUp =
     [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(oneFingerSwipeUp:)];
     [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
     [_searchView addGestureRecognizer:oneFingerSwipeUp];
- 
-    [self getPositionInfo];
+    
+}
 
+#pragma mark -- 下拉列表 进行选择 筛选
+-(void)chooseList:(UIButton *)sender{
+    
+    _searchView.hidden = NO;
+    
+    UIButton *button = (UIButton *)sender;
+    
+    NSArray *loopArray = [[NSArray alloc]init];
+    
+    if (button.tag == 201) {
+        
+        loopArray = _placeArray;
+        
+    }else if(button.tag == 202){
+        
+        loopArray =_experienceArray;
+        
+    }else if (button.tag ==203){
+        
+        loopArray = _payRangeArray;
+        
+    }
+    
+    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:NSLocalizedString(nil, nil)];
+    
+    for (int i =0; i < loopArray.count; i++) {
+        
+        NSString *projectList = loopArray[i];
+        
+        [actionSheet addButtonWithTitle:NSLocalizedString(projectList, nil)
+                                  image:nil
+                                   type:AHKActionSheetButtonTypeDefault
+                                handler:^(AHKActionSheet *as) {
+                                    
+                                    if (button.tag ==201) {
+
+                                        [_workPlaceDataButton setTitle:loopArray[i] forState:UIControlStateNormal];
+                                        
+                                    }
+                                    if(button.tag ==202){
+                                        
+                                        [_workAgeDataButton setTitle:loopArray[i] forState:UIControlStateNormal];
+                                    }
+                                    if(button.tag ==203){
+                                        
+                                     [_monthlyDataButton setTitle:loopArray[i] forState:UIControlStateNormal];
+                                    }
+                                    
+                                }];
+        
+    }
+    
+    [actionSheet show];
 }
 
 #pragma mark -- 高级搜索 调用接口数据
 -(void)advancedSearchStar{
-
-
     
 }
 
