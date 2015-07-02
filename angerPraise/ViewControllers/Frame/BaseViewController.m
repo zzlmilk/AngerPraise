@@ -88,11 +88,11 @@
         [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:backBtn];
        
-        NSLog(@"%@",self.tabBarController);
-        
+        [self hideTabBar];
     }
     else{
-        
+        //隐藏bar栏
+        [self showTabBar];
        
         
     }
@@ -101,11 +101,57 @@
 }
 
 
+
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
+
+
+#pragma  mark ---- TabBar show and hide
+- (void)showTabBar
+
+{
+    if (self.tabBarController.tabBar.hidden == NO)
+    {
+        return;
+    }
+    UIView *contentView;
+    if ([[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]])
+        
+        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
+    
+    else
+        
+        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
+    
+    [UIView animateWithDuration:2 animations:^{
+        contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
+        
+
+    }];
+    self.tabBarController.tabBar.hidden = NO;
+}
+
+
+- (void)hideTabBar {
+    if (self.tabBarController.tabBar.hidden == YES) {
+        return;
+    }
+    UIView *contentView;
+    if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] )
+        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
+    else
+        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
+    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);
+    self.tabBarController.tabBar.hidden = YES;
+    
+}
+
+
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

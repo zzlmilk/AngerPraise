@@ -227,6 +227,7 @@
         
     }
     
+    
     if (currentPostion - _lastPosition > 0  && currentPostion > 0) {
         _lastPosition = currentPostion;
         self.tabBarController.tabBar.hidden = YES;
