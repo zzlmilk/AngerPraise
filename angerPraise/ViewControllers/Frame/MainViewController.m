@@ -23,14 +23,12 @@
     [super viewDidLoad];
     
     [self.navigationItem setHidesBackButton:YES];
-    
     HomeViewController *homeVC = [[HomeViewController alloc]init];
     UINavigationController *homeNav = [[UINavigationController alloc]initWithRootViewController:homeVC];
     homeNav.tabBarItem.image = [UIImage imageNamed:@"0tabbar1"];
     homeNav.tabBarItem.imageInsets=UIEdgeInsetsMake(5, 0,-5, 0);
     homeNav.tabBarItem.tag = 1;
 
-    
     ResumeViewController *resumeVC = [[ResumeViewController alloc]init];
     UINavigationController *resumeNav = [[UINavigationController alloc]initWithRootViewController:resumeVC];
     resumeNav.tabBarItem.image = [UIImage imageNamed:@"0tabbar2"];

@@ -34,7 +34,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     self.window.backgroundColor = [UIColor whiteColor];
-   // [self clearUserInfo];
+    [self clearUserInfo];
     
     NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
     NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
@@ -56,11 +56,13 @@
 
 -(void)getMainVC{
     
-    if (!_mainVC) {
+    if (!_mainVC) {        
         MainViewController *manVC = [[MainViewController alloc]init];
         _mainVC = manVC;
     }
     
+    
+    //[_mainVC.tabBarController setSelectedIndex:0];
     [self.window setRootViewController:_mainVC];
 }
 
@@ -80,6 +82,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_type"];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
+    _mainVC = nil;
 }
 
 

@@ -253,8 +253,9 @@
                
         if (![user.photo_url isEqualToString:@"<null>"]) {
             [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:nil];
-
         }
+        
+        
         
         
         
@@ -656,7 +657,7 @@
     [EditPhoto uploadUserProfileImageParameters:dic WithBlock:^(EditPhoto *e) {
         
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
-         NSLog(@"%@",e);
+        
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         

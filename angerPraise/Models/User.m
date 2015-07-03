@@ -9,6 +9,8 @@
 #import "User.h"
 #import "ApIClient.h"
 
+
+
 @implementation User
 
 -(instancetype)initWithDic:(NSDictionary *)dic{
@@ -67,10 +69,6 @@
         
     }
     
-            //        _position_number =[dic objectForKey:@"position_number"];
-            //        _user_intergral =[dic objectForKey:@"user_intergral"];
-            //        _user_resume_synthesize_grade = [dic objectForKeyedSubscript:@"user_resume_synthesize_grade"];
-            //        _mission_number =[dic objectForKeyedSubscript:@"mission_number"];
 
     return self;
     
@@ -114,15 +112,16 @@
 +(NSURLSessionDataTask *)getHomeData:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
     
     
-    return [[APIClient sharedClient]GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    APIClient *client =    [APIClient sharedClient];
+    [[client requestSerializer] setValue:[[NSUserDefaults standardUserDefaults] objectForKey:USER_TOKEN] forHTTPHeaderField:@"Authorization"];
+  
+    
+    
+    return [client GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
-       
         User *l = [[User alloc]initWithDic:responseObject];
-        
         block(l,nil);
 
-        
-        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         if (NZ_DugSet) {

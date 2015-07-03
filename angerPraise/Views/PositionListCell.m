@@ -227,59 +227,6 @@
     
 }
 
--(void)setPositionList:(Position *)positionList{
-    
-    NSString *positionNameString = [positionList.positionName stringByReplacingOccurrencesOfString:@" " withString:@""];
-    _positionNameLabel.text = positionNameString;
-    
-    _companyNameLabel.text = [positionList.companyName stringByAppendingFormat : @"   %@",positionList.creatTime];
-    
-    _workPlaceLabel.text =positionList.workPlace;
-    _educationLabel.text =positionList.education;
-    
-    NSString *competitionString = [@"竞争力排名" stringByAppendingFormat:@"%@ /%@",positionList.rank, positionList.competitionNumber];
-    
-    _competitionNumberLabel.text =competitionString;
-    _matchNumberLabel.text = [positionList.matchNumber stringByAppendingFormat : @"%@",@"%"];
-    
-    NSString *videoStatusString = [NSString stringWithFormat:@"%@",positionList.company_video_status];
-    if ([videoStatusString isEqualToString:@"0"]) {//没视频
-        
-        _companyVideoStatusImageView.hidden = YES;
-        
-    }
-
-    //company_video_status
-    
-    
-    //_workPlaceLabel.text = positionList.workPlace;
-    
-    //_workPlaceLabel.text = [positionList.workPlace stringByAppendingFormat : @"%@ %@ %@" ,@" | ",positionList.education,positionList.creatTime];
-    
-    //_educationLabel.text = positionList.education;
-    //_creatTimeLabel.text = positionList.creatTime;
-    
-    //_matchNumberLabel.text =[@" 匹配度: " stringByAppendingString:positionList.matchNumber];
-    
-    //_competitionNumberLabel.text = [positionList.competitionNumber stringByAppendingString:@" 人竞争 "];
-    
-    //_rankLabel.text = [@"  排名: " stringByAppendingString:positionList.rank];
-    
-    //[_indexButton setTitle:[positionList.matchNumber stringByAppendingString:@"%"] forState:UIControlStateNormal];
-    
-    //NSString *rankCompetitionString = [positionList.rank stringByAppendingFormat : @"%@ %@",@" /",positionList.competitionNumber];
-    
-    //[_competitionNumberUIButton setTitle:rankCompetitionString forState:UIControlStateNormal];
-    
-    //_typeLabel.text = positionList.type;
-    
-//    if ([positionList.subsidiesInterview isEqualToString:@"0"]) {
-//        
-//        _subsidiesInterImageView.hidden = YES;
-//    }
-
-}
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

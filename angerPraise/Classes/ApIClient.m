@@ -30,10 +30,9 @@ static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://app.hirelib.
     
     
     
- 
-    
     return _sharedClient;
 }
+
 
 
 +(NSString *)sharedBaseURL{
@@ -45,13 +44,11 @@ static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://app.hirelib.
     // [self setDefaultHeader:@"Accept" value:@"application/json"];
     
  //   NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
-    NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
-    
-    
+    NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];    
     if (user_token != nil) {
         [[self requestSerializer] setValue:user_token forHTTPHeaderField:@"Authorization"];
     }
-   
+
     return self;
 }
 

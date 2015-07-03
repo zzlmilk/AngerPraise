@@ -127,11 +127,14 @@ static NSUserDefaults* userData;
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
+    
+    
     [User userLoginOut:dic WithBlock:^(User *user, Error *e) {
        
         if ([user.res isEqualToString:@"1"]) {
             //退出成功  清空 NSUserDefaults  的值 做跳转
             [[NoozanAppdelegate getAppDelegate] clearUserInfo];
+            
             [[NoozanAppdelegate getAppDelegate] getIndexVC];
         }
         

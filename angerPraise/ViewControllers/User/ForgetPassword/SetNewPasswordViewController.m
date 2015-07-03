@@ -11,6 +11,10 @@
 #import "SMS_MBProgressHUD.h"
 #import "ApIClient.h"
 #import "IndexViewController.h"
+#import "User.h"
+#import "NoozanAppdelegate.h"
+
+
 
 @interface SetNewPasswordViewController ()
 
@@ -135,26 +139,18 @@
                 [APIClient showMessage:e.info];
                 
             }
-            
-            NSString *resString = [NSString stringWithFormat:@"%@",reg.res];
-            
-            if ([resString isEqualToString:@"1"]) {
-                
-                
-//                    SMS_MBProgressHUD *hud = [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//                    hud.mode = MBProgressHUDModeIndeterminate;
-//                    hud.labelText = @"密码设置成功";
-//                    hud.margin = 10.f;
-//                    hud.yOffset = 150.f;
-//                    //HUD.dimBackground = YES;  //是否有庶罩
-//                    hud.removeFromSuperViewOnHide = YES;
-//                    [hud hide:YES afterDelay:2];
+            else{
                 [APIClient showSuccess:@"新密码设置成功" title:@"成功"];
-                
-                
-                IndexViewController *indexVC = [[IndexViewController alloc]init];
-                [self.navigationController pushViewController:indexVC animated:YES];
-                
+            }
+            
+            
+            if (reg) {
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:reg.u.user_token forKey:USER_TOKEN];
+                [userDefaults setObject:reg.u.user_id forKey:USER_ID];
+                [userDefaults setObject:reg.u.hr_privilege forKey:@"user_type"];                
+                [[NoozanAppdelegate getAppDelegate] getMainVC];
+
             }
             
             

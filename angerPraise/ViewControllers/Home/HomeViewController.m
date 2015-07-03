@@ -410,12 +410,11 @@
     
     [self isHR];
     
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    //[dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
-
+    
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:0];
     

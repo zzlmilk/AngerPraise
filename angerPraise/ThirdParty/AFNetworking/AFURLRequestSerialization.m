@@ -448,6 +448,7 @@ forHTTPHeaderField:(NSString *)field
     
 
 
+
     if (parameters) {
         NSString *query = nil;
         if (self.queryStringSerialization) {
