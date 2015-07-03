@@ -29,8 +29,7 @@
         CGRect rect = self.contentView.frame;
         
         UIView *cellView = [[UIView alloc]init];
-        cellView.frame = CGRectMake(kMagin, kMagin, rect.size.width-2*kMagin, kCellHeight-kMagin);
-        
+        cellView.frame = CGRectMake(kMagin, kMagin, rect.size.width-2*kMagin, kCellHeight-kMagin-20);
         cellView.backgroundColor = RGBACOLOR(255, 255, 255, 1.0f);
         cellView.layer.masksToBounds = YES;
         cellView.layer.cornerRadius = 8;
@@ -41,7 +40,7 @@
         // 使用两个label 拼接
         _matchImageView = [[UIImageView alloc]init];
         _matchImageView.frame = CGRectMake(0, kMagin, 60, 25);
-        _matchImageView.image = [UIImage imageNamed:@"0cell_bg"];
+        _matchImageView.image = [UIImage imageNamed:@"0flag"];
          [cellView addSubview:_matchImageView];
         
         
@@ -56,9 +55,9 @@
     
         _matchNumberLabel = [[UILabel alloc]init];
         _matchNumberLabel.frame = CGRectMake(matchNumberTipLabel.frame.size.width+matchNumberTipLabel.frame.origin.x +2, 4, 20, 25);
-        _matchNumberLabel.text = @"883%";
+        _matchNumberLabel.text = @"83%";
         [_matchNumberLabel sizeToFit];
-        _matchNumberLabel.textColor = RGBACOLOR(220, 220, 220, 1.0f);
+        _matchNumberLabel.textColor = RGBACOLOR(250, 250, 250, 1.0f);
         _matchNumberLabel.font =[UIFont fontWithName:hlScoreFont size:16.f];
         [_matchImageView addSubview:_matchNumberLabel];
         
@@ -102,15 +101,23 @@
         [cellView addSubview:_subsidiesInterImageView];
         
         
+        _tagLabel = [[UILabel alloc]init];
+        _tagLabel.frame = CGRectMake(0, _hotJobStatusImageView.frame.size.height+_hotJobStatusImageView.frame.origin.y+kMagin-5,cellView.frame.size.width, 15);
+        _tagLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
+        _tagLabel.text = @"有管理能力  三年以上经验   BAT背景";
+        _tagLabel.textAlignment = NSTextAlignmentCenter;
+        _tagLabel.textColor = RGBACOLOR(226, 205, 123, 1.0f);
+        [cellView addSubview:_tagLabel];
+        
         //竞争力排名
         UIImageView *competitionNumberImageView = [[UIImageView alloc]init];
-        competitionNumberImageView.frame = CGRectMake(_hotJobStatusImageView.frame.origin.x, _hotJobStatusImageView.frame.size.height+_hotJobStatusImageView.frame.origin.y+kMagin, 20, 20);
-        competitionNumberImageView.image = [UIImage imageNamed:@"0tabbar2"];
+        competitionNumberImageView.frame = CGRectMake(_hotJobStatusImageView.frame.origin.x, _tagLabel.frame.size.height+_tagLabel.frame.origin.y+kMagin+4, 12, 8);
+        competitionNumberImageView.image = [UIImage imageNamed:@"0ranking"];
         competitionNumberImageView.backgroundColor = [UIColor clearColor];
         [cellView addSubview:competitionNumberImageView];
         
         _competitionNumberLabel = [[UILabel alloc]init];
-        _competitionNumberLabel.frame = CGRectMake(competitionNumberImageView.frame.size.width+competitionNumberImageView.frame.origin.x+5, competitionNumberImageView.frame.origin.y, _positionNameLabel.frame.size.width, 17);
+        _competitionNumberLabel.frame = CGRectMake(competitionNumberImageView.frame.size.width+competitionNumberImageView.frame.origin.x+5, competitionNumberImageView.frame.origin.y-5, _positionNameLabel.frame.size.width, 17);
         _competitionNumberLabel.text = @"竞争力排名6/121";
         _competitionNumberLabel.font = [UIFont systemFontOfSize: 13.0];
         _competitionNumberLabel.textColor =RGBACOLOR(20, 20, 20, 1.0f);
@@ -119,13 +126,13 @@
         
         
         UIImageView *educationImageView = [[UIImageView alloc]init];
-        educationImageView.frame = CGRectMake(competitionNumberImageView.frame.origin.x, competitionNumberImageView.frame.size.height+_competitionNumberLabel.frame.origin.y+3, 20, 20);
-        educationImageView.image = [UIImage imageNamed:@"0tabbar2"];
+        educationImageView.frame = CGRectMake(competitionNumberImageView.frame.origin.x, competitionNumberImageView.frame.size.height+_competitionNumberLabel.frame.origin.y+15, 13,11);
+        educationImageView.image = [UIImage imageNamed:@"0education"];
         educationImageView.backgroundColor = [UIColor clearColor];
         [cellView addSubview:educationImageView];
         
         _educationLabel = [[UILabel alloc]init];
-        _educationLabel.frame = CGRectMake(educationImageView.frame.origin.x+educationImageView.frame.size.width+5, _competitionNumberLabel.frame.size.height+_competitionNumberLabel.frame.origin.y+8, _positionNameLabel.frame.size.width, 17);
+        _educationLabel.frame = CGRectMake(educationImageView.frame.origin.x+educationImageView.frame.size.width+5, _competitionNumberLabel.frame.size.height+_competitionNumberLabel.frame.origin.y+3, _positionNameLabel.frame.size.width, 17);
         _educationLabel.backgroundColor = [UIColor clearColor];
         _educationLabel.text = @"本科以及上";
         _educationLabel.font =[UIFont systemFontOfSize: 13];
@@ -135,13 +142,13 @@
         
         
         UIImageView *workPlaceImageView = [[UIImageView alloc]init];
-        workPlaceImageView.frame = CGRectMake(educationImageView.frame.origin.x, educationImageView.frame.size.height+educationImageView.frame.origin.y+5, 20, 20);
-        workPlaceImageView.image = [UIImage imageNamed:@"0tabbar2"];
+        workPlaceImageView.frame = CGRectMake(educationImageView.frame.origin.x+2, educationImageView.frame.size.height+educationImageView.frame.origin.y+10, 10, 12);
+        workPlaceImageView.image = [UIImage imageNamed:@"0location"];
         workPlaceImageView.backgroundColor = [UIColor clearColor];
         [cellView addSubview:workPlaceImageView];
         
         _workPlaceLabel = [[UILabel alloc]init];
-        _workPlaceLabel.frame = CGRectMake(workPlaceImageView.frame.origin.x+workPlaceImageView.frame.size.width+5, _educationLabel.frame.size.height+_educationLabel.frame.origin.y+8, _positionNameLabel.frame.size.width, 17);
+        _workPlaceLabel.frame = CGRectMake(workPlaceImageView.frame.origin.x+workPlaceImageView.frame.size.width+5, _educationLabel.frame.size.height+_educationLabel.frame.origin.y+5, _positionNameLabel.frame.size.width, 17);
         _workPlaceLabel.text = @"上海 - 陆家嘴";
         _workPlaceLabel.backgroundColor = [UIColor clearColor];
         _workPlaceLabel.font =[UIFont systemFontOfSize: 13.0];
@@ -150,24 +157,18 @@
         
         
         _companyNameLabel = [[UILabel alloc]init];
-        _companyNameLabel.frame = CGRectMake(_positionNameLabel.frame.origin.x, cellView.frame.size.height-kMagin*3, _positionNameLabel.frame.size.width, 30);
+        _companyNameLabel.frame = CGRectMake(20, cellView.frame.size.height-kMagin*3+10, cellView.frame.size.width-2*20, 30);
         _companyNameLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
-        _companyNameLabel.text = @"海浩厉科技信息有限公司";
-        _companyNameLabel.textAlignment = NSTextAlignmentLeft;
+        _companyNameLabel.text = @"上海浩历信息科技有限公司";
+        _companyNameLabel.textAlignment = NSTextAlignmentCenter;
         _companyNameLabel.textColor =RGBACOLOR(177, 179, 180, 1.0f);
         _companyNameLabel.backgroundColor = [UIColor clearColor];
         [cellView addSubview:_companyNameLabel];
         
-        
-        
-        _tagLabel = [[UILabel alloc]init];
-        _tagLabel.frame = CGRectMake(0, _companyNameLabel.frame.origin.y-20,cellView.frame.size.width, 15);
-        _tagLabel.font = [UIFont fontWithName:@"Helvetica" size:12.f];
-        _tagLabel.text = @"有管理能力  三年以上经验   BAT背景";
-        _tagLabel.textAlignment = NSTextAlignmentCenter;
-        _tagLabel.textColor = RGBACOLOR(226, 205, 123, 1.0f);
-        [cellView addSubview:_tagLabel];
-        
+        _companyVideoStatusImageView = [[UIImageView alloc]init];
+        _companyVideoStatusImageView.frame = CGRectMake(_companyNameLabel.frame.size.width+_companyNameLabel.frame.origin.x, _companyNameLabel.frame.origin.y+9, 12, 12);
+        _companyVideoStatusImageView.backgroundColor = [UIColor clearColor];
+        [cellView addSubview:_companyVideoStatusImageView];
         
         
     }
@@ -182,7 +183,7 @@
     NSString *positionNameString = [p.positionName stringByReplacingOccurrencesOfString:@" " withString:@""];
     _positionNameLabel.text = positionNameString;
     
-    _companyNameLabel.text = [p.companyName stringByAppendingFormat : @"   %@",p.creatTime];
+    _companyNameLabel.text = [p.companyName stringByAppendingFormat : @"  %@",p.creatTime];
     
     _workPlaceLabel.text =p.workPlace;
     _educationLabel.text =p.education;
@@ -212,72 +213,24 @@
          _subsidiesInterImageView.image= [UIImage imageNamed:@"0bonoussmall1"];
         
     }
+    if (p.company_video_status ==YES) {
+        _companyVideoStatusImageView.image= [UIImage imageNamed:@"0video"];
+        
+    }
     
     
+
     //热词
     
-    for (int i=0; i<p.hot_words.count; i++) {
-       NSString*  words = [p.hot_words objectAtIndex:i];
-        [words stringByAppendingString:words];
-      
-    }
-    
-   
-    
-    
-}
-
--(void)setPositionList:(Position *)positionList{
-    
-    NSString *positionNameString = [positionList.positionName stringByReplacingOccurrencesOfString:@" " withString:@""];
-    _positionNameLabel.text = positionNameString;
-    
-    _companyNameLabel.text = [positionList.companyName stringByAppendingFormat : @"   %@",positionList.creatTime];
-    
-    _workPlaceLabel.text =positionList.workPlace;
-    _educationLabel.text =positionList.education;
-    
-    NSString *competitionString = [@"竞争力排名" stringByAppendingFormat:@"%@ /%@",positionList.rank, positionList.competitionNumber];
-    
-    _competitionNumberLabel.text =competitionString;
-    _matchNumberLabel.text = [positionList.matchNumber stringByAppendingFormat : @"%@",@"%"];
-    
-    NSString *videoStatusString = [NSString stringWithFormat:@"%@",positionList.company_video_status];
-    if ([videoStatusString isEqualToString:@"0"]) {//没视频
-        
-        _companyVideoStatusImageView.hidden = YES;
-        
-    }
-
-    //company_video_status
-    
-    
-    //_workPlaceLabel.text = positionList.workPlace;
-    
-    //_workPlaceLabel.text = [positionList.workPlace stringByAppendingFormat : @"%@ %@ %@" ,@" | ",positionList.education,positionList.creatTime];
-    
-    //_educationLabel.text = positionList.education;
-    //_creatTimeLabel.text = positionList.creatTime;
-    
-    //_matchNumberLabel.text =[@" 匹配度: " stringByAppendingString:positionList.matchNumber];
-    
-    //_competitionNumberLabel.text = [positionList.competitionNumber stringByAppendingString:@" 人竞争 "];
-    
-    //_rankLabel.text = [@"  排名: " stringByAppendingString:positionList.rank];
-    
-    //[_indexButton setTitle:[positionList.matchNumber stringByAppendingString:@"%"] forState:UIControlStateNormal];
-    
-    //NSString *rankCompetitionString = [positionList.rank stringByAppendingFormat : @"%@ %@",@" /",positionList.competitionNumber];
-    
-    //[_competitionNumberUIButton setTitle:rankCompetitionString forState:UIControlStateNormal];
-    
-    //_typeLabel.text = positionList.type;
-    
-//    if ([positionList.subsidiesInterview isEqualToString:@"0"]) {
+//    for (int i=0; i<p.hot_words.count; i++) {
+//       NSString*  words = [p.hot_words objectAtIndex:i];
+//        [words stringByAppendingString:words];
 //        
-//        _subsidiesInterImageView.hidden = YES;
 //    }
 
+    _tagLabel.text = [p.hot_words componentsJoinedByString:@"  "];
+    
+    
 }
 
 

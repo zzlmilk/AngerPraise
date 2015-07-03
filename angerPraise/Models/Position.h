@@ -44,6 +44,9 @@
 //获取 推荐的 职位列表
 +(NSURLSessionDataTask *)getPositionList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *positionArray, Error *e))block;
 
+//高级搜索
++(NSURLSessionDataTask *)advancedSearchList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *positionArray, Error *e))block;
+
 //申请职位
 +(NSURLSessionDataTask *)applyPosition:(NSDictionary *)parameters WithBlock:(void (^)(Position *position, Error *e))block;
 

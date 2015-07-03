@@ -32,6 +32,10 @@
 @property(nonatomic,strong)UIButton *workPlaceDataButton;
 @property(nonatomic,strong)UIButton *workAgeDataButton;
 @property(nonatomic,strong)UIButton *monthlyDataButton;
+@property(nonatomic,strong)UILabel *workPlaceDataUILabel;
+@property(nonatomic,strong)UILabel *workAgeDataUILabel;
+@property(nonatomic,strong)UILabel *monthlyDataUILabel;
+
 
 @property(nonatomic,strong)NSArray *payRangeArray; // 薪资范围
 @property(nonatomic,strong)NSArray *experienceArray;// 工作年限

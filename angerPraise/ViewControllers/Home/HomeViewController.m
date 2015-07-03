@@ -7,10 +7,8 @@
 //
 
 #import "HomeViewController.h"
-#import "InfiniteScrollPicker.h"
 #import "SMS_MBProgressHUD.h"
-#import "CommentFriendCell.h"
-#import "CommentFriend.h"
+#import "HrPrivilege.h"
 #import "UIImageView+SYJImageCache.h"
 #import "ApIClient.h"
 #import "VWWWaterView.h"
@@ -28,9 +26,7 @@
 #define F2I  (*((int *)&f))
 
 @interface HomeViewController ()
-{
-    InfiniteScrollPicker *isp;
-}
+
 @property WebViewJavascriptBridge* bridge;
 
 @end
@@ -413,7 +409,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    //[dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -499,7 +495,7 @@
 
 
 
-#pragma mark - hr 特权
+#pragma mark - hr特权中 获取hr点评应聘者数据
 -(void)hrPrivilege{
     
     [_hrBtn setImage:[UIImage imageNamed:@"0homepage_hr"] forState:UIControlStateNormal];
@@ -513,7 +509,7 @@
 
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [CommentFriend getHrReviewInfo:dic WithBlock:^(CommentFriend *commentFriend, Error *e) {
+    [HrPrivilege getHrReviewInfo:dic WithBlock:^(HrPrivilege *hr, Error *e) {
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -523,22 +519,21 @@
             
         }else{
             
-            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",commentFriend.today_receive_award,commentFriend.today_award_total];
+            _tipNumberLabel.text = [NSString stringWithFormat:@"%@/%@",hr.today_receive_award,hr.today_award_total];
             
-            
-            synthesizeView.scoreLabel.text= commentFriend.synthesize_grade;
+            synthesizeView.scoreLabel.text= hr.synthesize_grade;
             
             //_synthesizeView.scoreLabel.text =[NSString stringWithFormat:@"%@",[[resultsDic objectForKey:@"user"]objectForKey:@"synthesize_grade"]];
             
-            _scoreUrlString = commentFriend.synthesize_grade_url;
-            _collectionArray = commentFriend.commentFriendArray;
+            _scoreUrlString = hr.synthesize_grade_url;
+            _collectionArray = hr.commentFriendArray;
             
             imageArray = [[NSMutableArray alloc]init];
             _commondUrlArray = [[NSMutableArray alloc]init];
             
             //改变水位高度
-            float alreadyNumber = [commentFriend.today_receive_award floatValue];
-            float countNumber = [commentFriend.today_award_total floatValue];
+            float alreadyNumber = [hr.today_receive_award floatValue];
+            float countNumber = [hr.today_award_total floatValue];
             
             [self calWaterHeightWithalreadyNumber:alreadyNumber countNumber:countNumber];
             

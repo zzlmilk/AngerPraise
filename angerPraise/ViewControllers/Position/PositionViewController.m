@@ -11,7 +11,6 @@
 #import "Position.h"
 #import "PositionDetailViewController.h"
 #import "SMS_MBProgressHUD.h"
-#import "MJRefresh.h"
 #import "ApIClient.h"
 #import "ImportResumeViewController.h"
 #import "AHKActionSheet.h"
@@ -33,10 +32,10 @@
                       @"20000以上",nil];
     
     _experienceArray = [[NSArray alloc]initWithObjects:
-                        @"应届生",@"0-2年",@"3-5年",@"6-8年",@"10年以上",@"不限",nil];
+                        @"应届生",@"0-2年",@"3-5年",@"6-8年",@"9-10年",@"10年+",@"不限",nil];
     
     _placeArray = [[NSArray alloc]initWithObjects:
-                   @"上海",@"北京",@"深圳",nil];
+                   @"上海",@"北京",@"广州",@"深圳",nil];
     
     
 
@@ -49,11 +48,17 @@
 
 -(void)creatAdvanceView{
     
+    UIImageView *advancedSearchImageView = [[UIImageView alloc]init];
+    advancedSearchImageView.frame = CGRectMake(WIDTH-60, 0.75*HEIGHT, 54, 39);
+    advancedSearchImageView.image = [UIImage imageNamed:@"0searchandfilter"];
+    advancedSearchImageView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:advancedSearchImageView];
+    
     UIButton *advancedSearchButton = [[UIButton alloc]init];
-    advancedSearchButton.frame = CGRectMake(WIDTH-60, 0.8*HEIGHT, 60, 30);
-    advancedSearchButton.backgroundColor = [UIColor grayColor];
+    advancedSearchButton.frame = advancedSearchImageView.frame;
     [advancedSearchButton addTarget:self action:@selector(advancedSearch) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:advancedSearchButton];
+    
     
     _tipView = [[UIView alloc]init];
     _tipView.frame = CGRectMake((WIDTH-235)/2, 0, 235, 59);
@@ -64,7 +69,7 @@
     _recommondLabel = [[UILabel alloc]init];
     _recommondLabel.frame = CGRectMake(0, -3, _tipView.frame.size.width, _tipView.frame.size.height);
     _recommondLabel.textAlignment = NSTextAlignmentCenter;
-    _recommondLabel.text = @"今日为你匹配12个职位";
+    _recommondLabel.text = @"今日为你匹配20个职位";
     _recommondLabel.textColor =hl_black;
     _recommondLabel.font = [UIFont fontWithName:hlTextFont size:16.f];
     [_tipView addSubview:_recommondLabel];
@@ -73,17 +78,23 @@
     
     _searchView = [[UIView alloc]init];
     _searchView.frame = self.view.frame;
-    _searchView.backgroundColor = RGBACOLOR(0, 0, 0, 0.8);
+    _searchView.backgroundColor = RGBACOLOR(0, 0, 0, 0.9);
     _searchView.hidden = YES;
     [self.view addSubview:_searchView];
+
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [_searchView addGestureRecognizer:tapGestureRecognizer];
     
-    _searchPositionTextField = [[UITextField alloc]initWithFrame:CGRectMake(20,30, WIDTH-2*20, 40)];
+    _searchPositionTextField = [[UITextField alloc]initWithFrame:CGRectMake(20,20, WIDTH-2*20, 40)];
     _searchPositionTextField.returnKeyType = UITextBorderStyleBezel;
     [_searchPositionTextField setBorderStyle:UITextBorderStyleLine];
     _searchPositionTextField.delegate =self;
     _searchPositionTextField.layer.borderColor=[RGBACOLOR(159, 159, 159, 1.0f)CGColor];
     [_searchPositionTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    _searchPositionTextField.hidden = YES;
+    //_searchPositionTextField.hidden = YES;
     _searchPositionTextField.textColor = [UIColor whiteColor];
     _searchPositionTextField.layer.borderWidth = 1.0f;
     _searchPositionTextField.backgroundColor = [UIColor clearColor];
@@ -98,9 +109,9 @@
     
     
     UIButton *advSearchButton = [[UIButton alloc]init];
-    advSearchButton.frame = CGRectMake(0, _searchPositionTextField.frame.size.height+_searchPositionTextField.frame.origin.y+5, _searchView.frame.size.width, 30);
-    advSearchButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
-    [advSearchButton setTitleColor:RGBACOLOR(200, 200, 200, 1.0f)forState:UIControlStateNormal];
+    advSearchButton.frame = CGRectMake(0, _searchPositionTextField.frame.size.height+_searchPositionTextField.frame.origin.y+15, _searchView.frame.size.width, 30);
+    advSearchButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
+    [advSearchButton setTitleColor:RGBACOLOR(240, 240, 240, 1.0f)forState:UIControlStateNormal];
     advSearchButton.backgroundColor = [UIColor clearColor];
     [advSearchButton setTitle:@"高级搜索" forState:UIControlStateNormal];
     [_searchView addSubview:advSearchButton];
@@ -124,6 +135,7 @@
     [_workPlaceDataButton setTitle:@"上海" forState:UIControlStateNormal];
     [_workPlaceDataButton addTarget:self action:@selector(chooseList:) forControlEvents:UIControlEventTouchUpInside];
     _workPlaceDataButton.tag = 201;
+    _workPlaceDataButton.backgroundColor = [UIColor clearColor];
     _workPlaceDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
     [_searchView addSubview:_workPlaceDataButton];
     
@@ -143,8 +155,9 @@
     
     _workAgeDataButton = [[UIButton alloc]init];
     _workAgeDataButton.frame = CGRectMake(workAgeLabel.frame.origin.x+workAgeLabel.frame.size.width, workAgeLabel.frame.origin.y+5, 50, 20);
-    [_workAgeDataButton setTitle:@"三年" forState:UIControlStateNormal];
+    [_workAgeDataButton setTitle:@"0-2年" forState:UIControlStateNormal];
     [_workAgeDataButton addTarget:self action:@selector(chooseList:) forControlEvents:UIControlEventTouchUpInside];
+    _workAgeDataButton.backgroundColor = [UIColor clearColor];
     _workAgeDataButton.tag = 202;
     _workAgeDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
     [_searchView addSubview:_workAgeDataButton];
@@ -166,6 +179,7 @@
     _monthlyDataButton.frame = CGRectMake(monthlyLabel.frame.origin.x+monthlyLabel.frame.size.width, monthlyLabel.frame.origin.y+5, 90, 20);
     [_monthlyDataButton setTitle:@"5000-8000" forState:UIControlStateNormal];
     [_monthlyDataButton addTarget:self action:@selector(chooseList:) forControlEvents:UIControlEventTouchUpInside];
+    _monthlyDataButton.backgroundColor = [UIColor clearColor];
     _monthlyDataButton.tag = 203;
     _monthlyDataButton.titleLabel.font = [UIFont systemFontOfSize: 13.0];
     [_searchView addSubview:_monthlyDataButton];
@@ -175,11 +189,13 @@
     lineFourLabel.backgroundColor = RGBACOLOR(250, 250, 250, 1.0f);
     [_searchView addSubview:lineFourLabel];
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
-    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    //将触摸事件添加到当前view
-    [_searchView addGestureRecognizer:tapGestureRecognizer];
+    // 存放一维数组的 下标
+    _workPlaceDataUILabel = [[UILabel alloc]init];
+    _workPlaceDataUILabel.text = @"0";
+    _workAgeDataUILabel = [[UILabel alloc]init];
+    _workAgeDataUILabel.text = @"0";
+    _monthlyDataUILabel = [[UILabel alloc]init];
+    _monthlyDataUILabel.text = @"0";
     
     
     UIButton *advancedSearchStarButton = [[UIButton alloc]init];
@@ -203,12 +219,7 @@
     
     self.view.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     
-    
 
-    //高级搜索UI
-    [self creatAdvanceView];
-   
-    
     
     
     //推荐职位
@@ -229,6 +240,9 @@
     [self.view addSubview:_positionTableView];
     
 
+    
+    //高级搜索UI
+    [self creatAdvanceView];
     
     
     [self getPositionInfo];
@@ -281,14 +295,18 @@
 
                                         [_workPlaceDataButton setTitle:loopArray[i] forState:UIControlStateNormal];
                                         
+                                        _workPlaceDataUILabel.text = [NSString stringWithFormat:@"%d",i+1];
+                                        
                                     }
                                     if(button.tag ==202){
                                         
                                         [_workAgeDataButton setTitle:loopArray[i] forState:UIControlStateNormal];
+                                        _workAgeDataUILabel.text = [NSString stringWithFormat:@"%d",i+1];
                                     }
                                     if(button.tag ==203){
                                         
                                      [_monthlyDataButton setTitle:loopArray[i] forState:UIControlStateNormal];
+                                    _monthlyDataUILabel.text = [NSString stringWithFormat:@"%d",i+1];
                                     }
                                     
                                 }];
@@ -298,8 +316,17 @@
     [actionSheet show];
 }
 
-#pragma mark -- 高级搜索 调用接口数据
--(void)advancedSearchStar{
+#pragma mark -- 键盘return 事件
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+
+    [self advancedSearchStar];
+    
+    [_searchPositionTextField resignFirstResponder];
+    
+    return YES;
+    
+    
     
 }
 
@@ -314,14 +341,14 @@
     
     //显示searchView 及其附属元素
     _searchView.hidden = NO;
-    _searchPositionTextField.hidden = NO;
+    //_searchPositionTextField.hidden = NO;
     [_searchPositionTextField becomeFirstResponder];
     _searchPositionPlaceholderlabel.hidden= NO;
     _searchPositionTextField.text = @"";
 }
 
 #pragma mark -- 手势事件监听
--(void)keyboardHide:(UITapGestureRecognizer*)tap{
+-(void)tapGestureAction:(UITapGestureRecognizer*)tap{
     
     CATransition *animation = [CATransition animation];
     animation.type = kCATransitionFade;
@@ -329,9 +356,8 @@
     [_searchView.layer addAnimation:animation forKey:nil];
     [_searchPositionTextField.layer addAnimation:animation forKey:nil];
     
-    _searchView.hidden = YES;
-    _searchPositionTextField.hidden = YES;
-    _searchPositionTextField.hidden = YES;
+    //_searchView.hidden = YES;
+    //_searchPositionTextField.hidden = YES;
     [_searchPositionTextField resignFirstResponder];
     
 }
@@ -339,7 +365,7 @@
 #pragma mark -- 手势向上滑动
 - (void)oneFingerSwipeUp:(UISwipeGestureRecognizer *)recognizer
 {
-    [self keyboardHide:nil];
+    [self tapGestureAction:nil];
 }
 
 - (void) textFieldDidChange:(UITextField *) TextField{
@@ -404,23 +430,6 @@
     
     int currentPostion = scrollView.contentOffset.y;
     
-    if (currentPostion < -44) {
-    
-        CATransition *animation = [CATransition animation];
-        animation.type = kCATransitionFade;
-        animation.duration = 0.4;
-        [_searchView.layer addAnimation:animation forKey:nil];
-        [_searchPositionTextField.layer addAnimation:animation forKey:nil];
-        
-        //显示searchView 及其附属元素
-        _searchView.hidden = NO;
-        _searchPositionTextField.hidden = NO;
-        [_searchPositionTextField becomeFirstResponder];
-        _searchPositionPlaceholderlabel.hidden= NO;
-        _searchPositionTextField.text = @"";
-        
-    }
-    
     if (currentPostion - _lastPosition > 0  && currentPostion > 0) {
         _lastPosition = currentPostion;
         self.tabBarController.tabBar.hidden = YES;
@@ -436,28 +445,42 @@
 }
 
 
-#pragma mark -- 响应键盘 search 事件
-- (BOOL)textFieldShouldReturn:(UITextField *)aTextfield {
-   
-    if (![_searchPositionTextField.text isEqualToString:@""]) {
-        
-   
-        
-    }else{
+#pragma mark -- 高级搜索 调用接口数据
+-(void)advancedSearchStar{
     
-        [APIClient showMessage:@"职位关键字不能为空"];
-    }
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     
-    return YES;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    
+    [dic setObject:_searchPositionTextField.text forKey:@"keyword"];
+    [dic setObject:_workPlaceDataUILabel.text forKey:@"work_place_id"];
+    [dic setObject:_workAgeDataUILabel.text forKey:@"work_year_id"];
+    [dic setObject:_monthlyDataUILabel.text forKey:@"compensation_id"];
+    
+    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Position advancedSearchList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
+        
+        [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
+        
+        if(positionArray.count >0){
+            
+            _positionListArray = positionArray;
+            [_positionTableView reloadData];
+            
+        }
+        _searchView.hidden = YES;
+        
+    }];
+    
+    
 }
 
-
-
-//获取推荐职位列表
+#pragma mark -- 获取推荐职位列表
 -(void)getPositionInfo{
    
-    
-    
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     
     [dic setObject:@"1" forKey:@"type"];//type 1 表示用户开启的推荐职位类型
@@ -465,6 +488,8 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
 
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
@@ -477,6 +502,7 @@
             
             [APIClient showInfo:e.info title:@"提示"];
             
+            //待 修改－－ 每次调用接口都会创建新的 VC
             ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
             [self.navigationController pushViewController:importResumeVC animated:YES];
             

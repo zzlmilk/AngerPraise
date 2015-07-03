@@ -120,6 +120,19 @@
     [_cardView addSubview:positionButton];
     
     
+    _userTableView = [[UITableView alloc]init];
+    _userTableView.frame = CGRectMake(0,_cardView.frame.size.height+_cardView.frame.origin.y, WIDTH,HEIGHT);
+    _userTableView.delegate = self;
+    _userTableView.dataSource = self;
+    _userTableView.scrollEnabled = NO;
+    _userTableView.backgroundColor = RGBACOLOR(48, 47, 53, 1.0f);
+    _userTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //隐藏多余分割线 函数调用
+    [self setExtraCellLineHidden:_userTableView];
+    [self.view addSubview:_userTableView];
+    
+    
+    
     _editView = [[UIView alloc]init];
     _editView.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
     _editView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
@@ -220,25 +233,9 @@
         _modelListArray = [[NSArray alloc]initWithObjects:
                            @"钱包",@"投递记录和收藏",@"我的好友",@"激活HR特权？",@"设置",nil];
     }
-
-    _userTableView = [[UITableView alloc]init];
-    _userTableView.frame = CGRectMake(0,_cardView.frame.size.height+_cardView.frame.origin.y, WIDTH,HEIGHT);
-    _userTableView.delegate = self;
-    _userTableView.dataSource = self;
-    _userTableView.scrollEnabled = NO;
-    _userTableView.backgroundColor = RGBACOLOR(48, 47, 53, 1.0f);
-    _userTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //隐藏多余分割线 函数调用
-    [self setExtraCellLineHidden:_userTableView];
-    [self.view addSubview:_userTableView];
     
     _walletNumberLabel = [[UILabel alloc]init];
 
-    
-    
-//    [self getUserInfo];
-//    [self getWalletNumber];
-    
 }
 
 
@@ -247,15 +244,15 @@
 {
     [super viewWillAppear:animated];
     if (user) {
+        
         [_userNameButton setTitle:user.user_name forState:UIControlStateNormal];
         
         _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
                
         if (![user.photo_url isEqualToString:@"<null>"]) {
+            
             [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:nil];
-
         }
-        
         
         
         NSString *mission_number = [NSString stringWithFormat:@"%@",user.mission_number];
@@ -374,7 +371,8 @@
 }
 
 
-#pragma mark  获取 user 模块的用户基本信息
+#pragma mark  获取 user 模块的用户基本信息 
+//此方法暂未使用
 -(void)getUserInfo{
 
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -406,16 +404,7 @@
                 _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
                 
                 
-//                [_waitPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url]];
-//                NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
-//                _taskLabel.text = user.position_number;//匹配职位
-//                _matchPositionLabel.text = stringInt;//剩余任务
-//                _walletNumberLabel.text = user.user_intergral;
-                
-//                _hr_url = user.hr_url;
-//                _pay_url = user.pay_url;
-//                _user_apply_url = user.user_apply_url;
-//                _user_friend_url = user.user_friend_url;
+                [_waitPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url]];
                 
             }
             
@@ -647,8 +636,9 @@
     NSData *imageData = UIImagePNGRepresentation(img);
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    
-   
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+
 
     [dic setObject:imageData forKey:@"imageData"];
     

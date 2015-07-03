@@ -33,10 +33,6 @@
 @property(nonatomic,strong)UIImageView *companyMapStatusImageView; //是否有地图 0 否，1 是
 @property(nonatomic,strong)UIImageView *companyVideoStatusImageView; //是否有视频 0 否，1 是
 
-
-
-
-
 //@property(nonatomic,strong)UIButton *applyPositionButton;
 
 @property (nonatomic,strong)Position *p;

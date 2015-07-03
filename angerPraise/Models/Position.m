@@ -107,6 +107,52 @@
     
 }
 
+//高级搜索
++(NSURLSessionDataTask *)advancedSearchList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *positionArray, Error *e))block{
+
+    return [[APIClient sharedClient]GET:@"position/senior_search" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        //NSLog(@"%@",responseObject);
+        
+        if ([responseObject objectForKey:@"error"]) {
+            
+            Error *error = [[Error alloc]init];
+            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+            
+            NSMutableArray *p;
+            
+            block(p,error);
+            
+        }else{
+            
+            NSMutableArray *positionArray = [responseObject objectForKey:@"position"];
+            
+            NSMutableArray *positionList = [NSMutableArray array];
+            
+            for (int i=0; i<positionArray.count; i++) {
+                NSDictionary *statusDic = [positionArray objectAtIndex:i];
+                Position * s = [[Position alloc]initWithDic:statusDic];
+                [positionList addObject:s];
+            }
+            
+            block(positionList,nil);
+            
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        if (NZ_DugSet) {
+            
+            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+        }
+    }];
+
+    
+    
+}
+
 //申请职位
 +(NSURLSessionDataTask *)applyPosition:(NSDictionary *)parameters WithBlock:(void (^)(Position *, Error *))block{
 

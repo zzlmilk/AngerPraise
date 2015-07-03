@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
-#import "ResumeScore.h"
 #import "KDGoalBar.h"
 #import "MainViewController.h"
 #import "WXApiObject.h"
-
-#import "BaseViewController.h"
 
 @interface ResumeViewController :BaseViewController<TabBarItemSelectDelegate>{
     KDGoalBar *percentGoalBar;

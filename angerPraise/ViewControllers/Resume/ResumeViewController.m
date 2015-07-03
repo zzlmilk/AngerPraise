@@ -7,11 +7,10 @@
 //
 
 #import "ResumeViewController.h"
-#import "ResumeScore.h"
+#import "Resume.h"
 #import "PreviewResumeViewController.h"
 #import "SMS_MBProgressHUD.h"
 #import "ApIClient.h"
-#import "ResumeScoreViewController.h"
 #import "ImportResumeViewController.h"
 #import "QAResumeViewController.h"
 #import "PerfectResumeViewController.h"
@@ -116,7 +115,7 @@
     _perfectResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
     [_perfectResumeButton setTitle:@"  完善简历" forState:UIControlStateNormal];
     [_perfectResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
-    [_perfectResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
+    [_perfectResumeButton setImage:[UIImage imageNamed:@"0pencil"] forState:UIControlStateNormal];
     [_perfectResumeButton setTitleColor:hl_gary forState:UIControlStateHighlighted];
     _perfectResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
     _perfectResumeButton.backgroundColor = [UIColor clearColor];
@@ -126,14 +125,14 @@
     
     //预览简历
     _previewResumeButton = [[UIButton alloc]init];
-    _previewResumeButton.frame = CGRectMake(_perfectResumeButton.frame.origin.x,_perfectResumeButton.frame.origin.y+_perfectResumeButton.frame.size.height+50, _perfectResumeButton.frame.size.width, 35);
+    _previewResumeButton.frame = CGRectMake(_perfectResumeButton.frame.origin.x,_perfectResumeButton.frame.origin.y+_perfectResumeButton.frame.size.height+70, _perfectResumeButton.frame.size.width, 35);
     [_previewResumeButton.layer setMasksToBounds:YES];
     [_previewResumeButton.layer setCornerRadius:35/2.f]; //设置矩形四个圆角半径
     [_previewResumeButton.layer setBorderWidth:1.0]; //边框宽度
     _previewResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
     [_previewResumeButton setTitle:@"  预览简历" forState:UIControlStateNormal];
     [_previewResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
-    [_previewResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
+    [_previewResumeButton setImage:[UIImage imageNamed:@"0preview"] forState:UIControlStateNormal];
     [_previewResumeButton setTitleColor:hl_gary forState:UIControlStateHighlighted];
     _previewResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
     _previewResumeButton.backgroundColor = [UIColor clearColor];
@@ -173,7 +172,7 @@
     creatResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
     [creatResumeButton setTitle:@"   创 建 简 历" forState:UIControlStateNormal];
     [creatResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
-    [creatResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
+    [creatResumeButton setImage:[UIImage imageNamed:@"0pencil"] forState:UIControlStateNormal];
     [creatResumeButton setTitleColor:btnNormalColor forState:UIControlStateHighlighted];
     creatResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
     creatResumeButton.backgroundColor = [UIColor clearColor];
@@ -197,11 +196,12 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
     [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     
-    [ResumeScore getResumeScoer:dic WithBlock:^(ResumeScore *resumeScoer, Error *e) {
+    [Resume getResumeScoer:dic WithBlock:^(Resume *resume, Error *e) {
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
 
@@ -211,34 +211,24 @@
             
         }
         
-        if(resumeScoer.user_position !=nil){
+        if(resume.user_position !=nil){
             
             
-            _positionNameLabel.text = resumeScoer.user_position;
+            _positionNameLabel.text = resume.user_position;
             
-            _hopeMoneyNameLabel.text = resumeScoer.compensation_name;
+            _hopeMoneyNameLabel.text = resume.compensation_name;
             
-            _hopePositionNameLabel.text = resumeScoer.objective_functions;
+            _hopePositionNameLabel.text = resume.objective_functions;
             
-            _updateTimelabel.text = [@"更新时间: " stringByAppendingString:resumeScoer.resume_update_time];
-            _user_resume_synthesize_grade = resumeScoer.user_resume_synthesize_grade;
+            _updateTimelabel.text = [@"更新时间: " stringByAppendingString:resume.resume_update_time];
+            _user_resume_synthesize_grade = resume.user_resume_synthesize_grade;
             
         }
         
-        if (resumeScoer.resume_status !=nil) {
-         
-            NSString *resumeStatusString = [NSString stringWithFormat:@"%@",resumeScoer.resume_status];
+        if (resume.resume_status == YES) {// 有简历
             
-            if ([resumeStatusString isEqualToString:@"0"]) {// 没有简历
-                
-                _noResumeView.hidden = NO;
-                _resumeView.hidden = YES;
-                
-            }
-            else{
-                _noResumeView.hidden = YES;
-                _resumeView.hidden= NO;
-            }
+            _noResumeView.hidden = YES;
+            _resumeView.hidden= NO;
         }
         
         int myInt = [_user_resume_synthesize_grade intValue];
@@ -317,6 +307,8 @@
 //分享简历
 #pragma mark - 通过 微信 发送链接
 -(void)shareResume{
+    
+    
     
         [self changeScene:WXSceneSession];
         WXMediaMessage *message = [WXMediaMessage message];
