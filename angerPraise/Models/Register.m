@@ -8,6 +8,8 @@
 
 #import "Register.h"
 #import "ApIClient.h"
+#import "User.h"
+
 
 @implementation Register
 
@@ -24,6 +26,9 @@
         _user_id = [dic objectForKey:@"user_id"];
         _user_name = [dic objectForKey:@"user_name"];
         _user_phone = [dic objectForKey:@"user_phone"];
+        
+        _u = [[User alloc]initWithDic:dic];
+        
     
     }
     
@@ -84,6 +89,7 @@
         }else{
             
             Register *r = [[Register alloc]initWithDic:responseObject];
+            
             
             block(r,nil);
             
@@ -146,8 +152,9 @@
             
         }else{
             
-            Register *r = [[Register alloc]initWithDic:responseObject];
             
+            
+            Register *r = [[Register alloc]initWithDic:responseObject];
             block(r,nil);
             
         }

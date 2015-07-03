@@ -185,13 +185,15 @@
             [userDefaults setObject:user.user_token forKey:USER_TOKEN];
             [userDefaults setObject:user.user_id forKey:USER_ID];
             [userDefaults setObject:user.hr_privilege forKey:@"user_type"];
-        
+            [userDefaults synchronize];
+            
+            
             //注册成功发送设备
             [self sendDeviceInfo];
             
-            MainViewController *mainVC = [[MainViewController alloc]init];
-            [self.navigationController pushViewController:mainVC animated:YES];
-            //[[NoozanAppdelegate getAppDelegate] getMainVC];
+//            MainViewController *mainVC = [[MainViewController alloc]init];
+//            [self.navigationController pushViewController:mainVC animated:YES];
+            [[NoozanAppdelegate getAppDelegate] getMainVC];
             
         }
     }];

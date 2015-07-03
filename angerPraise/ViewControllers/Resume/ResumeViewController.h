@@ -22,7 +22,7 @@
 @property(nonatomic,strong)UIView *titleMyResumeView;
 @property(nonatomic,strong)UIView *resumeView;
 @property(nonatomic,strong)UIView *noResumeView;
-
+@property(nonatomic,strong)UIButton *shareResumeButton;
 
 @property(nonatomic,strong)UILabel *positionNameLabel;
 @property(nonatomic,strong)UILabel *hopePositionNameLabel;

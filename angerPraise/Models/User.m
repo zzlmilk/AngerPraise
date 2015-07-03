@@ -67,14 +67,12 @@
         
     }
     
-            //        _position_number =[dic objectForKey:@"position_number"];
-            //        _user_intergral =[dic objectForKey:@"user_intergral"];
-            //        _user_resume_synthesize_grade = [dic objectForKeyedSubscript:@"user_resume_synthesize_grade"];
-            //        _mission_number =[dic objectForKeyedSubscript:@"mission_number"];
 
     return self;
     
 }
+
+
 
 // 用户注册
 +(NSURLSessionDataTask *)userRegister:(NSDictionary *)parameters WithBlock:(void (^)(User *reg, Error *e))block{
@@ -112,15 +110,20 @@
 
 //获取首页数据
 +(NSURLSessionDataTask *)getHomeData:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
-    return [[APIClient sharedClient]GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+
+   
+    
+    
+    APIClient *client =    [APIClient sharedClient];
+    [[client requestSerializer] setValue:[[NSUserDefaults standardUserDefaults] objectForKey:USER_TOKEN] forHTTPHeaderField:@"Authorization"];
+  
+    
+    
+    return [client GET:@"home/index" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
-       
         User *l = [[User alloc]initWithDic:responseObject];
-        
         block(l,nil);
 
-        
-        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         if (NZ_DugSet) {
@@ -132,7 +135,6 @@
 
 //用户登录
 +(NSURLSessionDataTask *)userLogin:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
-    
     return [[APIClient sharedClient]GET:@"user/login" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
         // NSLog(@"%@",responseObject);
@@ -163,7 +165,7 @@
     }];
 }
 
-
+            
 //获取 我的模块 信息
 +(NSURLSessionDataTask *)getUserInfoData:(NSDictionary *)parameters WithBlock:(void (^)(User *, Error *))block{
 
@@ -505,6 +507,7 @@
     }];
 }
 
+            
 #pragma mark -- hr特权 url
 +(NSURLSessionDataTask *)getHrUrl:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
     
@@ -528,8 +531,12 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         if (NZ_DugSet) {
             [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
-        }
-    }];
-}
+            }
+        }];
+    }
+            
 
+            
+    
 @end
+

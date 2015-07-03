@@ -253,7 +253,7 @@
             
             [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:nil];
         }
-        
+
         
         NSString *mission_number = [NSString stringWithFormat:@"%@",user.mission_number];
         _matchPositionLabel.text =mission_number;// user.position_number;
@@ -646,7 +646,7 @@
     [EditPhoto uploadUserProfileImageParameters:dic WithBlock:^(EditPhoto *e) {
         
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
-         NSLog(@"%@",e);
+        
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         

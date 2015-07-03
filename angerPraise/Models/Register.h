@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "Error.h"
-
+@class User;
 @interface Register : NSObject
 
 
+@property (nonatomic,strong)User *u;
 @property(nonatomic,strong)NSString *photo_url;
 @property(nonatomic,strong)NSString *user_id;
 @property(nonatomic,strong)NSString *user_name;
 @property(nonatomic,strong)NSString *user_phone;
+
 
 
 @property(nonatomic,strong)NSString *res;

@@ -37,13 +37,13 @@
     _resumeView = [[UIView alloc]init];
     _resumeView.frame = CGRectMake(0, _titleMyResumeView.frame.size.height, WIDTH, HEIGHT-_titleMyResumeView.frame.size.height);
     _resumeView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
+    _resumeView.hidden = YES;
     [self.view addSubview:_resumeView];
     
     //没有简历的View
     _noResumeView = [[UIView alloc]init];
     _noResumeView.frame = CGRectMake(0, _titleMyResumeView.frame.size.height, WIDTH, HEIGHT-_titleMyResumeView.frame.size.height);
     _noResumeView.backgroundColor = RGBACOLOR(20, 20, 20, 20);
-    _noResumeView.hidden = YES;
     [self.view addSubview:_noResumeView];
     
     
@@ -213,7 +213,6 @@
         
         if(resume.user_position !=nil){
             
-            
             _positionNameLabel.text = resume.user_position;
             
             _hopeMoneyNameLabel.text = resume.compensation_name;
@@ -229,6 +228,7 @@
             
             _noResumeView.hidden = YES;
             _resumeView.hidden= NO;
+            _shareResumeButton.enabled = YES;
         }
         
         int myInt = [_user_resume_synthesize_grade intValue];
@@ -261,19 +261,20 @@
     [self.view addSubview:resumeScoreButton];
     
     
-    UIButton *shareResumeButton= [[UIButton alloc]initWithFrame:CGRectMake(60,goalBarFrame.origin.y+goalBarFrame.size.height+28,WIDTH-2*60,35)];
-    [shareResumeButton.layer setMasksToBounds:YES];
-    [shareResumeButton.layer setCornerRadius:35/2.f]; //设置矩形四个圆角半径
-    [shareResumeButton.layer setBorderWidth:1.0]; //边框宽度
-    shareResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
-    [shareResumeButton setTitle:@"   分 享 简 历" forState:UIControlStateNormal];
-    [shareResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
-    [shareResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
-    [shareResumeButton setTitleColor:btnNormalColor forState:UIControlStateHighlighted];
-    shareResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
-    shareResumeButton.backgroundColor = [UIColor clearColor];
-    [shareResumeButton addTarget:self action:@selector(shareResume) forControlEvents:UIControlEventTouchUpInside];
-    [_titleMyResumeView addSubview:shareResumeButton];
+    _shareResumeButton= [[UIButton alloc]initWithFrame:CGRectMake(60,goalBarFrame.origin.y+goalBarFrame.size.height+28,WIDTH-2*60,35)];
+    [_shareResumeButton.layer setMasksToBounds:YES];
+    [_shareResumeButton.layer setCornerRadius:35/2.f]; //设置矩形四个圆角半径
+    [_shareResumeButton.layer setBorderWidth:1.0]; //边框宽度
+    _shareResumeButton.layer.borderColor = [RGBACOLOR(0, 203, 251, 1.0f) CGColor];
+    [_shareResumeButton setTitle:@"   分 享 简 历" forState:UIControlStateNormal];
+    [_shareResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
+    [_shareResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
+    [_shareResumeButton setTitleColor:btnNormalColor forState:UIControlStateHighlighted];
+    _shareResumeButton.enabled = NO;
+    _shareResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+    _shareResumeButton.backgroundColor = [UIColor clearColor];
+    [_shareResumeButton addTarget:self action:@selector(shareResume) forControlEvents:UIControlEventTouchUpInside];
+    [_titleMyResumeView addSubview:_shareResumeButton];
     
 }
 
@@ -308,28 +309,48 @@
 #pragma mark - 通过 微信 发送链接
 -(void)shareResume{
     
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
     
-        [self changeScene:WXSceneSession];
-        WXMediaMessage *message = [WXMediaMessage message];
-        message.title = @"怒赞简历";
-        message.description = nil;
-        [message setThumbImage:[UIImage imageNamed:@"Icon"]];
+    [Resume previewResume:dic WithBlock:^(Resume *resume, Error *e) {
         
-        WXWebpageObject *ext = [WXWebpageObject object];
-        ext.webpageUrl = @"";
-        
-        message.mediaObject = ext;
-        message.mediaTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
-        
-        SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-        req.bText = NO;
-        req.message = message;
-        req.scene = _scene;
-        [WXApi sendReq:req];
+        if (e.info !=nil) {
+            
+            [APIClient showMessage:e.info];
+            
+        }
+        if (resume.resume_preview_url) {
+            
+            [self shareResumeByWeiXin:resume.resume_preview_url];
+        }
+    }];
     
 }
 
+-(void)shareResumeByWeiXin:(NSString *)url{
+
+    [self changeScene:WXSceneSession];
+    WXMediaMessage *message = [WXMediaMessage message];
+    message.title = @"怒赞简历";
+    message.description = nil;
+    [message setThumbImage:[UIImage imageNamed:@"Icon"]];
+    
+    WXWebpageObject *ext = [WXWebpageObject object];
+    ext.webpageUrl = url;
+    
+    message.mediaObject = ext;
+    message.mediaTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = _scene;
+    [WXApi sendReq:req];
+
+    
+}
 //提示用户 分享View
 -(void)lookResumeScore{
 

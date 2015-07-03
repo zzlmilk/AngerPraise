@@ -69,7 +69,7 @@
         _positionNameLabel = [[UILabel alloc]init];
         _positionNameLabel.frame = CGRectMake(_matchImageView.frame.origin.x+_matchImageView.frame.size.width + 4, kMagin, cellView.frame.size.width-2*(_matchImageView.frame.origin.x+_matchImageView.frame.size.width), 35);
         _positionNameLabel.textColor = RGBACOLOR(20, 20, 20, 1.0F);
-        _positionNameLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.f];
+        _positionNameLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.f];
         _positionNameLabel.text = @"职位名称";
         _positionNameLabel.textAlignment = NSTextAlignmentCenter;
         _positionNameLabel.backgroundColor = [UIColor clearColor];

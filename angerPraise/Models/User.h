@@ -71,7 +71,8 @@
 +(NSURLSessionDataTask *)getHomeData:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
 
 //用户登录
-+(NSURLSessionDataTask *)userLogin:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
++(NSURLSessionDataTask *)userLogin:(NSDictionary *)parameters WithBlock:
+(void (^)(User *user, Error *e))block;
 
 //退出登录
 +(NSURLSessionDataTask *)userLoginOut:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block;
