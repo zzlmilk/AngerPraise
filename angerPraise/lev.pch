@@ -32,6 +32,15 @@
 
 #define hlTextFont @"兰亭黑"  //分数字体
 
+//判断是真机还是模拟器
+#if TARGET_OS_IPHONE
+//iPhone Device
+#endif
+
+#if TARGET_IPHONE_SIMULATOR
+//iPhone Simulator
+#endif
+
 
 
 #define WIDTH [[UIScreen mainScreen] bounds].size.width

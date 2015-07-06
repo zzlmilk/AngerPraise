@@ -234,7 +234,8 @@
         WalletWebViewController * walletWebVC = [[WalletWebViewController alloc]init];
         walletWebVC.walletUrl = _payUrlString;
         
-        [self.navigationController pushViewController:walletWebVC animated:YES];
+//        [self.navigationController pushViewController:walletWebVC animated:YES];
+        [self presentViewController:walletWebVC animated:YES completion:nil];
         
     }
 }

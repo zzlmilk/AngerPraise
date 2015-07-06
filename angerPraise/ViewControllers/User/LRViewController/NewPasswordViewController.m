@@ -194,10 +194,10 @@
 #pragma mark -- 注册 提交 调用接口
 -(void)userRegisterSendData{
     
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:_newsPasswordTextField.text forKey:@"password"];
     [dic setObject:_userNameTextField.text forKey:@"name"];
     
@@ -210,19 +210,18 @@
             
             [APIClient showInfo:e.info title:@"提示"];
             
-        }
-        if(![user.user_id isEqual: @""]){
+        }else{
             
             [APIClient showSuccess:@"注册成功" title:@"成功"];
             
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:user.user_token forKey:USER_TOKEN];
-            [userDefaults setObject:user.user_id forKey:USER_ID];
-            [userDefaults setObject:user.hr_privilege forKey:@"user_type"];
-            
-            
-            LoginViewController *loginVC = [[LoginViewController alloc]init];
-            [loginVC sendDeviceInfo];// 发送设备信息
+//            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//            [userDefaults setObject:user.user_token forKey:USER_TOKEN];
+//            [userDefaults setObject:user.user_id forKey:USER_ID];
+//            [userDefaults setObject:user.hr_privilege forKey:@"user_type"];
+//            
+//            
+//            LoginViewController *loginVC = [[LoginViewController alloc]init];
+//            [loginVC sendDeviceInfo];// 发送设备信息
             
             MainViewController *mainVC = [[MainViewController alloc]init];
             [self.navigationController pushViewController:mainVC animated:YES];

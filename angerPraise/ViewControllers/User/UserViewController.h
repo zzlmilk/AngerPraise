@@ -34,7 +34,6 @@
 @property(nonatomic,strong)NSString *user_type;
 
 @property(nonatomic, strong)UIView *editView;
-@property(nonatomic, strong)UIImageView *waitPhotoImageView;
 @property(nonatomic,strong)UIButton *backBtn;
 @property(nonatomic,strong)UILabel *waitUsernameLabel;
 
@@ -52,5 +51,4 @@
 
 @property(nonatomic,strong)UITextField *editNameTextField;
 
--(void)closeTimer;
 @end

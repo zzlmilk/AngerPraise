@@ -136,10 +136,10 @@
 
 }
 
-#pragma mark -- 忘记密码  验证手机号码
+#pragma mark -- 忘记密码  设置密码
 +(NSURLSessionDataTask *)setNewPassword:(NSDictionary *)parameters WithBlock:(void (^)(Register *reg, Error *e))block{
     
-    return [[APIClient sharedClient]GET:@"user/update_password" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    return [[APIClient sharedClient]GET:@"user/forget_update_password" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject objectForKey:@"error"]) {
             Error *error = [[Error alloc]init];

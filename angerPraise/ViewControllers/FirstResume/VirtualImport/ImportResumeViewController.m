@@ -109,10 +109,10 @@
 
 -(void)getQaCreatResumeUrl{
 
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     
     [Resume qACreatedResume:dic WithBlock:^(Resume *resume, Error *e) {
        
@@ -135,13 +135,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//
-//#pragma mark -- 虚拟投放
-//-(void)guideStatus{
-//    
-//    GuideViewController *guidelVC = [[GuideViewController alloc]init];
-//    [self.navigationController pushViewController:guidelVC animated:YES];
-//}
 
 #pragma mark -- 问答式创建
 -(void)guideImport{
@@ -155,7 +148,7 @@
 -(void)skip{
     
     MainViewController *mainVC = [[MainViewController alloc]init];
-    [self.navigationController pushViewController:mainVC animated:YES];
+    [self presentViewController:mainVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
