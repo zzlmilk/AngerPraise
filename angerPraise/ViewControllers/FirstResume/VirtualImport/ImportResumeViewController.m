@@ -26,11 +26,11 @@
     
     self.view.backgroundColor =[UIColor whiteColor];
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
+//    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    backBtn.frame = CGRectMake(0, 0, 44, 44);
+//    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+//    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:backBtn];
     
     
     
@@ -130,10 +130,10 @@
 }
 
 #pragma mark -- 返回
--(void)doBack{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//-(void)doBack{
+//    
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 
 #pragma mark -- 问答式创建

@@ -504,7 +504,8 @@
             
             //待 修改－－ 每次调用接口都会创建新的 VC
             ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
-            [self.navigationController pushViewController:importResumeVC animated:YES];
+//            [self.navigationController pushViewController:importResumeVC animated:YES];
+            [self presentViewController:importResumeVC animated:YES completion:nil];
             
         }
         

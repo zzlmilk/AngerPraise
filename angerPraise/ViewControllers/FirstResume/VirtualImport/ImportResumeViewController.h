@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface ImportResumeViewController : BaseViewController
+@interface ImportResumeViewController : UIViewController
 
 
 @property(nonatomic,strong) NSString *create_resume_url;

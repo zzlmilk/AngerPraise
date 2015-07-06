@@ -33,12 +33,10 @@
 #define hlTextFont @"兰亭黑"  //分数字体
 
 //判断是真机还是模拟器
-#if TARGET_OS_IPHONE
-//iPhone Device
-#endif
-
 #if TARGET_IPHONE_SIMULATOR
-//iPhone Simulator
+#define SIMULATOR 1
+#elif TARGET_OS_IPHONE
+#define SIMULATOR 0
 #endif
 
 

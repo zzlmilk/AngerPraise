@@ -584,6 +584,7 @@
 #pragma mark - 通过 微信 发送链接
 - (void) sendLinkContentByWeiXin
 {
+    
     [self changeScene:WXSceneSession];
     WXMediaMessage *message = [WXMediaMessage message];
     message.title = _shareTitle;

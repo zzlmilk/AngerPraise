@@ -339,7 +339,6 @@
 -(void)lookPosition{
 
     [self.tabBarController setSelectedIndex:2];
-
 }
 
 #pragma mark 查看剩余任务

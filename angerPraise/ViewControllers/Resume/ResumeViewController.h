@@ -32,7 +32,7 @@
 @property(nonatomic,strong)UIButton *perfectResumeButton;
 
 @property(nonatomic,strong)NSString *user_resume_synthesize_grade;
-
+@property(nonatomic)BOOL resumeStatus;
 
 
 //以下即将废弃
