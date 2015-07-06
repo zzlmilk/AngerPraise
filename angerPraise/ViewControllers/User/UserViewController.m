@@ -333,16 +333,19 @@
 
 }
 
+
+
 #pragma mark 查看匹配的职位
 -(void)lookPosition{
-    
-    
+
+    [self.tabBarController setSelectedIndex:2];
 
 }
 
 #pragma mark 查看剩余任务
 -(void)lookTask{
     
+    [self.tabBarController setSelectedIndex:0];
 
 }
 
