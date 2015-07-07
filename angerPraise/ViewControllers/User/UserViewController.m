@@ -13,7 +13,6 @@
 #import "SMS_MBProgressHUD.h"
 #import "User.h"
 #import "UIImageView+SYJImageCache.h"
-
 #import "WalletWebViewController.h"
 #import "MyFriendWebViewController.h"
 #import "CollectWebViewController.h"
@@ -251,10 +250,8 @@
         
        if (![user.photo_url isEqualToString:@"<null>"]) {
             
-            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:nil];
-        }
-
-               
+            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+       }
         
         NSString *mission_number = [NSString stringWithFormat:@"%@",user.mission_number];
         _matchPositionLabel.text =mission_number;// user.position_number;
@@ -266,8 +263,6 @@
         _walletNumberLabel.text = user.user_intergral;
         
     }
-    
-    
     
 }
 
@@ -642,26 +637,18 @@
         
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
         
-        
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
         
-        if ([e.res isEqualToString:@"1"]) {
+        if (e.photo_url) {
             
-            [self updateUserPhoto];
+            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:e.photo_url] placeholderImage:_savedImage];
             
             [APIClient showSuccess:@"头像上传成功" title:@"成功"];
             
         }
         
     }];
-    
-}
-
-//头像上传成功后更新用户头像
--(void)updateUserPhoto{
-
-    [_userPhotoImageView setImage:_savedImage];
     
 }
 
@@ -738,7 +725,6 @@
             
         }
         
-
         
     }else{ // 是HR
     

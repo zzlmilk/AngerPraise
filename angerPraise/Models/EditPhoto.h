@@ -16,6 +16,6 @@
 
 -(instancetype)initWithDic:(NSDictionary *)dic;
 
-@property(nonatomic,strong)NSString *res;
+@property(nonatomic,strong)NSString *photo_url;
 
 @end

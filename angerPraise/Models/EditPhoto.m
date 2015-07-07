@@ -16,7 +16,11 @@
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self =[super init];
 
-    _res = [dic objectForKey:@"res"];
+    if ([dic objectForKey:@"user"]) {
+        
+        _photo_url = [[dic objectForKey:@"user"] objectForKey:@"photo_url"];
+
+    }
     
     return self;
     
@@ -30,6 +34,7 @@
     
     NSData *imageData = [parameters objectForKey:@"imageData"];
     NSString *  AFAppDotNetAPIBaseURLString = @"http://app.hirelib.com/noozan_api/v1/";
+//    NSString *  AFAppDotNetAPIBaseURLString = @"http://192.168.0.113:3000/v1/";
     NSString* URLTmp = [NSString stringWithFormat:@"%@/user/update_photo",AFAppDotNetAPIBaseURLString];
     
     NSString *URLTmps = [URLTmp stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
