@@ -185,30 +185,29 @@ static NSUserDefaults* userData;
 #pragma mark -- UITableView delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
 
     switch (indexPath.row) {
-        case 1:
+        case 0:
         {
             _takeUrlString = _privacy_url;
         }
             break;
-        case 2:
+        case 1:
         {
             _takeUrlString = _version_url;
         }
             break;
-        case 3:
+        case 2:
         {
             _takeUrlString = _about_url;
         }
             break;
-        case 4:
+        case 3:
         {
             _takeUrlString = _review_app_url;
         }
             break;
-        case 5:
+        case 4:
         {
 
             [self meiChartAction];
@@ -222,11 +221,6 @@ static NSUserDefaults* userData;
     
     
     if (indexPath.row !=5) {
-        
-        //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
-        //    Position * p = [_positionListArray objectAtIndex:indexPath.row];
-        //
-        
         SettingWebViewController *settingWebVC = [[SettingWebViewController alloc]init];
         settingWebVC.settingDetailUrl =_takeUrlString;
         [self.navigationController pushViewController:settingWebVC animated:YES];

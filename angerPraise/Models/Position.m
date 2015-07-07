@@ -48,6 +48,7 @@
         _recommended_number = [dic objectForKey:@"recommended_number"];
 
     }
+
     
     //申请职位
     if ([dic objectForKey:@"res"]) {
@@ -67,8 +68,8 @@
         
         //NSLog(@"%@",responseObject);
         
-//        NSUserDefaults *recommendPosition= [[NSUserDefaults alloc]init];
-//        [recommendPosition setObject:[responseObject objectForKey:@"recommended_number"] forKey:@"recommendPosition"];
+        NSUserDefaults *userDefaults= [[NSUserDefaults alloc]init];
+        [userDefaults setObject:[responseObject objectForKey:@"recommended_number"] forKey:@"recommendPosition"];
         
         if ([responseObject objectForKey:@"error"]) {
             
@@ -76,7 +77,7 @@
             error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
             error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
             
-            NSMutableArray *p;
+            Position *p;
             
             block(p,error);
             

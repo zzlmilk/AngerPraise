@@ -82,7 +82,8 @@
 @property int intInterviewNumber;
 @property int addPage;
 @property(nonatomic,strong)NSString *shareTitle;
-@property(nonatomic,strong)NSString *shareContent;
+@property(nonatomic,strong)NSString *shareUrlString;
+@property(nonatomic,strong)NSString *shareDescriptionString;
 
 @property(nonatomic,strong)NSString *payUrlString;
 

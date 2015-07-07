@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface QAResumeViewController : BaseViewController<UIWebViewDelegate>
+@interface QAResumeViewController : UIViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *qaResumeWebView;
 @property(nonatomic,strong) NSString *qaResumeUrl;

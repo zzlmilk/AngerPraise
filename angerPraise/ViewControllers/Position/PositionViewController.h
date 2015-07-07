@@ -44,8 +44,6 @@
 @property(nonatomic,strong)NSArray *experienceArray;// 工作年限
 @property(nonatomic,strong)NSArray *placeArray;// 目标地点
 
-
-@property(nonatomic,strong)PositionDetailViewController *positionDetailVC;
 @property(nonatomic,strong)ImportResumeViewController *importResumeVC;
 
 

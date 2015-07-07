@@ -229,14 +229,10 @@
 #pragma mark -  跳转到钱包页面
 -(void)enterMyPay{
     
-    if (_payUrlString) {
-        
         WalletWebViewController * walletWebVC = [[WalletWebViewController alloc]init];
         walletWebVC.walletUrl = _payUrlString;
 
-        //[self presentViewController:walletWebVC animated:YES completion:nil];
-        
-    }
+        [self presentViewController:walletWebVC animated:YES completion:nil];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
@@ -587,11 +583,11 @@
     [self changeScene:WXSceneSession];
     WXMediaMessage *message = [WXMediaMessage message];
     message.title = _shareTitle;
-    message.description = nil;
+    message.description = _shareDescriptionString;
     [message setThumbImage:[UIImage imageNamed:@"Icon"]];
     
     WXWebpageObject *ext = [WXWebpageObject object];
-    ext.webpageUrl = _shareContent;
+    ext.webpageUrl = _shareUrlString;
     
     message.mediaObject = ext;
     message.mediaTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
@@ -611,8 +607,8 @@
     [message setThumbImage:[UIImage imageNamed:@"Icon"]];
     
     WXWebpageObject *ext = [WXWebpageObject object];
-    ext.webpageUrl = _shareContent;
-    
+    ext.webpageUrl = _shareUrlString;
+    message.description = _shareDescriptionString;
     message.mediaObject = ext;
     message.mediaTagName = @"WECHAT_TAG_JUMP_SHOWRANK";
     
@@ -771,15 +767,18 @@
         //以下为 webview中微信分享事件处理
         if ([[resultsDic objectForKey:@"type"] isEqualToString:@"wechat"]){
             
-            _shareTitle =[resultsDic objectForKey:@"title"];
-            _shareContent =[resultsDic objectForKey:@"content"];
+            _shareTitle =[resultsDic objectForKey:@"title"];//title
+            _shareUrlString =[resultsDic objectForKey:@"content"];//返回的URL
+            _shareDescriptionString=[resultsDic objectForKey:@"description"];//描述
             [self sendLinkContentByWeiXin];
             
         }
         if ([[resultsDic objectForKey:@"type"] isEqualToString:@"pengyouquan"]){
             
-            _shareTitle =[resultsDic objectForKey:@"title"];
-            _shareContent =[resultsDic objectForKey:@"content"];
+            _shareTitle =[resultsDic objectForKey:@"title"];//title
+            _shareUrlString =[resultsDic objectForKey:@"content"];//返回的URL
+            _shareDescriptionString=[resultsDic objectForKey:@"description"];//描述
+            
             [self sendLinkContentByMoment];
             
         }

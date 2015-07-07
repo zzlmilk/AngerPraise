@@ -64,7 +64,6 @@
     
     
     
-    
 //    UIButton *virtualButton = [[UIButton alloc]init];
 //    virtualButton.frame = CGRectMake(80, tip3Label.frame.size.height+tip3Label.frame.origin.y+80, WIDTH - 2*80, 40);
 //    [virtualButton setTitle:@"虚 拟 投 递" forState:UIControlStateNormal];
@@ -129,19 +128,13 @@
 
 }
 
-#pragma mark -- 返回
-//-(void)doBack{
-//    
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-
-
 #pragma mark -- 问答式创建
 -(void)guideImport{
     
     QAResumeViewController *qaResumeVC = [[QAResumeViewController alloc]init];
     qaResumeVC.qaResumeUrl = _create_resume_url;
-    [self.navigationController pushViewController:qaResumeVC animated:YES];
+    //[self.navigationController pushViewController:qaResumeVC animated:YES];
+    [self presentViewController:qaResumeVC animated:YES completion:nil];
 }
 
 #pragma mark -- 跳过
