@@ -11,7 +11,7 @@
 
 static NSString * const AFAppDotNetAPIBaseURLString = @"http://app.hirelib.com/noozan_api/v1/";
 
-//static NSString * const AFAppDotNetAPIBaseURLString = @"http://192.168.0.110:3000/v1/";
+//static NSString * const AFAppDotNetAPIBaseURLString = @"http://192.168.0.113:3000/v1/";
 
 //
 

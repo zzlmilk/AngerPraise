@@ -76,6 +76,7 @@
 		DFB32F6F1B0353820049D9F2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB32F6E1B0353820049D9F2 /* ImageIO.framework */; };
 		DFB32FDA1B04A7180049D9F2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB32FD91B04A7180049D9F2 /* HomeViewController.m */; };
 		DFB5F7B51B1574CD000A66D7 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB5F7B41B1574CD000A66D7 /* Review.m */; };
+		DFB76B1C1B4BA8CD0009B356 /* PositionElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB76B1B1B4BA8CD0009B356 /* PositionElement.m */; };
 		DFB834DC1B0AD8BB009C08C7 /* TKRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB834DB1B0AD8BB009C08C7 /* TKRoundedView.m */; };
 		DFBEB1891AB04CD3002692EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB1881AB04CD3002692EF /* SystemConfiguration.framework */; };
 		DFBEB1951AB05EE5002692EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB1941AB05EE5002692EF /* QuartzCore.framework */; };
@@ -297,6 +298,8 @@
 		DFB32FD91B04A7180049D9F2 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		DFB5F7B31B1574CD000A66D7 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		DFB5F7B41B1574CD000A66D7 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		DFB76B1A1B4BA8CD0009B356 /* PositionElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionElement.h; sourceTree = "<group>"; };
+		DFB76B1B1B4BA8CD0009B356 /* PositionElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionElement.m; sourceTree = "<group>"; };
 		DFB834DA1B0AD8BB009C08C7 /* TKRoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKRoundedView.h; sourceTree = "<group>"; };
 		DFB834DB1B0AD8BB009C08C7 /* TKRoundedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKRoundedView.m; sourceTree = "<group>"; };
 		DFBEB1881AB04CD3002692EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -607,6 +610,8 @@
 				DF137FE81B20304A008D0F82 /* Setting.m */,
 				19E327CE1B45257D0063354D /* NZBase.h */,
 				19E327CF1B45257D0063354D /* NZBase.m */,
+				DFB76B1A1B4BA8CD0009B356 /* PositionElement.h */,
+				DFB76B1B1B4BA8CD0009B356 /* PositionElement.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1268,6 +1273,7 @@
 				DF137FE91B20304A008D0F82 /* Setting.m in Sources */,
 				DF4D979F1AD657F000F65140 /* Error.m in Sources */,
 				DFD274441AE784E800BEED59 /* MainViewController.m in Sources */,
+				DFB76B1C1B4BA8CD0009B356 /* PositionElement.m in Sources */,
 				DF5F8E041AFA154100205B60 /* UIButton+AFNetworking.m in Sources */,
 				DF5F8E171AFB482F00205B60 /* Register.m in Sources */,
 				DF5F8DFB1AFA154100205B60 /* AFNetworkReachabilityManager.m in Sources */,

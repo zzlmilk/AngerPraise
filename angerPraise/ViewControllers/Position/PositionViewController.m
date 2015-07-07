@@ -501,7 +501,6 @@
             [APIClient showInfo:e.info title:@"提示"];
             
             if (!_importResumeVC) {
-                
                 _importResumeVC = [[ImportResumeViewController alloc]init];
             }
             [self presentViewController:_importResumeVC animated:YES completion:nil];
@@ -513,6 +512,10 @@
             [_positionTableView reloadData];
             
             [self tipAnimation];//显示推荐职位数量
+            
+            NSUserDefaults *userDefaults= [[NSUserDefaults alloc]init];
+            _recommondLabel.text = [@"今日为你匹配" stringByAppendingFormat:@"%@%@",[userDefaults objectForKey:@"recommendPosition"],@"个职位"];
+            
         }
     }];
 
@@ -563,14 +566,11 @@
     //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
 
     Position * p = [_positionListArray objectAtIndex:indexPath.row];
+
+    PositionDetailViewController *positionDetailVC= [[PositionDetailViewController alloc]init];
+    positionDetailVC.positionDetailUrl = p.webUrl;
     
-    if (!_positionDetailVC) {
-        
-        _positionDetailVC = [[PositionDetailViewController alloc]init];
-    }
-    _positionDetailVC.positionDetailUrl = p.webUrl;
-    
-    [self.navigationController pushViewController:_positionDetailVC animated:YES];
+    [self.navigationController pushViewController:positionDetailVC animated:YES];
     
 }
 

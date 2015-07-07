@@ -1,17 +1,16 @@
 //
-//  Position.h
+//  PositionElement.h
 //  angerPraise
 //
-//  Created by 单好坤 on 15/4/14.
+//  Created by 单好坤 on 15/7/7.
 //  Copyright (c) 2015年 Rex. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "Error.h"
 
-@interface Position : NSObject
+@interface PositionElement : NSObject
 
-//获取 推荐的 职位列表
+//获取 推荐的 职位列表 元素
 @property(nonatomic,strong)NSString *position_id;
 @property(nonatomic,strong)NSString *positionName;
 @property(nonatomic,strong)NSString *companyName;//公司名称
@@ -31,23 +30,5 @@
 @property(nonatomic)BOOL company_video_status; //是否有视频 0 否，1 是
 @property(nonatomic,strong)NSMutableArray *hot_words; //热词
 
-
-@property(nonatomic,strong)NSString *recommended_number; //推荐职位的数量
-
-
-
-//申请职位
-@property(nonatomic,strong)NSString *res;
-
-//获取 推荐的 职位列表
-+(NSURLSessionDataTask *)getPositionList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *positionArray, Error *e))block;
-
-//高级搜索
-+(NSURLSessionDataTask *)advancedSearchList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *positionArray, Error *e))block;
-
-//申请职位
-+(NSURLSessionDataTask *)applyPosition:(NSDictionary *)parameters WithBlock:(void (^)(Position *position, Error *e))block;
-
--(instancetype)initWithDic:(NSDictionary *)dic;
 
 @end

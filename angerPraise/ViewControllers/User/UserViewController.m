@@ -246,14 +246,15 @@
     if (user) {
         
         [_userNameButton setTitle:user.user_name forState:UIControlStateNormal];
-        
+        _waitUsernameLabel.text = user.user_name;
         _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
-               
-        if (![user.photo_url isEqualToString:@"<null>"]) {
+        
+       if (![user.photo_url isEqualToString:@"<null>"]) {
             
             [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:nil];
         }
 
+               
         
         NSString *mission_number = [NSString stringWithFormat:@"%@",user.mission_number];
         _matchPositionLabel.text =mission_number;// user.position_number;
@@ -263,7 +264,6 @@
         _taskLabel.text = _task_number;
         
         _walletNumberLabel.text = user.user_intergral;
-       
         
     }
     
@@ -395,13 +395,11 @@
                 [APIClient showInfo:e.info title:@"提示"];
                 
             }else{
-               
                 
                 [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
                 
                 
                 _waitUsernameLabel.text = user.user_name;
-                
                 _editNameTextField.text = user.user_name;
                 [_userNameButton setTitle:user.user_name forState:UIControlStateNormal];
                 _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
@@ -414,31 +412,31 @@
 
 
 #pragma mark  获取 user 剩余任务数
--(void)getUserMissionNumber{
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
-    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
-
-        [User getUserMissionNumber:dic WithBlock:^(User *user, Error *e) {
-            
-            if (e.info !=nil) {
-                
-                [APIClient showInfo:e.info title:@"提示"];
-                
-            }else{
-                
-                NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
-                _matchPositionLabel.text = stringInt;//剩余任务
-                
-            }
-            
-        }];
-
-    
-}
+//-(void)getUserMissionNumber{
+//    
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    
+//        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+//        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+//    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+//
+//        [User getUserMissionNumber:dic WithBlock:^(User *user, Error *e) {
+//            
+//            if (e.info !=nil) {
+//                
+//                [APIClient showInfo:e.info title:@"提示"];
+//                
+//            }else{
+//                
+//                NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
+//                _matchPositionLabel.text = stringInt;//剩余任务
+//                
+//            }
+//            
+//        }];
+//
+//    
+//}
 
 #pragma mark  获取 推荐职位数
 -(void)getRecommendPosition{
@@ -599,18 +597,14 @@
     
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"currentImage.png"];
     
-    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+    _savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
     
     // isFullScreen = NO;
-    [_userPhotoImageView setImage:savedImage];
-
+    
     _editView.hidden = YES;
     self.tabBarController.tabBar.hidden = NO;
     
-    [_userPhotoImageView setImage:[UIImage imageNamed:@"exampleCover"]];
-
-    
-    [self UploadPhoto:savedImage];
+    [self UploadPhoto:_savedImage];
     
 }
 
@@ -651,7 +645,10 @@
         
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
         
+        
         if ([e.res isEqualToString:@"1"]) {
+            
+            [self updateUserPhoto];
             
             [APIClient showSuccess:@"头像上传成功" title:@"成功"];
             
@@ -661,7 +658,12 @@
     
 }
 
+//头像上传成功后更新用户头像
+-(void)updateUserPhoto{
 
+    [_userPhotoImageView setImage:_savedImage];
+    
+}
 
 
 #pragma mark -- UITableView height

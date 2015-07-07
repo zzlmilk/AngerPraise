@@ -80,7 +80,8 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_TOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ACCOUNT];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user_type"];
-
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"recommendPosition"];
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
     _mainVC = nil;
 }

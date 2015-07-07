@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #include "Position.h"
+#import "PositionElement.h"
 
 @interface PositionListCell : UITableViewCell
 

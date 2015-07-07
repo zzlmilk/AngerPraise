@@ -37,7 +37,16 @@
     [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
-    [self loadDataUrl];
+    if (!_walletUrl) {
+        
+        [self loadDataUrl];
+
+    }else{
+    
+        NSURL *url=[NSURL URLWithString:_walletUrl];
+        NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+        [_walletWebView loadRequest:request];
+    }
 }
 
 // 获取 钱包Url
