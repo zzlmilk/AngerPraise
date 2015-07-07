@@ -20,7 +20,7 @@
 #import "HrWebViewController.h"
 #import "MainViewController.h"
 #import "EditPasswordViewController.h"
-
+#import "PositionViewController.h"
 
 
 #define BUFFERX 5 //distance from side to the card (higher makes thinner card)
@@ -325,6 +325,7 @@
     
 }
 
+
 #pragma mark 隐藏编辑姓名的界面
 -(void)hideEditnameView{
 
@@ -333,16 +334,19 @@
 
 }
 
+
+
 #pragma mark 查看匹配的职位
 -(void)lookPosition{
 
+    [self.tabBarController setSelectedIndex:2];
 }
 
 #pragma mark 查看剩余任务
 -(void)lookTask{
     
-    MainViewController *mainVC = [[MainViewController alloc]init];
-    [self.tabBarController.navigationController pushViewController:mainVC animated:true];
+    [self.tabBarController setSelectedIndex:0];
+
 }
 
 
@@ -403,8 +407,6 @@
                 [_userNameButton setTitle:user.user_name forState:UIControlStateNormal];
                 _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
                 
-                
-                [_waitPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url]];
                 
             }
             
@@ -590,6 +592,7 @@
 #pragma mark - image picker delegte
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    
     [picker dismissViewControllerAnimated:YES completion:^{}];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
@@ -601,14 +604,13 @@
     
     // isFullScreen = NO;
     [_userPhotoImageView setImage:savedImage];
-    [_waitPhotoImageView setImage:savedImage];
-    //
-    //_avatarImageView.tag = 100;
-    
+
     _editView.hidden = YES;
     self.tabBarController.tabBar.hidden = NO;
     
-    //[self UploadPhoto];
+    [_userPhotoImageView setImage:[UIImage imageNamed:@"exampleCover"]];
+
+    
     [self UploadPhoto:savedImage];
     
 }

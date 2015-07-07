@@ -44,10 +44,9 @@ static NSUserDefaults* userData;
     [self.view addSubview:backBtn];
     
     _settingListArray = [[NSArray alloc]initWithObjects:
-                       @"",@"     隐私",@"     版本",@"     关于我们",@"     我要评价",@"     联系客服",nil];
+                       @"隐私",@"版本 v1.0",@"关于我们",nil];
     
-    
-    
+
     
     UIButton *settingButton = [[UIButton alloc]init];
     settingButton.frame = CGRectMake(18, backBtn.frame.size.height+backBtn.frame.origin.y+30, 100, 35);
@@ -61,7 +60,7 @@ static NSUserDefaults* userData;
     
     
     _settingTableView = [[UITableView alloc]init];
-    _settingTableView.frame = CGRectMake(0,settingButton.frame.size.height+settingButton.frame.origin.y, WIDTH,300);
+    _settingTableView.frame = CGRectMake(30,settingButton.frame.size.height+settingButton.frame.origin.y+20, WIDTH,300);
     _settingTableView.delegate = self;
     _settingTableView.dataSource = self;
     _settingTableView.scrollEnabled = NO;
@@ -159,7 +158,7 @@ static NSUserDefaults* userData;
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 6;
+    return _settingListArray.count;
 }
 
 #pragma mark -- UITableView dataSource

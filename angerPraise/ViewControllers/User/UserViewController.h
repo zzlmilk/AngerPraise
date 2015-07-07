@@ -34,7 +34,6 @@
 @property(nonatomic,strong)NSString *user_type;
 
 @property(nonatomic, strong)UIView *editView;
-@property(nonatomic, strong)UIImageView *waitPhotoImageView;
 @property(nonatomic,strong)UIButton *backBtn;
 @property(nonatomic,strong)UILabel *waitUsernameLabel;
 
@@ -47,10 +46,10 @@
 @property(nonatomic,strong)NSString *user_apply_url;
 @property(nonatomic,strong)NSString *user_friend_url;
 
+
 //修改名称
 @property(nonatomic, strong)UIView *editNameView;
 
 @property(nonatomic,strong)UITextField *editNameTextField;
 
--(void)closeTimer;
 @end

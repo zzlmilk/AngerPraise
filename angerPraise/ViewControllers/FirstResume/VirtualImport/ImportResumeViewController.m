@@ -26,11 +26,11 @@
     
     self.view.backgroundColor =[UIColor whiteColor];
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
+//    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    backBtn.frame = CGRectMake(0, 0, 44, 44);
+//    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
+//    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:backBtn];
     
     
     
@@ -109,10 +109,10 @@
 
 -(void)getQaCreatResumeUrl{
 
-    NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     
     [Resume qACreatedResume:dic WithBlock:^(Resume *resume, Error *e) {
        
@@ -130,18 +130,11 @@
 }
 
 #pragma mark -- 返回
--(void)doBack{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-//
-//#pragma mark -- 虚拟投放
-//-(void)guideStatus{
+//-(void)doBack{
 //    
-//    GuideViewController *guidelVC = [[GuideViewController alloc]init];
-//    [self.navigationController pushViewController:guidelVC animated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 //}
+
 
 #pragma mark -- 问答式创建
 -(void)guideImport{
@@ -155,7 +148,7 @@
 -(void)skip{
     
     MainViewController *mainVC = [[MainViewController alloc]init];
-    [self.navigationController pushViewController:mainVC animated:YES];
+    [self presentViewController:mainVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

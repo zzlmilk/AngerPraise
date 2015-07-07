@@ -222,22 +222,21 @@
             _updateTimelabel.text = [@"更新时间: " stringByAppendingString:resume.resume_update_time];
             _user_resume_synthesize_grade = resume.user_resume_synthesize_grade;
             
+            _resumeStatus = resume.resume_status;
         }
         
-        if (resume.resume_status == YES) {// 有简历
+        if (resume.resume_status) {// 有简历
             
             _noResumeView.hidden = YES;
             _resumeView.hidden= NO;
-            _shareResumeButton.enabled = YES;
         }
         
         int myInt = [_user_resume_synthesize_grade intValue];
         [percentGoalBar setPercent:myInt animated:YES];
         
-       
-        
     }];
 }
+
 
 // 加载圆环 以及其他按钮样式
 -(void)getRing{
@@ -270,7 +269,7 @@
     [_shareResumeButton setTitleColor:btnHighlightedColor forState:UIControlStateNormal];
     [_shareResumeButton setImage:[UIImage imageNamed:@"0share"] forState:UIControlStateNormal];
     [_shareResumeButton setTitleColor:btnNormalColor forState:UIControlStateHighlighted];
-    _shareResumeButton.enabled = NO;
+//    _shareResumeButton.enabled = NO;
     _shareResumeButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
     _shareResumeButton.backgroundColor = [UIColor clearColor];
     [_shareResumeButton addTarget:self action:@selector(shareResume) forControlEvents:UIControlEventTouchUpInside];
@@ -309,23 +308,31 @@
 #pragma mark - 通过 微信 发送链接
 -(void)shareResume{
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
-    
-    [Resume previewResume:dic WithBlock:^(Resume *resume, Error *e) {
+    if (_resumeStatus) {
         
-        if (e.info !=nil) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+        [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+        
+        [Resume previewResume:dic WithBlock:^(Resume *resume, Error *e) {
             
-            [APIClient showMessage:e.info];
-            
-        }
-        if (resume.resume_preview_url) {
-            
-            [self shareResumeByWeiXin:resume.resume_preview_url];
-        }
-    }];
+            if (e.info !=nil) {
+                
+                [APIClient showMessage:e.info];
+                
+            }
+            if (resume.resume_preview_url) {
+                
+                [self shareResumeByWeiXin:resume.resume_preview_url];
+            }
+        }];
+
+        
+    }else{
+    
+        [APIClient showMessage:@"没有发现你的简历信息，赶快创建简历吧~"];
+    }
     
 }
 

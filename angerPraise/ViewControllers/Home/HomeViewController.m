@@ -233,8 +233,8 @@
         
         WalletWebViewController * walletWebVC = [[WalletWebViewController alloc]init];
         walletWebVC.walletUrl = _payUrlString;
-        
-        [self.navigationController pushViewController:walletWebVC animated:YES];
+
+        //[self presentViewController:walletWebVC animated:YES completion:nil];
         
     }
 }
@@ -583,6 +583,7 @@
 #pragma mark - 通过 微信 发送链接
 - (void) sendLinkContentByWeiXin
 {
+    
     [self changeScene:WXSceneSession];
     WXMediaMessage *message = [WXMediaMessage message];
     message.title = _shareTitle;

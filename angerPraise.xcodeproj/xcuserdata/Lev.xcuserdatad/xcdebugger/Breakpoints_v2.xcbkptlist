@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "angerPraise/ViewControllers/FirstResume/VirtualImport/QAResumeViewController.m"
-            timestampString = "457501127.263099"
+            filePath = "angerPraise/Models/Register.m"
+            timestampString = "457859921.896453"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "+setNewPassword:WithBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

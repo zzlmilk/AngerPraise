@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "PositionDetailViewController.h"
+#import "ImportResumeViewController.h"
+
 
 @interface PositionViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
@@ -40,6 +43,10 @@
 @property(nonatomic,strong)NSArray *payRangeArray; // 薪资范围
 @property(nonatomic,strong)NSArray *experienceArray;// 工作年限
 @property(nonatomic,strong)NSArray *placeArray;// 目标地点
+
+
+@property(nonatomic,strong)PositionDetailViewController *positionDetailVC;
+@property(nonatomic,strong)ImportResumeViewController *importResumeVC;
 
 
 -(void)getPositionInfo;

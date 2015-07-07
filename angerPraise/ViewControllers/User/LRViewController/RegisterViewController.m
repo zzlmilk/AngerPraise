@@ -260,11 +260,13 @@
                 
                 [APIClient showMessage:e.info];
             }else{
-                               
-                NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-                [token setObject:initPassword.token forKey:USER_TOKEN];
                 
-                LoginViewController *loginVC = [[LoginViewController alloc]init];
+
+                
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:initPassword.token forKey:USER_TOKEN];
+                [userDefaults setObject:initPassword.user_id forKey:USER_ID];
+                    LoginViewController *loginVC = [[LoginViewController alloc]init];
                 [loginVC sendDeviceInfo];
             
             }
