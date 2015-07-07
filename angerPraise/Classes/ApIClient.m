@@ -44,7 +44,9 @@ static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://app.hirelib.
     // [self setDefaultHeader:@"Accept" value:@"application/json"];
     
  //   NSString *user_id =[[NSUserDefaults standardUserDefaults]objectForKey:USER_ID];
-    NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];    
+//    NSString *user_token =[[NSUserDefaults standardUserDefaults]objectForKey:USER_TOKEN];
+    
+    NSString *user_token = @"85e1dbe1696880cf8e7369ba8a074ccf";
     if (user_token != nil) {
         [[self requestSerializer] setValue:user_token forHTTPHeaderField:@"Authorization"];
     }

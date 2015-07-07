@@ -260,10 +260,9 @@
                 
                 [APIClient showMessage:e.info];
             }else{
-                
-                [APIClient showMessage:@"怒赞码已发射成功～"];
+                               
                 NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
-                [token setObject:initPassword.token forKey:@"token"];
+                [token setObject:initPassword.token forKey:USER_TOKEN];
                 
                 LoginViewController *loginVC = [[LoginViewController alloc]init];
                 [loginVC sendDeviceInfo];
