@@ -9,10 +9,8 @@
 #import "PositionViewController.h"
 #import "PositionListCell.h"
 #import "Position.h"
-#import "PositionDetailViewController.h"
 #import "SMS_MBProgressHUD.h"
 #import "ApIClient.h"
-#import "ImportResumeViewController.h"
 #import "AHKActionSheet.h"
 
 
@@ -502,10 +500,11 @@
             
             [APIClient showInfo:e.info title:@"提示"];
             
-            //待 修改－－ 每次调用接口都会创建新的 VC
-            ImportResumeViewController *importResumeVC = [[ImportResumeViewController alloc]init];
-//            [self.navigationController pushViewController:importResumeVC animated:YES];
-            [self presentViewController:importResumeVC animated:YES completion:nil];
+            if (!_importResumeVC) {
+                
+                _importResumeVC = [[ImportResumeViewController alloc]init];
+            }
+            [self presentViewController:_importResumeVC animated:YES completion:nil];
             
         }
         
@@ -545,7 +544,6 @@
 
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
     
     cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);//上左下右 就可以通过设置这四个参数来设置分割线了
@@ -566,10 +564,13 @@
 
     Position * p = [_positionListArray objectAtIndex:indexPath.row];
     
-    PositionDetailViewController *positionDetailVC = [[PositionDetailViewController alloc]init];
-    positionDetailVC.positionDetailUrl = p.webUrl;
+    if (!_positionDetailVC) {
+        
+        _positionDetailVC = [[PositionDetailViewController alloc]init];
+    }
+    _positionDetailVC.positionDetailUrl = p.webUrl;
     
-    [self.navigationController pushViewController:positionDetailVC animated:YES];
+    [self.navigationController pushViewController:_positionDetailVC animated:YES];
     
 }
 
