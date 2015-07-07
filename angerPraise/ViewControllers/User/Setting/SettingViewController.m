@@ -144,7 +144,7 @@ static NSUserDefaults* userData;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row ==0) {
         
-        return 30.f;
+        return 50.f;
         
     }else{
     
