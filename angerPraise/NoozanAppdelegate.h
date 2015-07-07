@@ -15,7 +15,7 @@
 @class MainViewController;
 @interface NoozanAppdelegate : AppDelegate<WXApiDelegate>
 {
-    
+  
 }
 
 

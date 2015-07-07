@@ -221,7 +221,6 @@
 -(void)sendDeviceInfo{
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
     NSString *deviceTokenString = [userDefaults objectForKey:USER_DEVIECTOKEN];
     
         NSString* deviceName = [[UIDevice currentDevice] systemName];

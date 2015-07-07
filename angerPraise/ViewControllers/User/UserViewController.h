@@ -46,6 +46,7 @@
 @property(nonatomic,strong)NSString *user_apply_url;
 @property(nonatomic,strong)NSString *user_friend_url;
 
+
 @property(nonatomic,strong)UIImage *savedImage;
 
 

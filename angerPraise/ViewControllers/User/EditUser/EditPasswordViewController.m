@@ -10,6 +10,7 @@
 #import "User.h"
 #import "ApIClient.h"
 
+
 @interface EditPasswordViewController ()
 
 @end
@@ -31,6 +32,7 @@
     tapGestureRecognizer.cancelsTouchesInView = NO;
     //将触摸事件添加到当前view
     [self.view addGestureRecognizer:tapGestureRecognizer];
+    
     
     _scrollView = [[UIScrollView alloc]init];
     _scrollView.frame = self.view.bounds;
@@ -74,6 +76,7 @@
     [_editNewPasswordTextField setBorderStyle:UITextBorderStyleLine];
     _editNewPasswordTextField.placeholder = @"  输入新密码";
     _editNewPasswordTextField.delegate = self;
+    _editNewPasswordTextField.secureTextEntry=  YES;
     _editNewPasswordTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
     _editNewPasswordTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
     _editNewPasswordTextField.delegate = self;
@@ -97,6 +100,7 @@
     [_reEditNewPasswordTextField setBorderStyle:UITextBorderStyleLine];
     _reEditNewPasswordTextField.placeholder = @"  重新输入新密码";
     _reEditNewPasswordTextField.delegate = self;
+    _reEditNewPasswordTextField.secureTextEntry = YES;
     _reEditNewPasswordTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
     _reEditNewPasswordTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
     _reEditNewPasswordTextField.delegate = self;
@@ -191,10 +195,14 @@
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
+//        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
         [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
         [dic setObject:_oldPasswordTextField.text forKey:@"old_password"];
         [dic setObject:_editNewPasswordTextField.text forKey:@"new_password"];
         [dic setObject:_reEditNewPasswordTextField.text forKey:@"repeat_password"];
+        
+        
         
         [User userUpdatePassword:dic WithBlock:^(User *user, Error *e) {
             

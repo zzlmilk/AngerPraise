@@ -111,6 +111,7 @@
 //获取首页数据
 +(NSURLSessionDataTask *)getHomeData:(NSDictionary *)parameters WithBlock:(void (^)(User *user, Error *e))block{
 
+
     APIClient *client =    [APIClient sharedClient];
     [[client requestSerializer] setValue:[[NSUserDefaults standardUserDefaults] objectForKey:USER_TOKEN] forHTTPHeaderField:@"Authorization"];
   

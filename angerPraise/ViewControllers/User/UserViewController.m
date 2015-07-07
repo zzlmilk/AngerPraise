@@ -246,7 +246,7 @@
         
         [_userNameButton setTitle:user.user_name forState:UIControlStateNormal];
         _waitUsernameLabel.text = user.user_name;
-        _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
+        _hirelibNumberLabel.text =[@"怒赞 No." stringByAppendingFormat:@"%@",user.hirelib_code];
         
        if (![user.photo_url isEqualToString:@"<null>"]) {
             
@@ -319,6 +319,7 @@
     }
     
 }
+
 
 #pragma mark 隐藏编辑姓名的界面
 -(void)hideEditnameView{

@@ -44,10 +44,9 @@ static NSUserDefaults* userData;
     [self.view addSubview:backBtn];
     
     _settingListArray = [[NSArray alloc]initWithObjects:
-                       @"",@"     隐私",@"     版本",@"     关于我们",@"     我要评价",@"     联系客服",nil];
+                       @"隐私",@"版本 v1.0",@"关于我们",nil];
     
-    
-    
+
     
     UIButton *settingButton = [[UIButton alloc]init];
     settingButton.frame = CGRectMake(18, backBtn.frame.size.height+backBtn.frame.origin.y+30, 100, 35);
@@ -61,7 +60,7 @@ static NSUserDefaults* userData;
     
     
     _settingTableView = [[UITableView alloc]init];
-    _settingTableView.frame = CGRectMake(0,settingButton.frame.size.height+settingButton.frame.origin.y, WIDTH,300);
+    _settingTableView.frame = CGRectMake(30,settingButton.frame.size.height+settingButton.frame.origin.y+20, WIDTH,300);
     _settingTableView.delegate = self;
     _settingTableView.dataSource = self;
     _settingTableView.scrollEnabled = NO;
@@ -159,7 +158,7 @@ static NSUserDefaults* userData;
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 6;
+    return _settingListArray.count;
 }
 
 #pragma mark -- UITableView dataSource
@@ -186,30 +185,29 @@ static NSUserDefaults* userData;
 #pragma mark -- UITableView delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
 
     switch (indexPath.row) {
-        case 1:
+        case 0:
         {
             _takeUrlString = _privacy_url;
         }
             break;
-        case 2:
+        case 1:
         {
             _takeUrlString = _version_url;
         }
             break;
-        case 3:
+        case 2:
         {
             _takeUrlString = _about_url;
         }
             break;
-        case 4:
+        case 3:
         {
             _takeUrlString = _review_app_url;
         }
             break;
-        case 5:
+        case 4:
         {
 
             [self meiChartAction];
@@ -223,11 +221,6 @@ static NSUserDefaults* userData;
     
     
     if (indexPath.row !=5) {
-        
-        //NSLog(@"indexPath.row:%ld",(long)indexPath.row);
-        //    Position * p = [_positionListArray objectAtIndex:indexPath.row];
-        //
-        
         SettingWebViewController *settingWebVC = [[SettingWebViewController alloc]init];
         settingWebVC.settingDetailUrl =_takeUrlString;
         [self.navigationController pushViewController:settingWebVC animated:YES];
