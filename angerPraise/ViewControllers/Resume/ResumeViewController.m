@@ -295,7 +295,10 @@
 -(void)creatResume{
     
     QAResumeViewController *qAResumeVC = [[QAResumeViewController alloc]init];
-    [self.navigationController pushViewController:qAResumeVC animated:YES];
+    
+   // ImportResumeViewController *_importResumeVC = [[ImportResumeViewController alloc]init];
+    [self presentViewController:qAResumeVC animated:YES completion:nil];
+   // [self.navigationController pushViewController:qAResumeVC animated:YES];
 }
 
 #pragma mark - 改变发送通道 微信 or 朋友圈
