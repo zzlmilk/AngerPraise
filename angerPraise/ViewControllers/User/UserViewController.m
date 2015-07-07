@@ -31,7 +31,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = RGBACOLOR(48, 47, 53, 1.0f);
-
+    
     _cardView = [[UIView alloc]init];
     _cardView.frame = CGRectMake(0, 0, WIDTH, 0.44*HEIGHT+5);
     _cardView.backgroundColor = RGBACOLOR(20, 20, 20, 1.0f);
@@ -819,6 +819,7 @@
                 break;
             case 3: //设置
             {
+                
                 SettingViewController *settingVC = [[SettingViewController alloc]init];
                 [self.navigationController pushViewController:settingVC animated:YES];
             }
@@ -896,7 +897,6 @@
     }
     
     user = u;
-    
     
 }
 

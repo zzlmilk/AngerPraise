@@ -50,8 +50,10 @@
         
          if ([[resultsDic objectForKey:@"string"] isEqualToString:@"create_resume_success"]) {
              
-             [self.navigationController popToRootViewControllerAnimated:YES];
-             
+//             [self.navigationController popToRootViewControllerAnimated:YES];
+             [self dismissViewControllerAnimated:YES completion:^{
+                 
+             }];
          }
     }];
     
