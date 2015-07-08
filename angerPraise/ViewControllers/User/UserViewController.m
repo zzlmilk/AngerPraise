@@ -248,10 +248,20 @@
         _waitUsernameLabel.text = user.user_name;
         _hirelibNumberLabel.text =[@"怒赞 No." stringByAppendingFormat:@"%@",user.hirelib_code];
         
-       if (![user.photo_url isEqualToString:@"<null>"]) {
+        if (_userPhotoUrlSting) {
             
+            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:_userPhotoUrlSting] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+            
+        }else{
+        
             [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
-       }
+        }
+        
+        
+//       if (![user.photo_url isEqualToString:@"<null>"]) {
+//            
+//            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+//       }
         
         NSString *mission_number = [NSString stringWithFormat:@"%@",user.mission_number];
         _matchPositionLabel.text =mission_number;// user.position_number;
@@ -644,6 +654,7 @@
         if (e.photo_url) {
             
             [_userPhotoImageView setImageWithURL:[NSURL URLWithString:e.photo_url] placeholderImage:_savedImage];
+            _userPhotoUrlSting = e.photo_url;
             
             [APIClient showSuccess:@"头像上传成功" title:@"成功"];
             
