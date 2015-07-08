@@ -100,15 +100,15 @@
     percentLabel.adjustsFontSizeToFitWidth = YES;
     [self addSubview:percentLabel];
     
+    
     UILabel *scorelabel = [[UILabel alloc]init];
     scorelabel.frame = CGRectMake(0,percentLabel.frame.size.height+percentLabel.frame.origin.y-28, self.frame.size.width, 30);
     scorelabel.backgroundColor = [UIColor clearColor];
     scorelabel.textAlignment = NSTextAlignmentCenter;
-    scorelabel.text = @"简历评分";
+    scorelabel.text = @"综合评分";
     scorelabel.textColor = RGBACOLOR(150, 150, 150, 1.0f);
     scorelabel.font = [UIFont fontWithName:@"Helvetica" size:12];
     [self addSubview:scorelabel];
-
     
     
     thumbLayer = [CALayer layer];

@@ -143,7 +143,15 @@ static NSUserDefaults* userData;
 #pragma mark -- UITableView height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return  50.f;
+    if (indexPath.row ==0) {
+        
+        return 50.f;
+        
+    }else{
+    
+        return 50.f;
+
+    }
         
 }
 
