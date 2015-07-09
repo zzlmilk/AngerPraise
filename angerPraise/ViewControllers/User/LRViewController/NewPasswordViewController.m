@@ -14,6 +14,7 @@
 #import "MainViewController.h"
 #import "SMS_MBProgressHUD.h"
 #import "LoginViewController.h"
+#import "NoozanAppdelegate.h"
 
 @interface NewPasswordViewController ()
 
@@ -214,17 +215,14 @@
             
             [APIClient showSuccess:@"注册成功" title:@"成功"];
             
-//            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//            [userDefaults setObject:user.user_token forKey:USER_TOKEN];
-//            [userDefaults setObject:user.user_id forKey:USER_ID];
-//            [userDefaults setObject:user.hr_privilege forKey:@"user_type"];
-//            
-//            
-//            LoginViewController *loginVC = [[LoginViewController alloc]init];
-//            [loginVC sendDeviceInfo];// 发送设备信息
-            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:user.hr_privilege forKey:@"user_type"];
+
             MainViewController *mainVC = [[MainViewController alloc]init];
             [self.navigationController pushViewController:mainVC animated:YES];
+            
+            //注册成功发送设备
+            [[NoozanAppdelegate getAppDelegate] sendDeviceInfo];
             
         }
         

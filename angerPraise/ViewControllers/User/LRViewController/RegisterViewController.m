@@ -261,13 +261,10 @@
                 [APIClient showMessage:e.info];
             }else{
                 
-
-                
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
                 [userDefaults setObject:initPassword.token forKey:USER_TOKEN];
                 [userDefaults setObject:initPassword.user_id forKey:USER_ID];
-                    LoginViewController *loginVC = [[LoginViewController alloc]init];
-                [loginVC sendDeviceInfo];
             
             }
             
@@ -301,6 +298,7 @@
         
                     NewPasswordViewController *newPasswordVC =[[NewPasswordViewController alloc]init];
                     newPasswordVC.phoneNumberString = _phoneNumberTextField.text;
+                    
                     [self.navigationController pushViewController:newPasswordVC animated:YES];
                     
                 }

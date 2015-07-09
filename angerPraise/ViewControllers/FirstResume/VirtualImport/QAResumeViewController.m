@@ -50,11 +50,11 @@
         
          if ([[resultsDic objectForKey:@"string"] isEqualToString:@"create_resume_success"]) {
              
-//             [self.navigationController popToRootViewControllerAnimated:YES];
-             [self dismissViewControllerAnimated:YES completion:^{
-                 
-             }];
+             [self.navigationController popToRootViewControllerAnimated:YES];
+             //[self dismissViewControllerAnimated:YES completion:^{}];
+             
          }
+        
     }];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];

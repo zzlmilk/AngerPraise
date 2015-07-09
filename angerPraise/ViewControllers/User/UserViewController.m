@@ -26,7 +26,6 @@
 #define BUFFERY 10 //distance from top to the card (higher makes shorter card)
 @implementation UserViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -219,10 +218,6 @@
     _editNameTextField.leftViewMode = UITextFieldViewModeAlways;
     [_editNameView addSubview:_editNameTextField];
     
-    
-
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _user_type = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"user_type"]];
     if ([_user_type isEqualToString:@"0"]) {  // 不是hr
 
         _modelListArray = [[NSArray alloc]initWithObjects:
@@ -668,12 +663,16 @@
 #pragma mark -- UITableView height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 52.f;
+    return 50.f;
 }
 
 #pragma mark -- UITableView cell 个数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _user_type = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"user_type"]];
+    
     
     if ([_user_type isEqualToString:@"0"]) {  //不是 hr
         

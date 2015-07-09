@@ -28,5 +28,7 @@
 +(NoozanAppdelegate*)getAppDelegate;
 -(void)getMainVC;
 -(void)getIndexVC;
+-(void)sendDeviceInfo;
+
 
 @end

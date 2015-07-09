@@ -46,7 +46,7 @@
 
 
 //debug 1开启 0关闭
-#define NZ_DugSet 1
+#define NZ_DugSet 0
 
 
 //保存在NSUserDefaults里面的信息
