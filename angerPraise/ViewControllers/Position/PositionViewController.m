@@ -446,6 +446,7 @@
 #pragma mark -- 高级搜索 调用接口数据
 -(void)advancedSearchStar{
     
+
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -507,16 +508,18 @@
             
         }
        
-        if(positionArray.count >0){                        
+        if(positionArray.count >0){
+            
             _positionListArray = positionArray;
             [_positionTableView reloadData];
             
-            [self tipAnimation];//显示推荐职位数量
             
             NSUserDefaults *userDefaults= [[NSUserDefaults alloc]init];
             _recommondLabel.text = [@"今日为你匹配" stringByAppendingFormat:@"%@%@",[userDefaults objectForKey:@"recommendPosition"],@"个职位"];
             
         }
+        
+        [self tipAnimation];//显示推荐职位数量
     }];
 
 }

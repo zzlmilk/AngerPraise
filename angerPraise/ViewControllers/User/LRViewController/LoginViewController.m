@@ -188,11 +188,11 @@
             [userDefaults synchronize];
             
             
-            //注册成功发送设备
-            [self sendDeviceInfo];
-            
 //            MainViewController *mainVC = [[MainViewController alloc]init];
 //            [self.navigationController pushViewController:mainVC animated:YES];
+            
+            //注册成功发送设备
+            [[NoozanAppdelegate getAppDelegate] sendDeviceInfo];
             [[NoozanAppdelegate getAppDelegate] getMainVC];
             
         }
@@ -215,39 +215,6 @@
         [dic setObject:_passwordTextField.text forKey:@"password"];
         [self loadUserLoginData:dic];
         }
-}
-
-#pragma mark -- 发送 token 和 deviceToken 及设备信息
--(void)sendDeviceInfo{
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *deviceTokenString = [userDefaults objectForKey:USER_DEVIECTOKEN];
-    
-        NSString* deviceName = [[UIDevice currentDevice] systemName];
-        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[userDefaults objectForKey:USER_TOKEN]
-                forKey:@"token"];
-        [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
-
-        [dic setObject:@"1" forKey:@"dict_device_id"];
-        [dic setObject:deviceName forKey:@"device_name"];
-        
-        if (deviceTokenString!=nil) {
-            
-            [dic setObject:deviceTokenString forKey:@"device_id"];
-            
-        }else{
-        
-            [dic setObject:@"0" forKey:@"device_id"];
-
-        }
-        
-        [User sendDeviceInfo:dic WithBlock:^(User *user, Error *e) {
-            
-        }];
-        
-    
-    
 }
 
 

@@ -77,6 +77,9 @@
 		DFB32F6F1B0353820049D9F2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFB32F6E1B0353820049D9F2 /* ImageIO.framework */; };
 		DFB32FDA1B04A7180049D9F2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB32FD91B04A7180049D9F2 /* HomeViewController.m */; };
 		DFB5F7B51B1574CD000A66D7 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB5F7B41B1574CD000A66D7 /* Review.m */; };
+		DFB719AF1B4E1D340067EA33 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB719AC1B4E1D340067EA33 /* Icon-120.png */; };
+		DFB719B01B4E1D340067EA33 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB719AD1B4E1D340067EA33 /* Icon.png */; };
+		DFB719B11B4E1D340067EA33 /* Icon@2x00.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB719AE1B4E1D340067EA33 /* Icon@2x00.png */; };
 		DFB76B1C1B4BA8CD0009B356 /* PositionElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB76B1B1B4BA8CD0009B356 /* PositionElement.m */; };
 		DFB834DC1B0AD8BB009C08C7 /* TKRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB834DB1B0AD8BB009C08C7 /* TKRoundedView.m */; };
 		DFBEB1891AB04CD3002692EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB1881AB04CD3002692EF /* SystemConfiguration.framework */; };
@@ -300,6 +303,9 @@
 		DFB32FD91B04A7180049D9F2 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		DFB5F7B31B1574CD000A66D7 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		DFB5F7B41B1574CD000A66D7 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		DFB719AC1B4E1D340067EA33 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
+		DFB719AD1B4E1D340067EA33 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		DFB719AE1B4E1D340067EA33 /* Icon@2x00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x00.png"; sourceTree = "<group>"; };
 		DFB76B1A1B4BA8CD0009B356 /* PositionElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionElement.h; sourceTree = "<group>"; };
 		DFB76B1B1B4BA8CD0009B356 /* PositionElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionElement.m; sourceTree = "<group>"; };
 		DFB834DA1B0AD8BB009C08C7 /* TKRoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKRoundedView.h; sourceTree = "<group>"; };
@@ -470,7 +476,13 @@
 		190414DE1B415128008E3691 /* images */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				194F2A961B4E8C3C009DA88D /* Icon-120.png */,
+=======
+				DFB719AC1B4E1D340067EA33 /* Icon-120.png */,
+				DFB719AD1B4E1D340067EA33 /* Icon.png */,
+				DFB719AE1B4E1D340067EA33 /* Icon@2x00.png */,
+>>>>>>> 2680e22b211dc90e6ec83ee47de04fad6cbb86b7
 				190414DF1B415128008E3691 /* Default-568h@2x.png */,
 				190414E01B415128008E3691 /* icon@2x.png */,
 			);
@@ -1244,17 +1256,23 @@
 				DF16983B1B0DC12800A5E453 /* LaunchScreen.xib in Resources */,
 				DFEE77111AE09F5D00401AF0 /* circle_thumb.png in Resources */,
 				DFE869BD1B182E2200901F63 /* WebViewJavascriptBridge.js.txt in Resources */,
+				DFB719B01B4E1D340067EA33 /* Icon.png in Resources */,
 				DFDC9A801B46753A007BF5F2 /* smssdk.bundle in Resources */,
 				DFEE77101AE09F5D00401AF0 /* circle_ridge@2x.png in Resources */,
 				DFD274221AE7776400BEED59 /* NZAlertView-Icons.bundle in Resources */,
 				190414E11B415128008E3691 /* Default-568h@2x.png in Resources */,
 				DFEE77141AE09F5D00401AF0 /* graph_week@2x.png in Resources */,
+				DFB719B11B4E1D340067EA33 /* Icon@2x00.png in Resources */,
 				DFE869AF1B15C81700901F63 /* read_me.txt in Resources */,
 				DFEE77151AE09F5D00401AF0 /* graph_year.png in Resources */,
 				DFEE77121AE09F5D00401AF0 /* circle_thumb@2x.png in Resources */,
 				19BD477A1AAD5BA600D44A9D /* Images.xcassets in Resources */,
 				DFEE770E1AE09F5D00401AF0 /* circle_outline@2x.png in Resources */,
+<<<<<<< HEAD
 				194F2A971B4E8C3C009DA88D /* Icon-120.png in Resources */,
+=======
+				DFB719AF1B4E1D340067EA33 /* Icon-120.png in Resources */,
+>>>>>>> 2680e22b211dc90e6ec83ee47de04fad6cbb86b7
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1516,7 +1534,7 @@
 					"$(PROJECT_DIR)/angerPraise/ThirdParty/MeChatSDK",
 					"$(PROJECT_DIR)/angerPraise/ThirdParty/include",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1531,7 +1549,11 @@
 				ADDITIONAL_SDKS = "";
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Hirelib Information Technology Co.,Ltd. (8J9YVAK5YU)";
+=======
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+>>>>>>> 2680e22b211dc90e6ec83ee47de04fad6cbb86b7
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -26,7 +26,6 @@
 #define BUFFERY 10 //distance from top to the card (higher makes shorter card)
 @implementation UserViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -219,10 +218,6 @@
     _editNameTextField.leftViewMode = UITextFieldViewModeAlways;
     [_editNameView addSubview:_editNameTextField];
     
-    
-
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    _user_type = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"user_type"]];
     if ([_user_type isEqualToString:@"0"]) {  // 不是hr
 
         _modelListArray = [[NSArray alloc]initWithObjects:
@@ -248,10 +243,20 @@
         _waitUsernameLabel.text = user.user_name;
         _hirelibNumberLabel.text =[@"怒赞 No." stringByAppendingFormat:@"%@",user.hirelib_code];
         
-       if (![user.photo_url isEqualToString:@"<null>"]) {
+        if (_userPhotoUrlSting) {
             
+            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:_userPhotoUrlSting] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+            
+        }else{
+        
             [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
-       }
+        }
+        
+        
+//       if (![user.photo_url isEqualToString:@"<null>"]) {
+//            
+//            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+//       }
         
         NSString *mission_number = [NSString stringWithFormat:@"%@",user.mission_number];
         _matchPositionLabel.text =mission_number;// user.position_number;
@@ -644,6 +649,7 @@
         if (e.photo_url) {
             
             [_userPhotoImageView setImageWithURL:[NSURL URLWithString:e.photo_url] placeholderImage:_savedImage];
+            _userPhotoUrlSting = e.photo_url;
             
             [APIClient showSuccess:@"头像上传成功" title:@"成功"];
             
@@ -657,12 +663,16 @@
 #pragma mark -- UITableView height
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 52.f;
+    return 50.f;
 }
 
 #pragma mark -- UITableView cell 个数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    _user_type = [NSString stringWithFormat:@"%@",[userDefaults objectForKey:@"user_type"]];
+    
     
     if ([_user_type isEqualToString:@"0"]) {  //不是 hr
         

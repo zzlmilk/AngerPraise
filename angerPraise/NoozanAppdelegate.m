@@ -11,6 +11,7 @@
 
 #import "MainViewController.h"
 #import "IndexViewController.h"
+#import "User.h"
 
 
 
@@ -73,6 +74,40 @@
     
     [self.window setRootViewController:_loginNav];
 }
+
+
+
+#pragma mark -- 发送 token 和 deviceToken 及设备信息
+-(void)sendDeviceInfo{
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *deviceTokenString = [userDefaults objectForKey:USER_DEVIECTOKEN];
+    
+    NSString* deviceName = [[UIDevice currentDevice] systemName];
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+    
+    [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    
+    [dic setObject:@"1" forKey:@"dict_device_id"];
+    [dic setObject:deviceName forKey:@"device_name"];
+    
+    if (deviceTokenString!=nil) {
+        
+        [dic setObject:deviceTokenString forKey:@"device_id"];
+        
+    }else{
+        
+        [dic setObject:@"0" forKey:@"device_id"];
+        
+    }
+    
+    [User sendDeviceInfo:dic WithBlock:^(User *user, Error *e) {
+        
+    }];
+    
+}
+
 
 
 -(void)clearUserInfo{

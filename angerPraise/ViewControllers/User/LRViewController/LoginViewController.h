@@ -17,6 +17,5 @@
 @property(nonatomic,strong) UILabel *passwordPlaceholderLabel;
 @property(nonatomic,strong) UILabel *phonePlaceholderLabel;
 
--(void)sendDeviceInfo;
 
 @end

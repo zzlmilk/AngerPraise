@@ -48,6 +48,7 @@
 
 
 @property(nonatomic,strong)UIImage *savedImage;
+@property(nonatomic,strong)NSString *userPhotoUrlSting;
 
 
 //修改名称
