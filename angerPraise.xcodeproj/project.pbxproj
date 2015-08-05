@@ -476,13 +476,9 @@
 		190414DE1B415128008E3691 /* images */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				194F2A961B4E8C3C009DA88D /* Icon-120.png */,
-=======
 				DFB719AC1B4E1D340067EA33 /* Icon-120.png */,
 				DFB719AD1B4E1D340067EA33 /* Icon.png */,
 				DFB719AE1B4E1D340067EA33 /* Icon@2x00.png */,
->>>>>>> 2680e22b211dc90e6ec83ee47de04fad6cbb86b7
 				190414DF1B415128008E3691 /* Default-568h@2x.png */,
 				190414E01B415128008E3691 /* icon@2x.png */,
 			);
@@ -1268,11 +1264,8 @@
 				DFEE77121AE09F5D00401AF0 /* circle_thumb@2x.png in Resources */,
 				19BD477A1AAD5BA600D44A9D /* Images.xcassets in Resources */,
 				DFEE770E1AE09F5D00401AF0 /* circle_outline@2x.png in Resources */,
-<<<<<<< HEAD
-				194F2A971B4E8C3C009DA88D /* Icon-120.png in Resources */,
-=======
+
 				DFB719AF1B4E1D340067EA33 /* Icon-120.png in Resources */,
->>>>>>> 2680e22b211dc90e6ec83ee47de04fad6cbb86b7
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1549,11 +1542,8 @@
 				ADDITIONAL_SDKS = "";
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-<<<<<<< HEAD
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Hirelib Information Technology Co.,Ltd. (8J9YVAK5YU)";
-=======
 				CODE_SIGN_IDENTITY = "iPhone Developer";
->>>>>>> 2680e22b211dc90e6ec83ee47de04fad6cbb86b7
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
