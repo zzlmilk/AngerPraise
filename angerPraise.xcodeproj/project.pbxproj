@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		190414E11B415128008E3691 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 190414DF1B415128008E3691 /* Default-568h@2x.png */; };
-		190414E21B415128008E3691 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 190414E01B415128008E3691 /* Icon@2x.png */; };
+		190414E21B415128008E3691 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 190414E01B415128008E3691 /* icon@2x.png */; };
 		190414E61B415464008E3691 /* NoozanAppdelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 190414E51B415464008E3691 /* NoozanAppdelegate.m */; };
 		190414E91B42503A008E3691 /* HomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 190414E81B42503A008E3691 /* HomeTitleView.m */; };
+		194F2A971B4E8C3C009DA88D /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 194F2A961B4E8C3C009DA88D /* Icon-120.png */; };
 		19BD476F1AAD5BA600D44A9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD476E1AAD5BA600D44A9D /* main.m */; };
 		19BD47721AAD5BA600D44A9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47711AAD5BA600D44A9D /* AppDelegate.m */; };
 		19BD47751AAD5BA600D44A9D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47741AAD5BA600D44A9D /* ViewController.m */; };
@@ -162,11 +163,12 @@
 
 /* Begin PBXFileReference section */
 		190414DF1B415128008E3691 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		190414E01B415128008E3691 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		190414E01B415128008E3691 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		190414E41B415464008E3691 /* NoozanAppdelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoozanAppdelegate.h; sourceTree = "<group>"; };
 		190414E51B415464008E3691 /* NoozanAppdelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoozanAppdelegate.m; sourceTree = "<group>"; };
 		190414E71B42503A008E3691 /* HomeTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTitleView.h; sourceTree = "<group>"; };
 		190414E81B42503A008E3691 /* HomeTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTitleView.m; sourceTree = "<group>"; };
+		194F2A961B4E8C3C009DA88D /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		19BD47691AAD5BA600D44A9D /* angerPraise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = angerPraise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19BD476D1AAD5BA600D44A9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19BD476E1AAD5BA600D44A9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -468,8 +470,9 @@
 		190414DE1B415128008E3691 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				194F2A961B4E8C3C009DA88D /* Icon-120.png */,
 				190414DF1B415128008E3691 /* Default-568h@2x.png */,
-				190414E01B415128008E3691 /* Icon@2x.png */,
+				190414E01B415128008E3691 /* icon@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -1234,7 +1237,7 @@
 				DFDC9A7D1B46753A007BF5F2 /* SMS_SDKLocalizable.strings in Resources */,
 				DFFA18701B40EAF500BDEA41 /* MeChatSDK.bundle in Resources */,
 				DFEE77161AE09F5D00401AF0 /* graph_year@2x.png in Resources */,
-				190414E21B415128008E3691 /* Icon@2x.png in Resources */,
+				190414E21B415128008E3691 /* icon@2x.png in Resources */,
 				DFEE770D1AE09F5D00401AF0 /* circle_outline.png in Resources */,
 				DFEE77131AE09F5D00401AF0 /* graph_week.png in Resources */,
 				DFD274241AE7776400BEED59 /* NZAlertView.xib in Resources */,
@@ -1251,6 +1254,7 @@
 				DFEE77121AE09F5D00401AF0 /* circle_thumb@2x.png in Resources */,
 				19BD477A1AAD5BA600D44A9D /* Images.xcassets in Resources */,
 				DFEE770E1AE09F5D00401AF0 /* circle_outline@2x.png in Resources */,
+				194F2A971B4E8C3C009DA88D /* Icon-120.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1492,8 +1496,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Hirelib Information Technology Co.,Ltd. (8J9YVAK5YU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Hirelib Information Technology Co.,Ltd. (8J9YVAK5YU)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/angerPraise/ThirdParty/SMS_SDK",
@@ -1512,9 +1518,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1522,8 +1529,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Hirelib Information Technology Co.,Ltd. (8J9YVAK5YU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/angerPraise/ThirdParty/SMS_SDK",
@@ -1542,9 +1551,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
