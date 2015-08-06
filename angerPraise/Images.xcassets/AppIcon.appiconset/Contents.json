@@ -26,8 +26,6 @@
       "scale" : "3x"
     },
     {
-<<<<<<< HEAD
-=======
       "idiom" : "iphone",
       "size" : "57x57",
       "scale" : "1x"
@@ -39,10 +37,7 @@
     },
     {
       "idiom" : "iphone",
->>>>>>> 2680e22b211dc90e6ec83ee47de04fad6cbb86b7
       "size" : "60x60",
-      "idiom" : "iphone",
-      "filename" : "Icon-60@2x.png",
       "scale" : "2x"
     },
     {
