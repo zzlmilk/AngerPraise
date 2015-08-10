@@ -299,7 +299,7 @@
 
         [dic setObject:_editNameTextField.text forKey:@"nickname"];
         
-        [User userUpdateNickname:dic WithBlock:^(User *user, Error *e) {
+        [User userUpdateNickname:dic WithBlock:^(User *userNameData, Error *e) {
             
             if (e.info !=nil) {
                 
@@ -307,7 +307,7 @@
                 
             }else{
                 
-                int intRes = [user.res intValue];
+                int intRes = [userNameData.res intValue];
                 if (intRes == 1) {
                     [APIClient showSuccess:@"昵称修改成功" title:@"成功"];
                     
@@ -387,7 +387,7 @@
 
         [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-        [User getUserInfoData:dic WithBlock:^(User *user, Error *e) {
+        [User getUserInfoData:dic WithBlock:^(User *userData, Error *e) {
             
         [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
 
@@ -397,72 +397,19 @@
                 
             }else{
                 
-                [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
+                [_userPhotoImageView setImageWithURL:[NSURL URLWithString:userData.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
                 
                 
-                _waitUsernameLabel.text = user.user_name;
-                _editNameTextField.text = user.user_name;
-                [_userNameButton setTitle:user.user_name forState:UIControlStateNormal];
-                _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",user.hirelib_code];
+                _waitUsernameLabel.text = userData.user_name;
+                _editNameTextField.text = userData.user_name;
+                [_userNameButton setTitle:userData.user_name forState:UIControlStateNormal];
+                _hirelibNumberLabel.text =[@"hirelib No." stringByAppendingFormat:@"%@",userData.hirelib_code];
                 
                 
             }
             
         }];
 }
-
-
-#pragma mark  获取 user 剩余任务数
-//-(void)getUserMissionNumber{
-//    
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    
-//        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-//        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
-//    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
-//
-//        [User getUserMissionNumber:dic WithBlock:^(User *user, Error *e) {
-//            
-//            if (e.info !=nil) {
-//                
-//                [APIClient showInfo:e.info title:@"提示"];
-//                
-//            }else{
-//                
-//                NSString *stringInt = [NSString stringWithFormat:@"%@",user.mission_number];
-//                _matchPositionLabel.text = stringInt;//剩余任务
-//                
-//            }
-//            
-//        }];
-//
-//    
-//}
-
-#pragma mark  获取 推荐职位数
--(void)getRecommendPosition{
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        
-        NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
-    [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
-
-        [User getRecommendPositionNumber:dic WithBlock:^(User *user, Error *e) {
-            
-            if (e.info !=nil) {
-                
-            }else{
-                
-                NSString *stringInt = [NSString stringWithFormat:@"%@",user.position_number];
-                _taskLabel.text = stringInt;// 匹配职位
-                
-            }
-        }];
-    
-
-}
-
 
 #pragma mark  获取 钱包赏银数量
 -(void)getWalletNumber{
@@ -474,7 +421,7 @@
         [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
-        [User getWalletNumber:dic WithBlock:^(User *user, Error *e) {
+        [User getWalletNumber:dic WithBlock:^(User *userWalletData, Error *e) {
             
             if (e.info !=nil) {
                 
@@ -482,7 +429,7 @@
 
             }else{
 
-                _walletNumberLabel.text = user.user_intergral;
+                _walletNumberLabel.text = userWalletData.user_intergral;
                 
             }
         }];

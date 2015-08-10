@@ -154,41 +154,41 @@
     
 }
 
-//申请职位
-+(NSURLSessionDataTask *)applyPosition:(NSDictionary *)parameters WithBlock:(void (^)(Position *, Error *))block{
-
-    return [[APIClient sharedClient]GET:@"position/apply" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-       // NSLog(@"%@",responseObject);
-        
-        if ([responseObject objectForKey:@"error"]) {
-            Error *error = [[Error alloc]init];
-            
-            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
-            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
-            
-            Position *p;
-            
-            block(p,error);
-            
-        }else{
-            
-            Position *p = [[Position alloc]initWithDic:responseObject];
-            
-            block(p,nil);
-            
-        }
-        
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        if (NZ_DugSet) {
-            
-            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
-        }
-    }];
-
-}
+//申请职位 即将废弃
+//+(NSURLSessionDataTask *)applyPosition:(NSDictionary *)parameters WithBlock:(void (^)(Position *, Error *))block{
+//
+//    return [[APIClient sharedClient]GET:@"position/apply" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//        
+//       // NSLog(@"%@",responseObject);
+//        
+//        if ([responseObject objectForKey:@"error"]) {
+//            Error *error = [[Error alloc]init];
+//            
+//            error.code =[[responseObject objectForKey:@"error"] objectForKey:@"code"];
+//            error.info =[[responseObject objectForKey:@"error"] objectForKey:@"info"];
+//            
+//            Position *p;
+//            
+//            block(p,error);
+//            
+//        }else{
+//            
+//            Position *p = [[Position alloc]initWithDic:responseObject];
+//            
+//            block(p,nil);
+//            
+//        }
+//        
+//        
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        
+//        if (NZ_DugSet) {
+//            
+//            [APIClient showInfo:@"请检查网络状态" title:@"网络异常"];
+//        }
+//    }];
+//
+//}
 
 
 

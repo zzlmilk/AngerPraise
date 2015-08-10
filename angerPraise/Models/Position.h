@@ -46,7 +46,7 @@
 +(NSURLSessionDataTask *)advancedSearchList:(NSDictionary *)parameters WithBlock:(void (^)(NSMutableArray *positionArray, Error *e))block;
 
 //申请职位
-+(NSURLSessionDataTask *)applyPosition:(NSDictionary *)parameters WithBlock:(void (^)(Position *position, Error *e))block;
+//+(NSURLSessionDataTask *)applyPosition:(NSDictionary *)parameters WithBlock:(void (^)(Position *position, Error *e))block;
 
 -(instancetype)initWithDic:(NSDictionary *)dic;
 
