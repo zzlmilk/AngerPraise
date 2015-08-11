@@ -19,13 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
-    
+    // Do any additional setup after loading the view
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
@@ -44,7 +38,7 @@
     
     
     UILabel *oldPasswordTipLabel = [[UILabel alloc]init];
-    oldPasswordTipLabel.frame = CGRectMake(35, backBtn.frame.size.height+backBtn.frame.origin.y-10, self.view.frame.size.width-2*35, 35);
+    oldPasswordTipLabel.frame = CGRectMake(35, 60, self.view.frame.size.width-2*35, 35);
     oldPasswordTipLabel.text = @"当前密码";
     oldPasswordTipLabel.font =[UIFont fontWithName:@"Helvetica" size:16];
     oldPasswordTipLabel.textColor = RGBACOLOR(70, 70, 70, 1.0f);
@@ -134,7 +128,7 @@
 //键盘隐藏后处理scrollview的高度，使其还原为本来的高度
 -(void)keyboardDidHide:(NSNotification*)notice{
     
-    [_scrollView setContentOffset:CGPointMake(0, -40) animated:YES];
+    [_scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     
 }
 
@@ -151,6 +145,8 @@
 -(void)doBack{
     
     [self.navigationController popViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 #pragma mark -- UITextFieldDelegate
@@ -216,7 +212,10 @@
                 if (intRes == 1) {
                     [APIClient showSuccess:@"密码修改成功" title:@"成功"];
                     
-                    [self doBack];
+                    if (!_userVC) {
+                    _userVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];                    }
+                    [self.navigationController popToViewController:_userVC animated:true];
+                
                 }
                 
             }

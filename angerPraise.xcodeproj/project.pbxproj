@@ -10,7 +10,6 @@
 		190414E11B415128008E3691 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 190414DF1B415128008E3691 /* Default-568h@2x.png */; };
 		190414E21B415128008E3691 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 190414E01B415128008E3691 /* icon@2x.png */; };
 		190414E61B415464008E3691 /* NoozanAppdelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 190414E51B415464008E3691 /* NoozanAppdelegate.m */; };
-		190414E91B42503A008E3691 /* HomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 190414E81B42503A008E3691 /* HomeTitleView.m */; };
 		19BD476F1AAD5BA600D44A9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD476E1AAD5BA600D44A9D /* main.m */; };
 		19BD47721AAD5BA600D44A9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47711AAD5BA600D44A9D /* AppDelegate.m */; };
 		19BD47751AAD5BA600D44A9D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BD47741AAD5BA600D44A9D /* ViewController.m */; };
@@ -33,7 +32,6 @@
 		DF4D979C1AD656D400F65140 /* Resume.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D979B1AD656D400F65140 /* Resume.m */; };
 		DF4D979F1AD657F000F65140 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D979E1AD657F000F65140 /* Error.m */; };
 		DF4D97A21AD7790D00F65140 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4D97A11AD7790D00F65140 /* GuideViewController.m */; };
-		DF5B3EED1ADCCA490004EF2F /* PositionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5B3EEC1ADCCA490004EF2F /* PositionListCell.m */; };
 		DF5B3EF01ADCCB0E0004EF2F /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5B3EEF1ADCCB0E0004EF2F /* Position.m */; };
 		DF5F8DBA1AF8A1CA00205B60 /* HrPrivilege.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DB91AF8A1CA00205B60 /* HrPrivilege.m */; };
 		DF5F8DBD1AF8B4A600205B60 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5F8DBC1AF8B4A600205B60 /* Home.m */; };
@@ -91,6 +89,10 @@
 		DFBEB19B1AB05F2A002692EF /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB19A1AB05F2A002692EF /* libz.1.2.5.dylib */; };
 		DFBEB19D1AB05F39002692EF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB19C1AB05F39002692EF /* Security.framework */; };
 		DFBEB19F1AB05F95002692EF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFBEB19E1AB05F95002692EF /* MessageUI.framework */; };
+		DFCEAD8B1B79987A0006CCF6 /* HomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCEAD8A1B79987A0006CCF6 /* HomeTitleView.m */; };
+		DFCEAD8E1B7998810006CCF6 /* PositionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCEAD8D1B7998810006CCF6 /* PositionListCell.m */; };
+		DFCEAD951B79996A0006CCF6 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCEAD941B79996A0006CCF6 /* CardView.m */; };
+		DFCEAD981B79A0B70006CCF6 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFCEAD971B79A0B70006CCF6 /* EditViewController.m */; };
 		DFD2740C1AE504B500BEED59 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD2740B1AE504B500BEED59 /* AddressBookUI.framework */; };
 		DFD2740E1AE504C000BEED59 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD2740D1AE504C000BEED59 /* AddressBook.framework */; };
 		DFD274211AE7776400BEED59 /* NZAlertViewColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD274191AE7776400BEED59 /* NZAlertViewColor.m */; };
@@ -169,8 +171,6 @@
 		190414E01B415128008E3691 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		190414E41B415464008E3691 /* NoozanAppdelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoozanAppdelegate.h; sourceTree = "<group>"; };
 		190414E51B415464008E3691 /* NoozanAppdelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoozanAppdelegate.m; sourceTree = "<group>"; };
-		190414E71B42503A008E3691 /* HomeTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTitleView.h; sourceTree = "<group>"; };
-		190414E81B42503A008E3691 /* HomeTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTitleView.m; sourceTree = "<group>"; };
 		19BD47691AAD5BA600D44A9D /* angerPraise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = angerPraise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19BD476D1AAD5BA600D44A9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19BD476E1AAD5BA600D44A9D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -215,8 +215,6 @@
 		DF4D979E1AD657F000F65140 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		DF4D97A01AD7790D00F65140 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		DF4D97A11AD7790D00F65140 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
-		DF5B3EEB1ADCCA490004EF2F /* PositionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionListCell.h; sourceTree = "<group>"; };
-		DF5B3EEC1ADCCA490004EF2F /* PositionListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionListCell.m; sourceTree = "<group>"; };
 		DF5B3EEE1ADCCB0E0004EF2F /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		DF5B3EEF1ADCCB0E0004EF2F /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		DF5F8DB81AF8A1CA00205B60 /* HrPrivilege.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HrPrivilege.h; sourceTree = "<group>"; };
@@ -321,6 +319,14 @@
 		DFBEB19A1AB05F2A002692EF /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		DFBEB19C1AB05F39002692EF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DFBEB19E1AB05F95002692EF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		DFCEAD891B79987A0006CCF6 /* HomeTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTitleView.h; sourceTree = "<group>"; };
+		DFCEAD8A1B79987A0006CCF6 /* HomeTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTitleView.m; sourceTree = "<group>"; };
+		DFCEAD8C1B7998810006CCF6 /* PositionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionListCell.h; sourceTree = "<group>"; };
+		DFCEAD8D1B7998810006CCF6 /* PositionListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionListCell.m; sourceTree = "<group>"; };
+		DFCEAD931B79996A0006CCF6 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
+		DFCEAD941B79996A0006CCF6 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
+		DFCEAD961B79A0B70006CCF6 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		DFCEAD971B79A0B70006CCF6 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		DFD2740B1AE504B500BEED59 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		DFD2740D1AE504C000BEED59 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		DFD274181AE7776400BEED59 /* NZAlertViewColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZAlertViewColor.h; sourceTree = "<group>"; };
@@ -644,11 +650,10 @@
 		19BD47B11AB060CA00D44A9D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DFCEAD921B79995D0006CCF6 /* UserView */,
+				DFCEAD881B7998250006CCF6 /* PositionView */,
+				DFCEAD871B7998140006CCF6 /* HomeView */,
 				19E327B71B43DF2D0063354D /* NZCoinView */,
-				DF5B3EEB1ADCCA490004EF2F /* PositionListCell.h */,
-				DF5B3EEC1ADCCA490004EF2F /* PositionListCell.m */,
-				190414E71B42503A008E3691 /* HomeTitleView.h */,
-				190414E81B42503A008E3691 /* HomeTitleView.m */,
 				19E327B41B43DBD80063354D /* SynthesizeView.h */,
 				19E327B51B43DBD80063354D /* SynthesizeView.m */,
 			);
@@ -897,6 +902,33 @@
 			path = CircleView;
 			sourceTree = "<group>";
 		};
+		DFCEAD871B7998140006CCF6 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				DFCEAD891B79987A0006CCF6 /* HomeTitleView.h */,
+				DFCEAD8A1B79987A0006CCF6 /* HomeTitleView.m */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		DFCEAD881B7998250006CCF6 /* PositionView */ = {
+			isa = PBXGroup;
+			children = (
+				DFCEAD8C1B7998810006CCF6 /* PositionListCell.h */,
+				DFCEAD8D1B7998810006CCF6 /* PositionListCell.m */,
+			);
+			path = PositionView;
+			sourceTree = "<group>";
+		};
+		DFCEAD921B79995D0006CCF6 /* UserView */ = {
+			isa = PBXGroup;
+			children = (
+				DFCEAD931B79996A0006CCF6 /* CardView.h */,
+				DFCEAD941B79996A0006CCF6 /* CardView.m */,
+			);
+			path = UserView;
+			sourceTree = "<group>";
+		};
 		DFD274161AE7776400BEED59 /* NZAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1102,6 +1134,8 @@
 				DFF2C8431B1D9E8D006E3CB7 /* EditNameViewController.m */,
 				DFF2C8451B1DA3DF006E3CB7 /* EditPasswordViewController.h */,
 				DFF2C8461B1DA3DF006E3CB7 /* EditPasswordViewController.m */,
+				DFCEAD961B79A0B70006CCF6 /* EditViewController.h */,
+				DFCEAD971B79A0B70006CCF6 /* EditViewController.m */,
 			);
 			path = EditUser;
 			sourceTree = "<group>";
@@ -1332,9 +1366,12 @@
 				DF4D97A21AD7790D00F65140 /* GuideViewController.m in Sources */,
 				DFEE772F1AE0DCE800401AF0 /* AHKActionSheetViewController.m in Sources */,
 				DFD274311AE778A700BEED59 /* UIImage+Screenshot.m in Sources */,
+				DFCEAD951B79996A0006CCF6 /* CardView.m in Sources */,
 				DFEE77191AE09F5D00401AF0 /* KDGoalBarPercentLayer.m in Sources */,
+				DFCEAD8E1B7998810006CCF6 /* PositionListCell.m in Sources */,
 				DFE61ACD1B1C374A009FAFF4 /* Share.m in Sources */,
 				DFB3ADA81B748FA900AD323C /* ImportResumeViewController.m in Sources */,
+				DFCEAD981B79A0B70006CCF6 /* EditViewController.m in Sources */,
 				DFD274211AE7776400BEED59 /* NZAlertViewColor.m in Sources */,
 				DF5F8E061AFA154100205B60 /* UIProgressView+AFNetworking.m in Sources */,
 				DFF2C8441B1D9E8D006E3CB7 /* EditNameViewController.m in Sources */,
@@ -1351,7 +1388,6 @@
 				DF5B3EF01ADCCB0E0004EF2F /* Position.m in Sources */,
 				DFD2744A1AE7852C00BEED59 /* RegisterViewController.m in Sources */,
 				DFF665CF1B3D4945003AED4C /* SetNewPasswordViewController.m in Sources */,
-				DF5B3EED1ADCCA490004EF2F /* PositionListCell.m in Sources */,
 				DF69C1C81B130EB300D2FAC8 /* VWWWaterView.m in Sources */,
 				DFB3ADA91B748FA900AD323C /* QAResumeViewController.m in Sources */,
 				19E327CD1B44F91A0063354D /* UIImageView+SYJImageCache.m in Sources */,
@@ -1363,7 +1399,6 @@
 				DF5F8DC31AF8D92A00205B60 /* MyDynamic.m in Sources */,
 				DF5F8DFF1AFA154100205B60 /* AFURLResponseSerialization.m in Sources */,
 				DFB3ADBC1B74902D00AD323C /* PreviewResumeViewController.m in Sources */,
-				190414E91B42503A008E3691 /* HomeTitleView.m in Sources */,
 				19E327B61B43DBD80063354D /* SynthesizeView.m in Sources */,
 				DFD2744D1AE7871B00BEED59 /* IndexViewController.m in Sources */,
 				DFB3ADB61B74900500AD323C /* PositionDetailViewController.m in Sources */,
@@ -1373,6 +1408,7 @@
 				DFB3ADBB1B74902D00AD323C /* PerfectResumeViewController.m in Sources */,
 				DFF2C8471B1DA3DF006E3CB7 /* EditPasswordViewController.m in Sources */,
 				DF5F8E021AFA154100205B60 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				DFCEAD8B1B79987A0006CCF6 /* HomeTitleView.m in Sources */,
 				19BD476F1AAD5BA600D44A9D /* main.m in Sources */,
 				DF5F8E141AFB3C3F00205B60 /* NewPasswordViewController.m in Sources */,
 				DF4D979C1AD656D400F65140 /* Resume.m in Sources */,

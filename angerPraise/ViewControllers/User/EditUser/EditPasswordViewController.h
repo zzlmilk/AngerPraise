@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "UserViewController.h"
 
 @interface EditPasswordViewController : BaseViewController<UITextFieldDelegate,UIScrollViewDelegate>
 
@@ -16,6 +17,8 @@
 @property(nonatomic,strong)UITextField *reEditNewPasswordTextField;
 
 @property(nonatomic,strong) UIScrollView *scrollView;
+
+@property(nonatomic,strong) UserViewController *userVC;
 
 
 @end

@@ -9,7 +9,6 @@
 #import "EditNameViewController.h"
 #import "User.h"
 #import "ApIClient.h"
-#import "UserViewController.h"
 
 @interface EditNameViewController ()
 
@@ -21,16 +20,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"k1"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack)forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
-    
-    
     
     UILabel *editNameTipLabel = [[UILabel alloc]init];
-    editNameTipLabel.frame = CGRectMake(35, backBtn.frame.size.height+backBtn.frame.origin.y+20, self.view.frame.size.width-2*35, 35);
+    editNameTipLabel.frame = CGRectMake(35, 70, self.view.frame.size.width-2*35, 35);
     editNameTipLabel.text = @"新昵称";
     editNameTipLabel.font =[UIFont fontWithName:@"Helvetica" size:16];
     editNameTipLabel.textColor = RGBACOLOR(70, 70, 70, 1.0f);
@@ -38,7 +30,6 @@
     
     _editNameTextField = [[UITextField alloc]initWithFrame:CGRectMake(editNameTipLabel.frame.origin.x, editNameTipLabel.frame.size.height+editNameTipLabel.frame.origin.y+10,editNameTipLabel.frame.size.width, 40)];
     [_editNameTextField setBorderStyle:UITextBorderStyleLine];
-//    _editNameTextField.placeholder = @"";
     _editNameTextField.delegate = self;
     _editNameTextField.font =[UIFont fontWithName:@"Helvetica" size:14];
     _editNameTextField.layer.borderColor=[RGBACOLOR(0, 203, 251, 1.0f)CGColor];
@@ -54,24 +45,19 @@
     [_editNameTextField becomeFirstResponder];
     [self.view addSubview:_editNameTextField];
     
-    
 }
 
-#pragma mark -- 返回
--(void)doBack{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark -- 键盘 return
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
+    [_editNameTextField resignFirstResponder];
     [self userUpdateNickname];
     return YES;
     
 }
 
-
+#pragma mark 修改名称 接口
 -(void)userUpdateNickname{
     
     NSUInteger pLength = 1;
@@ -79,16 +65,18 @@
     if (_editNameTextField.text.length < pLength) {
         
         [APIClient showMessage:@"亲，新名称不能为空哟～"];
-
+        
     }else{
         
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-        NSUserDefaults *token = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         
-        [dic setObject:[token objectForKey:@"token"] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+        [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
+        
         [dic setObject:_editNameTextField.text forKey:@"nickname"];
         
-        [User userUpdateNickname:dic WithBlock:^(User *user, Error *e) {
+        [User userUpdateNickname:dic WithBlock:^(User *userNameData, Error *e) {
             
             if (e.info !=nil) {
                 
@@ -96,17 +84,25 @@
                 
             }else{
                 
-                int intRes = [user.res intValue];
+                int intRes = [userNameData.res intValue];
                 if (intRes == 1) {
                     [APIClient showSuccess:@"昵称修改成功" title:@"成功"];
                     
-                    [self doBack];
-                }
+                    [_editNameTextField becomeFirstResponder];
+                    
+                    if (!_userVC) {
+                        _userVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];                    }
+                    _userVC.editedNameString = nil;
+                    _userVC.editedNameString = _editNameTextField.text;
+                    [self.navigationController popToViewController:_userVC animated:true];
 
+
+                }
+                
             }
             
         }];
-    
+        
     }
     
 }
