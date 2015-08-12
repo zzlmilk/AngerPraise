@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewController.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "HrPrivilege.h"
 #import "UIImageView+SYJImageCache.h"
 #import "ApIClient.h"
@@ -370,7 +370,8 @@
         
     }else{
         
-        [APIClient showMessage:@"暂时没有HR任务哦～"];
+        [APIClient showTextMeggage:@"暂时没有HR任务哟～" view:self.view];
+
         
     }
     
@@ -407,7 +408,7 @@
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
     
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.view exchangeSubviewAtIndex:1 withSubviewAtIndex:0];
     
     [User getHomeData:dic WithBlock:^(User *user, Error *e) {
@@ -420,11 +421,12 @@
         [self.delegate userInfoValueShouldChange:user];
         
         [self.view exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
 
         if (e.info != nil) {
             
-            [APIClient showMessage:@"现在登陆人数超载啦，小工们正在努力中请稍后再试～"];
+            [APIClient showTextMeggage:@"现在登陆人数超载啦，小工们正在努力中请稍后再试～" view:self.view];
+
             
         }else{
 
@@ -502,15 +504,16 @@
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [HrPrivilege getHrReviewInfo:dic WithBlock:^(HrPrivilege *hr, Error *e) {
         
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if (e.info !=nil) {
             
-            [APIClient showMessage:e.info];
+            [APIClient showTextMeggage:e.info view:self.view];
+
             
         }else{
             
@@ -743,14 +746,14 @@
 //网页 刚开始加载
 - (void)webViewDidStartLoad:(UIWebView  *)webView{
         
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
 }
 
 //网页 加载完成
 - (void)webViewDidFinishLoad:(UIWebView  *)webView{
 
-    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 

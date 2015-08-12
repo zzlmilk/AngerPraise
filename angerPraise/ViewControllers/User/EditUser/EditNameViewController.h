@@ -11,7 +11,6 @@
 #import "EditViewController.h"
 #import "UserViewController.h"
 
-
 @interface EditNameViewController : BaseViewController<UITextFieldDelegate>
 
 @property(nonatomic,strong)UITextField *editNameTextField;

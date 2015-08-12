@@ -182,8 +182,7 @@
         
     }else{
         
-//        [APIClient showMessage:@"公司名称和薪资范围不能为空"];
-        [APIClient showInfo:nil title:@"公司名称"];
+        [APIClient showTextMeggage:@"公司名称不能为空" view: self.view];
         
     }
     
@@ -194,39 +193,10 @@
 
    // NSLog(@"%@",@"取值发送给server");
     
-    [APIClient showSuccess:@"简历创建成功" title:@"成功"];
+    [APIClient showTextSuccessMeggage:@"简历创建成功" view:self.view];
+    
     MainViewController *mainVC = [[MainViewController alloc]init];
     [self presentViewController:mainVC animated:YES completion:nil];
-
-
-//    NSUserDefaults *userId = [NSUserDefaults standardUserDefaults];
-//
-//    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
-//    [dic setObject:[userId objectForKey:@"userId"] forKey:@"user_id"];
-//    [dic setObject:@"王小二" forKey:@"user_name"];
-//    [dic setObject:@"男" forKey:@"user_sex"];
-//    [dic setObject:@"21" forKey:@"user_age"];
-//    [dic setObject:_positionNameString forKey:@"position"];
-//    [dic setObject:_companyNameTextField.text forKey:@"company_name"];
-//    [dic setObject:@"2" forKey:@"education_id"];
-//    [dic setObject:@"2" forKey:@"user_compensation"];//薪资 id
-//    
-//    [Resume appCreatedResume:dic WithBlock:^(Resume *resume, Error *e) {
-//        
-//        if ([resume.res isEqualToString:@"1"]) {
-//            
-//            [APIClient showMessage:@"创建成功"];
-//            
-//            MainViewController *mainVC = [[MainViewController alloc]init];
-//            [self presentViewController:mainVC animated:YES completion:nil];
-//            
-//        }else{
-//            
-//            [APIClient showMessage:e.info title:@"创建失败"];
-//            
-//        }
-//        
-//    }];
 
 }
 

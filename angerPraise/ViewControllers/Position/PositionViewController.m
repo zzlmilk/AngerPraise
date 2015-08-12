@@ -9,7 +9,7 @@
 #import "PositionViewController.h"
 #import "PositionListCell.h"
 #import "Position.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "ApIClient.h"
 #import "AHKActionSheet.h"
 
@@ -459,10 +459,10 @@
     [dic setObject:_workAgeDataUILabel.text forKey:@"work_year_id"];
     [dic setObject:_monthlyDataUILabel.text forKey:@"compensation_id"];
     
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Position advancedSearchList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
         
-        [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
+        [MBProgressHUD hideHUDForView: self.view animated:YES];
         
         if(positionArray.count >0){
             
@@ -490,16 +490,16 @@
 
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
 
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     [Position getPositionList:dic WithBlock:^(NSMutableArray *positionArray, Error *e) {
 
-        [SMS_MBProgressHUD hideHUDForView: self.view animated:YES];
+        [MBProgressHUD hideHUDForView: self.view animated:YES];
 
         int errorCode = [e.code intValue];
         if (errorCode ==40004) {
             
-            [APIClient showInfo:e.info title:@"提示"];
+            [APIClient showTextMeggage:e.info view:self.view];
             
             if (!_importResumeVC) {
                 _importResumeVC = [[ImportResumeViewController alloc]init];

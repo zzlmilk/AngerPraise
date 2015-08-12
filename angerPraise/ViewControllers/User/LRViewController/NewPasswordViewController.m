@@ -12,7 +12,7 @@
 #import "ApIClient.h"
 #import "User.h"
 #import "MainViewController.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "LoginViewController.h"
 #import "NoozanAppdelegate.h"
 
@@ -174,7 +174,8 @@
     if (_newsPasswordTextField.text.length < pLength &&_reNewsPasswordTextField.text.length < pLength) {
         
 
-        [APIClient showMessage:@"新密码不能为空"];
+        [APIClient showTextMeggage:@"新密码不能为空" view:self.view];
+
         
     }else{
         
@@ -184,7 +185,7 @@
             
         }else{
         
-            [APIClient showMessage:@"两次密码不一致,请重新输入!"];
+            [APIClient showTextMeggage:@"两次密码不一致，请重新输入~" view:self.view];
         }
 
     }
@@ -202,18 +203,18 @@
     [dic setObject:_newsPasswordTextField.text forKey:@"password"];
     [dic setObject:_userNameTextField.text forKey:@"name"];
     
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [User userRegister:dic WithBlock:^(User *user, Error *e) {
         
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if (e.info !=nil) {
             
-            [APIClient showInfo:e.info title:@"提示"];
-            
+            [APIClient showTextMeggage:e.info view:self.view];
+
         }else{
             
-            [APIClient showSuccess:@"注册成功" title:@"成功"];
+            //[APIClient showSuccess:@"注册成功" title:@"成功"];
             
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:user.hr_privilege forKey:@"user_type"];

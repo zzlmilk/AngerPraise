@@ -22,5 +22,5 @@
 
 @property(nonatomic,strong) UIButton *validationButton;
 
-
+@property __block int timeout;
 @end

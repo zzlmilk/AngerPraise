@@ -239,13 +239,13 @@
     
     if ([_userNameTextField.text isEqualToString:@""]) {
         
-        [APIClient showMessage:@"姓名不能为空"];
+        [APIClient showTextMeggage:@"姓名不能为空" view: self.view];
         
     }
     if([_birthdayTextField.text isEqualToString:@""]){
         
-         [APIClient showMessage:@"请选择生日"];
-    
+        [APIClient showTextMeggage:@"请选择生日" view: self.view];
+
     }else{
     
         if([_sexTextField.text isEqualToString:@"男"]){
@@ -270,7 +270,7 @@
     
 }
 
-#pragma mark -- 注册 提交 调用接口
+#pragma mark -- 注册 提交 调用接口   已废弃
 -(void)sendDateForServer{
 
     //        NSString * uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];

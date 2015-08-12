@@ -123,7 +123,11 @@
 		[self performSelectorOnMainThread:@selector(updateDetailsLabelText:) withObject:newText waitUntilDone:NO];
 		[self performSelectorOnMainThread:@selector(setNeedsLayout) withObject:nil waitUntilDone:NO];
 		[self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
-	}
+    }
+    if (mode == MBProgressHUDModeText) {
+        [indicator removeFromSuperview];
+        self.indicator = nil;
+    }
 }
 
 - (NSString *)detailsLabelText {

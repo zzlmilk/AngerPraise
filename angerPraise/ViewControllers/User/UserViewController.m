@@ -10,7 +10,7 @@
 #import "SettingViewController.h"
 #import "EditPhoto.h"
 #import "ApIClient.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "User.h"
 #import "UIImageView+SYJImageCache.h"
 #import "WalletWebViewController.h"
@@ -77,6 +77,13 @@
     
     _walletNumberLabel = [[UILabel alloc]init];
     
+    
+    //hirelib number
+    _cardView.hirelibNumberLabel.text =[@"怒赞 No." stringByAppendingFormat:@"%@",user.hirelib_code];
+    
+    NSString *_task_number = [NSString stringWithFormat:@"%@",user.position_number];
+    _cardView.taskLabel.text = _task_number;    // 推荐职位数
+    
 
 }
 
@@ -85,11 +92,6 @@
 {
     [super viewWillAppear:animated];
     
-    if(_editedNameString){
-        
-        [_cardView.userNameButton setTitle:_editedNameString forState:UIControlStateNormal];
-        
-    }
     
     if (user) {
         
@@ -103,9 +105,8 @@
 
         }
         
-        _cardView.hirelibNumberLabel.text =[@"怒赞 No." stringByAppendingFormat:@"%@",user.hirelib_code];
         
-        if (_userPhotoUrlSting) {
+        if (_userPhotoUrlSting) { //判断头像是否被修改
             
             [_cardView.userPhotoImageView setImageWithURL:[NSURL URLWithString:_userPhotoUrlSting] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
             
@@ -120,14 +121,13 @@
 //            [_userPhotoImageView setImageWithURL:[NSURL URLWithString:user.photo_url] placeholderImage:[UIImage imageNamed:@"0logooutapp"]];
 //       }
         
+        
+        //剩余任务数
         NSString *mission_number = [NSString stringWithFormat:@"%@",user.mission_number];
         _cardView.matchPositionLabel.text =mission_number;// user.position_number;
         
-        
-        NSString *_task_number = [NSString stringWithFormat:@"%@",user.position_number];
-        _cardView.taskLabel.text = _task_number;
-        
-        _walletNumberLabel.text = user.user_intergral;
+        _walletNumberLabel.text = user.user_intergral;  // 钱包 显示赏银数量
+
         
     }else{
     
@@ -188,15 +188,15 @@
         [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
         [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
 
-        [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
         [User getUserInfoData:dic WithBlock:^(User *userData, Error *e) {
             
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
 
             if (e.info !=nil) {
                 
-                [APIClient showInfo:e.info title:@"提示"];
+                [APIClient showTextMeggage:e.info view:self.view];
                 
             }else{
                 
@@ -224,7 +224,7 @@
             
             if (e.info !=nil) {
                 
-                [APIClient showInfo:e.info title:@"提示"];
+                [APIClient showTextMeggage:e.info view:self.view];
 
             }else{
 
@@ -356,12 +356,12 @@
 
     [dic setObject:imageData forKey:@"imageData"];
     
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [EditPhoto uploadUserProfileImageParameters:dic WithBlock:^(EditPhoto *e) {
         
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
         
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         
         if (e.photo_url) {
@@ -369,7 +369,7 @@
             [_cardView.userPhotoImageView setImageWithURL:[NSURL URLWithString:e.photo_url] placeholderImage:_savedImage];
             _userPhotoUrlSting = e.photo_url;
             
-            [APIClient showSuccess:@"头像上传成功" title:@"成功"];
+            [APIClient showTextSuccessMeggage:@"头像上传成功" view:self.view];
             
         }
         

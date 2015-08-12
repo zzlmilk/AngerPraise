@@ -177,15 +177,15 @@
     
     if (_oldPasswordTextField.text == nil || [_oldPasswordTextField.text isEqualToString:@""]) {
         
-        [APIClient showMessage:@"请输入当前密码"];
+        [APIClient showTextMeggage:@"请输入当前密码" view:self.view];
         
     }else if (_editNewPasswordTextField.text == nil || [_editNewPasswordTextField.text isEqualToString:@""]){
     
-        [APIClient showMessage:@"请输入新密码"];
+        [APIClient showTextMeggage:@"请输入新密码" view:self.view];
         
     }else if (_reEditNewPasswordTextField.text == nil || [_reEditNewPasswordTextField.text isEqualToString:@""]){
     
-        [APIClient showMessage:@"请确认新密码"];
+        [APIClient showTextMeggage:@"请确认新密码" view:self.view];
     }else{
     
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
@@ -204,18 +204,17 @@
             
             if (e.info !=nil) {
                 
-                [APIClient showInfo:e.info title:@"提示"];
+                [APIClient showTextMeggage:e.info view:self.view];
                 
             }else{
                 
                 int intRes = [user.res intValue];
                 if (intRes == 1) {
-                    [APIClient showSuccess:@"密码修改成功" title:@"成功"];
                     
-                    if (!_userVC) {
-                    _userVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];                    }
-                    [self.navigationController popToViewController:_userVC animated:true];
-                
+                    [APIClient showTextSuccessMeggage:@"密码修改成功" view:self.view];
+                    
+                    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(delayMethod) userInfo:nil repeats:NO];
+                    
                 }
                 
             }
@@ -225,6 +224,16 @@
     }
     
 }
+
+-(void)delayMethod{
+    
+    if (!_userVC) {
+        _userVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
+    }
+    [self.navigationController popToViewController:_userVC animated:true];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

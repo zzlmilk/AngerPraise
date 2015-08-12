@@ -117,7 +117,8 @@
        
         if (e.info !=nil) {
             
-            [APIClient showMessage:e.info];
+            [APIClient showTextMeggage:e.info view:self.view];
+
             
         }else{
         

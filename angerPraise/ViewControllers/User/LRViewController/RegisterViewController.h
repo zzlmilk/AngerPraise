@@ -25,4 +25,7 @@
 
 @property(nonatomic,strong) UIButton *userRegisterButton;
 
+
+@property __block int timeout;
+
 @end

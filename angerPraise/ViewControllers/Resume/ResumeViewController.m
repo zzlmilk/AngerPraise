@@ -9,7 +9,7 @@
 #import "ResumeViewController.h"
 #import "Resume.h"
 #import "PreviewResumeViewController.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "ApIClient.h"
 #import "ImportResumeViewController.h"
 #import "QAResumeViewController.h"
@@ -198,16 +198,16 @@
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     
     [Resume getResumeScoer:dic WithBlock:^(Resume *resume, Error *e) {
         
-        [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
 
         if (e.info!=nil) {
             
-            [APIClient showInfo:e.info title:@"提示"];
+            [APIClient showTextMeggage:e.info view:self.view];
             
         }
         
@@ -320,7 +320,7 @@
             
             if (e.info !=nil) {
                 
-                [APIClient showMessage:e.info];
+                [APIClient showTextMeggage:e.info view:self.view];
                 
             }
             if (resume.resume_preview_url) {
@@ -332,7 +332,8 @@
         
     }else{
     
-        [APIClient showMessage:@"没有发现你的简历信息，赶快创建简历吧~"];
+        [APIClient showTextMeggage:@"没有发现你的简历信息，赶快创建简历吧~" view:self.view];
+
     }
     
 }

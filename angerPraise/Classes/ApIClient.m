@@ -8,6 +8,7 @@
 
 #import "NZAlertView.h"
 #import "APIClient.h"
+#import "MBProgressHUD.h"
 
 static NSString * const AFAppDotNetAPIBaseURLString = @"http://app.hirelib.com/noozan_api/v1/";
 
@@ -73,39 +74,39 @@ static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://app.hirelib.
 
 
 
-//自定义弹框 － 成功
-+ (void)showSuccess:(NSString *)msg title:(NSString *)title {
-
-    NZAlertView *alert = [[NZAlertView alloc] initWithStyle:NZAlertStyleSuccess
-                                                      title:title
-                                                    message:msg
-                                                   delegate:nil];
-    
-    [alert show];
-}
-
-//自定义弹框 － 失败
-+ (void)showError:(NSString *)msg title:(NSString *)title {
-    
-    NZAlertView *alert = [[NZAlertView alloc] initWithStyle:NZAlertStyleError
-                                                      title:title
-                                                    message:msg
-                                                   delegate:nil];
-    
-    [alert show];
-}
-
-
-//自定义弹框 － 提示消息
-+ (void)showInfo:(NSString *)msg title:(NSString *)title {
-    
-    NZAlertView *alert = [[NZAlertView alloc] initWithStyle:NZAlertStyleInfo
-                                                      title:title
-                                                    message:msg
-                                                   delegate:nil];
-    
-    [alert show];
-}
+////自定义弹框 － 成功
+//+ (void)showSuccess:(NSString *)msg title:(NSString *)title {
+//
+//    NZAlertView *alert = [[NZAlertView alloc] initWithStyle:NZAlertStyleSuccess
+//                                                      title:title
+//                                                    message:msg
+//                                                   delegate:nil];
+//    
+//    [alert show];
+//}
+//
+////自定义弹框 － 失败
+//+ (void)showError:(NSString *)msg title:(NSString *)title {
+//    
+//    NZAlertView *alert = [[NZAlertView alloc] initWithStyle:NZAlertStyleError
+//                                                      title:title
+//                                                    message:msg
+//                                                   delegate:nil];
+//    
+//    [alert show];
+//}
+//
+//
+////自定义弹框 － 提示消息
+//+ (void)showInfo:(NSString *)msg title:(NSString *)title {
+//    
+//    NZAlertView *alert = [[NZAlertView alloc] initWithStyle:NZAlertStyleInfo
+//                                                      title:title
+//                                                    message:msg
+//                                                   delegate:nil];
+//    
+//    [alert show];
+//}
 
 
 
@@ -124,6 +125,36 @@ static NSString * const AFAppDotNetAPIBaseURLStringOther = @"http://app.hirelib.
     [av show];
 }
 
+
++ (void)showTextMeggage:(NSString *)msg view:(UIView *)view{
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = msg;
+    hud.margin = 10.f;
+    hud.yOffset = -10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:2];
+
+}
+
++(void)showTextSuccessMeggage:(NSString *)msg view:(UIView *)view{
+
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:view];
+    [view addSubview:HUD];
+    HUD.labelText = msg;
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Checkmark"]];
+    [HUD showAnimated:YES whileExecutingBlock:^{
+        
+        sleep(2);
+        
+    } completionBlock:^{
+        
+        [HUD removeFromSuperview];
+    }];
+    
+}
 
 
 @end

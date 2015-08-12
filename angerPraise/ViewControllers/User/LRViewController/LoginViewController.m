@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "ApIClient.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "User.h"
 #import "MainViewController.h"
 #import "NoozanAppdelegate.h"
@@ -171,13 +171,15 @@
     
     //home 中需要调用登录获取相关信息
     
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [User userLogin:dicData WithBlock:^(User *user, Error *e) {
         
-    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (e.info !=nil) {
-            [APIClient showInfo:e.info title:@"提示"];
+
+            [APIClient showTextMeggage:e.info view:self.view];
+
         }
         else {
     
@@ -206,9 +208,13 @@
     
      NSUInteger pLength = 11;
     if (_phoneNumberTextField.text.length !=pLength) {
-        [APIClient showMessage:@"手机号码格式不正确"];
+        
+        [APIClient showTextMeggage:@"手机号码格式不正确" view:self.view];
+        
     }else if (_passwordTextField.text == nil){
-        [APIClient showMessage:@"密码不能为空"];
+        
+        [APIClient showTextMeggage:@"密码不能为空" view:self.view];
+        
     }else{
         NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
         [dic setObject:_phoneNumberTextField.text forKey:@"phone"];

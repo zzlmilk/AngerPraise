@@ -7,7 +7,7 @@
 //
 
 #import "QAResumeViewController.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 
 #import "Resume.h"
 #import "ApIClient.h"
@@ -96,7 +96,7 @@
         
         if (e.info !=nil) {
             
-            [APIClient showMessage:e.info];
+            [APIClient showTextMeggage:e.info view:self.view];
             
         }else{
             
@@ -116,14 +116,14 @@
 //网页 刚开始加载
 - (void )webViewDidStartLoad:(UIWebView  *)webView{
     
-    [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
 }
 
 //网页 加载完成
 - (void )webViewDidFinishLoad:(UIWebView  *)webView{
     
-    [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

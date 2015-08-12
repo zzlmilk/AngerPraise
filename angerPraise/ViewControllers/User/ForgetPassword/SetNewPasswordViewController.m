@@ -8,7 +8,7 @@
 
 #import "SetNewPasswordViewController.h"
 #import "Register.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "ApIClient.h"
 #import "IndexViewController.h"
 #import "User.h"
@@ -131,16 +131,16 @@
         [dic setObject:_newsPasswordTextField.text forKey:@"password"];
         [dic setObject:_reNewsPasswordTextField.text forKey:@"repeat_password"];
         
-        [SMS_MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [Register setNewPassword:dic WithBlock:^(Register *reg, Error *e) {
-            [SMS_MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (e.info) {
                 
-                [APIClient showMessage:e.info];
+                [APIClient showTextMeggage:e.info view:self.view];
                 
             }
             else{
-                [APIClient showSuccess:@"新密码设置成功" title:@"成功"];
+                [APIClient showTextSuccessMeggage:@"新密码设置成功" view:self.view];
             }
             
             

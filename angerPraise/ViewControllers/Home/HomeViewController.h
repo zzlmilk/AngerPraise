@@ -10,7 +10,7 @@
 #import "BaseViewController.h"
 #import "PagedFlowView.h"
 #import "WXApiObject.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 #import "VWWWaterView.h"
 #import "HomeTitleView.h"
 #import "User.h"

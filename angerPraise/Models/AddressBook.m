@@ -29,7 +29,7 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        [APIClient showInfo: @"请稍后再试..." title:@"网络异常"];
+        //[APIClient showInfo: @"请稍后再试..." title:@"网络异常"];
         
     }];
 

@@ -64,7 +64,7 @@
     
     if (_editNameTextField.text.length < pLength) {
         
-        [APIClient showMessage:@"亲，新名称不能为空哟～"];
+        [APIClient showTextMeggage:@"亲，新名称不能为空哟～" view:self.view];
         
     }else{
         
@@ -80,21 +80,18 @@
             
             if (e.info !=nil) {
                 
-                [APIClient showInfo:e.info title:@"提示"];
-                
+                [APIClient showTextMeggage:e.info view:self.view];
+
             }else{
                 
                 int intRes = [userNameData.res intValue];
                 if (intRes == 1) {
-                    [APIClient showSuccess:@"昵称修改成功" title:@"成功"];
                     
-                    [_editNameTextField becomeFirstResponder];
+                    [_editNameTextField resignFirstResponder];
                     
-                    if (!_userVC) {
-                        _userVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];                    }
-                    _userVC.editedNameString = nil;
-                    _userVC.editedNameString = _editNameTextField.text;
-                    [self.navigationController popToViewController:_userVC animated:true];
+                    [APIClient showTextSuccessMeggage:@"  昵称修改成功！ " view:self.view];
+
+                    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(delayMethod) userInfo:nil repeats:NO];
 
 
                 }
@@ -106,6 +103,19 @@
     }
     
 }
+
+-(void)delayMethod{
+    
+    if (!_userVC) {
+        _userVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
+    }
+    _userVC.editedNameString = nil;
+    _userVC.editedNameString = _editNameTextField.text;
+    
+    [self.navigationController popToViewController:_userVC animated:true];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

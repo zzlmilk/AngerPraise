@@ -147,8 +147,8 @@
         
     }else{
     
-        [APIClient showMessage:@"职位和学历均不能为空"];
-        
+        [APIClient showTextMeggage:@"职位和学历均不能为空" view:self.view];
+
     }
     
 }

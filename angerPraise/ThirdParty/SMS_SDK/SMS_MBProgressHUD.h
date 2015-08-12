@@ -38,7 +38,10 @@ typedef enum {
     /** Progress is shown using a MBRoundProgressView. */
 	MBProgressHUDModeDeterminate,
 	/** Shows a custom view */
-	MBProgressHUDModeCustomView
+	MBProgressHUDModeCustomView,
+    /** Shows only labels */
+    MBProgressHUDModeText
+    
 } MBProgressHUDMode;
 
 typedef enum {

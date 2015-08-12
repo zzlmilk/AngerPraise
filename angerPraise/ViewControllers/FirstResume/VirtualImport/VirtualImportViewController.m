@@ -10,7 +10,7 @@
 #import "ApIClient.h"
 #import "Resume.h"
 #import "MainViewController.h"
-#import "SMS_MBProgressHUD.h"
+#import "MBProgressHUD.h"
 
 @interface VirtualImportViewController ()
 
@@ -179,14 +179,14 @@
             
             if ([resume.res isEqualToString:@"1"]) {
 
-                [APIClient showSuccess:nil title:@"导入成功"];
+                //[APIClient showSuccess:nil title:@"导入成功"];
                 
                 MainViewController *mainVC = [[MainViewController alloc]init];
                 [self presentViewController:mainVC animated:YES completion:nil];
                 
             }else{
 
-                [APIClient showMessage:e.info title:@"导入失败"];
+               // [APIClient showMessage:e.info title:@"导入失败"];
             }
         }];
         
@@ -194,7 +194,7 @@
         
     }else{
         
-        [APIClient showMessage:@"未在简历预览界面" title:@"导入失败"];
+        //[APIClient showMessage:@"未在简历预览界面" title:@"导入失败"];
     
     }
     
