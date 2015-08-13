@@ -86,11 +86,14 @@
     NSString* deviceName = [[UIDevice currentDevice] systemName];
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:[userDefaults objectForKey:USER_ID] forKey:@"user_id"];
-    
     [dic setObject:[userDefaults objectForKey:USER_TOKEN] forKey:@"token"];
+    
+    NSString* deviceVersionString = [[UIDevice currentDevice] systemVersion];
     
     [dic setObject:@"1" forKey:@"dict_device_id"];
     [dic setObject:deviceName forKey:@"device_name"];
+    [dic setObject:deviceVersionString forKey:@"device_version"];
+
     
     if (deviceTokenString!=nil) {
         
@@ -107,7 +110,6 @@
     }];
     
 }
-
 
 
 -(void)clearUserInfo{
